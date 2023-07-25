@@ -18,10 +18,31 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+//  basic implementation spring boot
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    runtimeOnly 'com.mysql:mysql-connector-j'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+//  thymeleaf template engine
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+//  spring boot jpa dependency
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.7.5'
+
+//  database dependency
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+//  project lombok
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+
+//    spring boot security dependency
+//    implementation 'org.springframework.boot:spring-boot-starter-security:2.7.5'
+
+
+// project logger -> log4j
+    implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
+
 }
 
 tasks.named('test') {
