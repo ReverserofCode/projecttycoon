@@ -9,9 +9,7 @@ import javax.persistence.EntityListeners;
 @SpringBootApplication
 @EntityListeners(AuditingEntityListener.class)
 public class ProjecttycoonApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(ProjecttycoonApplication.class, args);
     }
-
 }
