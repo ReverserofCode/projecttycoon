@@ -10,6 +10,8 @@ import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
+
+//시간처리 클래스 수정,생성 시각을 기록한다.
 @Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
