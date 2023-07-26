@@ -29,9 +29,8 @@ public class ProjectEntity extends TimeStamp {
     @Column(nullable = false)
     private String projectWriterId;
     @Column(nullable = false)
-    private Date projectCreatedAt;
-    @Column(nullable = false)
-    private Date projectModifiedAt;
+    private String projectNickName;
+
 
     ProjectEntity(ProjectDto projectDto) {
         this.projectTitle = projectDto.getProjectTitle();

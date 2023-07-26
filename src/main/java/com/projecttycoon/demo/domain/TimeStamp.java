@@ -8,8 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
-import java.time.LocalDateTime;
-
+import java.util.Date;
 
 //시간처리 클래스 수정,생성 시각을 기록한다.
 @Getter
@@ -18,8 +17,8 @@ import java.time.LocalDateTime;
 public class TimeStamp {
 
     @CreatedDate
-    private LocalDateTime localDateTime;
+    private Date projectCreatedAt;
 
     @LastModifiedDate
-    private LocalDateTime modifiedDateTime;
+    private Date projectModifiedAt;
 }
