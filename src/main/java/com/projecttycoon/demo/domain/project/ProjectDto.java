@@ -18,5 +18,8 @@ public class ProjectDto {
     private String projectRequired;
     private String projectIsEnd;
     private String projectWriterId;
+    private String projectNickName;
+
+
 
 }
