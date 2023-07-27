@@ -26,7 +26,6 @@ public class ProjectEntity extends TimeStamp {
     private String projectWriterId;
     private String projectNickName;
 
-
    public ProjectEntity(ProjectDto projectDto) {
         this.projectTitle = projectDto.getProjectTitle();
         this.projectContent = projectDto.getProjectContent();

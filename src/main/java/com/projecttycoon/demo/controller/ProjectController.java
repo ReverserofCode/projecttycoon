@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-
 //실제 송수신 되는 데이터를 요청받는 컨트롤러 클래스
 //REST API 테스트를 마쳐야 함
 @Log4j2
@@ -25,6 +24,7 @@ public class ProjectController {
 
         log.info("call GetMapping findAll");
          projectRepository.findAll();
+
          return projectRepository.findAll();
     }
 
@@ -41,7 +41,6 @@ public class ProjectController {
 
     @PostMapping ("/api/projectRegiste")
     public void registeProject(@RequestBody ProjectDto projectDto){
-
         log.info("call PostMapping request DB Register Logic");
         ProjectEntity projectEntity = new ProjectEntity(projectDto);
         projectRepository.save(projectEntity);
