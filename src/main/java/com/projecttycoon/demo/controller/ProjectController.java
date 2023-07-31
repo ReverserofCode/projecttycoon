@@ -20,27 +20,21 @@ public class ProjectController {
     private final ProjectRepository projectRepository;
 
     @GetMapping("/api/projectList")
-    public List<ProjectEntity> getProjectList(){
-
+    public List<ProjectEntity> getProjectList() {
         log.info("call GetMapping findAll");
-         projectRepository.findAll();
-
-         return projectRepository.findAll();
+        projectRepository.findAll();
+        return projectRepository.findAll();
     }
-
     @PostMapping("/api/projectData/{id}")
-    public ProjectEntity findProjectData(@PathVariable Long id){
-
+    public ProjectEntity findProjectData(@PathVariable Long id) {
         log.info("call Post Mapping findbyId");
-        Optional<ProjectEntity>  optionalProject = projectRepository.findById(id);
+        Optional<ProjectEntity> optionalProject = projectRepository.findById(id);
         ProjectEntity projectEntity = new ProjectEntity();
-        if(optionalProject.isPresent()) projectEntity = optionalProject.get();
-
+        if (optionalProject.isPresent()) projectEntity = optionalProject.get();
         return projectEntity;
     }
-
-    @PostMapping ("/api/projectRegiste")
-    public void registeProject(@RequestBody ProjectDto projectDto){
+    @PostMapping("/api/projectRegiste")
+    public void registeProject(@RequestBody ProjectDto projectDto) {
         log.info("call PostMapping request DB Register Logic");
         ProjectEntity projectEntity = new ProjectEntity(projectDto);
         projectRepository.save(projectEntity);
