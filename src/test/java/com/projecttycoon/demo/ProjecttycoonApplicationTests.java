@@ -8,5 +8,4 @@ class ProjecttycoonApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }
