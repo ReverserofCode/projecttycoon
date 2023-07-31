@@ -33,16 +33,13 @@ public class SecurityConfig {
             auth.antMatchers("/member").hasRole("Member");
             auth.antMatchers("/admin").hasRole("Admin");
         });
-
         httpSecurity.formLogin()
                 .loginProcessingUrl("/api/loginProcess")
                 .defaultSuccessUrl("/")
         ;
-
         httpSecurity.logout()
                 .logoutUrl("/api/logoutProcess")
         ;
-
         return httpSecurity.build();
     }
 }
