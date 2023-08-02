@@ -1,16 +1,13 @@
 package com.projecttycoon.demo;
 
-import com.projecttycoon.demo.domain.project.ProjectDto;
-import com.projecttycoon.demo.domain.project.ProjectEntity;
-import com.projecttycoon.demo.domain.project.ProjectRepository;
+import com.projecttycoon.demo.domain.Entity.ProjectEntity;
+import com.projecttycoon.demo.domain.repository.ProjectRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import java.util.stream.IntStream;
 
 
 @SpringBootTest

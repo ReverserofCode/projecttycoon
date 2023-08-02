@@ -1,6 +1,7 @@
-package com.projecttycoon.demo.domain.project;
+package com.projecttycoon.demo.domain.Entity;
 
 import com.projecttycoon.demo.domain.TimeStamp;
+import com.projecttycoon.demo.domain.dto.ProjectRequestDTO;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -28,7 +29,7 @@ public class ProjectEntity extends TimeStamp {
     private String projectWriterId;
     private String projectNickName;
 
-   public ProjectEntity(ProjectDto projectDto) {
+   public ProjectEntity(ProjectRequestDTO projectDto) {
         this.projectTitle = projectDto.getProjectTitle();
         this.projectContent = projectDto.getProjectContent();
         this.projectImage = projectDto.getProjectImage();

@@ -1,8 +1,8 @@
 package com.projecttycoon.demo.controller;
 
-import com.projecttycoon.demo.domain.project.ProjectDto;
-import com.projecttycoon.demo.domain.project.ProjectEntity;
-import com.projecttycoon.demo.domain.project.ProjectRepository;
+import com.projecttycoon.demo.domain.dto.ProjectRequestDTO;
+import com.projecttycoon.demo.domain.Entity.ProjectEntity;
+import com.projecttycoon.demo.domain.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.*;
@@ -34,13 +34,10 @@ public class ProjectController {
         return projectEntity;
     }
     @PostMapping("/api/projectRegiste")
-    public void registeProject(@RequestBody ProjectDto projectDto) {
+    public void registeProject(@RequestBody ProjectRequestDTO projectDto) {
         log.info("call PostMapping request DB Register Logic");
         ProjectEntity projectEntity = new ProjectEntity(projectDto);
         System.out.println("Hello world");
         projectRepository.save(projectEntity);
-
-//        ㅁㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㅁㄴㅇㄻㄴㅇㄻㄴㅇㄹ
-//        asdfasdfasdfasfasdfasdfaqweqweaz
     }
 }

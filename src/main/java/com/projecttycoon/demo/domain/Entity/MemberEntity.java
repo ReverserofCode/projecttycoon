@@ -1,5 +1,6 @@
-package com.projecttycoon.demo.domain.project;
+package com.projecttycoon.demo.domain.Entity;
 
+import com.projecttycoon.demo.domain.Timestamped;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,12 +16,12 @@ import java.util.Set;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member extends Timestamped implements UserDetails {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class MemberEntity extends Timestamped implements UserDetails {
     @Id
-    @Column(name="member_id")
+    @Column(name = "member_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String memberId;
-    @Column(name="password")
+    @Column(name = "password")
     private String memberPw;
     @Column(name = "memberRole")
     private String memberRole; //권한
@@ -36,9 +37,9 @@ public class Member extends Timestamped implements UserDetails {
     private String memberLink;
 
     @Builder
-    public Member(String memberId, String memberPw,
-                  String memberRole, String memberIcon, String memberIntroduce,
-                  String memberNickname, String memberAcademy, String memberLink){
+    public MemberEntity(String memberId, String memberPw,
+                        String memberRole, String memberIcon, String memberIntroduce,
+                        String memberNickname, String memberAcademy, String memberLink) {
         this.memberIcon = memberIcon;
         this.memberIntroduce = memberIntroduce;
         this.memberPw = memberPw;
@@ -100,9 +101,10 @@ public class Member extends Timestamped implements UserDetails {
         // 계정이 사용 가능한지 확인하는 로직
         return true; // true -> 사용 가능
     }
+
     @Transactional
-    public void icon_update(String memberId, Member member){
-        this.memberIcon = member.getMemberIcon();
+    public void icon_update(String memberId, MemberEntity memberEntity) {
+        this.memberIcon = memberEntity.getMemberIcon();
 
     }
 

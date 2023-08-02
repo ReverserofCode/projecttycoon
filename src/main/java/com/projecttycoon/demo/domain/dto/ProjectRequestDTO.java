@@ -1,4 +1,4 @@
-package com.projecttycoon.demo.domain.project;
+package com.projecttycoon.demo.domain.dto;
 
 
 import lombok.Getter;
@@ -10,8 +10,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @NoArgsConstructor
-public class ProjectDto {
-
+public class ProjectRequestDTO {
     private String projectTitle;
     private String projectContent;
     private String projectImage;
@@ -19,7 +18,4 @@ public class ProjectDto {
     private String projectIsEnd;
     private String projectWriterId;
     private String projectNickName;
-
-
-
 }
