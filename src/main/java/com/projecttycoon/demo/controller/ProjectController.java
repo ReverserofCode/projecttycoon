@@ -37,6 +37,7 @@ public class ProjectController {
     public void registeProject(@RequestBody ProjectDto projectDto) {
         log.info("call PostMapping request DB Register Logic");
         ProjectEntity projectEntity = new ProjectEntity(projectDto);
+        System.out.println("Hello world");
         projectRepository.save(projectEntity);
     }
 }
