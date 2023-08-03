@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @Log4j2
 @RestController
 @RequiredArgsConstructor
-public class MemberController {
+public class    MemberController {
 
     @Autowired
     MemberService memberService;
@@ -24,10 +24,11 @@ public class MemberController {
 
 
     @PostMapping("/api/memberRegister")
-    public void registerDB(@RequestBody MemberRequestDTO memberRequestDTO){
+    public String registerDB(MemberRequestDTO memberRequestDTO){
         log.info(memberRequestDTO.getMemberId());
         memberService.registerMember(memberRequestDTO);
         log.info("call registerDB");
+        return "/api/login";
     }
 
     @PutMapping("/api/memberUpdate/{memberId}")

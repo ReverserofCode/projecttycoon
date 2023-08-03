@@ -34,6 +34,8 @@ public class SecurityConfig {
             auth.antMatchers("/admin").hasRole("Admin");
         });
         httpSecurity.formLogin()
+                .usernameParameter("memberId")// 아이디 파라미터명 설정
+                .passwordParameter("memberPw")// 패스워드 파라미터명 설정
                 .loginProcessingUrl("/api/loginProcess")
                 .defaultSuccessUrl("/")
         ;
