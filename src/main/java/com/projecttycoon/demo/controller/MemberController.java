@@ -1,14 +1,11 @@
 package com.projecttycoon.demo.controller;
 
 import com.projecttycoon.demo.domain.dto.MemberRequestDTO;
-import com.projecttycoon.demo.domain.repository.MemberRepository;
 import com.projecttycoon.demo.domain.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Member;
 
 @Log4j2
 @RestController
