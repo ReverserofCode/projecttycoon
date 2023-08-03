@@ -37,6 +37,7 @@ public class MemberService {
 //        return memberRepository.findByUserId(userId)
 //                .orElseThrow(() -> new UsernameNotFoundException((userId)));
 //    }
+
     /**
      * 회원정보 저장
      *
@@ -50,9 +51,13 @@ public class MemberService {
     }
 
     public void MemberUpdate(MemberRequestDTO requestDTO) {
-        bCryptPasswordEncoder.encode(requestDTO.getMemberPw());
-        MemberEntity memberEntity = new MemberEntity(requestDTO);
-        memberRepository.save(memberEntity);
+        Optional<MemberEntity> result = memberRepository.findById("testId3");
+        if (result.isPresent()) {
+            MemberEntity memberEntity;
+            memberEntity = result.get();
+            memberEntity.memberUpdate(requestDTO);
+            memberRepository.save(memberEntity);
+        }
     }
 
     public void delete(String memberId) {

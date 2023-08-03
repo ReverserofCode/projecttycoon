@@ -46,6 +46,16 @@ public class MemberEntity extends TimeStamp {
         this.memberAuthority = "member";
     }
 
+    public void memberUpdate(MemberRequestDTO requestDTO){
+        this.memberPw = requestDTO.getMemberPw();
+        this.memberNickname = requestDTO.getMemberNickname();
+        this.memberAcademy = requestDTO.getMemberAcademy();
+        this.memberRole = requestDTO.getMemberRole();
+        this.memberIntroduce = requestDTO.getMemberIntroduce();
+        this.memberLink = requestDTO.getMemberLink();
+        this.memberIcon = requestDTO.getMemberIcon();
+    }
+
 //    // 사용자의 권한을 콜렉션 형태로 반환
 //    // 단, 클래스 자료형은 GrantedAuthority를 구현해야함
 //    @Override
