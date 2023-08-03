@@ -1,6 +1,7 @@
-package com.projecttycoon.demo.domain.project;
+package com.projecttycoon.demo.domain.repository;
 
 
+import com.projecttycoon.demo.domain.Entity.ProjectEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;

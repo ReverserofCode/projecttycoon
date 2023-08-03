@@ -1,8 +1,8 @@
 package com.projecttycoon.demo.controller;
 
-import com.projecttycoon.demo.domain.project.ProjectDto;
-import com.projecttycoon.demo.domain.project.ProjectEntity;
-import com.projecttycoon.demo.domain.project.ProjectRepository;
+import com.projecttycoon.demo.domain.dto.ProjectRequestDTO;
+import com.projecttycoon.demo.domain.Entity.ProjectEntity;
+import com.projecttycoon.demo.domain.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.*;
@@ -19,30 +19,12 @@ public class ProjectController {
 
     private final ProjectRepository projectRepository;
 
+//   테스트 코드 서비스 로직은 Service 패키지의 Service 클래스를 만들어 사용 할 수 있도록 합니다.
     @GetMapping("/api/projectList")
-    public List<ProjectEntity> getProjectList(){
-
+    public List<ProjectEntity> getProjectList() {
         log.info("call GetMapping findAll");
-         projectRepository.findAll();
-
-         return projectRepository.findAll();
+        projectRepository.findAll();
+        return projectRepository.findAll();
     }
 
-    @PostMapping("/api/projectData/{id}")
-    public ProjectEntity findProjectData(@PathVariable Long id){
-
-        log.info("call Post Mapping findbyId");
-        Optional<ProjectEntity>  optionalProject = projectRepository.findById(id);
-        ProjectEntity projectEntity = new ProjectEntity();
-        if(optionalProject.isPresent()) projectEntity = optionalProject.get();
-
-        return projectEntity;
-    }
-
-    @PostMapping ("/api/projectRegiste")
-    public void registeProject(@RequestBody ProjectDto projectDto){
-        log.info("call PostMapping request DB Register Logic");
-        ProjectEntity projectEntity = new ProjectEntity(projectDto);
-        projectRepository.save(projectEntity);
-    }
 }

@@ -1,8 +1,8 @@
-package com.projecttycoon.demo.domain.project;
+package com.projecttycoon.demo.domain.Entity;
 
 import com.projecttycoon.demo.domain.TimeStamp;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.projecttycoon.demo.domain.dto.ProjectRequestDTO;
+import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -11,7 +11,10 @@ import javax.persistence.*;
 //사용자에게 노출되는 프로젝트들의 상세 내역의 데이터를 담을 DB 설계
 @Entity
 @Getter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
+@Table(name="ProjectData")
 @EntityListeners(AuditingEntityListener.class)
 public class ProjectEntity extends TimeStamp {
 
@@ -26,7 +29,7 @@ public class ProjectEntity extends TimeStamp {
     private String projectWriterId;
     private String projectNickName;
 
-   public ProjectEntity(ProjectDto projectDto) {
+   public ProjectEntity(ProjectRequestDTO projectDto) {
         this.projectTitle = projectDto.getProjectTitle();
         this.projectContent = projectDto.getProjectContent();
         this.projectImage = projectDto.getProjectImage();
