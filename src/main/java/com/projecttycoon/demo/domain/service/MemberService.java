@@ -5,13 +5,10 @@ import com.projecttycoon.demo.domain.Entity.MemberEntity;
 import com.projecttycoon.demo.domain.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
-import java.lang.reflect.Member;
 import java.util.Optional;
 
 
@@ -21,8 +18,6 @@ import java.util.Optional;
 public class MemberService {
 
     private final MemberRepository memberRepository;
-
-    @Autowired
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     /**
@@ -50,8 +45,8 @@ public class MemberService {
         memberRepository.save(memberEntity);
     }
 
-    public void MemberUpdate(MemberRequestDTO requestDTO) {
-        Optional<MemberEntity> result = memberRepository.findById("testId3");
+    public void memberUpdate(String memberId, MemberRequestDTO requestDTO) {
+        Optional<MemberEntity> result = memberRepository.findById(memberId);
         if (result.isPresent()) {
             MemberEntity memberEntity;
             memberEntity = result.get();
@@ -60,7 +55,7 @@ public class MemberService {
         }
     }
 
-    public void delete(String memberId) {
+    public void memberDelete(String memberId) {
         memberRepository.deleteById(memberId);
     }
 
