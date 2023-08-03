@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 //이 클래스는 프로젝트의 home 의 위치를 재설정하는 클래스이다.
 //이 클래스가 없을 시 React 가 작동하지 않는다. 주의
-public class WebmvcConfig implements WebMvcConfigurer {
+public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
