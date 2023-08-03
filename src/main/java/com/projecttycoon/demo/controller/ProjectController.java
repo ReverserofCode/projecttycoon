@@ -19,25 +19,12 @@ public class ProjectController {
 
     private final ProjectRepository projectRepository;
 
+//   테스트 코드 서비스 로직은 Service 패키지의 Service 클래스를 만들어 사용 할 수 있도록 합니다.
     @GetMapping("/api/projectList")
     public List<ProjectEntity> getProjectList() {
         log.info("call GetMapping findAll");
         projectRepository.findAll();
         return projectRepository.findAll();
     }
-    @PostMapping("/api/projectData/{id}")
-    public ProjectEntity findProjectData(@PathVariable Long id) {
-        log.info("call Post Mapping findbyId");
-        Optional<ProjectEntity> optionalProject = projectRepository.findById(id);
-        ProjectEntity projectEntity = new ProjectEntity();
-        if (optionalProject.isPresent()) projectEntity = optionalProject.get();
-        return projectEntity;
-    }
-    @PostMapping("/api/projectRegiste")
-    public void registeProject(@RequestBody ProjectRequestDTO projectDto) {
-        log.info("call PostMapping request DB Register Logic");
-        ProjectEntity projectEntity = new ProjectEntity(projectDto);
-        System.out.println("Hello world");
-        projectRepository.save(projectEntity);
-    }
+
 }

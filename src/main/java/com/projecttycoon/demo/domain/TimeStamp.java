@@ -19,8 +19,8 @@ import java.util.Date;
 public class TimeStamp {
 
     @CreatedDate
-    private Date projectCreatedAt;
+    private Date createAt;
 
     @LastModifiedDate
-    private Date projectModifiedAt;
+    private Date modifiedAt;
 }

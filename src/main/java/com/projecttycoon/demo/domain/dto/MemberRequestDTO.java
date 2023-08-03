@@ -1,13 +1,13 @@
 package com.projecttycoon.demo.domain.dto;
 
 
-import com.projecttycoon.demo.domain.Timestamped;
+import com.projecttycoon.demo.domain.TimeStamp;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class MemberRequestDTO extends Timestamped {
+public class MemberRequestDTO extends TimeStamp {
     private String memberId;
     private String memberPw;
     private String memberRole; //권한
