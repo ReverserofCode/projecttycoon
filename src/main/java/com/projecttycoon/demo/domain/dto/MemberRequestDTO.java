@@ -10,7 +10,7 @@ import lombok.Setter;
 public class MemberRequestDTO extends TimeStamp {
     private String memberId;
     private String memberPw;
-    private String memberRole; //권한
+    private String memberRole;
     private String memberIntroduce;
     private String memberIcon;
     private String memberLink;
