@@ -50,6 +50,7 @@ public class MemberService {
         if (result.isPresent()) {
             MemberEntity memberEntity;
             memberEntity = result.get();
+
             memberEntity.memberUpdate(requestDTO);
             memberRepository.save(memberEntity);
         }

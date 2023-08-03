@@ -40,6 +40,8 @@ public class SecurityConfig {
         httpSecurity.logout()
                 .logoutUrl("/api/logoutProcess")
         ;
+        httpSecurity.csrf().disable();
         return httpSecurity.build();
+
     }
 }
