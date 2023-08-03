@@ -4,7 +4,6 @@ import com.projecttycoon.demo.domain.dto.MemberRequestDTO;
 import com.projecttycoon.demo.domain.Entity.MemberEntity;
 import com.projecttycoon.demo.domain.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -50,6 +49,8 @@ public class MemberService {
         if (result.isPresent()) {
             MemberEntity memberEntity;
             memberEntity = result.get();
+
+           requestDTO.setMemberPw(bCryptPasswordEncoder.encode(requestDTO.getMemberPw()));
 
             memberEntity.memberUpdate(requestDTO);
             memberRepository.save(memberEntity);
