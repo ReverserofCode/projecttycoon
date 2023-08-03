@@ -64,4 +64,21 @@ class ProjecttycoonApplicationTests {
             memberRepository.save(memberEntity);
         });
     }
+
+
+    @Test
+    void memberUpdate(){
+        MemberEntity memberEntity =  MemberEntity.builder()
+                .memberId("testId1")
+                .memberPw("UpdatePassword")
+                .memberNickname("UpdateNickname")
+                .memberAcademy("UpdateAcademy")
+                .memberRole("UpdateRole")
+                .memberIntroduce("UpdateIntroduce")
+                .memberLink("UpdateLink")
+                .memberIcon("UpdateIcon")
+                .memberAuthority("UpdateAutho")
+                .build();
+        memberRepository.save(memberEntity);
+    }
 }
