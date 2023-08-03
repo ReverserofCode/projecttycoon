@@ -3,6 +3,7 @@ package com.projecttycoon.demo.domain.Entity;
 import com.projecttycoon.demo.domain.TimeStamp;
 import com.projecttycoon.demo.domain.dto.MemberRequestDTO;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
@@ -10,10 +11,11 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class MemberEntity extends TimeStamp {
 
     @Id
-    @Column(name = "memberid")
+    @Column(name = "memberid", unique = true)
     private String memberId;
     @Column(name = "password")
     private String memberPw;

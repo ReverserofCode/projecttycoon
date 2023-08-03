@@ -14,6 +14,8 @@ import javax.swing.text.html.Option;
 import java.lang.reflect.Member;
 import java.util.Optional;
 
+
+//실제 프로그램의 서비스로직을 정의한 클래스
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -35,36 +37,26 @@ public class MemberService {
 //        return memberRepository.findByUserId(userId)
 //                .orElseThrow(() -> new UsernameNotFoundException((userId)));
 //    }
-
     /**
      * 회원정보 저장
      *
      * @param dto 회원정보가 들어있는 DTO
      * @return 저장되는 회원의 PK
      */
-
-    public void registerMember(MemberRequestDTO dto) {
-        dto.setMemberPw(bCryptPasswordEncoder.encode(dto.getMemberPw()));
-        MemberEntity memberEntity = new MemberEntity(dto);
+    public void registerMember(MemberRequestDTO requestDTO) {
+        requestDTO.setMemberPw(bCryptPasswordEncoder.encode(requestDTO.getMemberPw()));
+        MemberEntity memberEntity = new MemberEntity(requestDTO);
         memberRepository.save(memberEntity);
     }
 
-    public void MemberUpdate(MemberEntity memberEntity, MemberRequestDTO requestDTO) {
+    public void MemberUpdate(MemberRequestDTO requestDTO) {
         bCryptPasswordEncoder.encode(requestDTO.getMemberPw());
-
+        MemberEntity memberEntity = new MemberEntity(requestDTO);
+        memberRepository.save(memberEntity);
     }
 
     public void delete(String memberId) {
         memberRepository.deleteById(memberId);
     }
 
-    public MemberEntity findUser(String memberId) {
-        Optional<MemberEntity> result = memberRepository.findByUserId(memberId);
-        if (result.isPresent()) {
-            MemberEntity memberEntity = new MemberEntity();
-            memberEntity = result.get();
-            return memberEntity;
-        }
-        return null;
-    }
 }
