@@ -15,8 +15,8 @@ import java.lang.reflect.Member;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final MemberRepository memberRepository;
     MemberService memberService;
+
 
     @PostMapping("/api/memberRegister")
     public void registerDB(@RequestBody MemberRequestDTO memberRequestDTO){
