@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import { SubmitButton } from "./Buttons";
 
 const LoginFormContainer = styled.div`
   display: flex;
@@ -35,26 +36,6 @@ const PasswordViewButton = styled.div`
   right: 5px;
   cursor: pointer;
   font-size: 30px;
-`;
-const SubmitButton = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  font-weight: bold;
-  width: 100%;
-  height: 50px;
-  color: white;
-  background-color: #0b666a;
-  border-radius: 10px;
-  cursor: pointer;
-  user-select: none;
-  :hover {
-    background-color: #08838a;
-  }
-  :active {
-    scale: 0.98;
-  }
 `;
 
 function LoginForm() {
