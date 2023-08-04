@@ -18,4 +18,5 @@ public class ProjectRequestDTO {
     private String projectIsEnd;
     private String projectWriterId;
     private String projectNickName;
+    private String projectAcademy;
 }

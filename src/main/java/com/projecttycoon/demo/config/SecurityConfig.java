@@ -29,9 +29,10 @@ public class SecurityConfig {
 
         //접근 권한 설정
         httpSecurity.authorizeRequests((auth) -> {
-            auth.antMatchers("/all").permitAll();
-            auth.antMatchers("/member").hasRole("Member");
-            auth.antMatchers("/admin").hasRole("Admin");
+            auth.antMatchers().permitAll();
+//            auth.antMatchers("/all").permitAll();
+//            auth.antMatchers("/member").hasRole("Member");
+//            auth.antMatchers("/admin").hasRole("Admin");
         });
         httpSecurity.formLogin()
                 .loginProcessingUrl("/api/loginProcess")

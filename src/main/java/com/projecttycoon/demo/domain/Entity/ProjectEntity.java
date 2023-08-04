@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="ProjectData")
+@Table(name="project")
 @EntityListeners(AuditingEntityListener.class)
 public class ProjectEntity extends TimeStamp {
 
@@ -25,6 +25,7 @@ public class ProjectEntity extends TimeStamp {
     private String projectContent;
     private String projectImage;
     private String projectRequired;
+    private String projectAcademy;
     private String projectIsEnd;
     private String projectWriterId;
     private String projectNickName;
@@ -35,6 +36,7 @@ public class ProjectEntity extends TimeStamp {
         this.projectImage = projectDto.getProjectImage();
         this.projectRequired = projectDto.getProjectRequired();
         this.projectIsEnd = projectDto.getProjectIsEnd();
+        this.projectAcademy = projectDto.getProjectAcademy();
         this.projectWriterId = projectDto.getProjectWriterId();
         this.projectNickName = projectDto.getProjectNickName();
     }
