@@ -45,6 +45,15 @@ dependencies {
 
 // project oauth2
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+//  Webclient dependency
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'com.google.code.gson:gson:2.8.7'
+
+//    http Templates
+    implementation 'org.apache.httpcomponents:httpcore:4.4.15'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+
 }
 
 tasks.named('test') {

@@ -5,14 +5,25 @@ import com.projecttycoon.demo.domain.Entity.ProjectEntity;
 import com.projecttycoon.demo.domain.dto.MemberRequestDTO;
 import com.projecttycoon.demo.domain.repository.MemberRepository;
 import com.projecttycoon.demo.domain.repository.ProjectRepository;
+import org.apache.http.client.methods.HttpHead;
+import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -91,4 +102,15 @@ class ProjecttycoonApplicationTests {
             memberRepository.save(memberEntity);
         }
     }
+
+    @Test
+    public void testGetRequest() throws Exception{
+        String uri = "https://kauth.kakao.com/oauth/authorize";
+        ResponseEntity<String> res = new RestTemplate()
+                .getForEntity(uri, String.class);
+
+        System.out.println(res.getBody());
+        System.out.println(res.getStatusCodeValue());
+    }
+
 }

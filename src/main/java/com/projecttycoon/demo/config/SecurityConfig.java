@@ -43,11 +43,9 @@ public class SecurityConfig {
                 .logoutUrl("/api/logoutProcess")
         ;
 
-        httpSecurity.oauth2Client();
-
+//        httpSecurity.oauth2Client();
 
         httpSecurity.csrf().disable();
         return httpSecurity.build();
-
     }
 }
