@@ -18,7 +18,7 @@ public class MemberEntity extends TimeStamp{
     @Id
     @Column(name = "memberId", unique = true)
     private String memberId;
-    @Column(name = "password")
+    @Column(name = "memberPw")
     private String memberPw;
     @Column(name = "memberNickname")
     private String memberNickname;
