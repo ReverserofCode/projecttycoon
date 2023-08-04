@@ -46,6 +46,7 @@ public class SecurityConfig {
 //        httpSecurity.oauth2Client();
 
         httpSecurity.csrf().disable();
+
         return httpSecurity.build();
     }
 }

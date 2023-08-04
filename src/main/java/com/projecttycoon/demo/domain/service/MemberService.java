@@ -1,5 +1,6 @@
 package com.projecttycoon.demo.domain.service;
 
+import com.projecttycoon.demo.domain.details.MemberDetails;
 import com.projecttycoon.demo.domain.dto.MemberRequestDTO;
 import com.projecttycoon.demo.domain.Entity.MemberEntity;
 import com.projecttycoon.demo.domain.repository.MemberRepository;
@@ -28,9 +29,11 @@ public class MemberService implements UserDetailsService {
      * @throws UsernameNotFoundException 유저가 없을 때 예외 발생
      */
     @Override // 기본적인 반환 타입은 UserDetails, UserDetails를 상속받은 UserInfo로 반환 타입 지정 (자동으로 다운 캐스팅됨)
-    public MemberEntity loadUserByUsername(String memberId) throws UsernameNotFoundException { // 시큐리티에서 지정한 서비스이기 때문에 이 메소드를 필수로 구현
-        return memberRepository.findByMemberId(memberId)
-                .orElseThrow(() -> new UsernameNotFoundException((memberId)));
+    public MemberDetails loadUserByUsername(String memberId) throws UsernameNotFoundException { // 시큐리티에서 지정한 서비스이기 때문에 이 메소드를 필수로 구현
+        return new MemberDetails(memberRepository.findByMemberId(memberId)
+                .orElseThrow(() -> new UsernameNotFoundException((memberId))
+                )
+                );
     }
 
     /**
