@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="project")
+@Table(name="project")//projectdata? project?
 @EntityListeners(AuditingEntityListener.class)
 public class ProjectEntity extends TimeStamp {
 
