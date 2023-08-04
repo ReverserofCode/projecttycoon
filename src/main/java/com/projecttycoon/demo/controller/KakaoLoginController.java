@@ -1,12 +1,7 @@
 package com.projecttycoon.demo.controller;
 
-
-import com.nimbusds.oauth2.sdk.token.AccessToken;
-import com.projecttycoon.demo.domain.service.KakaoLoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import net.minidev.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
@@ -25,9 +20,7 @@ public class KakaoLoginController {
 
     @ResponseBody
     @GetMapping("/kakao")
-    public void kakaoCallback(@RequestParam String code) throws Exception {
-
-        RestTemplate restTemplate = new RestTemplate();
+    public ResponseEntity<String> kakaoCallBack(@RequestParam String code) throws Exception {
 
         log.info("Call Post logic");
 
@@ -35,10 +28,6 @@ public class KakaoLoginController {
         final String client_id = "777cadaafac1cb2cb8aa5dc765cde3f4";
         final String redirect_uri = "http://localhost:9999/auth/kakao";
         final String api_Url = "https://kauth.kakao.com/oauth/token";
-
-
-
-        HttpHeaders httpHeaders = new HttpHeaders();
 
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", grant_type);
@@ -52,8 +41,12 @@ public class KakaoLoginController {
         if(responseEntity.getStatusCode().is2xxSuccessful()){
             log.info("Success response");
             String responseBody = responseEntity.getBody();
-            System.out.println(responseBody);
+            log.info(responseBody);
+            return responseEntity;
         }
-        else log.info("Fail login response");
+        else {
+            log.info("Fail login response");
+            return null;
+        }
     }
 }
