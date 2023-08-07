@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name="MemberData")
 @EntityListeners(AuditingEntityListener.class)
 public class MemberEntity extends TimeStamp {
 
@@ -33,6 +34,10 @@ public class MemberEntity extends TimeStamp {
     private String memberIcon;
     @Column(name = "authority")
     private String memberAuthority;
+
+    @ManyToOne
+    @JoinColumn(name = "chatroomId")
+    private ChatroomEntity chatroomEntity;
 
     public MemberEntity(MemberRequestDTO requestDTO) {
         this.memberId = requestDTO.getMemberId();
