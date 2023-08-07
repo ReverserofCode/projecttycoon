@@ -36,7 +36,7 @@ public class Project extends TimeStamp {
 
 
 
-   public Project(ProjectRequestDTO projectRequestDTO) {
+    public Project(ProjectRequestDTO projectRequestDTO) {
         this.projectTitle = projectRequestDTO.getProjectTitle();
         this.projectContent = projectRequestDTO.getProjectContent();
         this.projectRequired = projectRequestDTO.getProjectRequired();

@@ -34,15 +34,15 @@
 </section>
 
 
-    <footer>
-      <div class="pagination">
-        <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
-          <a th:if='${page != nowPage and pageType.equals("all")}' th:href="@{/api/projectList/{id}(id=${page}-1)}" th:text="${page}"></a>
-          <a th:if='${page != nowPage and pageType.equals("search")}' th:href="@{/api/searchList/{id}(id=${page}-1,itemName=${projectName})}" th:text="${page}"></a>
-          <a th:if="${page == nowPage}" th:text="${page}" class="page active"></a>
-        </th:block>
-      </div>
-    </footer>
+<footer>
+  <div class="pagination">
+    <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+      <a th:if='${page != nowPage and pageType.equals("all")}' th:href="@{/api/projectList/{id}(id=${page}-1)}" th:text="${page}"></a>
+      <a th:if='${page != nowPage and pageType.equals("search")}' th:href="@{/api/searchList/{id}(id=${page}-1,itemName=${projectName})}" th:text="${page}"></a>
+      <a th:if="${page == nowPage}" th:text="${page}" class="page active"></a>
+    </th:block>
+  </div>
+</footer>
 
 </body>
 </html>
