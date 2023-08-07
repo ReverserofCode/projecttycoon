@@ -85,14 +85,4 @@ public class ProjectController {
         model.addAttribute("projectName",projectName);
         return "index";
     }
-
-
-//   테스트 코드 서비스 로직은 Service 패키지의 Service 클래스를 만들어 사용 할 수 있도록 합니다.
-//    @GetMapping("/api/projectList")
-//    public List<ProjectEntity> getProjectList() {
-//        log.info("call GetMapping findAll");
-//        projectRepository.findAll();
-//        return projectRepository.findAll();
-//    }
-
 }
