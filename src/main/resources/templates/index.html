@@ -1,15 +1,58 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-    <script type="module" crossorigin src="/templates/assets/index-d9149422.js"></script>
-    <link rel="stylesheet" href="/templates/assets/index-6d606818.css">
-  </head>
-  <body>
-    <div id="root"></div>
-    
-  </body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>프로젝트리스트</title>
+</head>
+<body>
+  <nav id="nav">
+    <ul class="links">
+        <li class="active"><a href="/api/projectList/0">포로젝트 전체</a></li>
+        <li><a href="/api/projectList/opened/0">모집 중인 프로젝트</a></li>
+        <li><a href="/api/projectList/closed/0">모집 마감 프로젝트</a></li>
+        <li><a href="/all/postProject">프로젝트 등록하기</a></li>
+    </ul>
+
+      <div id="main">
+
+          <p>프로젝트 리스트</p>
+          <!-- Posts -->
+          <section class="posts">
+              <article th:each="project : ${projects}">
+                  <header>
+                      <h2><a th:href="@{/api/projectOne/{id}(id=${project.id})}" th:text="${project.projectTitle}"></a></h2>
+                  </header>
+                  <a th:href="@{/api/projectOne/{id}(id=${project.id})}" class="image fit"><img th:src="@{${project.filePath}}" alt=""/></a>
+                  <p th:text="${project.projectContent}"></p>
+                  <p>[[${project.projectRequired}]]</p>
+                  <ul class="actions special">
+                      <li><a th:href="@{/api/projectOne/{id}(id=${project.id})}" class="button">보러가기</a></li>
+                  </ul>
+              </article>
+
+          </section>
+
+          <!-- Footer -->
+          <footer>
+              <div class="pagination">
+                  <!--<a href="#" class="previous">Prev</a>-->
+                  <!--                <a href="#" class="page active">1</a>-->
+                  <!--                <a href="#" class="next">Next</a>-->
+                  <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+                      <a th:if='${page != nowPage and pageType.equals("all")}' th:href="@{/api/projectList/{id}(id=${page}-1)}" th:text="${page}"></a>
+                      <a th:if='${page != nowPage and pageType.equals("search")}' th:href="@{/api/searchList/{id}(id=${page}-1, projectName=${projectName})}" th:text="${page}"></a>
+                      <a th:if="${page == nowPage}" th:text="${page}" class="page active"></a>
+                  </th:block>
+              </div>
+          </footer>
+
+      </div>
+
+
+  </nav>
+</body>
 </html>

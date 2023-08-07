@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>모집중/모집마감</title>
+</head>
+<body>
+<nav id="nav">
+  <ul class="links">
+    <li class="active"><a href="/api/projectList/0">포로젝트 전체</a></li>
+    <li class="active"><a href="/api/projectList/opened/0">모집 중인 프로젝트</a></li>
+    <li class="active"><a href="/api/projectList/closed/0">모집 마감 프로젝트</a></li>
+    <li class="active"><a href="/all/postProject">프로젝트 등록하기</a></li>
+  </ul>
+</nav>
+
+<section class="posts">
+  <article th:each="project : ${projects}">
+    <header>
+      <h2><a th:href="@{/api/projectOne/{id}(id=${project.id})}" th:text="${project.projectTitle}"></a></h2>
+    </header>
+    <a th:href="@{/api/projectOne/{id}(id=${project.id})}" class="image fit"><img th:src="@{${project.filePath}}" alt=""/></a>
+    <p th:text="${project.projectContent}"></p>
+    <p>[[${project.projectRequired}]]</p>
+    <p>[[${project.projectIsEnd}]]</p>
+    <p>[[${project.projectWriterId}]]</p>
+    <p>[[${project.projectNickName}]]</p>
+
+    <ul class="actions special">
+      <li><a th:href="@{/api/projectOne/{id}(id=${project.id})}" class="button">프로젝트 상세</a></li>
+    </ul>
+  </article>
+</section>
+
+
+    <footer>
+      <div class="pagination">
+        <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+          <a th:if='${page != nowPage and pageType.equals("all")}' th:href="@{/api/projectList/{id}(id=${page}-1)}" th:text="${page}"></a>
+          <a th:if='${page != nowPage and pageType.equals("search")}' th:href="@{/api/searchList/{id}(id=${page}-1,itemName=${projectName})}" th:text="${page}"></a>
+          <a th:if="${page == nowPage}" th:text="${page}" class="page active"></a>
+        </th:block>
+      </div>
+    </footer>
+
+</body>
+</html>

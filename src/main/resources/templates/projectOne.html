@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>프로젝트 상세페이지</title>
+</head>
+<body>
+<nav id="nav">
+    <ul class="links">
+        <li><a href="/api/projectList/0">포로젝트 전체</a></li>
+        <li><a href="/api/projectList/opened/0">모집 중인 프로젝트</a></li>
+        <li><a href="/api/projectList/closed/0">모집마감 프로젝트</a></li>
+        <li><a href="/all/postProject">프로젝트 등록하기</a></li>
+    </ul>
+</nav>
+
+<section class="posts">
+    <article>
+        <a class="image fit"><img th:src="@{${project.filePath}}" alt=""/></a>
+    </article>
+    <article>
+        <header>
+            <h2><a href="#" th:text="${project.projectTitle}"></a></h2>
+            <input type="hidden" id="projectId" th:value="${project.id}">
+            <div id="projectContent">[[${project.projectContent}]]</div>
+            <div id="projectRequired">[[${project.projectRequired}]]</div>
+            <div id="projectIsEnd">[[${project.projectIsEnd}]]</div>
+            <div id="projectWriterId">[[${project.projectWriterId}]]</div>
+            <div id="projectNickName">[[${project.projectNickName}]]</div>
+        </header>
+    </article>
+</section>
+
+</body>
+</html>
