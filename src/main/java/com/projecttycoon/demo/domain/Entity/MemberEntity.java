@@ -35,10 +35,6 @@ public class MemberEntity extends TimeStamp {
     @Column(name = "authority")
     private String memberAuthority;
 
-    @ManyToOne
-    @JoinColumn(name = "chatroomId")
-    private ChatroomEntity chatroomEntity;
-
     public MemberEntity(MemberRequestDTO requestDTO) {
         this.memberId = requestDTO.getMemberId();
         this.memberPw = requestDTO.getMemberPw();
