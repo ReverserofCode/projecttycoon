@@ -37,7 +37,7 @@ const PasswordViewButton = styled.div`
   cursor: pointer;
   font-size: 30px;
 `;
-
+/** 자체 로그인 Component */
 function LoginForm() {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");

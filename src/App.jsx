@@ -41,7 +41,7 @@ function App() {
         <Header30 color="#0B666A">타이쿤</Header30>
         <LoginForm />
         <Devider />
-        <SocialLogin></SocialLogin>
+        <SocialLogin />
       </LoginBase>
       <SubmitButton>SignUp</SubmitButton>
     </LoginPage>

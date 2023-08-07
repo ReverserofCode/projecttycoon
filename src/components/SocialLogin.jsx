@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { RiKakaoTalkFill } from "react-icons/ri";
 import { SiNaver } from "react-icons/si";
 import { BsArrowRight } from "react-icons/bs";
+import { KakaoLogin } from "../functional/KakaoLogin";
 
 const SocialLoginContainer = styled.div`
   display: flex;
@@ -41,7 +42,7 @@ const LogoBox = styled.div`
 const TextInfo = styled.span`
   font-size: 20px;
 `;
-
+/**카카오 및 네이버 로그인 페이지 */
 function SocialLogin() {
   return (
     <SocialLoginContainer>
@@ -52,7 +53,13 @@ function SocialLogin() {
         <TextInfo>Log in with Naver</TextInfo>
         <BsArrowRight />
       </ButtonBase>
-      <ButtonBase bgColor="#FFE812" color="#000000">
+      <ButtonBase
+        bgColor="#FFE812"
+        color="#000000"
+        onClick={() => {
+          KakaoLogin();
+        }}
+      >
         <LogoBox>
           <RiKakaoTalkFill fontSize={"30px"} />
         </LogoBox>

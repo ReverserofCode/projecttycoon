@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 
+/** 로그인 공통 버튼 */
 export const SubmitButton = styled.div`
   display: flex;
   max-width: 450px;
