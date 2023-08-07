@@ -16,7 +16,7 @@ public class KakaoLoginService {
 
         final String grant_type = "authorization_code";
         final String client_id = "777cadaafac1cb2cb8aa5dc765cde3f4";
-        final String redirect_uri = "http://localhost:9999/auth/kakao";
+        final String redirect_uri = "http://projecttycoon.com/auth/kakao";
         final String api_Url = "https://kauth.kakao.com/oauth/token";
 
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
