@@ -10,7 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 
 
-//사용자 두명이 대화하는 채팅방의 DB 설계
+//채팅 각각의 DB 설계
 @Entity
 @Getter
 @Builder
@@ -26,12 +26,20 @@ public class ChatEntity extends TimeStamp {
     private Long chatId;
 
     @Column
-    private String chatSendId;
+    private String chatFromId;
 
     @Column
-    private String chatReceiveId;
+    private String chatToId;
 
     @Column
-    private String chatText;
+    private String chatContent;
+
+    @Column
+    private Boolean chatRead;
+
+    @ManyToOne
+    @JoinColumn(name = "chatroomId", referencedColumnName = "chatroomId")
+    private ChatroomEntity chatroomId;
+
 }
 
