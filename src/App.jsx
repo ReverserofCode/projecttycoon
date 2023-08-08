@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { Header30 } from "./components/TextFormat";
 import LoginForm from "./components/LoginForm";
 import SocialLogin from "./components/SocialLogin";
 import { SubmitButton } from "./components/Buttons";
+import { KakaoUserDataGet } from "./functional/KakaoLogin";
 
 const LoginPage = styled.div`
   display: flex;
@@ -35,6 +36,7 @@ const Devider = styled.div`
 `;
 
 function App() {
+  const [userData, setUserData] = useState("");
   return (
     <LoginPage>
       <LoginBase>
@@ -44,6 +46,15 @@ function App() {
         <SocialLogin />
       </LoginBase>
       <SubmitButton>SignUp</SubmitButton>
+      <SubmitButton
+        onClick={() => {
+          KakaoUserDataGet().then((res) => {
+            setUserData(res);
+          });
+        }}
+      >
+        Get UserData
+      </SubmitButton>
     </LoginPage>
   );
 }

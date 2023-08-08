@@ -1,3 +1,5 @@
+import axios from "axios";
+
 /** 카카오 로그인 페이지 불러오기
  */
 export const KakaoLogin = () => {
@@ -12,4 +14,16 @@ export const KakaoLogin = () => {
   const REDIRECTURI = `http://projecttycoon.com/auth/kakao`;
   const KAKAOLOGIN = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${RESTAPIKEY}&redirect_uri=${REDIRECTURI}`;
   window.location.href = KAKAOLOGIN;
+};
+
+/** 처음 로그인시 카카오로부터 UserData를 받아오는 기능 */
+export const KakaoUserDataGet = async () => {
+  /** 유저 연결 토큰 */
+  const USERTOKEN = "V-T3ItEQ0dQD0o2Ze1xptioa_ZskhzJo6trzWppDCj102wAAAYnVBxTF";
+  const getUserData = await axios.get(`https://kapi.kakao.com/v2/user/me`, {
+    headers: {
+      Authorization: `Bearer ${USERTOKEN}`,
+    },
+  });
+  return await getUserData.data;
 };
