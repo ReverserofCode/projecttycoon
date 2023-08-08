@@ -3,10 +3,7 @@ package com.projecttycoon.demo.domain.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.apache.logging.log4j.core.config.plugins.convert.TypeConverters;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -17,8 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @Log4j2
 @Service
@@ -32,7 +27,6 @@ public class KakaoLoginService {
     String kakaoApiUrl;
     @Value("${kakao-dataUrl}")
     String dataUrl;
-
 
     public ResponseEntity<String> kakaoLoginProcess(String code) throws Exception {
 
