@@ -8,3 +8,4 @@
 |@emotion/react 		        |^11.11.1		|
 |@emotion/styled 		        |^11.11.0		|
 |react-icons 		            |^4.10.1		|
+|axios       		            |^1.4.0 		|
