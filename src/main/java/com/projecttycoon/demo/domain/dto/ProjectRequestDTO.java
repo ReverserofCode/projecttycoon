@@ -15,6 +15,7 @@ public class ProjectRequestDTO {
     private String projectContent;
     private String projectImage;
     private String projectRequired;
+    private String projectAcademy;
     private String projectIsEnd;
     private String projectWriterId;
     private String projectNickName;
