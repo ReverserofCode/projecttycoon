@@ -25,4 +25,9 @@ public class KakaoLoginController {
         KakaoLoginService kakaoLoginService = new KakaoLoginService();
         return kakaoLoginService.kakaoLoginProcess(code);
     }
+
+    @GetMapping("/loginProcessCall")
+    public void kakaoLoginProcessCall(){
+        
+    }
 }
