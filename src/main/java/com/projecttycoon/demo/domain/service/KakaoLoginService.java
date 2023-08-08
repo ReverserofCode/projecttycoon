@@ -1,8 +1,12 @@
 package com.projecttycoon.demo.domain.service;
 
 
+import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -10,24 +14,31 @@ import org.springframework.web.client.RestTemplate;
 
 @Log4j2
 @Service
+@Component
 public class KakaoLoginService {
+    @Value("${kakao-RestAPIKey}")
+    String kakaoRestAPIKey;
+    @Value("${kakao-redirectUri}")
+    String redirectUri;
+    @Value("${kakao-ApiUrl}")
+    String kakaoApiUrl;
 
     public ResponseEntity<String> kakaoLoginProcess(String code) throws Exception{
 
         log.info("Call Post logic");
-
         final String grant_type = "authorization_code";
-        final String client_id = "777cadaafac1cb2cb8aa5dc765cde3f4";
-        final String redirect_uri = "http://projecttycoon.com/auth/kakao";
-        final String api_Url = "https://kauth.kakao.com/oauth/token";
+        log.info("Call KakaoRestApiKey : "+kakaoRestAPIKey);
+        log.info("Call redirect uri : "+redirectUri);
+        log.info("Call KakaoRestAPiKEY : "+kakaoApiUrl);
+
 
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", grant_type);
-        params.add("client_id", client_id);
-        params.add("redirect_uri", redirect_uri);
+        params.add("client_id", kakaoRestAPIKey);
+        params.add("redirect_uri", redirectUri);
         params.add("code", code);
 
-        ResponseEntity<String> responseEntity = new RestTemplate().postForEntity(api_Url, params, String.class);
+        ResponseEntity<String> responseEntity = new RestTemplate().postForEntity(kakaoApiUrl, params, String.class);
 
         if (responseEntity.getStatusCode().is2xxSuccessful()) {
             log.info("Success response");
