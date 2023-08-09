@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -15,6 +16,7 @@
             <label for="memberPw">PASSWORD</label>
             <input type="password" id="memberPw" name="memberPw" required>
         </div>
+
         <div class="field">
             <input type="submit" value="로그인" class = "primary">
             <input type="button" value="회원가입하러가기" onclick="location.href='/api/signup'">
@@ -22,6 +24,18 @@
     </div>
 </form>
 <a href="kauth.kakao.com/oauth/authorize?client_id=777cadaafac1cb2cb8aa5dc765cde3f4&redirect_uri=http://localhost:9999/auth/kakao&response_type=code">#</a>
+<div th:if="${session.currentUser eq null}">
+    <h3>네이버 로그인</h3>
+    <a th:href="${apiURL}"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+</div>
 
+<div th:if="${session.currentUser ne null}">
+    <h3>이 부분은 로그인한 사용자한테만 보임</h3>
+    <pre th:text="${session.currentUser}"></pre>
+    <a th:href="${'/naver/getProfile?accessToken=' + session.currentAT}">Get User's Profile</a>
+    <a th:href="${'/naver/refreshToken?refreshToken=' + session.currentRT}">Refresh Token</a>
+    <a th:href="${'/naver/deleteToken?accessToken=' + session.currentAT}">Delete Token</a>
+    <a href="/naver/invalidate">로그아웃 (Invalidate Session)</a>
+</div>
 </body>
 </html>

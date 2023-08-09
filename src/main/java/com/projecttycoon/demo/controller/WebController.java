@@ -11,8 +11,8 @@ public class WebController {
     public String signupPage() { // 회원가입페이지
         return "signup";
     }
-    @RequestMapping("/api/login")
-    public String loginPage() { // 회원가입페이지
-        return "login";
-    }
+//    @RequestMapping("/api/login")
+//    public String loginPage() { // 회원가입페이지
+//        return "login";
+//    }
 }

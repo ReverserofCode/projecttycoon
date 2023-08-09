@@ -43,7 +43,7 @@ public class SecurityConfig {
                 .logoutUrl("/api/logoutProcess")
         ;
 
-//        httpSecurity.oauth2Client();
+//        httpSecurity.wk();
 
         httpSecurity.csrf().disable();
 
