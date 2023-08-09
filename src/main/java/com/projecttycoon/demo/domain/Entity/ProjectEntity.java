@@ -20,21 +20,40 @@ public class ProjectEntity extends TimeStamp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private Long projectId;
+
+    @Column
     private String projectTitle;
+
+    @Column
     private String projectContent;
+
+    @Column
     private String projectImage;
+
+    @Column
     private String projectRequired;
+
+    @Column
+    private String projectAcademy;
+
+    @Column
     private String projectIsEnd;
+
+    @Column
     private String projectWriterId;
+
+    @Column
     private String projectNickName;
 
-   public ProjectEntity(ProjectRequestDTO projectDto) {
+    public ProjectEntity(ProjectRequestDTO projectDto) {
         this.projectTitle = projectDto.getProjectTitle();
         this.projectContent = projectDto.getProjectContent();
         this.projectImage = projectDto.getProjectImage();
         this.projectRequired = projectDto.getProjectRequired();
         this.projectIsEnd = projectDto.getProjectIsEnd();
+        this.projectAcademy = projectDto.getProjectAcademy();
         this.projectWriterId = projectDto.getProjectWriterId();
         this.projectNickName = projectDto.getProjectNickName();
     }

@@ -1,52 +1,39 @@
 package com.projecttycoon.demo.controller;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.projecttycoon.demo.domain.service.KakaoLoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.apache.tomcat.util.json.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 @Log4j2
 @Component
-@RequiredArgsConstructor
+@RestController
 @RequestMapping("/auth")
 public class KakaoLoginController {
+
+    @Autowired
+    KakaoLoginService kakaoLoginService;
 
     @ResponseBody
     @GetMapping("/kakao")
     public ResponseEntity<String> kakaoCallBack(@RequestParam String code) throws Exception {
-
-        log.info("Call Post logic");
-
-        final String grant_type = "authorization_code";
-        final String client_id = "777cadaafac1cb2cb8aa5dc765cde3f4";
-        final String redirect_uri = "http://localhost:9999/auth/kakao";
-        final String api_Url = "https://kauth.kakao.com/oauth/token";
-
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        params.add("grant_type", grant_type);
-        params.add("client_id", client_id);
-        params.add("redirect_uri", redirect_uri);
-        params.add("code",code);
-
-        ResponseEntity<String> responseEntity = new RestTemplate()
-                .postForEntity(api_Url, params, String.class);
-
-        if(responseEntity.getStatusCode().is2xxSuccessful()){
-            log.info("Success response");
-            String responseBody = responseEntity.getBody();
-            log.info(responseBody);
-            return responseEntity;
-        }
-        else {
-            log.info("Fail login response");
-            return null;
-        }
+        log.info("call /auth/kakao");
+        return kakaoLoginService.kakaoLoginProcess(code);
     }
 }

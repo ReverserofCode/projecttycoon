@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name="MemberData")
 @EntityListeners(AuditingEntityListener.class)
 public class MemberEntity extends TimeStamp{
 

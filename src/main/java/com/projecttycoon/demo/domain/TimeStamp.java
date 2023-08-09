@@ -21,7 +21,7 @@ public class TimeStamp {
 
     @CreatedDate
     @Column(nullable = false)
-    private Date createAt;
+    private Date createdAt;
 
     @LastModifiedDate
     @Column(nullable = false)
