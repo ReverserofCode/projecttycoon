@@ -1,6 +1,7 @@
 package com.projecttycoon.demo.domain.Entity;
 
 import com.projecttycoon.demo.domain.TimeStamp;
+import com.projecttycoon.demo.domain.dto.DMRequestDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,30 +17,37 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="ChatData")
+@Table(name="DMData")
 @EntityListeners(AuditingEntityListener.class)
-public class ChatEntity extends TimeStamp {
+public class DMEntity extends TimeStamp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    private Long chatId;
+    private Long DMId;
 
     @Column
-    private String chatFromId;
+    private String DMFromId;
 
     @Column
-    private String chatToId;
+    private String DMToId;
 
     @Column
-    private String chatContent;
+    private String DMContent;
 
     @Column
-    private Boolean chatRead;
+    private Boolean DMRead;
 
     @ManyToOne
-    @JoinColumn(name = "chatroomId", referencedColumnName = "chatroomId")
-    private ChatroomEntity chatroomId;
+    @JoinColumn(name = "DMroomId", referencedColumnName = "DMroomId")
+    private DMroomEntity DMroomId;
 
+
+    public DMEntity(DMRequestDTO DMDTO) {
+        this.DMFromId = DMDTO.getDMFromId();
+        this.DMToId = DMDTO.getDMToId();
+        this.DMContent =DMDTO.getDMToId();
+        this.DMRead = DMDTO.getDMRead();
+    }
 }
 

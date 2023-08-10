@@ -6,6 +6,7 @@ import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 //사용자에게 노출되는 프로젝트들의 상세 내역의 데이터를 담을 DB 설계
@@ -33,13 +34,16 @@ public class ProjectEntity extends TimeStamp {
     private String projectImage;
 
     @Column
-    private String projectRequired;
+    private String projectWantedRole;
+
+    @Column
+    private Date projectDue;
 
     @Column
     private String projectAcademy;
 
     @Column
-    private String projectIsEnd;
+    private Boolean projectStatus;
 
     @Column
     private String projectWriterId;
@@ -47,14 +51,23 @@ public class ProjectEntity extends TimeStamp {
     @Column
     private String projectNickName;
 
+    @Column
+    private String projectFilePath;
+
+    @Column
+    private String projectFilename;
+
     public ProjectEntity(ProjectRequestDTO projectDto) {
         this.projectTitle = projectDto.getProjectTitle();
         this.projectContent = projectDto.getProjectContent();
         this.projectImage = projectDto.getProjectImage();
-        this.projectRequired = projectDto.getProjectRequired();
-        this.projectIsEnd = projectDto.getProjectIsEnd();
+        this.projectWantedRole = projectDto.getProjectWantedRole();
+        this.projectStatus = projectDto.getProjectStatus();
+        this.projectDue = projectDto.getProjectDue();
         this.projectAcademy = projectDto.getProjectAcademy();
         this.projectWriterId = projectDto.getProjectWriterId();
         this.projectNickName = projectDto.getProjectNickName();
+        this.projectFilePath = projectDto.getProjectFilePath();
+        this.projectFilename = projectDto.getProjectFilename();
     }
 }
