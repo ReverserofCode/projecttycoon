@@ -15,4 +15,8 @@ public class WebController {
 //    public String loginPage() { // 회원가입페이지
 //        return "login";
 //    }
+
+    @RequestMapping("/uploadEx")
+    public void fileUpload(){
+    }
 }
