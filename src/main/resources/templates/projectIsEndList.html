@@ -20,7 +20,7 @@
     <header>
       <h2><a th:href="@{/api/projectOne/{id}(id=${project.id})}" th:text="${project.projectTitle}"></a></h2>
     </header>
-    <a th:href="@{/api/projectOne/{id}(id=${project.id})}" class="image fit"><img th:src="@{${project.filePath}}" alt=""/></a>
+    <a th:href="@{/api/projectOne/{id}(id=${project.id})}" class="image fit"><img th:src="@{${project.projectFilePath}}" alt=""/></a>
     <p th:text="${project.projectContent}"></p>
     <p>[[${project.projectRequired}]]</p>
     <p>[[${project.projectIsEnd}]]</p>

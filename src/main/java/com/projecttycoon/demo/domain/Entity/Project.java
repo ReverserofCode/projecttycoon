@@ -31,8 +31,8 @@ public class Project extends TimeStamp {
     @Column(name="projectNickName")
     private String projectNickName;
 
-    private String fileName;
-    private String filePath;
+    private String projectFileName;
+    private String projectFilePath;
 
 
 
@@ -43,8 +43,8 @@ public class Project extends TimeStamp {
         this.projectIsEnd = projectRequestDTO.getProjectIsEnd();
         this.projectWriterId = projectRequestDTO.getProjectWriterId();
         this.projectNickName = projectRequestDTO.getProjectNickName();
-        this.fileName = projectRequestDTO.getProjectImage().getName();
-        this.filePath = "/images/" + projectRequestDTO.getProjectImage().getOriginalFilename();
+        this.projectFileName = projectRequestDTO.getProjectImage().getName();
+        this.projectFilePath = "/static/images/" + projectRequestDTO.getProjectImage().getOriginalFilename();
     }
 
     public void ProjectUpdate(ProjectRequestDTO projectRequestDTO) {
@@ -54,8 +54,8 @@ public class Project extends TimeStamp {
         this.projectIsEnd = projectRequestDTO.getProjectIsEnd();
         this.projectWriterId = projectRequestDTO.getProjectWriterId();
         this.projectNickName = projectRequestDTO.getProjectNickName();
-        this.fileName = projectRequestDTO.getProjectImage().getName();
-        this.filePath = "/images/" + projectRequestDTO.getProjectImage().getOriginalFilename();
+        this.projectFileName = projectRequestDTO.getProjectImage().getName();
+        this.projectFilePath = "/static/images/" + projectRequestDTO.getProjectImage().getOriginalFilename();
 
     }
 
