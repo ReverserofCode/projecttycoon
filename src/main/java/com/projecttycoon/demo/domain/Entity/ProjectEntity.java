@@ -10,13 +10,13 @@ import java.util.Date;
 
 
 //사용자에게 노출되는 프로젝트들의 상세 내역의 데이터를 담을 DB 설계
-@Entity
-@Getter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name="ProjectData")
-@EntityListeners(AuditingEntityListener.class)
+    @Entity
+    @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Table(name="ProjectData")
+    @EntityListeners(AuditingEntityListener.class)
 public class ProjectEntity extends TimeStamp {
 
     @Id
@@ -49,7 +49,7 @@ public class ProjectEntity extends TimeStamp {
     private String projectWriterId;
 
     @Column
-    private String projectNickName;
+    private String projectWriterNick;
 
     @Column
     private String projectFilePath;
@@ -66,7 +66,7 @@ public class ProjectEntity extends TimeStamp {
         this.projectDue = projectDto.getProjectDue();
         this.projectAcademy = projectDto.getProjectAcademy();
         this.projectWriterId = projectDto.getProjectWriterId();
-        this.projectNickName = projectDto.getProjectNickName();
+        this.projectWriterNick = projectDto.getProjectWriterNick();
         this.projectFilePath = projectDto.getProjectFilePath();
         this.projectFilename = projectDto.getProjectFilename();
     }

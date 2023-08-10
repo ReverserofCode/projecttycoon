@@ -22,7 +22,7 @@ public class ProjectRequestDTO {
     private Date projectDue;        //프로젝트글 마감날짜
     private String projectAcademy;  //프로젝트글 진행 학원지점
     private String projectWriterId; //프로젝트글 작성자ID
-    private String projectNickName; //프로젝트글 작성자닉네임
+    private String projectWriterNick; //프로젝트글 작성자닉네임
     private String projectFilePath; //프로젝트글 이미지경로(임시)
     private String projectFilename; //프로젝트글 이미지네임(임시)
 }
