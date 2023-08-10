@@ -43,11 +43,12 @@ public class DMEntity extends TimeStamp {
     private DMroomEntity DMroomId;
 
 
-    public DMEntity(DMRequestDTO DMDTO) {
+    public DMEntity(DMRequestDTO DMDTO, DMroomEntity DMroomEntity) {
         this.DMFromId = DMDTO.getDMFromId();
         this.DMToId = DMDTO.getDMToId();
-        this.DMContent =DMDTO.getDMToId();
+        this.DMContent =DMDTO.getDMContent();
         this.DMRead = DMDTO.getDMRead();
+        this.DMroomId =DMroomEntity;
     }
 }
 
