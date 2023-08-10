@@ -20,8 +20,7 @@ public class UploadController {
 
 
     @PostMapping("/uploadTest")
-    public String uploadTest(@RequestParam String itemName,
-                             @RequestParam MultipartFile file) throws Exception {
+    public void uploadTest(@RequestParam MultipartFile file) throws Exception {
         final String uploadDir = "/home/UploadTest";
 
         if (!file.isEmpty()) {
@@ -32,6 +31,5 @@ public class UploadController {
 //           실제로 파일 저장을 실행하는 부분
             file.transferTo(new File(fullPath));
         }
-        return "upload-form";
     }
 }
