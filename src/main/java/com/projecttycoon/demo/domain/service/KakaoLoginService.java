@@ -1,6 +1,5 @@
 package com.projecttycoon.demo.domain.service;
 
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j2;
@@ -15,6 +14,8 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+
+//카카오 로그인 API 호출 관리 하는 클래스
 @Log4j2
 @Service
 @Component
@@ -35,7 +36,6 @@ public class KakaoLoginService {
         log.info("Call KakaoRestApiKey : " + kakaoRestAPIKey);
         log.info("Call redirect uri : " + redirectUri);
         log.info("Call KakaoRestAPiKEY : " + kakaoApiUrl);
-
 
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", grant_type);
@@ -58,7 +58,8 @@ public class KakaoLoginService {
 
             log.info("Access Token : " + accessToken);
             log.info("Token Type : " + tokenType);
-            log.info("dataReturn : " + getAgreementInfo(accessToken, tokenType));
+
+            responseEntity = getAgreementInfo(accessToken);
 
             return responseEntity;
         } else {
@@ -67,20 +68,20 @@ public class KakaoLoginService {
         }
     }
 
-    public ResponseEntity<String> getAgreementInfo(String accessToken, String tokenType) throws Exception {
+    public ResponseEntity<String> getAgreementInfo(String accessToken) throws Exception {
 
         log.info("Call getAgreement");
         log.info("call AccessToken : " + accessToken);
-        log.info("Call DataUrl : "+dataUrl);
+        log.info("Call DataUrl : " + dataUrl);
 
         // RestTemplate 생성
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
 
-        headers.add("Authorization", "Bearer "+accessToken);
-        headers.add("Content-type","application/x-www-form-urlencoded;charset=utf-8");
+        headers.add("Authorization", "Bearer " + accessToken);
+        headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
-        HttpEntity<MultiValueMap<String,String>> kakaoProfileRequest = new HttpEntity<>(headers);
+        HttpEntity<MultiValueMap<String, String>> kakaoProfileRequest = new HttpEntity<>(headers);
         ResponseEntity<String> response = restTemplate.exchange(dataUrl, HttpMethod.GET, kakaoProfileRequest, String.class);
         log.info(response.getBody());
 
