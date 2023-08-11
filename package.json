@@ -20,6 +20,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "axios": "^1.4.0",
+    "dompurify": "^3.0.5",
     "editorjs-drag-drop": "^1.1.13",
     "editorjs-header-with-alignment": "^1.0.1",
     "editorjs-html": "^3.4.3",

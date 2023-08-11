@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { QuillTool } from "../options/QuillOption";
+import purify from "dompurify";
 const Container = styled.div`
   display: flex;
   box-sizing: border-box;
@@ -36,7 +37,9 @@ function QuillTestPage() {
       <Container>
         <ReactQuill value={value} onChange={setValue} modules={QuillTool} />
       </Container>
-      <Preview dangerouslySetInnerHTML={{ __html: value }} />
+      <Preview
+        dangerouslySetInnerHTML={{ __html: purify.sanitize(value) }}
+      ></Preview>
     </>
   );
 }
