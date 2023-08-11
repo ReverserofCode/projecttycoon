@@ -1,35 +1,64 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import styled from "@emotion/styled";
+import React, { useCallback, useState } from "react";
+import TextEditorPage from "./page/TextEditorPage";
+import QuillTestPage from "./page/QuillTestPage";
+const Container = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  gap: 20px;
+`;
+const ModeButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+  user-select: none;
+  cursor: pointer;
+  background-color: #ffffce;
+  border: 3px solid #cacaa3;
+  font-size: 20px;
+  font-weight: 600px;
+  border-radius: 5px;
+  margin-top: 10px;
+  :hover {
+    scale: 1.02;
+  }
+  :active {
+    scale: 1;
+  }
+`;
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [editorSet, setEditorSet] = useState("editorjs");
+  const [editorjsData, setEditorjsData] = useState();
+  const handleSetEditorjsData = useCallback((e) => {
+    setEditorjsData(e);
+  });
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Container>
+      <ModeButton
+        onClick={() => {
+          editorSet === "editorjs"
+            ? setEditorSet("quill")
+            : setEditorSet("editorjs");
+        }}
+      >
+        {editorSet === "editorjs" ? "EditorJS" : "Quill"}
+      </ModeButton>
+      {editorSet === "editorjs" ? (
+        <TextEditorPage
+          handleSetEditorjsData={handleSetEditorjsData}
+          editorjsData={editorjsData}
+        />
+      ) : (
+        <QuillTestPage />
+      )}
+    </Container>
+  );
 }
 
-export default App
+export default App;
