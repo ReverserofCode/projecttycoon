@@ -3,6 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
+  <!--link rel="stylesheet" href="/assets/css/main.css"/-->
   <title>모집중/모집마감</title>
 </head>
 <body>
@@ -22,10 +23,10 @@
     </header>
     <a th:href="@{/api/projectOne/{id}(id=${project.id})}" class="image fit"><img th:src="@{${project.projectFilePath}}" alt=""/></a>
     <p th:text="${project.projectContent}"></p>
-    <p>[[${project.projectRequired}]]</p>
-    <p>[[${project.projectIsEnd}]]</p>
-    <p>[[${project.projectWriterId}]]</p>
-    <p>[[${project.projectNickName}]]</p>
+    <p>기술스택: [[${project.projectRequired}]]</p>
+    <p>모집여부: [[${project.projectIsEnd}]]</p>
+    <p>작성자아이디: [[${project.projectWriterId}]]</p>
+    <p>작성자닉네임: [[${project.projectNickName}]]</p>
 
     <ul class="actions special">
       <li><a th:href="@{/api/projectOne/{id}(id=${project.id})}" class="button">프로젝트 상세</a></li>
@@ -38,7 +39,7 @@
   <div class="pagination">
     <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
       <a th:if='${page != nowPage and pageType.equals("all")}' th:href="@{/api/projectList/{id}(id=${page}-1)}" th:text="${page}"></a>
-      <a th:if='${page != nowPage and pageType.equals("search")}' th:href="@{/api/searchList/{id}(id=${page}-1,itemName=${projectName})}" th:text="${page}"></a>
+      <a th:if='${page != nowPage and pageType.equals("search")}' th:href="@{/api/searchList/{id}(id=${page}-1,projectName=${projectName})}" th:text="${page}"></a>
       <a th:if="${page == nowPage}" th:text="${page}" class="page active"></a>
     </th:block>
   </div>

@@ -7,12 +7,15 @@ import org.hibernate.annotations.DynamicInsert;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-//정우리 ㅎㅇ
+
 //사용자에게 노출되는 프로젝트들의 상세 내역의 데이터를 담을 DB 설계
 @Entity
 @RequiredArgsConstructor
 @Getter
+@Data
 public class Project extends TimeStamp {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +36,7 @@ public class Project extends TimeStamp {
 
     private String projectFileName;
     private String projectFilePath;
+
 
 
 
@@ -58,6 +62,8 @@ public class Project extends TimeStamp {
         this.projectFilePath = "/static/images/" + projectRequestDTO.getProjectImage().getOriginalFilename();
 
     }
+
+
 
 
 }

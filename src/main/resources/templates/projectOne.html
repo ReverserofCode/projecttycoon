@@ -30,7 +30,26 @@
             <div id="projectNickName">[[${project.projectNickName}]]</div>
         </header>
     </article>
+    <div>
+        <ul class="actions">
+            <li><input type="button" value="수정" th:onclick="'updateProject('+${id}+')'"/></li>
+            <li><input type="button" value="삭제" th:onclick="'deleteProject('+${id}+')'"/></li>
+        </ul>
+    </div>
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    function deleteProject(id) {
+        $.ajax({
+            type: "DELETE",
+            url: `/all/project/${id}`,
+            success: function (response) {
+                alert('프로젝트 삭제!');
+                window.location.href="/api/projectList/0";
+            }
+        })
+    }
 
+</script>
 </body>
 </html>

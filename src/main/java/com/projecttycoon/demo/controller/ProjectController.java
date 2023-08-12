@@ -2,6 +2,7 @@ package com.projecttycoon.demo.controller;
 import com.projecttycoon.demo.domain.Entity.MemberEntity;
 import com.projecttycoon.demo.domain.Entity.Project;
 import com.projecttycoon.demo.domain.dto.ProjectRequestDTO;
+import com.projecttycoon.demo.domain.repository.ProjectRepository;
 import com.projecttycoon.demo.domain.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -9,7 +10,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Controller
@@ -22,10 +23,18 @@ public class ProjectController {
         return "postProject";
     }
 
+//    @PostMapping("/all/project")
+//    public String saveProject(@ModelAttribute ProjectRequestDTO projectRequestDto){
+//        projectService.createProject(projectRequestDto);
+//        return "redirect:/api/projectList/0";
+//    }
+
     @PostMapping("/all/project")
-    public String saveProject(@ModelAttribute ProjectRequestDTO projectRequestDto){
-        projectService.createProject(projectRequestDto);
-        return "/api/projectList/0";
+    public String saveProject(Project project, Model model, MultipartFile file) throws Exception { // 데이터가 board에 담겨서 들어옴
+
+        projectService.createProject(project, file);
+
+        return "redirect:/api/projectList/0";
     }
 
     @GetMapping("/api/projectList/{page}")
@@ -68,6 +77,16 @@ public class ProjectController {
         return "projectOne";
     }
 
+    private final ProjectRepository projectRepository;
+
+    @DeleteMapping("/all/project/{id}")
+    public Long deleteProject(@PathVariable Long id){
+        projectRepository.deleteById(id);
+        return id;
+    }
+
+
+
     @GetMapping("/api/searchList/{page}")
     public String searchList(Model model,@RequestParam("projectName") String projectName, @PathVariable int page){
         Page<Project> projectList = projectService.searchProject(projectName,page);
@@ -76,7 +95,7 @@ public class ProjectController {
         int totalPage = projectList.getTotalPages();
         int startPage = Math.max(page-4,1);
         int endPage = Math.min(page+4,totalPage);
-        //아무 상품도 없으면 0페이지만 나오도록 설정
+        //아무 결과가 없으면 0페이지만 나오도록 설정
         if(totalPage==0) endPage=0;
         model.addAttribute("nowPage",page);
         model.addAttribute("startPage",startPage);
