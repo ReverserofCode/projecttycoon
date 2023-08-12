@@ -5,6 +5,13 @@ import { EditorFormat } from "../options/Editor";
 import DragDrop from "editorjs-drag-drop";
 import Undo from "editorjs-undo";
 
+const EditorPage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+`;
 const Container = styled.div`
   display: flex;
   box-sizing: border-box;
@@ -13,6 +20,7 @@ const Container = styled.div`
   border: 2px solid #c4c4c4;
   box-shadow: rgb(0 0 0 / 20%) 0px 1rem 2rem;
   border-radius: 5px;
+  min-height: 90vh;
 `;
 const ReadOnlyContainer = styled.div`
   display: flex;
@@ -23,13 +31,14 @@ const ReadOnlyContainer = styled.div`
   box-shadow: rgb(0 0 0 / 20%) 0px 1rem 2rem;
   border-radius: 5px;
   pointer-events: none;
+  min-height: 90vh;
 `;
 const SaveButton = styled.div`
   display: flex;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  height: 90vh;
   padding: 10px;
   user-select: none;
   cursor: pointer;
@@ -47,7 +56,7 @@ const SaveButton = styled.div`
   }
 `;
 
-const Editor = createReactEditorJS({ tools: { EditorFormat } });
+const Editor = createReactEditorJS();
 function TextEditorPage({ handleSetEditorjsData, editorjsData }) {
   const editorCore = React.useRef(null);
   const handleInitialize = React.useCallback((instance) => {
@@ -63,7 +72,7 @@ function TextEditorPage({ handleSetEditorjsData, editorjsData }) {
     new DragDrop(editor);
   };
   return (
-    <>
+    <EditorPage>
       <Container>
         <Editor
           tools={EditorFormat}
@@ -72,11 +81,11 @@ function TextEditorPage({ handleSetEditorjsData, editorjsData }) {
           defaultValue={editorjsData}
         />
       </Container>
-      <SaveButton onClick={handleSave}>Save Data</SaveButton>
+      <SaveButton onClick={handleSave}>{">>"}</SaveButton>
       <ReadOnlyContainer>
         <Editor tools={EditorFormat} value={editorjsData} />
       </ReadOnlyContainer>
-    </>
+    </EditorPage>
   );
 }
 

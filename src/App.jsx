@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import React, { useCallback, useState } from "react";
 import TextEditorPage from "./page/TextEditorPage";
 import QuillTestPage from "./page/QuillTestPage";
+import MarkDownPage from "./page/MarkDownPage";
 const Container = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -31,6 +32,13 @@ const ModeButton = styled.div`
     scale: 1;
   }
 `;
+const SelectMode = styled.select`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 30px;
+`;
 
 function App() {
   const [editorSet, setEditorSet] = useState("editorjs");
@@ -40,23 +48,23 @@ function App() {
   });
   return (
     <Container>
-      <ModeButton
-        onClick={() => {
-          editorSet === "editorjs"
-            ? setEditorSet("quill")
-            : setEditorSet("editorjs");
+      <SelectMode
+        onChange={(e) => {
+          setEditorSet(e.target.value);
         }}
       >
-        {editorSet === "editorjs" ? "EditorJS" : "Quill"}
-      </ModeButton>
-      {editorSet === "editorjs" ? (
+        <option value={"editorjs"}>EditorJS</option>
+        <option value={"quill"}>Quill</option>
+        <option value={"markdown"}>MarkDown</option>
+      </SelectMode>
+      {editorSet === "editorjs" && (
         <TextEditorPage
           handleSetEditorjsData={handleSetEditorjsData}
           editorjsData={editorjsData}
         />
-      ) : (
-        <QuillTestPage />
       )}
+      {editorSet === "quill" && <QuillTestPage />}
+      {editorSet === "markdown" && <MarkDownPage />}
     </Container>
   );
 }

@@ -19,6 +19,7 @@
     "@editorjs/underline": "^1.1.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@uiw/react-md-editor": "^3.23.5",
     "axios": "^1.4.0",
     "dompurify": "^3.0.5",
     "editorjs-drag-drop": "^1.1.13",

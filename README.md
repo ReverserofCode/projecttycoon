@@ -19,6 +19,17 @@
     - ToolBar에 따로 라벨을 지정할수 없기 때문에 해당 항목이 무슨 역할을 하는지 알수 없다.
     - html태그를 text형태로 변환해서 저장하기 때문에 Script를 포함해서 주입할 수 있어 사용하게 된다면 후처리가 필요하다. ( XSS 해결방안은 dompurify라이브러리로 예방이 가능하다. )
 
+## React Markdown
+ - 장점
+   - Git에서 README.md 를 제작할때 사용하는 Markdown 언어를 그대로 담고 있기 때문에 Markdown언어를 공부하고 활용하는 연습에 사용되기 좋다.
+   - Html태그를 이용할수 있어 꾸미기에 적합하다.
+   - Markdown에서 사용하는 CodeBlock을 그대로 사용할수 있기 때문에 코드의 색채가 다채로워지고 많은 언어를 지원한다.
+   - Custom ToolBar를 제작하기 위한 문서가 잘되어 있어서 문서를 읽거나 혹은 블로그를 보고 활용하기 좋다.
+ - 단점
+   - 기존 UI가 직관적이지 않아 수정사항이 많이 필요하다.
+   - Markdown언어가 Git에서 사용된다고는 하지만 실제로 공부를 하는 사람은 적기 때문에 초기에 사용되기에는 미비한 점이 있다.
+   - XSS 취약점이 있지만 해결하기 위한 라이브러리가 존재하긴한다.
+
 # 사용된 Module List
 |Package Name                 	| version  	    |
 | :--                         	| :--:     		|
@@ -39,6 +50,7 @@
 |highlight.js                   |^11.8.0        |
 |react-quill                    |^2.0.0"        |
 |dompurify                      |^3.0.5         |
+|@uiw/react-md-editor           |^3.23.5        |
 |axios                          |^1.4.0         |
 |@emotion/react                 |^11.11.1       |
 |@emotion/styled                |^11.11.0       |
