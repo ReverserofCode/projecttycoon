@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>프로젝트 포스팅</title>
+</head>
+<body>
+<nav id="nav">
+    <ul class="links">
+        <li class="active"><a href="/api/projectList/0">포로젝트 전체</a></li>
+        <li class="active"><a href="/api/projectList/opened/0">모집 중인 프로젝트</a></li>
+        <li class="active"><a href="/api/projectList/closed/0">모집 마감 프로젝트</a></li>
+        <li class="active"><a href="/all/postProject">프로젝트 등록하기</a></li>
+    </ul>
+</nav>
+
+<div id="main">
+    <form method="post" action="/all/project" enctype="multipart/form-data">
+        <div><input type="text" id="projectTitle" name="projectTitle" placeholder="제목"></div>
+        <div><textarea name="projectContent" id="projectContent" placeholder="내용" rows="6"></textarea></div>
+        <!--input type="date" name="projectIsEnd" id="projectIsEnd"><br>-->
+        <select name="projectIsEnd" id="projectIsEnd">
+            <option value="opened">opened</option>
+            <option value="closed">closed</option>
+        </select>
+        <input type="text" name="projectWriterId" id="projectWriterId" placeholder="작성자 아이디">
+        <!--th:value="${memberEntity.memberId}"--><br>
+        <input type="text" name="projectNickName" id="projectNickName" placeholder="작성자 닉네임">
+        <!--th:value="${memberEntity.memberNickname}"--><br>
+        <select name="projectRequired" id="projectRequired">
+            <option value="frontend">프론트엔드</option>
+            <option value="backend">백엔드</option>
+            <option value="ai">AI</option>
+            <option value="security">보안</option>
+        </select>
+        <input type="file" id="file" name="file" multiple="multiple"/>
+        <ul class="actions">
+            <li><input type="submit" class=button value="등록하기"/></li>
+            <li><input type="reset" value="Reset" /></li>
+        </ul>
+    </form>
+</div>
+</body>
+</html>

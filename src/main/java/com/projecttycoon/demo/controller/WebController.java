@@ -2,6 +2,7 @@ package com.projecttycoon.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 
 //웹 사이트 내에서 다른 사이트에 대한 요청을 처리하는 컨르롤러
@@ -14,5 +15,9 @@ public class WebController {
     @RequestMapping("/api/login")
     public String loginPage() { // 회원가입페이지
         return "login";
+    }
+    @GetMapping("/")
+    public String callMain(){
+        return "index";
     }
 }
