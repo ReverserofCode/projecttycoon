@@ -17,23 +17,17 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 public class ProjectController {
     private final ProjectService projectService;
+    private final ProjectRepository projectRepository;
 
     @GetMapping("/all/postProject")
     public String postProject(){
         return "postProject";
     }
 
-//    @PostMapping("/all/project")
-//    public String saveProject(@ModelAttribute ProjectRequestDTO projectRequestDto){
-//        projectService.createProject(projectRequestDto);
-//        return "redirect:/api/projectList/0";
-//    }
 
     @PostMapping("/all/project")
     public String saveProject(Project project, Model model, MultipartFile file) throws Exception { // 데이터가 board에 담겨서 들어옴
-
         projectService.createProject(project, file);
-
         return "redirect:/api/projectList/0";
     }
 
@@ -77,15 +71,11 @@ public class ProjectController {
         return "projectOne";
     }
 
-    private final ProjectRepository projectRepository;
-
     @DeleteMapping("/all/project/{id}")
     public Long deleteProject(@PathVariable Long id){
         projectRepository.deleteById(id);
         return id;
     }
-
-
 
     @GetMapping("/api/searchList/{page}")
     public String searchList(Model model,@RequestParam("projectName") String projectName, @PathVariable int page){
