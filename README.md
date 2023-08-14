@@ -3,5 +3,8 @@
 
 # 사용된 Module List
 |Package Name                 	| version  	    |
-| :--                         	| :--:     		|
-|axios       		            |^1.4.0 		|
+| :--                         	| :--:     		  |
+|react-router-dom               |^6.15.0        |
+|@emotion/react                 |^11.11.1       |
+|@emotion/styled                |^11.11.0       |
+|axios       		                |^1.4.0 		    |
