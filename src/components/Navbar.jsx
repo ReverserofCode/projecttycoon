@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { useParams } from "react-router-dom";
+import "./Navbar.css";
 const Container = styled.div`
   display: flex;
   box-sizing: border-box;
@@ -41,9 +42,6 @@ const Items = styled.li`
 `;
 const Link = styled.a`
   text-decoration: none;
-  color: ${(props) => {
-    return props.color ? props.color : "black";
-  }};
 `;
 
 function Navbar() {
@@ -51,28 +49,28 @@ function Navbar() {
   return (
     <Container>
       <NavHeader src="./Logo Test.png" />
-      <Lists gap={"30px"}>
+      <Lists className="menu" gap={"30px"}>
         <Link href="http://projecttycoon.com">
           <Items>홈</Items>
         </Link>
-        <Link href="http://projecttycoon.com">
+        <Link className="menu" href="http://projecttycoon.com">
           <Items>프로젝트 팀</Items>
         </Link>
-        <Link href="http://projecttycoon.com">
+        <Link className="menu" href="http://projecttycoon.com">
           <Items>멤버리스트</Items>
         </Link>
-        <Link href="http://projecttycoon.com">
+        <Link className="menu" href="http://projecttycoon.com">
           <Items>내 페이지</Items>
         </Link>
-        <Link href="http://projecttycoon.com">
+        <Link className="menu" href="http://projecttycoon.com">
           <Items>새로운 글쓰기</Items>
         </Link>
       </Lists>
       <Lists gap={"47px"} color="#35A29F">
-        <Link href="http://projecttycoon.com/api/login" color="#35A29F">
+        <Link className="user" href="http://projecttycoon.com/api/login">
           <Items>로그인</Items>
         </Link>
-        <Link href="http://projecttycoon.com/api/signup" color="#35A29F">
+        <Link className="user" href="http://projecttycoon.com/api/signup">
           <Items>회원가입</Items>
         </Link>
       </Lists>
