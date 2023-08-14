@@ -19,7 +19,7 @@ import java.util.Date;
 public class TimeStamp {
 
     @CreatedDate
-    private Date createAt;
+    private Date createdAt;
 
     @LastModifiedDate
     private Date modifiedAt;

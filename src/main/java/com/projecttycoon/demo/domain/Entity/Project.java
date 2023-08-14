@@ -12,11 +12,12 @@ import java.util.List;
 
 
 //사용자에게 노출되는 프로젝트들의 상세 내역의 데이터를 담을 DB 설계
-@Entity
-@RequiredArgsConstructor
-@Getter
 @Data
+@Entity
+@Getter
+@RequiredArgsConstructor
 public class Project extends TimeStamp {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="projectId", unique = true)
@@ -36,9 +37,6 @@ public class Project extends TimeStamp {
 
     private String projectFileName;
     private String projectFilePath;
-
-
-
 
     public Project(ProjectRequestDTO projectRequestDTO) {
         this.projectTitle = projectRequestDTO.getProjectTitle();
