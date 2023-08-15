@@ -9,7 +9,6 @@ const PageContainer = styled.div`
   width: 100%;
   height: max-content;
   gap: 20px;
-  padding: 0 30px;
 `;
 const SideContents = styled.div`
   display: flex;
@@ -23,6 +22,7 @@ const SideContents = styled.div`
 `;
 const MainContents = styled.div`
   display: flex;
+  box-sizing: border-box;
   flex-direction: column;
   justify-content: center;
   align-items: center;
