@@ -27,7 +27,7 @@ export function SelectSide({ header, contents, handleSelect }) {
       option.push(<option key={`option item ${i}`}>{contents[i]}</option>);
     }
     return option;
-  });
+  }, [contents]);
   return (
     <Base>
       <FilterHeader>{header}</FilterHeader>
@@ -60,7 +60,7 @@ export function CheckSide({ header, contents, handleSelect }) {
       );
     }
     return lists;
-  });
+  }, [contents]);
   return (
     <Base>
       <FilterHeader>{header}</FilterHeader>
