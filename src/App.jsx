@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Navbar from "./components/Navbar";
+import ProjectPage from "./pages/ProjectPage";
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -14,6 +15,7 @@ function App() {
   return (
     <MainContainer>
       <Navbar />
+      <ProjectPage />
     </MainContainer>
   );
 }

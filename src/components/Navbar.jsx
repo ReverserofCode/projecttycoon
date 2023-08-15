@@ -49,8 +49,8 @@ function Navbar() {
   return (
     <Container>
       <NavHeader src="./Logo Test.png" />
-      <Lists className="menu" gap={"30px"}>
-        <Link href="http://projecttycoon.com">
+      <Lists gap={"30px"}>
+        <Link className="menu" href="http://projecttycoon.com">
           <Items>홈</Items>
         </Link>
         <Link className="menu" href="http://projecttycoon.com">
