@@ -4,12 +4,14 @@ package com.projecttycoon.demo.domain.dto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.AllArgsConstructor;
+import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 
 
 //데이터를 실제로 이동시키는 클래스이다.
+@Setter
 @Getter
 @Builder
 @AllArgsConstructor
