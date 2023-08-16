@@ -10,6 +10,7 @@ const PageContainer = styled.div`
   width: 100%;
   height: fit-content;
   gap: 20px;
+  max-width: 1440px;
 `;
 const SideContents = styled.div`
   display: flex;

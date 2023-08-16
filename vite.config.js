@@ -5,7 +5,12 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build:{
-    outDir:'ProjectBoard'
+    outDir:'ProjectBoard',
+    rollupOptions: {
+      input: {
+        app: './index.html', // default
+      },
+    },
   },
   server:{
     port:3000

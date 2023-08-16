@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import ProjectPage from "./pages/ProjectPage";
 const MainContainer = styled.div`
   display: flex;
+  box-sizing: border-box;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
