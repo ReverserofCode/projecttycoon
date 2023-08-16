@@ -26,13 +26,15 @@ public class MemberEntity extends TimeStamp{
     @Column(name = "memberAcademy")
     private String memberAcademy;
     @Column(name = "memberRole")
-    private String memberRole; //권한
+    private String memberRole; //멤버역할 (권한아님)
     @Column(name = "memberIntroduce")
     private String memberIntroduce;
     @Column(name = "memberLink")
     private String memberLink;
-    @Column(name = "memberIcon")
-    private String memberIcon;
+    @Column(name = "memberFilePath")
+    private String memberFilePath;
+    @Column(name= "memberFileName")
+    private String memberFileName;
     @Column(name = "authority")
     private String memberAuthority;
 
@@ -44,7 +46,8 @@ public class MemberEntity extends TimeStamp{
         this.memberRole = requestDTO.getMemberRole();
         this.memberIntroduce = requestDTO.getMemberIntroduce();
         this.memberLink = requestDTO.getMemberLink();
-        this.memberIcon = requestDTO.getMemberIcon();
+        this.memberFilePath = requestDTO.getMemberFilePath();
+        this.memberFileName = requestDTO.getMemberFileName();
         this.memberAuthority = "member";
     }
 
@@ -55,7 +58,8 @@ public class MemberEntity extends TimeStamp{
         this.memberRole = requestDTO.getMemberRole();
         this.memberIntroduce = requestDTO.getMemberIntroduce();
         this.memberLink = requestDTO.getMemberLink();
-        this.memberIcon = requestDTO.getMemberIcon();
+        this.memberFilePath = requestDTO.getMemberFilePath();
+        this.memberFileName = requestDTO.getMemberFileName();
     }
 
 }

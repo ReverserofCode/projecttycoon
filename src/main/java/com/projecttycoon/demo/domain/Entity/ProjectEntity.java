@@ -30,8 +30,6 @@ public class ProjectEntity extends TimeStamp {
     @Column
     private String projectContent;
 
-    @Column
-    private String projectImage;
 
     @Column
     private String projectWantedRole;
@@ -55,12 +53,14 @@ public class ProjectEntity extends TimeStamp {
     private String projectFilePath;
 
     @Column
-    private String projectFilename;
+    private String projectFileName;
+
+    @Column
+    private int projectScrapNum;
 
     public ProjectEntity(ProjectRequestDTO projectDto) {
         this.projectTitle = projectDto.getProjectTitle();
         this.projectContent = projectDto.getProjectContent();
-        this.projectImage = projectDto.getProjectImage();
         this.projectWantedRole = projectDto.getProjectWantedRole();
         this.projectStatus = projectDto.getProjectStatus();
         this.projectDue = projectDto.getProjectDue();
@@ -68,6 +68,7 @@ public class ProjectEntity extends TimeStamp {
         this.projectWriterId = projectDto.getProjectWriterId();
         this.projectWriterNick = projectDto.getProjectWriterNick();
         this.projectFilePath = projectDto.getProjectFilePath();
-        this.projectFilename = projectDto.getProjectFilename();
+        this.projectFileName = projectDto.getProjectFileName();
+        this.projectScrapNum = projectDto.getProjectScarpNum();
     }
 }
