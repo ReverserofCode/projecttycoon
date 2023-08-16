@@ -16,21 +16,21 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="ChatroomData")
+@Table(name="DMroomData")
 @EntityListeners(AuditingEntityListener.class)
-public class ChatroomEntity extends TimeStamp {
+public class DMroomEntity extends TimeStamp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    private Long chatroomId;
+    private Long DMroomId;
 
     @ManyToOne
-    @JoinColumn(name = "chatFromId", referencedColumnName = "memberid")
-    private MemberEntity chatFromId;
+    @JoinColumn(name = "DMFromId", referencedColumnName = "memberid")
+    private MemberEntity DMFromId;
 
     @ManyToOne
-    @JoinColumn(name = "chatToId", referencedColumnName = "memberid")
-    private MemberEntity chatToId;
+    @JoinColumn(name = "DMToId", referencedColumnName = "memberid")
+    private MemberEntity DMToId;
 }
 

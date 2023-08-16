@@ -5,19 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Column;
-
 
 //데이터를 실제로 이동시키는 클래스이다.
 @Getter
 @ToString
 @NoArgsConstructor
-public class ChatRequestDTO {
-    private String chatFromId;
+public class DMRequestDTO {
+    private String DMFromId;
 
-    private String chatToId;
+    private String DMToId;
 
-    private String chatContent;
+    private String DMContent;
 
-    private Boolean chatRead;
+    private Boolean DMRead;
 }
