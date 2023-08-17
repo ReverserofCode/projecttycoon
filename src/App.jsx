@@ -2,7 +2,8 @@ import React from "react";
 import styled from "@emotion/styled";
 
 import Navbar from "./components/Navbar";
-import Write from "./page/Write"
+import Write from "./page/Write";
+import TestWrite from "./TestCode/TestWrite";
 // import Input from "./components/Input"s
 
 const MainContainer = styled.div`
@@ -19,6 +20,7 @@ function App() {
     <MainContainer>
       <Navbar />
       <Write></Write>
+      {/* <TestWrite></TestWrite> */}
     </MainContainer>
   );
 }
