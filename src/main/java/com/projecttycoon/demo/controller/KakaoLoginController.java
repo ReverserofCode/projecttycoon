@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 public class KakaoLoginController {
 
-    @Autowired
     KakaoLoginService kakaoLoginService;
+
+    @Autowired
+    KakaoLoginController(KakaoLoginService kakaoLoginService){
+        this.kakaoLoginService = kakaoLoginService;
+    }
 
     @ResponseBody
     @GetMapping("/kakao")

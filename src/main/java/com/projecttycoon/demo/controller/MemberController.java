@@ -24,7 +24,6 @@ public class MemberController {
         log.info("call callTest");
     }
 
-
     @PostMapping("/api/memberRegister")
     public String registerDB(@RequestBody MemberRequestDTO memberRequestDTO) {
         log.info(memberRequestDTO.getMemberId());
