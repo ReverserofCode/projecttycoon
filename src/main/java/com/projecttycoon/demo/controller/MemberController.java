@@ -5,26 +5,28 @@ import com.projecttycoon.demo.domain.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
-
 
 @Log4j2
 @RestController
 @RequiredArgsConstructor
-public class    MemberController {
+public class MemberController {
 
-    @Autowired
     MemberService memberService;
 
+    @Autowired
+    MemberController(MemberService memberService) {
+        this.memberService = memberService;
+    }
+
     @GetMapping("/api/callTest")
-    public void calltest(){
-        log.info("call calltest");
+    public void callTest() {
+        log.info("call callTest");
     }
 
 
     @PostMapping("/api/memberRegister")
-    public String registerDB(MemberRequestDTO memberRequestDTO){
+    public String registerDB(@RequestBody MemberRequestDTO memberRequestDTO) {
         log.info(memberRequestDTO.getMemberId());
         memberService.registerMember(memberRequestDTO);
         log.info("call registerDB");
@@ -32,15 +34,15 @@ public class    MemberController {
     }
 
     @PutMapping("/api/memberUpdate/{memberId}")
-    public void updateDb(@PathVariable String memberId, @RequestBody MemberRequestDTO memberRequestDTO){
+    public void updateDb(@PathVariable String memberId, @RequestBody MemberRequestDTO memberRequestDTO) {
         log.info("call updateDb");
         log.info(memberId);
 
-        memberService.memberUpdate(memberId,memberRequestDTO);
+        memberService.memberUpdate(memberId, memberRequestDTO);
     }
 
     @DeleteMapping("/api/memberDelete/{memberId}")
-    public void deleteDb(@PathVariable String memberId){
+    public void deleteDb(@PathVariable String memberId) {
         memberService.memberDelete(memberId);
     }
 }
