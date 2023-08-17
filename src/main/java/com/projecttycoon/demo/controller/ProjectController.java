@@ -1,30 +1,42 @@
 package com.projecttycoon.demo.controller;
 
-import com.projecttycoon.demo.domain.dto.ProjectRequestDTO;
 import com.projecttycoon.demo.domain.Entity.ProjectEntity;
+import com.projecttycoon.demo.domain.dto.ProjectRequestDTO;
 import com.projecttycoon.demo.domain.repository.ProjectRepository;
+import com.projecttycoon.demo.domain.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Optional;
 
-//실제 송수신 되는 데이터를 요청받는 컨트롤러 클래스
-//REST API 테스트를 마쳐야 함
+
 @Log4j2
-@RestController
+@RestController // @Controller 대신 @RestController로 변경
 @RequiredArgsConstructor
+@RequestMapping("/api") // 공통된 API 경로 설정
 public class ProjectController {
 
+    private final ProjectService projectService;
     private final ProjectRepository projectRepository;
 
-//   테스트 코드 서비스 로직은 Service 패키지의 Service 클래스를 만들어 사용 할 수 있도록 합니다.
-    @GetMapping("/api/projectList")
-    public List<ProjectEntity> getProjectList() {
-        log.info("call GetMapping findAll");
-        projectRepository.findAll();
+    @GetMapping("/projectAllRequest")
+    public List<ProjectEntity> allProjectRequest() {
+        log.info("Call Method allProjectRequest");
         return projectRepository.findAll();
     }
 
+    @PostMapping("/projectRegister")
+    public String saveProject(@RequestPart(value = "file") MultipartFile file, @RequestPart(value = "projectRequestDTO") ProjectRequestDTO projectRequestDTO) throws Exception {
+        log.info("Call Method saveProject ");
+        projectService.createProject(projectRequestDTO, file);
+        return "success";
+    }
+
+    @DeleteMapping("/project/{id}")
+    public Long deleteProject(@PathVariable Long id) {
+        projectRepository.deleteById(id);
+        return id;
+    }
 }

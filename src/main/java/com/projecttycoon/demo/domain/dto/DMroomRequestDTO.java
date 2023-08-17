@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @NoArgsConstructor
-public class ChatroomRequestDTO {
+public class DMroomRequestDTO {
     private String chatFromId;
 
     private String chatToId;
