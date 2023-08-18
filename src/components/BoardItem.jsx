@@ -84,7 +84,7 @@ function BoardItem({ title, createDate, DeadLine, status, filter }) {
   return (
     <BoardItemBase>
       <MainContents>
-        <TagContainer>{status}</TagContainer>
+        <TagContainer>{status ? "" : ""}</TagContainer>
         <TitleZone>{title}</TitleZone>
         <DateZone>{`${createDate}~${DeadLine}`}</DateZone>
       </MainContents>

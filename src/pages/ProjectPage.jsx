@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { SelectSide, CheckSide } from "../components/Sidebar/SidebarComponent";
 import { MainHeader } from "../components/Sidebar/SidebarStyle";
 import BoardItem from "../components/BoardItem";
+import { Place, Recruit } from "../Filter.json";
+import { BoardListGet } from "../functional/BoardList";
 const PageContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -11,6 +13,7 @@ const PageContainer = styled.div`
   height: fit-content;
   gap: 20px;
   max-width: 1440px;
+  margin-top: 20px;
 `;
 const SideContents = styled.div`
   display: flex;
@@ -26,10 +29,10 @@ const MainContents = styled.div`
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   width: 100%;
-  /* height: 200vh; */
+  height: 200vh;
 `;
 const Board = styled.div`
   display: flex;
@@ -44,51 +47,41 @@ const Board = styled.div`
 `;
 /** 프로젝트 페이지 */
 function ProjectPage() {
-  const place = [
-    "전체",
-    "강남",
-    "신촌/홍대",
-    "노원",
-    "인천",
-    "대전",
-    "대구",
-    "부산",
-  ];
-  const recruitment = [
-    "백엔드",
-    "프론트엔드",
-    "빅데이터",
-    "AI",
-    "서버관리자",
-    "정보보안",
-    "네트워크 관리자",
-  ];
+  const [boardList, setBoardList] = useState([]);
   const [placeSelect, setPlaceSelect] = useState("");
   const PlaceSet = useCallback((value) => {
     setPlaceSelect(value);
+  }, []);
+  const handleBoardItemGen = useCallback(() => {
+    let contents = [];
+    for (let i = 0; i < boardList.length; i++) {
+      contents.push(
+        <BoardItem
+          status={boardList[i]?.projectStatus}
+          createDate={boardList[i]?.createdAt.split("").slice(0, 10).join("")}
+          DeadLine={boardList[i]?.projectDue.split("").slice(0, 10).join("")}
+          title={boardList[i]?.projectTitle}
+          filter={boardList[i]?.projectWantedRole}
+          key={`board item ${i}`}
+        />
+      );
+    }
+    return contents;
+  }, [boardList]);
+  useEffect(() => {
+    BoardListGet().then((res) => {
+      setBoardList(res);
+    });
   }, []);
   return (
     <PageContainer>
       <SideContents>
         <MainHeader>프로젝트 필터</MainHeader>
-        <SelectSide header={"지역"} contents={place} handleSelect={PlaceSet} />
-        <CheckSide contents={recruitment} header={"모집 분야"}></CheckSide>
+        <SelectSide header={"지역"} contents={Place} handleSelect={PlaceSet} />
+        <CheckSide contents={Recruit} header={"모집 분야"}></CheckSide>
       </SideContents>
       <MainContents>
-        <Board>
-          <BoardItem filter={["Back"]} />
-          <BoardItem filter={["Front"]} />
-          <BoardItem filter={["Bigdata"]} />
-          <BoardItem filter={["AI"]} />
-          <BoardItem filter={["Server"]} />
-          <BoardItem filter={["Security"]} />
-          <BoardItem filter={["Network"]} />
-          <BoardItem filter={["Front", "Back"]} />
-          <BoardItem filter={["Server", "Back"]} />
-          <BoardItem filter={["Server", "AI"]} />
-          <BoardItem filter={["Server", "Security", "Network"]} />
-          <BoardItem filter={["Bigdata", "Security", "Network"]} />
-        </Board>
+        <Board>{handleBoardItemGen()}</Board>
       </MainContents>
     </PageContainer>
   );
