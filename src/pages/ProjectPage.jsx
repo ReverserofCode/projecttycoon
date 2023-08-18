@@ -11,7 +11,6 @@ const PageContainer = styled.div`
   align-items: flex-start;
   width: 100%;
   height: fit-content;
-  gap: 20px;
   max-width: 1440px;
   margin-top: 20px;
 `;
@@ -22,7 +21,7 @@ const SideContents = styled.div`
   align-items: flex-start;
   position: sticky;
   top: 80px;
-  left: 30px;
+  left: 10px;
   gap: 15px;
 `;
 const MainContents = styled.div`
@@ -30,7 +29,8 @@ const MainContents = styled.div`
   box-sizing: border-box;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
+  margin-left: 50px;
   width: 100%;
   height: 200vh;
 `;
@@ -38,11 +38,11 @@ const Board = styled.div`
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 20px;
+  width: 100%;
   margin-top: 20px;
-  margin-left: 20px;
   max-width: 1200px;
 `;
 /** 프로젝트 페이지 */
@@ -58,10 +58,12 @@ function ProjectPage() {
       contents.push(
         <BoardItem
           status={boardList[i]?.projectStatus}
-          createDate={boardList[i]?.createdAt.split("").slice(0, 10).join("")}
-          DeadLine={boardList[i]?.projectDue.split("").slice(0, 10).join("")}
+          createDate={boardList[i]?.createdAt.split("").slice(2, 10).join("")}
+          DeadLine={boardList[i]?.projectDue.split("").slice(2, 10).join("")}
           title={boardList[i]?.projectTitle}
-          filter={boardList[i]?.projectWantedRole}
+          filter={["Front", "Back"]}
+          // filter={boardList[i]?.projectWantedRole}
+          academy={boardList[i]?.projectAcademy}
           key={`board item ${i}`}
         />
       );
