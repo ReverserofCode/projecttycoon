@@ -10,7 +10,7 @@ const Container = styled.div`
   padding: 0 30px;
   width: 100%;
   border-bottom: 1px solid #071952;
-  @media screen and (min-width: 700px) {
+  @media screen and (max-width: 700px) {
     height: 64px;
   }
 `;
@@ -43,37 +43,46 @@ const Items = styled.li`
 const Link = styled.a`
   text-decoration: none;
 `;
+const Wrap = styled.div`
+  width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 function Navbar() {
   const { params } = useParams();
   return (
     <Container>
-      <NavHeader src="./Logo Test.png" />
-      <Lists gap={"30px"}>
-        <Link className="menu" href="http://projecttycoon.com">
-          <Items>홈</Items>
-        </Link>
-        <Link className="menu" href="http://projecttycoon.com">
-          <Items>프로젝트 팀</Items>
-        </Link>
-        <Link className="menu" href="http://projecttycoon.com">
-          <Items>멤버리스트</Items>
-        </Link>
-        <Link className="menu" href="http://projecttycoon.com">
-          <Items>내 페이지</Items>
-        </Link>
-        <Link className="menu" href="http://projecttycoon.com">
-          <Items>새로운 글쓰기</Items>
-        </Link>
-      </Lists>
-      <Lists gap={"47px"} color="#35A29F">
-        <Link className="user" href="http://projecttycoon.com/api/login">
-          <Items>로그인</Items>
-        </Link>
-        <Link className="user" href="http://projecttycoon.com/api/signup">
-          <Items>회원가입</Items>
-        </Link>
-      </Lists>
+      <Wrap>
+        <NavHeader src="./Logo Test.png" />
+        <Lists gap={"30px"}>
+          <Link className="menu" href="http://projecttycoon.com">
+            <Items>홈</Items>
+          </Link>
+          <Link className="menu" href="http://projecttycoon.com">
+            <Items>프로젝트 팀</Items>
+          </Link>
+          <Link className="menu" href="http://projecttycoon.com">
+            <Items>멤버리스트</Items>
+          </Link>
+          <Link className="menu" href="http://projecttycoon.com">
+            <Items>내 페이지</Items>
+          </Link>
+          <Link className="menu" href="http://projecttycoon.com">
+            <Items>새로운 글쓰기</Items>
+          </Link>
+        </Lists>
+        <Lists gap={"47px"} color="#35A29F">
+          <Link className="user" href="http://projecttycoon.com/api/login">
+            <Items>로그인</Items>
+          </Link>
+          <Link className="user" href="http://projecttycoon.com/api/signup">
+            <Items>회원가입</Items>
+          </Link>
+        </Lists>
+      </Wrap>
     </Container>
   );
 }
