@@ -11,7 +11,6 @@ const PageContainer = styled.div`
   align-items: flex-start;
   width: 100%;
   height: fit-content;
-  max-width: 1440px;
   margin-top: 20px;
 `;
 const SideContents = styled.div`
@@ -64,6 +63,7 @@ function ProjectPage() {
           filter={["Front", "Back"]}
           // filter={boardList[i]?.projectWantedRole}
           academy={boardList[i]?.projectAcademy}
+          image={boardList[i]?.projectFilePath}
           key={`board item ${i}`}
         />
       );

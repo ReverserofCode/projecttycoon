@@ -11,12 +11,17 @@ const MainContainer = styled.div`
   width: 100%;
   min-height: 100%;
 `;
+const ContentsWrap = styled.div`
+  max-width: 1440px;
+`;
 
 function App() {
   return (
     <MainContainer>
       <Navbar />
-      <ProjectPage />
+      <ContentsWrap>
+        <ProjectPage />
+      </ContentsWrap>
     </MainContainer>
   );
 }
