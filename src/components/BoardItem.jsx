@@ -3,81 +3,99 @@ import React, { useCallback } from "react";
 import { BsClipboard2Check } from "react-icons/bs";
 import { BiStopwatch } from "react-icons/bi";
 import { TbSchool } from "react-icons/tb";
-const BoardItemBase = styled.div`
+const BoardBase = styled.div`
+  transition: 300ms ease-in-out;
   display: flex;
   box-sizing: border-box;
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  border: 1px solid black;
-  border-radius: 10px;
+  padding: 0 20px;
   width: 270px;
-  height: 270px;
+  height: 335px;
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
   box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.25);
-  padding: 16px 20px;
-  overflow: hidden;
+  :hover {
+    scale: 1.03;
+  }
 `;
-const MainContents = styled.div`
+const TagContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
-  gap: 35px;
-  font-size: 20px;
-`;
-const TagContainer = styled.ul`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  user-select: none;
   gap: 10px;
+  width: 100%;
+  height: 27px;
 `;
 const TagItem = styled.div`
   display: flex;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
-  border: 2px solid #f4d160;
-  font-size: 15px;
   padding: 4px 14px;
-  background-color: #fbeeac;
-  border-radius: 20px;
+  font-size: 12px;
   white-space: nowrap;
+  background-color: #fbeeac;
+  border: 2px solid #f4d160;
+  border-radius: 15px;
 `;
-const TitleZone = styled.p`
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  width: 100px;
-  overflow: hidden;
-  margin: 0;
-  font-weight: 400;
-  width: 220px;
-  text-overflow: ellipsis;
-  word-break: break-word;
-  height: 54px;
-`;
-const DateZone = styled.p`
-  margin: 10px 0;
-  color: rgba(170, 170, 170, 0.67);
-  font-weight: 400;
-  user-select: none;
-`;
-const FilterIconContainer = styled.div`
+const PosterContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 15px;
-  user-select: none;
-  height: 45px;
+  width: 100%;
+  margin: 20px 0;
+  box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+`;
+const Poster = styled.img`
+  height: 100px;
+`;
+const ProjectInfo = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+`;
+const Date = styled.span`
+  font-size: 16px;
+  color: rgba(148, 148, 148, 0.67);
+`;
+const Title = styled.span`
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-word;
+  font-weight: bold;
+`;
+const Recruits = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-top: 1px solid rgba(148, 148, 148, 0.67);
+  width: 100%;
+  gap: 10px;
+  padding: 10px 5px 0;
+  box-sizing: border-box;
 `;
 const FilterIcon = styled.img`
   width: 35px;
 `;
 
-function BoardItem({ title, createDate, DeadLine, status, filter, academy }) {
+function BoardItem({
+  title,
+  createDate,
+  DeadLine,
+  status,
+  filter,
+  academy,
+  image,
+}) {
   const FilterIcons = useCallback(() => {
     let contents = [];
     for (let i = 0; i < filter.length; i++) {
@@ -120,28 +138,47 @@ function BoardItem({ title, createDate, DeadLine, status, filter, academy }) {
     return contents;
   }, [filter]);
   return (
-    <BoardItemBase>
-      <MainContents>
-        <TagContainer>
-          {status ? (
-            <TagItem>
-              <BsClipboard2Check color={"#35A29F"} /> 모집중
-            </TagItem>
-          ) : (
-            <TagItem>
-              <BiStopwatch color={"#FF5151"} /> 모집완료
-            </TagItem>
-          )}
+    <BoardBase>
+      <TagContainer>
+        {status ? (
           <TagItem>
-            <TbSchool color={"#75C2F6"} />
-            {academy}
+            <BsClipboard2Check
+              color={"#35A29F"}
+              fontSize={"13px"}
+              style={{ marginRight: "5px" }}
+            />{" "}
+            모집중
           </TagItem>
-        </TagContainer>
-        <TitleZone>{title}</TitleZone>
-        <DateZone>{`${createDate}~${DeadLine}`}</DateZone>
-      </MainContents>
-      <FilterIconContainer>{FilterIcons()}</FilterIconContainer>
-    </BoardItemBase>
+        ) : (
+          <TagItem>
+            <BiStopwatch
+              color={"#FF5151"}
+              fontSize={"13px"}
+              style={{ marginRight: "5px" }}
+            />{" "}
+            모집완료
+          </TagItem>
+        )}
+        <TagItem>
+          <TbSchool
+            color={"#75C2F6"}
+            fontSize={"15px"}
+            style={{ marginRight: "5px" }}
+          />
+          {academy}
+        </TagItem>
+      </TagContainer>
+      <PosterContainer>
+        <Poster src={"http://projecttycoon.com" + image} />
+      </PosterContainer>
+      <ProjectInfo>
+        <Date>
+          {createDate} ~ {DeadLine}
+        </Date>
+        <Title>{title}</Title>
+        <Recruits>{FilterIcons()}</Recruits>
+      </ProjectInfo>
+    </BoardBase>
   );
 }
 
