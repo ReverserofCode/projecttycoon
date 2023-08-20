@@ -13,10 +13,10 @@ import javax.persistence.*;
 
 //채팅 각각의 DB 설계
 @Entity
-@Getter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Builder
 @Table(name="DMData")
 @EntityListeners(AuditingEntityListener.class)
 public class DMEntity extends TimeStamp {
@@ -36,19 +36,19 @@ public class DMEntity extends TimeStamp {
     private String DMContent;
 
     @Column
-    private Boolean DMRead;
+    private boolean DMRead;
 
-    @ManyToOne
-    @JoinColumn(name = "DMroomId", referencedColumnName = "DMroomId")
-    private DMroomEntity DMroomId;
+//    @ManyToOne
+//    @JoinColumn(name = "DMroomId", referencedColumnName = "DMroomId")
+//    private DMroomEntity DMroomId;
 
 
-    public DMEntity(DMRequestDTO DMDTO, DMroomEntity DMroomEntity) {
+    public DMEntity(DMRequestDTO DMDTO)  {
         this.DMFromId = DMDTO.getDMFromId();
         this.DMToId = DMDTO.getDMToId();
-        this.DMContent =DMDTO.getDMToId();
-        this.DMRead = DMDTO.getDMRead();
-        this.DMroomId =DMroomEntity;
+        this.DMContent = DMDTO.getDMContent();
+        this.DMRead = DMDTO.isDMRead();
+//        this.DMroomId =DMroomEntity;
     }
 }
 

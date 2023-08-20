@@ -23,7 +23,7 @@ public class DMroomEntity extends TimeStamp {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    private Long DMroomId;
+    private Long DMRoomId;
 
     @ManyToOne
     @JoinColumn(name = "DMFromId", referencedColumnName = "memberid")

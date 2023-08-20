@@ -17,5 +17,5 @@ public class DMRequestDTO {
 
     private String DMContent;
 
-    private Boolean DMRead;
+    private boolean DMRead;
 }

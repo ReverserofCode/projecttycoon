@@ -8,7 +8,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class DMroomRequestDTO {
-    private String chatFromId;
+    private String DMFromId;
 
-    private String chatToId;
+    private String DMToId;
 }
