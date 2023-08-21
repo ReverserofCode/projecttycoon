@@ -24,7 +24,7 @@ public class DMroomEntity extends TimeStamp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
+    @Column(name = "DMroomId")
     private Long DMroomId;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -32,6 +32,7 @@ public class DMService {
         MemberEntity DMFrom = memberRepository.findByMemberId(DMFromId).get();
         MemberEntity DMTo = memberRepository.findByMemberId(DMToId).get();
         if (dmroomRepository.findDMroomIdByUserId(DMFrom, DMTo) == null) {
+            System.out.println("DMroom 생성");
             dmroomRepository.createDMroom(DMFrom, DMTo);
         }
         return dmroomRepository.findDMroomIdByUserId(DMFrom, DMTo);
