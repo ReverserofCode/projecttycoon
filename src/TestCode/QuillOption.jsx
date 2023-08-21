@@ -20,15 +20,15 @@ export const QuillTool = {
   },
   toolbar: {
     container: [
-      [{ header: [1, 2, 3, 4, 5, false] }],
-      [
-        { align: "" },
-        { align: "center" },
-        { align: "right" },
-        { align: "justify" },
-      ],
+      [{ header: [1, 2, 3, false] }],
+      // [
+      //   { align: "" },
+      //   { align: "center" },
+      //   { align: "right" },
+      //   { align: "justify" },
+      // ],
       ["bold", "italic", "underline", "blockquote"],
-      [{ list: "ordered" }, { list: "bullet" }, "link"],
+      [{ list: "ordered" }, { list: "bullet" }],
       ["code-block"],
       [
         {
@@ -36,7 +36,7 @@ export const QuillTool = {
         },
         { background: [] },
       ],
-      ["image", "video"],
+      // ["image", "video"],
     ],
   },
 };

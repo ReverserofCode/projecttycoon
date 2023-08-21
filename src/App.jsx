@@ -7,12 +7,14 @@ import TestWrite from "./TestCode/TestWrite";
 // import Input from "./components/Input"s
 
 const MainContainer = styled.div`
+margin: 0 auto;
+padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  min-height: 100%;
+  /* justify-content: flex-start; */
+  /* align-items: center; */
+  /* width: 100%; */
+  /* min-height: 100%; */
 `;
 
 function App() {
