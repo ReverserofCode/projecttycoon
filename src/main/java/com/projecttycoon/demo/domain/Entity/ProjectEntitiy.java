@@ -3,61 +3,61 @@ package com.projecttycoon.demo.domain.Entity;
 import com.projecttycoon.demo.domain.TimeStamp;
 import com.projecttycoon.demo.domain.dto.ProjectRequestDTO;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 //사용자에게 노출되는 프로젝트들의 상세 내역의 데이터를 담을 DB 설계
-@Data
 @Entity
 @Getter
-@RequiredArgsConstructor
-public class ProjectEntitiy extends TimeStamp {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "ProjectData")
+@EntityListeners(AuditingEntityListener.class)
+public class ProjectEntity extends TimeStamp {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="projectId", unique = true)
-    private Long id;
-    @Column(name="projectTitle")
+    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long projectId;
+
+    @Column
     private String projectTitle;
-    @Column(name="projectContent")
+    @Column
     private String projectContent;
-    @Column(name="projectRequired")
-    private String projectRequired;
-    @Column(name="projectIsEnd")
-    private String projectIsEnd;
-    @Column(name="projectWriterId")
+    @Column
+    private String projectWantedRole;
+    @Column(nullable = true)
+    private Date projectDue;
+    @Column
+    private String projectAcademy;
+    @Column
+    private Boolean projectStatus;
+    @Column
     private String projectWriterId;
-    @Column(name="projectNickName")
-    private String projectNickName;
-
-    private String projectFileName;
+    @Column
+    private String projectWriterNick;
+    @Column(nullable = true)
     private String projectFilePath;
+    @Column(nullable = true)
+    private String projectFileName;
+    @Column
+    private int projectScrapNum;
 
-    public ProjectEntitiy(ProjectRequestDTO projectRequestDTO) {
-        this.projectTitle = projectRequestDTO.getProjectTitle();
-        this.projectContent = projectRequestDTO.getProjectContent();
-        this.projectRequired = projectRequestDTO.getProjectRequired();
-        this.projectIsEnd = projectRequestDTO.getProjectIsEnd();
-        this.projectWriterId = projectRequestDTO.getProjectWriterId();
-        this.projectNickName = projectRequestDTO.getProjectNickName();
-        this.projectFileName = projectRequestDTO.getProjectImage().getName();
-        this.projectFilePath = "/static/images/" + projectRequestDTO.getProjectImage().getOriginalFilename();
+    public ProjectEntity(ProjectRequestDTO projectDto) {
+        this.projectTitle = projectDto.getProjectTitle();
+        this.projectContent = projectDto.getProjectContent();
+        this.projectWantedRole = projectDto.getProjectWantedRole();
+        this.projectStatus = projectDto.getProjectStatus();
+        this.projectDue = projectDto.getProjectDue();
+        this.projectAcademy = projectDto.getProjectAcademy();
+        this.projectWriterId = projectDto.getProjectWriterId();
+        this.projectWriterNick = projectDto.getProjectWriterNick();
+        this.projectFilePath = projectDto.getProjectFilePath();
+        this.projectFileName = projectDto.getProjectFileName();
+        this.projectScrapNum = projectDto.getProjectScarpNum();
     }
-
-    public void ProjectUpdate(ProjectRequestDTO projectRequestDTO) {
-        this.projectTitle = projectRequestDTO.getProjectTitle();
-        this.projectContent = projectRequestDTO.getProjectContent();
-        this.projectRequired = projectRequestDTO.getProjectRequired();
-        this.projectIsEnd = projectRequestDTO.getProjectIsEnd();
-        this.projectWriterId = projectRequestDTO.getProjectWriterId();
-        this.projectNickName = projectRequestDTO.getProjectNickName();
-        this.projectFileName = projectRequestDTO.getProjectImage().getName();
-        this.projectFilePath = "/static/images/" + projectRequestDTO.getProjectImage().getOriginalFilename();
-
-    }
-
-
-
-
 }
