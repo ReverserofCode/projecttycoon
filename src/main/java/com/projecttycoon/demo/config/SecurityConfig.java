@@ -32,6 +32,7 @@ public class SecurityConfig {
             auth.antMatchers("/all").permitAll();
             auth.antMatchers("/member").hasRole("Member");
             auth.antMatchers("/admin").hasRole("Admin");
+            auth.antMatchers("/**").permitAll();
         });
         httpSecurity.formLogin()
                 .usernameParameter("memberId")// 아이디 파라미터명 설정
