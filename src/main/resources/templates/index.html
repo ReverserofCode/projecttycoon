@@ -20,15 +20,15 @@
         <p>프로젝트 리스트</p>
         <!-- Posts -->
         <section class="posts">
-            <article th:each="project : ${projects}">
+            <article th:each="projectEntitiy : ${projects}">
                 <header>
-                    <h2><a th:href="@{/api/projectOne/{id}(id=${project.id})}" th:text="${project.projectTitle}"></a></h2>
+                    <h2><a th:href="@{/api/projectOne/{id}(id=${projectEntitiy.id})}" th:text="${projectEntitiy.projectTitle}"></a></h2>
                 </header>
-                <a th:href="@{/api/projectOne/{id}(id=${project.id})}" class="image fit"><img th:src="@{${project.projectFilePath}}" alt=""/></a>
-                <p th:text="${project.projectContent}"></p>
-                <p>[[${project.projectRequired}]]</p>
+                <a th:href="@{/api/projectOne/{id}(id=${projectEntitiy.id})}" class="image fit"><img th:src="@{${projectEntitiy.projectFilePath}}" alt=""/></a>
+                <p th:text="${projectEntitiy.projectContent}"></p>
+                <p>[[${projectEntitiy.projectRequired}]]</p>
                 <ul class="actions special">
-                    <li><a th:href="@{/api/projectOne/{id}(id=${project.id})}" class="button">보러가기</a></li>
+                    <li><a th:href="@{/api/projectOne/{id}(id=${projectEntitiy.id})}" class="button">보러가기</a></li>
                 </ul>
             </article>
         </section>

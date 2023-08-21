@@ -1,7 +1,7 @@
 package com.projecttycoon.demo.domain.service;
 
 
-import com.projecttycoon.demo.domain.Entity.Project;
+import com.projecttycoon.demo.domain.Entity.ProjectEntitiy;
 import com.projecttycoon.demo.domain.dto.ProjectRequestDTO;
 import com.projecttycoon.demo.domain.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ public class ProjectService {
 //    }
 
     // 글 작성 처리
-    public void createProject(Project project, MultipartFile file) throws Exception {
+    public void createProject(ProjectEntitiy projectEntitiy, MultipartFile file) throws Exception {
         // 파일 업로드 처리 시작
         String filePath = System.getProperty("user.dir") // 프로젝트 경로를 가져옴
                 + "/src/main/webapp/"; // 파일이 저장될 폴더의 경로
@@ -34,30 +34,30 @@ public class ProjectService {
         String fileName = uuid + "_" + file.getOriginalFilename(); // UUID와 파일이름을 포함된 파일 이름으로 저장
         File saveFile = new File(filePath, fileName); // projectPath는 위에서 작성한 경로, name은 전달받을 이름
         file.transferTo(saveFile);
-        project.setProjectFileName("projectImage");
-        project.setProjectFilePath("/webapp/" + fileName); // static 아래부분의 파일 경로로만으로도 접근이 가능
+        projectEntitiy.setProjectFileName("projectImage");
+        projectEntitiy.setProjectFilePath("/webapp/" + fileName); // static 아래부분의 파일 경로로만으로도 접근이 가능
         // 파일 업로드 처리 끝
 
-        projectRepository.save(project);
+        projectRepository.save(projectEntitiy);
     }
 
-    public Project oneProject(Long id) {
+    public ProjectEntitiy oneProject(Long id) {
         return projectRepository.findById(id).orElseThrow(() -> new NullPointerException("찾으시는 아이디가 없습니다."));
     }
 
-    public Page<Project> allProject(int page) {
+    public Page<ProjectEntitiy> allProject(int page) {
         PageRequest pageRequest = PageRequest.of(page, 8);
         return projectRepository.findAll(pageRequest);
     }
 
-    public Page<Project> isEndProject(String projectIsEnd, int page){
+    public Page<ProjectEntitiy> isEndProject(String projectIsEnd, int page){
         PageRequest pageRequest = PageRequest.of(page,8);
         return projectRepository.findByProjectIsEnd(projectIsEnd,pageRequest);
     }
 
     public void updateProject(ProjectRequestDTO projectRequestDTO) {
-        Project project = new Project(projectRequestDTO);
-        projectRepository.save(project);
+        ProjectEntitiy projectEntitiy = new ProjectEntitiy(projectRequestDTO);
+        projectRepository.save(projectEntitiy);
     }
 
     public Long deleteProject(Long id) {
@@ -65,7 +65,7 @@ public class ProjectService {
         return id;
     }
 
-    public Page<Project> searchProject(String projectName, int page) {
+    public Page<ProjectEntitiy> searchProject(String projectName, int page) {
         PageRequest pageRequest = PageRequest.of(page, 8);
         return projectRepository.findByProjectTitleContainingIgnoreCaseOrProjectContentContainingIgnoreCase(projectName, projectName, projectName, pageRequest);
     }

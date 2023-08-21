@@ -17,17 +17,17 @@
 
 <section class="posts">
     <article>
-        <a class="image fit"><img th:src="@{${project.projectFilePath}}" alt=""/></a>
+        <a class="image fit"><img th:src="@{${projectEntitiy.projectFilePath}}" alt=""/></a>
     </article>
     <article>
         <header>
-            <h2><a href="#" th:text="${project.projectTitle}"></a></h2>
-            <input type="hidden" id="projectId" th:value="${project.id}">
-            <div id="projectContent">[[${project.projectContent}]]</div>
-            <div id="projectRequired">[[${project.projectRequired}]]</div>
-            <div id="projectIsEnd">[[${project.projectIsEnd}]]</div>
-            <div id="projectWriterId">[[${project.projectWriterId}]]</div>
-            <div id="projectNickName">[[${project.projectNickName}]]</div>
+            <h2><a href="#" th:text="${projectEntitiy.projectTitle}"></a></h2>
+            <input type="hidden" id="projectId" th:value="${projectEntitiy.id}">
+            <div id="projectContent">[[${projectEntitiy.projectContent}]]</div>
+            <div id="projectRequired">[[${projectEntitiy.projectRequired}]]</div>
+            <div id="projectIsEnd">[[${projectEntitiy.projectIsEnd}]]</div>
+            <div id="projectWriterId">[[${projectEntitiy.projectWriterId}]]</div>
+            <div id="projectNickName">[[${projectEntitiy.projectNickName}]]</div>
         </header>
     </article>
     <div>
@@ -42,7 +42,7 @@
     function deleteProject(id) {
         $.ajax({
             type: "DELETE",
-            url: `/all/project/${id}`,
+            url: `/all/projectEntitiy/${id}`,
             success: function (response) {
                 alert('프로젝트 삭제!');
                 window.location.href="/api/projectList/0";

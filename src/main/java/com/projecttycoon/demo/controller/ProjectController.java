@@ -1,7 +1,6 @@
 package com.projecttycoon.demo.controller;
 import com.projecttycoon.demo.domain.Entity.MemberEntity;
-import com.projecttycoon.demo.domain.Entity.Project;
-import com.projecttycoon.demo.domain.dto.ProjectRequestDTO;
+import com.projecttycoon.demo.domain.Entity.ProjectEntitiy;
 import com.projecttycoon.demo.domain.repository.ProjectRepository;
 import com.projecttycoon.demo.domain.service.ProjectService;
 import lombok.RequiredArgsConstructor;
@@ -30,16 +29,16 @@ public class ProjectController {
 //    }
 
     @PostMapping("/all/project")
-    public String saveProject(Project project, Model model, MultipartFile file) throws Exception { // 데이터가 board에 담겨서 들어옴
+    public String saveProject(ProjectEntitiy projectEntitiy, Model model, MultipartFile file) throws Exception { // 데이터가 board에 담겨서 들어옴
 
-        projectService.createProject(project, file);
+        projectService.createProject(projectEntitiy, file);
 
         return "redirect:/api/projectList/0";
     }
 
     @GetMapping("/api/projectList/{page}")
     public String listProject(Model model, @PathVariable int page){
-        Page<Project> projectList = projectService.allProject(page);
+        Page<ProjectEntitiy> projectList = projectService.allProject(page);
         model.addAttribute("projects",projectList);
         page+=1;
         int totalPage = projectList.getTotalPages();
@@ -54,7 +53,7 @@ public class ProjectController {
     }
     @GetMapping("/api/projectList/{projectIsEnd}/{page}")
     public String projectIsEndList(Model model,@PathVariable String projectIsEnd, @PathVariable int page){
-        Page<Project> projectList = projectService.isEndProject(projectIsEnd,page);
+        Page<ProjectEntitiy> projectList = projectService.isEndProject(projectIsEnd,page);
         model.addAttribute("projects",projectList);
         page+=1;
         int totalPage = projectList.getTotalPages();
@@ -71,9 +70,9 @@ public class ProjectController {
 
     @GetMapping("/api/projectOne/{id}")
     public String projectOne(@AuthenticationPrincipal MemberEntity memberEntity, Model model, @PathVariable Long id){
-        Project project = projectService.oneProject(id);
+        ProjectEntitiy projectEntitiy = projectService.oneProject(id);
         model.addAttribute("member", memberEntity);
-        model.addAttribute("project", project);
+        model.addAttribute("project", projectEntitiy);
         return "projectOne";
     }
 
@@ -89,7 +88,7 @@ public class ProjectController {
 
     @GetMapping("/api/searchList/{page}")
     public String searchList(Model model,@RequestParam("projectName") String projectName, @PathVariable int page){
-        Page<Project> projectList = projectService.searchProject(projectName,page);
+        Page<ProjectEntitiy> projectList = projectService.searchProject(projectName,page);
         model.addAttribute("projects",projectList);
         page+=1;
         int totalPage = projectList.getTotalPages();

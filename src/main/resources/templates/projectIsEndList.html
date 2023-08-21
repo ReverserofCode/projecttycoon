@@ -17,19 +17,19 @@
 </nav>
 
 <section class="posts">
-  <article th:each="project : ${projects}">
+  <article th:each="projectEntitiy : ${projects}">
     <header>
-      <h2><a th:href="@{/api/projectOne/{id}(id=${project.id})}" th:text="${project.projectTitle}"></a></h2>
+      <h2><a th:href="@{/api/projectOne/{id}(id=${projectEntitiy.id})}" th:text="${projectEntitiy.projectTitle}"></a></h2>
     </header>
-    <a th:href="@{/api/projectOne/{id}(id=${project.id})}" class="image fit"><img th:src="@{${project.projectFilePath}}" alt=""/></a>
-    <p th:text="${project.projectContent}"></p>
-    <p>기술스택: [[${project.projectRequired}]]</p>
-    <p>모집여부: [[${project.projectIsEnd}]]</p>
-    <p>작성자아이디: [[${project.projectWriterId}]]</p>
-    <p>작성자닉네임: [[${project.projectNickName}]]</p>
+    <a th:href="@{/api/projectOne/{id}(id=${projectEntitiy.id})}" class="image fit"><img th:src="@{${projectEntitiy.projectFilePath}}" alt=""/></a>
+    <p th:text="${projectEntitiy.projectContent}"></p>
+    <p>기술스택: [[${projectEntitiy.projectRequired}]]</p>
+    <p>모집여부: [[${projectEntitiy.projectIsEnd}]]</p>
+    <p>작성자아이디: [[${projectEntitiy.projectWriterId}]]</p>
+    <p>작성자닉네임: [[${projectEntitiy.projectNickName}]]</p>
 
     <ul class="actions special">
-      <li><a th:href="@{/api/projectOne/{id}(id=${project.id})}" class="button">프로젝트 상세</a></li>
+      <li><a th:href="@{/api/projectOne/{id}(id=${projectEntitiy.id})}" class="button">프로젝트 상세</a></li>
     </ul>
   </article>
 </section>
