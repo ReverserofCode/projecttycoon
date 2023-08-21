@@ -46,6 +46,7 @@ const PosterContainer = styled.div`
   align-items: center;
   width: 100%;
   margin: 20px 0;
+  overflow: hidden;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 const Poster = styled.img`
