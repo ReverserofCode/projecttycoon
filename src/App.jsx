@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Navbar from "./components/Navbar";
+import LoginProcess from "./pages/LoginProcess";
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -11,13 +12,16 @@ const MainContainer = styled.div`
 `;
 const Wrap = styled.div`
   max-width: 1440px;
+  width: 100%;
 `;
 
 function App() {
   return (
     <MainContainer>
       <Navbar />
-      <Wrap></Wrap>
+      <Wrap>
+        <LoginProcess></LoginProcess>
+      </Wrap>
     </MainContainer>
   );
 }

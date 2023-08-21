@@ -5,9 +5,12 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build:{
-    outDir:'Default'
+    outDir:'LoginPage'
   },
   server:{
-    port:3000
+    port:3000,
+    proxy:{
+      'api':'http://projecttycoon.com'
+    }
   }
 })
