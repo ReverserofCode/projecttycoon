@@ -2,10 +2,9 @@ package com.projecttycoon.demo.domain.Entity;
 
 import com.projecttycoon.demo.domain.TimeStamp;
 import com.projecttycoon.demo.domain.dto.DMRequestDTO;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -16,6 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 @Builder
 @Table(name="DMData")
 @EntityListeners(AuditingEntityListener.class)
@@ -26,11 +26,15 @@ public class DMEntity extends TimeStamp {
     @Column
     private Long DMId;
 
-    @Column
-    private String DMFromId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DMFrom")
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    private MemberEntity DMFrom;
 
-    @Column
-    private String DMToId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DMTo")
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    private MemberEntity DMTo;
 
     @Column
     private String DMContent;
@@ -38,17 +42,9 @@ public class DMEntity extends TimeStamp {
     @Column
     private boolean DMRead;
 
-//    @ManyToOne
-//    @JoinColumn(name = "DMroomId", referencedColumnName = "DMroomId")
-//    private DMroomEntity DMroomId;
+    @ManyToOne
+    @JoinColumn(name = "DMroom")
+    private DMroomEntity DMroom;
 
-
-    public DMEntity(DMRequestDTO DMDTO)  {
-        this.DMFromId = DMDTO.getDMFromId();
-        this.DMToId = DMDTO.getDMToId();
-        this.DMContent = DMDTO.getDMContent();
-        this.DMRead = DMDTO.isDMRead();
-//        this.DMroomId =DMroomEntity;
-    }
 }
 

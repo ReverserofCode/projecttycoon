@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -23,14 +25,16 @@ public class DMroomEntity extends TimeStamp {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    private Long DMRoomId;
+    private Long DMroomId;
 
-    @ManyToOne
-    @JoinColumn(name = "DMFromId", referencedColumnName = "memberid")
-    private MemberEntity DMFromId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DMFrom")
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    private MemberEntity DMFrom;
 
-    @ManyToOne
-    @JoinColumn(name = "DMToId", referencedColumnName = "memberid")
-    private MemberEntity DMToId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DMTo")
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    private MemberEntity DMTo;
 }
 
