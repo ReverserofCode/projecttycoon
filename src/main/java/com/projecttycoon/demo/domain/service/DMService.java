@@ -26,19 +26,20 @@ public class DMService {
     @Autowired
     private final DMroomRepository dmroomRepository;
 
-    // DM방 새로 만들기
+    // 두 사용자의 DM방 리턴 (없으면 생성)
     @Transactional
-    public void newDMroom(String DMFromId, String DMToId) {
+    public DMroomEntity openDMroom(String DMFromId, String DMToId) {
         MemberEntity DMFrom = memberRepository.findByMemberId(DMFromId).get();
         MemberEntity DMTo = memberRepository.findByMemberId(DMToId).get();
-        if (dmroomRepository.findDMroomId(DMFrom, DMTo) == null) {
+        if (dmroomRepository.findDMroomIdByUserId(DMFrom, DMTo) == null) {
             dmroomRepository.createDMroom(DMFrom, DMTo);
         }
+        return dmroomRepository.findDMroomIdByUserId(DMFrom, DMTo);
     }
 
     // 메세지 보내기
     @Transactional
-    public void sendDM(DMRequestDTO dmRequestDTO) {
+    public Long sendDM(DMRequestDTO dmRequestDTO) {
         MemberEntity DMFrom = memberRepository.findByMemberId(dmRequestDTO.getDMFromId()).get();
         MemberEntity DMTo = memberRepository.findByMemberId(dmRequestDTO.getDMToId()).get();
         DMroomEntity DMroom = dmroomRepository.findByDMroomId(dmRequestDTO.getDMroomId());
@@ -49,6 +50,7 @@ public class DMService {
         dmEntity.setDMroom(DMroom);
         dmEntity.setDMRead(false);
         dmRepository.save(dmEntity);
+        return dmEntity.getDMId();
     }
 
     // 현재 사용자의 모든 DM방 불러오기

@@ -15,17 +15,13 @@
         @Query(value = "insert into DMroomData(DMFrom, DMTo) values(?1, ?2)", nativeQuery = true)
         void createDMroom(MemberEntity DMFromMember, MemberEntity DMToMember);
 
+        // 개인 프로필로 대화할때 접근하는 방식
         // 두 사람이 대화하는 DMroom ID 찾기
-        @Query("select dmroom.DMroomId from DMroomEntity dmroom where dmroom.DMFrom = ?1 and dmroom.DMTo = ?2 " +
+        @Query("select dmroom from DMroomEntity dmroom where dmroom.DMFrom = ?1 and dmroom.DMTo = ?2 " +
                 "or dmroom.DMFrom = ?2 and dmroom.DMTo = ?1")
-        Long findDMroomId(MemberEntity DMFromMember, MemberEntity DMToMember);
+        DMroomEntity findDMroomIdByUserId(MemberEntity DMFromMember, MemberEntity DMToMember);
 
-//        @Query("insert into DMroomEntity(DMFrom, DMTo) values(?1, ?2)")
-//        Long createDMroom(MemberEntity DMFromMember, MemberEntity DMToMember);
-
-        // 일단 안쓰는중
-        DMroomEntity findByDMFromAndDMTo(MemberEntity DMFrom, MemberEntity DMTo);
-
+        // DMList에서 대화창 들어갈때 접근하는 방식
         // DMroomId로 DMroom 객체 불러오기
         DMroomEntity findByDMroomId(Long DMroomId);
 
