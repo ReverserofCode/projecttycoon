@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Log4j2
@@ -39,4 +40,15 @@ public class ProjectController {
         projectRepository.deleteById(id);
         return id;
     }
+
+    @PutMapping("/project/{id}")
+    public void updateProject(@PathVariable Long id, @RequestBody ProjectRequestDTO projectRequestDTO){
+        Optional<ProjectEntity> optionalProjectEntity = projectRepository.findById(id);
+
+        if(optionalProjectEntity.isEmpty()){
+            projectService.updateProject(projectRequestDTO);
+        }
+    }
+
+
 }
