@@ -20,10 +20,10 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name="DMroomData")
 @EntityListeners(AuditingEntityListener.class)
-public class DMroomEntity extends TimeStamp {
+public class DMroomEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DMroomId")
     private Long DMroomId;
 
