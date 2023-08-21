@@ -47,6 +47,7 @@ public class ProjectController {
 
         if (optionalProjectEntity.isPresent()) {
             ProjectEntity projectEntity = optionalProjectEntity.get();
+            //setter사용시...
             //projectEntity.setProjectTitle(projectRequestDTO.getProjectTitle());
             //projectEntity.setProjectContent(projectRequestDTO.getProjectContent());
             projectEntity.updateFromDTO(projectRequestDTO);
