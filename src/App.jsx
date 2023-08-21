@@ -9,11 +9,15 @@ const MainContainer = styled.div`
   width: 100%;
   min-height: 100%;
 `;
+const Wrap = styled.div`
+  max-width: 1440px;
+`;
 
 function App() {
   return (
     <MainContainer>
       <Navbar />
+      <Wrap></Wrap>
     </MainContainer>
   );
 }
