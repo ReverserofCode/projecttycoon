@@ -60,4 +60,34 @@ public class ProjectEntity extends TimeStamp {
         this.projectFileName = projectDto.getProjectFileName();
         this.projectScrapNum = projectDto.getProjectScarpNum();
     }
+    public void updateFromDTO(ProjectRequestDTO projectDto) {
+        if (projectDto.getProjectTitle() != null) {
+            this.projectTitle = projectDto.getProjectTitle();
+        }
+        if (projectDto.getProjectContent() != null) {
+            this.projectContent = projectDto.getProjectContent();
+        }
+        if (projectDto.getProjectWantedRole() != null) {
+            this.projectWantedRole = projectDto.getProjectWantedRole();
+        }
+        if (projectDto.getProjectStatus() != null) {
+            this.projectStatus = projectDto.getProjectStatus();
+        }
+        if (projectDto.getProjectDue() != null) {
+            this.projectDue = projectDto.getProjectDue();
+        }
+        if (projectDto.getProjectAcademy() != null) {
+            this.projectAcademy = projectDto.getProjectAcademy();
+        }
+        if (projectDto.getProjectFilePath() != null) {
+            this.projectFilePath = projectDto.getProjectFilePath();
+        }
+        if (projectDto.getProjectFileName() != null) {
+            this.projectFileName = projectDto.getProjectFileName();
+        }
+        if (projectDto.getProjectScarpNum() != 0) {
+            this.projectScrapNum = projectDto.getProjectScarpNum();
+        }
+        //if문 없는 경우 value=null로 리턴되는 상황이 있어 if문 사용
+    }
 }

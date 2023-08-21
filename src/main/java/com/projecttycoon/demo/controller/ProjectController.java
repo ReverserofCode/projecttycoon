@@ -36,17 +36,21 @@ public class ProjectController {
     }
 
     @DeleteMapping("/project/{id}")
-    public Long deleteProject(@PathVariable Long id) {
+    public String deleteProject(@PathVariable Long id) {
         projectRepository.deleteById(id);
-        return id;
+        return "success";
     }
 
     @PutMapping("/project/{id}")
-    public void updateProject(@PathVariable Long id, @RequestBody ProjectRequestDTO projectRequestDTO){
+    public void updateProject(@PathVariable Long id, @RequestBody ProjectRequestDTO projectRequestDTO) {
         Optional<ProjectEntity> optionalProjectEntity = projectRepository.findById(id);
 
-        if(optionalProjectEntity.isEmpty()){
-            projectService.updateProject(projectRequestDTO);
+        if (optionalProjectEntity.isPresent()) {
+            ProjectEntity projectEntity = optionalProjectEntity.get();
+            //projectEntity.setProjectTitle(projectRequestDTO.getProjectTitle());
+            //projectEntity.setProjectContent(projectRequestDTO.getProjectContent());
+            projectEntity.updateFromDTO(projectRequestDTO);
+            projectRepository.save(projectEntity);
         }
     }
 
