@@ -41,6 +41,7 @@ public class DMController extends TimeStamp {
 
     // DM 보내는 API
     // 동작 확인 X
+    // Controller에서 DTO를 가져오지 못함. 그거 되면 될거같은데
     @PostMapping("/dmsend")
     public void sendDM(@RequestBody DMRequestDTO dmRequestDTO) {
         System.out.println("Controller DTO Test: " + dmRequestDTO);
@@ -50,8 +51,10 @@ public class DMController extends TimeStamp {
 
     // 현재 사용자의 DMroom List 반환하는 API
     // 동작 확인 X
+    // Service에서 Response를 가져오는것까지 확인. but 오류....
     @GetMapping("/dmroomList/{userId}")
     public List<DMroomEntity> getDMList(@PathVariable String userId) {
+        System.out.println(userId);
         List<DMroomEntity> response = dmService.readDMroomList(userId);
         log.info(response.size());
         log.info(response.get(0).getDMFrom());

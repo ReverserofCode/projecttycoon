@@ -70,6 +70,7 @@ public class DMService {
     @Transactional(readOnly = true)
     public List<DMroomEntity> readDMroomList(String memberId) {
         MemberEntity user = memberRepository.findByMemberId(memberId).get();
+        System.out.println(user);
         return dmroomRepository.findDMroomList(user);
     }
 
