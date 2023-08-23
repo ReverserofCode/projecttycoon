@@ -24,13 +24,13 @@ public class DMRequestDTO {
 
     private boolean DMRead;
 
-    public static DMRequestDTO DMDto(DMEntity dm) {
-        return new DMRequestDTO(
-                dm.getDMFrom().getMemberId(),
-                dm.getDMTo().getMemberId(),
-                dm.getDMContent(),
-                dm.getDMroom().getDMroomId(),
-                dm.isDMRead()
-        );
-    }
+//    public static DMRequestDTO DMDto(DMEntity dm) {
+//        return new DMRequestDTO(
+//                dm.getDMFrom().getMemberId(),
+//                dm.getDMTo().getMemberId(),
+//                dm.getDMContent(),
+//                dm.getDMroom().getDMroomId(),
+//                dm.isDMRead()
+//        );
+//    }
 }

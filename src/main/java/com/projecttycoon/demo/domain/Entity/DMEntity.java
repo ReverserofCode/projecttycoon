@@ -1,5 +1,6 @@
 package com.projecttycoon.demo.domain.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projecttycoon.demo.domain.TimeStamp;
 import com.projecttycoon.demo.domain.dto.DMRequestDTO;
 import lombok.*;
@@ -19,7 +20,7 @@ import javax.persistence.*;
 @Builder
 @Table(name="DMData")
 @EntityListeners(AuditingEntityListener.class)
-public class DMEntity extends TimeStamp {
+public class DMEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,11 +30,13 @@ public class DMEntity extends TimeStamp {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DMFrom")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JsonIgnore
     private MemberEntity DMFrom;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DMTo")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JsonIgnore
     private MemberEntity DMTo;
 
     @Column
@@ -46,5 +49,12 @@ public class DMEntity extends TimeStamp {
     @JoinColumn(name = "DMroom")
     private DMroomEntity DMroom;
 
+    public DMEntity(MemberEntity DMFrom, MemberEntity DMTo, DMroomEntity DMroom, String DMContent, boolean DMRead) {
+        this.DMFrom = DMFrom;
+        this.DMTo = DMTo;
+        this.DMroom = DMroom;
+        this.DMContent = DMContent;
+        this.DMRead = DMRead;
+    }
 }
 

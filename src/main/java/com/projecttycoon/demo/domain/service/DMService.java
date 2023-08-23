@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -41,17 +42,28 @@ public class DMService {
     // 메세지 보내기
     @Transactional
     public Long sendDM(DMRequestDTO dmRequestDTO) {
-        MemberEntity DMFrom = memberRepository.findByMemberId(dmRequestDTO.getDMFromId()).get();
-        MemberEntity DMTo = memberRepository.findByMemberId(dmRequestDTO.getDMToId()).get();
-        DMroomEntity DMroom = dmroomRepository.findByDMroomId(dmRequestDTO.getDMroomId());
-        DMEntity dmEntity = new DMEntity();
-        dmEntity.setDMFrom(DMFrom);
-        dmEntity.setDMTo(DMTo);
-        dmEntity.setDMContent(dmRequestDTO.getDMContent());
-        dmEntity.setDMroom(DMroom);
-        dmEntity.setDMRead(false);
-        dmRepository.save(dmEntity);
-        return dmEntity.getDMId();
+        Optional<MemberEntity> optionalDMFrom = memberRepository.findByMemberId(dmRequestDTO.getDMFromId());
+        Optional<MemberEntity> optionalDMTo = memberRepository.findByMemberId(dmRequestDTO.getDMToId());
+//        System.out.println(dmRequestDTO);
+        if (optionalDMFrom.isPresent() && optionalDMTo.isPresent()) {
+            MemberEntity DMFrom = optionalDMFrom.get();
+            MemberEntity DMTo = optionalDMTo.get();
+            DMroomEntity DMroom = dmroomRepository.findByDMroomId(dmRequestDTO.getDMroomId());
+            DMEntity dmEntity = new DMEntity(DMFrom, DMTo, DMroom, dmRequestDTO.getDMContent(), false);
+
+            dmRepository.save(dmEntity);
+            return dmEntity.getDMId();
+
+            // Your logic here with DMFrom and DMTo
+        } else {
+            System.out.println("DMFrom: " + optionalDMFrom.isPresent());
+            System.out.println("DMTo: " + optionalDMTo.isPresent());
+            System.out.println("멤버 불러오기 실패");
+            return null;
+        }
+//        MemberEntity DMFrom = memberRepository.findByMemberId(dmRequestDTO.getDMFromId()).get();
+//        MemberEntity DMTo = memberRepository.findByMemberId(dmRequestDTO.getDMToId()).get();
+
     }
 
     // 현재 사용자의 모든 DM방 불러오기
