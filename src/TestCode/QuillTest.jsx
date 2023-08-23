@@ -9,10 +9,13 @@ const Container = styled.div`
   box-sizing: border-box;
   flex-direction: column;
   max-width: 900px;
-  max-height:400px;
+  max-height: 400px;
   border: 2px solid #c4c4c4;
   box-shadow: rgb(0 0 0 / 20%) 0px 1rem 2rem;
   border-radius: 5px;
+  .ql-container.ql-snow {
+    border: none;
+  }
 `;
 /** 미리보기를 위한 태그로 굳이 넣어줄 필요 없다. */
 const Preview = styled.div`
@@ -52,7 +55,7 @@ function QuillTestPage() {
     <>
       <Container>
         <ReactQuill
-          style={{ height: "600px" }}
+          style={{ height: "500px", padding: 0 }}
           theme="snow"
           value={value}
           onChange={setValue}
