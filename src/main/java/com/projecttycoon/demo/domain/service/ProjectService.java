@@ -70,6 +70,4 @@ public class ProjectService {
         PageRequest pageRequest = PageRequest.of(page, 8);
     }
 
-
-
 }

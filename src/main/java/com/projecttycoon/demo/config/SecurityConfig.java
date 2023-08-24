@@ -36,17 +36,13 @@ public class SecurityConfig {
         httpSecurity.formLogin()
                 .usernameParameter("memberId")// 아이디 파라미터명 설정
                 .passwordParameter("memberPw")// 패스워드 파라미터명 설정
-                .loginProcessingUrl("/api/loginProcess")
                 .defaultSuccessUrl("/")
+
         ;
         httpSecurity.logout()
                 .logoutUrl("/api/logoutProcess")
         ;
-
-//        httpSecurity.wk();
-
         httpSecurity.csrf().disable();
-
         return httpSecurity.build();
     }
 }

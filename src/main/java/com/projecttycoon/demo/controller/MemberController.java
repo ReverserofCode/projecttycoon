@@ -24,20 +24,23 @@ public class MemberController {
         log.info("call callTest");
     }
 
-
     @PostMapping("/api/memberRegister")
-    public String registerDB(@RequestBody MemberRequestDTO memberRequestDTO) {
+    public void registerDB(@RequestBody MemberRequestDTO memberRequestDTO) {
         log.info(memberRequestDTO.getMemberId());
         memberService.registerMember(memberRequestDTO);
         log.info("call registerDB");
-        return "/api/login";
     }
+
+    @PostMapping("/api/loginProcess")
+    public void loginProcess(){
+
+    }
+
 
     @PutMapping("/api/memberUpdate/{memberId}")
     public void updateDb(@PathVariable String memberId, @RequestBody MemberRequestDTO memberRequestDTO) {
         log.info("call updateDb");
         log.info(memberId);
-
         memberService.memberUpdate(memberId, memberRequestDTO);
     }
 
@@ -45,4 +48,5 @@ public class MemberController {
     public void deleteDb(@PathVariable String memberId) {
         memberService.memberDelete(memberId);
     }
+
 }
