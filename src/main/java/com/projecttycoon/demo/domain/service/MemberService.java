@@ -1,5 +1,6 @@
 package com.projecttycoon.demo.domain.service;
 
+import com.projecttycoon.demo.domain.Entity.MemberRoleEntity;
 import com.projecttycoon.demo.domain.dto.MemberRequestDTO;
 import com.projecttycoon.demo.domain.Entity.MemberEntity;
 import com.projecttycoon.demo.domain.repository.MemberRepository;
@@ -22,6 +23,7 @@ public class MemberService  {
     public void registerMember(MemberRequestDTO requestDTO) {
         requestDTO.setMemberPw(bCryptPasswordEncoder.encode(requestDTO.getMemberPw()));
         MemberEntity memberEntity = new MemberEntity(requestDTO);
+        memberEntity.addMemberRole(MemberRoleEntity.USER);
         memberRepository.save(memberEntity);
     }
 

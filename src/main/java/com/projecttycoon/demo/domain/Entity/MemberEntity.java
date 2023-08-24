@@ -42,10 +42,10 @@ public class MemberEntity extends TimeStamp {
     @Column(name = "authority")
     @ElementCollection(fetch = FetchType.LAZY)
     @Builder.Default
-    private Set<MemberRoleEntity> memberAuthority = new HashSet<>();
+    public Set<MemberRoleEntity> memberAuthority = new HashSet<>();
 
     public void addMemberRole(MemberRoleEntity memberRoleEntity) {
-        memberAuthority.add(memberRoleEntity);
+        this.memberAuthority.add(memberRoleEntity);
     }
 
     public MemberEntity(MemberRequestDTO requestDTO) {
@@ -58,6 +58,7 @@ public class MemberEntity extends TimeStamp {
         this.memberLink = requestDTO.getMemberLink();
         this.memberFilePath = requestDTO.getMemberFilePath();
         this.memberFileName = requestDTO.getMemberFileName();
+        this.memberAuthority = new HashSet<>();
     }
 
     public MemberEntity(MemberLoginDTO loginDTO) {
@@ -70,6 +71,7 @@ public class MemberEntity extends TimeStamp {
         this.memberLink = loginDTO.getMemberLink();
         this.memberFilePath = loginDTO.getMemberFilePath();
         this.memberFileName = loginDTO.getMemberFileName();
+        this.memberAuthority = new HashSet<>();
     }
 
     public void memberUpdate(MemberRequestDTO requestDTO) {
@@ -81,6 +83,7 @@ public class MemberEntity extends TimeStamp {
         this.memberLink = requestDTO.getMemberLink();
         this.memberFilePath = requestDTO.getMemberFilePath();
         this.memberFileName = requestDTO.getMemberFileName();
+        this.memberAuthority = new HashSet<>();
     }
 
 }
