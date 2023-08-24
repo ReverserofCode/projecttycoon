@@ -1,7 +1,5 @@
 package com.projecttycoon.demo.domain.dto;
 
-
-import com.projecttycoon.demo.domain.TimeStamp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,7 +9,7 @@ import lombok.Setter;
 @Setter
 @Builder
 @AllArgsConstructor
-public class MemberRequestDTO extends TimeStamp {
+public class MemberRequestDTO  {
     private String memberId;
     private String memberPw;
     private String memberRole;
@@ -21,4 +19,5 @@ public class MemberRequestDTO extends TimeStamp {
     private String memberLink;
     private String memberAcademy;
     private String memberNickname;
+
 }
