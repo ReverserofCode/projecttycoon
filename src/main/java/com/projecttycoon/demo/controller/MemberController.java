@@ -1,10 +1,12 @@
 package com.projecttycoon.demo.controller;
 
+import com.projecttycoon.demo.domain.dto.MemberLoginDTO;
 import com.projecttycoon.demo.domain.dto.MemberRequestDTO;
 import com.projecttycoon.demo.domain.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @Log4j2
@@ -23,6 +25,14 @@ public class MemberController {
     public void callTest() {
         log.info("call callTest");
     }
+
+    @GetMapping("/sessionObject")
+    public MemberLoginDTO loginProcess(@AuthenticationPrincipal MemberLoginDTO memberLoginDTO) {
+
+        log.info(memberLoginDTO);
+        return memberLoginDTO;
+    }
+
 
     @PostMapping("/api/memberRegister")
     public String registerDB(@RequestBody MemberRequestDTO memberRequestDTO) {
