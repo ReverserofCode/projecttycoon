@@ -55,5 +55,12 @@ public class ProjectController {
         }
     }
 
+    @GetMapping("/project/{id}")
+    public ProjectEntity listone(@PathVariable Long id) {
+        ProjectEntity pe = new ProjectEntity();
+        pe = projectRepository.findById(id).get();
+        return pe;
+    }
+
 
 }
