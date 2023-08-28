@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import Sidebar from "../components/Sidebar";
+import { GetProjectFromID } from "../functional/GetProject";
 
 const Container = styled.div`
   display: flex;
@@ -53,6 +54,11 @@ function DetailPage() {
     projectFileName: "projectImage",
     projectScrapNum: 10,
   };
+  useEffect(() => {
+    const path = window.location.href.split("/");
+    // console.log(path[5]);
+    // GetProjectFromID(path[5]);
+  }, []);
   return (
     <Container>
       <SideContents>
