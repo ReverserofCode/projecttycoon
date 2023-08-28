@@ -26,24 +26,23 @@ public class SecurityConfig {
     //Filter Chain 설정 인가에 대한 상세 처리를 구현한다.
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-
-        //접근 권한 설정
-        httpSecurity.authorizeRequests((auth) -> {
-            auth.antMatchers("/all").permitAll();
-            auth.antMatchers("/member").hasRole("Member");
-            auth.antMatchers("/admin").hasRole("Admin");
-            auth.antMatchers("/**").permitAll();
-        });
-        httpSecurity.formLogin()
-                .usernameParameter("memberId")// 아이디 파라미터명 설정
-                .passwordParameter("memberPw")// 패스워드 파라미터명 설정
+        httpSecurity
+                .authorizeRequests(auth -> {
+                    auth.antMatchers("/public/**", "/all", "/**").permitAll()
+                            .antMatchers("/member").hasRole("Member")
+                            .antMatchers("/admin").hasRole("Admin")
+                            .anyRequest().authenticated();
+                })
+                .formLogin()
+                .usernameParameter("memberId")
+                .passwordParameter("memberPw")
                 .defaultSuccessUrl("/")
-
-        ;
-        httpSecurity.logout()
+                .and()
+                .logout()
                 .logoutUrl("/api/logoutProcess")
-        ;
-        httpSecurity.csrf().disable();
+                .and()
+                .csrf().disable();
+
         return httpSecurity.build();
     }
 }
