@@ -1,16 +1,23 @@
+//해야할거
+//1.버튼css바꾸기
+//2.파일선택 input css
+//3.전체적인 배치 (padding,magin) 다시주기
+//4.모집분야 배치
 import { useState } from "react"
 import axios from "axios";
 import styled from "@emotion/styled";
 
 import QuillTestPage from "../TestCode/QuillTest";
-import DefaultImg from '../img/default.png'
+import DefaultImg from '../img/default.png';
+import TwoImg from '../img/two.png';
+import ThreeImg from '../img/three.png'
+import TestImg from '../img/test.png'
 
 const But=styled.button`
     width: ${(props)=>props.width|| "420px"};
     height: ${(props)=>props.width|| "30px"};
     background-color: ${(props)=>props.background_color|| "#0B666A"};
     color: white;
-
 `
 const WriteWrap=styled.div`
     margin: 0 auto;
@@ -65,6 +72,10 @@ const MainImg=styled.img`
     max-width:600px;
     height: 400px;
 `
+const SubImg=styled.img`
+    width: 230px;
+    height: 120px;
+`
 const SubmitBut=styled.button`
     display: block;
     color: green;
@@ -83,6 +94,8 @@ const Right=styled.div`
     width: 100%;
     display: flex;
     flex-direction:column;
+    justify-content: space-around;
+    /* margin-left: 8px; */
 `
 const ImgWrap=styled.div`
     display: flex;
@@ -101,6 +114,14 @@ const Top=styled.div`
 const DateInput=styled.input`
     width: 400px;
 `
+const ImgInput=styled.input`
+    position: absolute;
+    left: 50%;
+    /* width: 70px;
+    height: 50px;
+    border-radius: 50%; */
+    background-color: red;
+`
 function Write (){
 //모집분야
 const [Field,setField]=useState('');
@@ -108,8 +129,10 @@ const [Field,setField]=useState('');
 const [Personnel,setPersonnel]=useState('');
 //모집분야-추가버튼의 카운트
 const [Count,setCount]=useState(1);
-//프젝 기본 이미지
-const [Img,setImg]=useState(DefaultImg)
+//프젝 기본 이미지들
+const [Img,setImg]=useState([DefaultImg,TwoImg,ThreeImg,])
+//프젝 기본 이미지-탭
+const [Tab,setTab]=useState(0);
 
 
 const fieldHandling=(e)=>{
@@ -137,8 +160,11 @@ const PulsButton=()=>{
 
 //파일change
 const saveFileImg=(e)=>{ 
+    let arr=[];
+    // let copy=[...Img,...]
     setImg(URL.createObjectURL(e.target.files[0]));
     console.log(e.target.files[0]);
+    console.log((URL.createObjectURL(e.target.files[0])));
 }
 function list(){
     let arr=[];
@@ -175,20 +201,34 @@ function list(){
             <InputTitle placeholder="제목을 작성해주세요."></InputTitle>
             <Subtitle>사진</Subtitle>
             <ImgWrap>
+            {/* 메인 프로젝트 기본이미지 바뀌는 코드 */}
                 {
-                Img&& (
+                Img&&
+                Tab===0 ?(
                     <MainImg
-                    src={Img}
+                    src={Img[0]}
                     />
                     )
+                    :(Tab===1)?(
+                        <MainImg
+                    src={Img[1]}
+                    />
+                    ):(Tab===2)?(<MainImg
+                    src={Img[2]}
+                    />
+                    ):null
                 }
+                <ImgInput type="file" onChange={saveFileImg} onClick={()=>{setTab(4)}}></ImgInput>
                 <Right>
-                    <Select width="323px">
-                            <option value="">기본이미지1</option>
-                            <option value="">기본이미지2</option>
-                            <option value="">기본이미지3</option>
-                    </Select>
-                    <input type="file" onChange={saveFileImg}></input>
+                <a onClick={()=>{setTab(0)}}><SubImg src={Img[0]}></SubImg></a>
+                <a onClick={()=>{setTab(1)}}><SubImg src={Img[1]}></SubImg></a>
+                <a onClick={()=>{setTab(2)}}><SubImg src={Img[2]}></SubImg></a>
+                    {/* {
+                        Img.map((list,index)=>(
+                            <SubImg src={Img[index]}></SubImg>
+                        ))
+                    } */}
+                    {/* <input type="file" onChange={saveFileImg}></input> */}
                 </Right>
             </ImgWrap>
             <QuillTestPage/>
