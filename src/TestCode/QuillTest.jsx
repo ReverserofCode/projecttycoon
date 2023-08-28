@@ -55,7 +55,7 @@ function QuillTestPage() {
     <>
       <Container>
         <ReactQuill
-          style={{ height: "500px", padding: 0 }}
+          style={{ width:"850px",height: "500px", padding: 0 }}
           theme="snow"
           value={value}
           onChange={setValue}
