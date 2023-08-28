@@ -31,14 +31,15 @@ public class ProjectController {
         return projectRepository.findAll();
     }
 
-    // 프로젝트 상태로 필터링
-//    @GetMapping("/projects")
-//    public List<ProjectEntity> getProjectsByStatus(@RequestParam("status") boolean status) {
-//        log.info("메서드 getProjectsByStatus 호출");
-//
-//        Specification<ProjectEntity> spec = ProjectSpecifications.hasStatus(status);
-//        return projectRepository.findAll(spec);
-//    }
+
+    //프로젝트 상태로 필터링
+    @GetMapping("/projects")
+    public List<ProjectEntity> getProjectsByStatus(@RequestParam("status") boolean status) {
+        log.info("메서드 getProjectsByStatus 호출");
+
+        Specification<ProjectEntity> spec = ProjectSpecifications.hasStatus(status);
+        return projectRepository.findAll(spec);
+    }
 
     //프로젝트상태+모집역할로 필터링
     @GetMapping("/projectsByStatusAndRoles")
