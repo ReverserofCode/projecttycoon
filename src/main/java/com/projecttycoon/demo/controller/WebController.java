@@ -21,17 +21,31 @@ public class WebController {
 
     @GetMapping("/")
     public String callMain() {
-        log.info("Call Main index");
-        return "/PageProjectBoard/index";
+        return "/static/PageProjectBoard/index.html";
     }
 
     @GetMapping("/PageLogin")
     public String callPageLogin() {
-        return "/PageLogin/index";
+        return "/static/PageLogin/index.html";
     }
 
     @GetMapping("/PageProjectBoard")
     public String callPageProjectBoard() {
-        return "/PageProjectBoard/index";
+        return "/static/PageProjectBoard/index.html";
+    }
+
+    @GetMapping("/loginProcess")
+    public String callLoginProcess() {
+        return "/static/loginProcess/index.html";
+    }
+
+    @GetMapping("/callPageNewProject")
+    public String callPageNewProject() {
+        return "/static/PageNewProject/index.html";
+    }
+
+    @GetMapping("/callPageProjectBoardDetail")
+    public String callPageProjectBoardDetail() {
+        return "/static/PageProjectBoardDetail/index.html";
     }
 }
