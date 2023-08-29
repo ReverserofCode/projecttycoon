@@ -48,25 +48,32 @@ const Poster = styled.img`
 const ProjectInfos = styled.div`
   display: flex;
   box-sizing: border-box;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
   padding: 20px 15px;
   border-top: 5px solid #d9d9d9;
   border-bottom: 5px solid #d9d9d9;
   margin-top: 20px;
+  gap: 200px;
 `;
 const InfoColumn = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 40%;
+  width: fit-content;
   gap: 15px;
 `;
 const InfoRow = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: ${(props) => {
+    return props.pose
+      ? props.pose === "end"
+        ? "flex-end"
+        : "center"
+      : "flex-start";
+  }};
   align-items: flex-start;
   text-align: center;
   width: 100%;
@@ -89,6 +96,7 @@ const InfoDate = styled.span`
 `;
 const Preview = styled.div`
   margin-top: 20px;
+  margin-bottom: 100px;
   display: flex;
   width: 100%;
   box-sizing: border-box;
@@ -141,7 +149,7 @@ function DetailPage() {
   useEffect(() => {
     const path = window.location.href.split("/");
     // console.log(path[5]);
-    // GetProjectFromID(path[5]);
+    setValue(GetProjectFromID(path[5]));
   }, []);
   return (
     <Container>
