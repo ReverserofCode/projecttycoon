@@ -2,7 +2,7 @@
 //1.버튼css바꾸기
 //2.파일선택 input css
 //3.전체적인 배치 (padding,magin) 다시주기
-//4.모집분야 배치
+//4.모집분야 재배치
 import { useState } from "react"
 import axios from "axios";
 import styled from "@emotion/styled";
@@ -72,15 +72,27 @@ const MainImg=styled.img`
     max-width:600px;
     height: 400px;
 `
+const Dark=styled.div`
+  /* position:absolute; */
+  /* top:0;
+  left:0; */
+  width:100%;
+  height:100%;
+  background:rgba(0, 0, 0, 0.65);
+
+  opacity:1;
+  transition:all .2s linear;
+`
+const A=styled.a`
+    ${Dark}:hover {
+    /* background:rgba(0, 0, 0, 0.65);  */
+    opacity:0.8;
+    cursor: pointer;
+}
+`
 const SubImg=styled.img`
     width: 230px;
     height: 120px;
-`
-const SubmitBut=styled.button`
-    display: block;
-    color: green;
-    background-color: white;
-
 `
 const Bot=styled.div`
     border: 1px red solid;
@@ -101,13 +113,15 @@ const ImgWrap=styled.div`
     display: flex;
 `
 const TT =styled.div`
-    max-width: 1000px;
-    width: 100%;
+    /* max-width: 1000px; */
+    /* width: 100%; */
     /* border: 1px red solid; */
-    /* display: flex; */
+    display: flex;
+    flex-direction: column;
 `
 const Top=styled.div`
-    width: 100%;
+border: 1px red solid;
+    /* width: 100%; */
     display: flex;
     flex-direction: column;
 `
@@ -120,8 +134,8 @@ const ImgInput=styled.input`
     /* width: 70px;
     height: 50px;
     border-radius: 50%; */
-    background-color: red;
 `
+
 function Write (){
 //모집분야
 const [Field,setField]=useState('');
@@ -158,20 +172,19 @@ const PulsButton=()=>{
     console.log(Count);
 }
 
-//파일change
+//유저-파일change
 const saveFileImg=(e)=>{ 
-    let arr=[];
-    // let copy=[...Img,...]
-    setImg(URL.createObjectURL(e.target.files[0]));
+    let arr = [...Img,URL.createObjectURL(e.target.files[0])];
+    setImg(arr);
     console.log(e.target.files[0]);
-    console.log((URL.createObjectURL(e.target.files[0])));
+    console.log(arr);
 }
 function list(){
     let arr=[];
     for(let i=0; i<Count;i++){
         arr.push(
-            <TT>
-             <Select  onChange={fieldHandling}>
+            <>
+             <Select  width="700px"onChange={fieldHandling}>
                 <option value="back">백엔드</option>
                 <option value="front">프론트엔드</option>
                 <option value="ai">AI</option>
@@ -187,7 +200,7 @@ function list(){
                 <option value="back">4명</option>
                 <option value="back">5명 이상</option>
              </SubSelect>
-            </TT>
+            </>
         )
     }
     console.log(arr);
@@ -203,22 +216,28 @@ function list(){
             <ImgWrap>
             {/* 메인 프로젝트 기본이미지 바뀌는 코드 */}
                 {
-                Img&&
                 Tab===0 ?(
                     <MainImg
-                    src={Img[0]}
+                    src={Img[Tab]}
                     />
                     )
                     :(Tab===1)?(
                         <MainImg
-                    src={Img[1]}
+                    src={Img[Tab]}
                     />
                     ):(Tab===2)?(<MainImg
-                    src={Img[2]}
+                    src={Img[Tab]}
                     />
-                    ):null
+                    ):(Tab===3)?(
+                        <MainImg
+                        src={Img[3]}
+                        />  
+                    ):<MainImg
+                    src={Img[0]}
+                    />
                 }
-                <ImgInput type="file" onChange={saveFileImg} onClick={()=>{setTab(4)}}></ImgInput>
+                {/* 마지막인덱스값 가져와야함 or 3 */}
+                <ImgInput type="file" onChange={saveFileImg} onClick={()=>{setTab(Tab.length-1)}}></ImgInput>
                 <Right>
                 <a onClick={()=>{setTab(0)}}><SubImg src={Img[0]}></SubImg></a>
                 <a onClick={()=>{setTab(1)}}><SubImg src={Img[1]}></SubImg></a>
@@ -254,11 +273,11 @@ function list(){
                 </Top>
                 <div>
                     <Subtitle>모집 분야</Subtitle>
-                        <div>
+                        <TT>
                             {
                             list()
                             }
-                        </div>
+                        </TT>
                     <PulsBut onClick={PulsButton}>+</PulsBut>
                 </div>
             </Bot>
