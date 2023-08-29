@@ -33,7 +33,6 @@ public class DMController extends TimeStamp {
     // 동작 확인 O
     @PostMapping("/openDMroomDirectly")
     public DMroomEntity openDMroomDirectly(@RequestBody DMNewRequestDTO dmNewDTO) {
-        System.out.println("Controller DTO Test: " + dmNewDTO);
         DMroomEntity response = dmService.openDMroom(dmNewDTO.getDMFromId(), dmNewDTO.getDMToId());
         log.info("from: {}, to: {}", response.getDMFrom(), response.getDMTo());
         return response;
@@ -42,9 +41,6 @@ public class DMController extends TimeStamp {
     // DM 보내는 API
     @PostMapping("/dmsend")
     public void sendDM(@RequestBody DMRequestDTO dmRequestDTO) {
-        System.out.println("Controller DTO Test: " + dmRequestDTO);
-        System.out.println("Controller DTO Test: " + dmRequestDTO.getDMToId());
-        System.out.println("Controller DTO Test: " + dmRequestDTO.getDMFromId());
         Long response = dmService.sendDM(dmRequestDTO);
         log.info("DMId: {}", response);
     }
@@ -53,11 +49,7 @@ public class DMController extends TimeStamp {
     // 동작 확인 O
     @GetMapping("/dmroomList/{userId}")
     public List<DMroomEntity> getDMList(@PathVariable String userId) {
-        System.out.println(userId);
         List<DMroomEntity> response = dmService.readDMroomList(userId);
-        log.info(response.size());
-        log.info(response.get(0).getDMFrom());
-        log.info(response.get(0).getDMTo());
         return response;
     }
 
