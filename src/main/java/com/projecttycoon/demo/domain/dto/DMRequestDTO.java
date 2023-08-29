@@ -1,15 +1,14 @@
 package com.projecttycoon.demo.domain.dto;
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.projecttycoon.demo.domain.Entity.DMEntity;
+import lombok.*;
 
 
 //데이터를 실제로 이동시키는 클래스이다.
 @Getter
-@ToString
-@NoArgsConstructor
+@Setter
+@AllArgsConstructor
 public class DMRequestDTO {
     private String DMFromId;
 
@@ -17,5 +16,17 @@ public class DMRequestDTO {
 
     private String DMContent;
 
-    private Boolean DMRead;
+    private Long DMroomId;
+
+    private boolean DMRead;
+
+//    public static DMRequestDTO DMDto(DMEntity dm) {
+//        return new DMRequestDTO(
+//                dm.getDMFrom().getMemberId(),
+//                dm.getDMTo().getMemberId(),
+//                dm.getDMContent(),
+//                dm.getDMroom().getDMroomId(),
+//                dm.isDMRead()
+//        );
+//    }
 }

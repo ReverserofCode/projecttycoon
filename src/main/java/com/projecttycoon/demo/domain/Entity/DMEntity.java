@@ -1,11 +1,11 @@
 package com.projecttycoon.demo.domain.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projecttycoon.demo.domain.TimeStamp;
 import com.projecttycoon.demo.domain.dto.DMRequestDTO;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -13,42 +13,48 @@ import javax.persistence.*;
 
 //채팅 각각의 DB 설계
 @Entity
-@Getter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
+@Builder
 @Table(name="DMData")
 @EntityListeners(AuditingEntityListener.class)
-public class DMEntity extends TimeStamp {
+public class DMEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Long DMId;
 
-    @Column
-    private String DMFromId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "DMFrom")
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JsonIgnore
+    private MemberEntity DMFrom;
 
-    @Column
-    private String DMToId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "DMTo")
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JsonIgnore
+    private MemberEntity DMTo;
 
     @Column
     private String DMContent;
 
     @Column
-    private Boolean DMRead;
+    private boolean DMRead;
 
     @ManyToOne
-    @JoinColumn(name = "DMroomId", referencedColumnName = "DMroomId")
-    private DMroomEntity DMroomId;
+    @JoinColumn(name = "DMroom")
+    private DMroomEntity DMroom;
 
-
-    public DMEntity(DMRequestDTO DMDTO, DMroomEntity DMroomEntity) {
-        this.DMFromId = DMDTO.getDMFromId();
-        this.DMToId = DMDTO.getDMToId();
-        this.DMContent =DMDTO.getDMToId();
-        this.DMRead = DMDTO.getDMRead();
-        this.DMroomId =DMroomEntity;
+    public DMEntity(MemberEntity DMFrom, MemberEntity DMTo, DMroomEntity DMroom, String DMContent, boolean DMRead) {
+        this.DMFrom = DMFrom;
+        this.DMTo = DMTo;
+        this.DMroom = DMroom;
+        this.DMContent = DMContent;
+        this.DMRead = DMRead;
     }
 }
 

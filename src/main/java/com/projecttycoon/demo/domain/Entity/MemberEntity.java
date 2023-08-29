@@ -24,7 +24,7 @@ public class MemberEntity extends TimeStamp {
     private String memberId;
     @Column(name = "memberPw")
     private String memberPw;
-    @Column(name = "memberNickname")
+    @Column(name = "memberNickname", unique = true) //닉네임 중복 방지
     private String memberNickname;
     @Column(name = "memberAcademy")
     private String memberAcademy;
