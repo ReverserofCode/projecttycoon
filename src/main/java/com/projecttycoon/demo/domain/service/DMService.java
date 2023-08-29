@@ -5,11 +5,9 @@ import com.projecttycoon.demo.domain.Entity.DMroomEntity;
 import com.projecttycoon.demo.domain.Entity.MemberEntity;
 import com.projecttycoon.demo.domain.dto.DMRequestDTO;
 import com.projecttycoon.demo.domain.dto.DMroompostRequestDTO;
-import com.projecttycoon.demo.domain.dto.MemberRequestDTO;
 import com.projecttycoon.demo.domain.repository.DMRepository;
 import com.projecttycoon.demo.domain.repository.DMroomRepository;
 import com.projecttycoon.demo.domain.repository.MemberRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,15 +16,18 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class DMService {
 
-    @Autowired
     private final MemberRepository memberRepository;
-    @Autowired
     private final DMRepository dmRepository;
-    @Autowired
     private final DMroomRepository dmroomRepository;
+
+    @Autowired
+    private DMService(MemberRepository memberRepository, DMRepository dmRepository, DMroomRepository dmroomRepository) {
+        this.memberRepository = memberRepository;
+        this.dmRepository = dmRepository;
+        this.dmroomRepository = dmroomRepository;
+    }
 
     // 두 사용자의 DM방 리턴 (없으면 생성)
     @Transactional
