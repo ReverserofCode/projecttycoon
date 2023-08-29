@@ -40,11 +40,11 @@ public class DMController extends TimeStamp {
     }
 
     // DM 보내는 API
-    // 동작 확인 X
-    // Controller에서 DTO를 가져오지 못함. 그거 되면 될거같은데
     @PostMapping("/dmsend")
     public void sendDM(@RequestBody DMRequestDTO dmRequestDTO) {
         System.out.println("Controller DTO Test: " + dmRequestDTO);
+        System.out.println("Controller DTO Test: " + dmRequestDTO.getDMToId());
+        System.out.println("Controller DTO Test: " + dmRequestDTO.getDMFromId());
         Long response = dmService.sendDM(dmRequestDTO);
         log.info("DMId: {}", response);
     }

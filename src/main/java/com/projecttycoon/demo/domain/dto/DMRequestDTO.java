@@ -2,16 +2,12 @@ package com.projecttycoon.demo.domain.dto;
 
 
 import com.projecttycoon.demo.domain.Entity.DMEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 
 //데이터를 실제로 이동시키는 클래스이다.
 @Getter
-@ToString
-@NoArgsConstructor
+@Setter
 @AllArgsConstructor
 public class DMRequestDTO {
     private String DMFromId;
