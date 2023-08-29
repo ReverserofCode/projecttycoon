@@ -4,6 +4,7 @@ import com.projecttycoon.demo.domain.Entity.DMEntity;
 import com.projecttycoon.demo.domain.Entity.DMroomEntity;
 import com.projecttycoon.demo.domain.Entity.MemberEntity;
 import com.projecttycoon.demo.domain.dto.DMRequestDTO;
+import com.projecttycoon.demo.domain.dto.DMroompostRequestDTO;
 import com.projecttycoon.demo.domain.dto.MemberRequestDTO;
 import com.projecttycoon.demo.domain.repository.DMRepository;
 import com.projecttycoon.demo.domain.repository.DMroomRepository;
@@ -34,7 +35,10 @@ public class DMService {
         MemberEntity DMTo = memberRepository.findByMemberId(DMToId).get();
         if (dmroomRepository.findDMroomIdByUserId(DMFrom, DMTo) == null) {
             System.out.println("DMroom 생성");
-            dmroomRepository.createDMroom(DMFrom, DMTo);
+//            dmroomRepository.createDMroom(DMFrom, DMTo);
+            DMroompostRequestDTO dmroompostDTO = new DMroompostRequestDTO(DMFrom, DMTo);
+            DMroomEntity dmroomEntity = new DMroomEntity(dmroompostDTO);
+            dmroomRepository.save(dmroomEntity);
         }
         return dmroomRepository.findDMroomIdByUserId(DMFrom, DMTo);
     }
@@ -76,6 +80,7 @@ public class DMService {
 
     // DM 대화창 가져오기
     public List<DMEntity> readDMroom(Long DMroomId) {
+        System.out.println("DMroomID: " + DMroomId);
         DMroomEntity dmroom = dmroomRepository.findByDMroomId(DMroomId);
         return dmRepository.findAllByDMroom(dmroom);
     }

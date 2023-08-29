@@ -1,6 +1,7 @@
 package com.projecttycoon.demo.domain.Entity;
 
 import com.projecttycoon.demo.domain.TimeStamp;
+import com.projecttycoon.demo.domain.dto.DMroompostRequestDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,14 +28,19 @@ public class DMroomEntity {
     @Column(name = "DMroomId")
     private Long DMroomId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "DMFrom")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private MemberEntity DMFrom;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "DMTo")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private MemberEntity DMTo;
+
+    public DMroomEntity(DMroompostRequestDTO dmroompostDTO) {
+        this.DMFrom = dmroompostDTO.getDMFrom();
+        this.DMTo = dmroompostDTO.getDMTo();
+    }
 }
 

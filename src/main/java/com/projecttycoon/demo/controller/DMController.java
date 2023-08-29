@@ -50,8 +50,7 @@ public class DMController extends TimeStamp {
     }
 
     // 현재 사용자의 DMroom List 반환하는 API
-    // 동작 확인 X
-    // Service에서 Response를 가져오는것까지 확인. but 오류....
+    // 동작 확인 O
     @GetMapping("/dmroomList/{userId}")
     public List<DMroomEntity> getDMList(@PathVariable String userId) {
         System.out.println(userId);
@@ -67,7 +66,9 @@ public class DMController extends TimeStamp {
     @GetMapping("/getMessages/{DMroomId}")
     public List<DMEntity> openDMroom(@PathVariable Long DMroomId) {
         List<DMEntity> response = dmService.readDMroom(DMroomId);
-        log.info("firstDM: {}", response.size());
+        log.info("response size: {}", response.size());
+        log.info("last ID: {}", response.get(response.size() - 1).getDMId());
+        log.info("last Content: {}", response.get(response.size() - 1).getDMContent());
         return response;
     }
 }
