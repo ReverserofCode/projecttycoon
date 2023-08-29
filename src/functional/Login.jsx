@@ -1,8 +1,11 @@
 import axios from "axios";
 
 export const LoginSubmit = async (id, password) => {
+  const DataFormat = new FormData();
+  DataFormat.append("memberId", id);
+  DataFormat.append("memberPw", password);
   const data = await axios
-    .post(`/api/loginProcess?memberId=${id}&memberPw=${password}`)
+    .post(`/login`, { data: DataFormat })
     .then((res) => {
       return res;
     })

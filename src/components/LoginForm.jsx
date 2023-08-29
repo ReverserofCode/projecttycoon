@@ -45,7 +45,7 @@ function LoginForm() {
   const [view, setView] = useState("password");
   const handleLogin = useCallback(() => {
     LoginSubmit(id, password).then((data) => {
-      console.log(data.status);
+      console.log(data);
     });
   }, [id, password]);
   return (
