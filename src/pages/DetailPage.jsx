@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import Sidebar from "../components/Sidebar";
@@ -37,12 +37,13 @@ const MainContents = styled.div`
 const MainTitle = styled.h2`
   width: 100%;
   border-bottom: 5px solid #d9d9d9;
-  padding: 10px 0;
+  padding: 10px 0px;
 `;
 const Poster = styled.img`
   width: 100%;
   border-top: 5px solid #35a29f;
   border-bottom: 5px solid #35a29f;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 const ProjectInfos = styled.div`
   display: flex;
@@ -103,7 +104,7 @@ const Preview = styled.div`
   }
 `;
 function DetailPage() {
-  const value = {
+  const [value, setValue] = useState({
     createdAt: "2023-08-19T06:54:37.741+00:00",
     modifiedAt: "2023-08-19T06:54:37.741+00:00",
     projectId: 26,
@@ -124,7 +125,7 @@ function DetailPage() {
       "/webapp/c40ba566-0f72-4bf1-90ef-904e6d9f3a92_Project image.png",
     projectFileName: "projectImage",
     projectScrapNum: 10,
-  };
+  });
   const handleRecruits = useCallback(() => {
     let contents = [];
     for (let i = 0; i < value?.projectWantedRole.length; i++) {
@@ -174,7 +175,11 @@ function DetailPage() {
             </InfoRow>
           </InfoColumn>
         </ProjectInfos>
-        <Preview dangerouslySetInnerHTML={{ __html: purify.sanitize() }} />
+        <Preview
+          dangerouslySetInnerHTML={{
+            __html: purify.sanitize(value?.projectContent),
+          }}
+        />
       </MainContents>
     </Container>
   );
