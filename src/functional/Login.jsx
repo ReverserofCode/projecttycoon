@@ -5,9 +5,9 @@ export const LoginSubmit = async (id, password) => {
   DataFormat.append("memberId", id);
   DataFormat.append("memberPw", password);
   const data = await axios
-    .post(`/login`, { data: DataFormat })
-    .then((res) => {
-      return res;
+    .post("/login", DataFormat)
+    .then(() => {
+      window.location.href = "http://projecttycoon.com";
     })
     .catch((error) => {
       console.log(error);
