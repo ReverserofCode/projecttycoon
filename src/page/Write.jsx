@@ -13,7 +13,11 @@ import TwoImg from '../img/two.png';
 import ThreeImg from '../img/three.png'
 import TestImg from '../img/test.png'
 
+import {FiFilePlus} from "react-icons/fi"
+
 const But=styled.button`
+ border: none;
+ outline: none;
     width: ${(props)=>props.width|| "420px"};
     height: ${(props)=>props.width|| "30px"};
     background-color: ${(props)=>props.background_color|| "#0B666A"};
@@ -22,13 +26,13 @@ const But=styled.button`
 const WriteWrap=styled.div`
     margin: 0 auto;
     max-width: 1000px;
-    border: 1px red solid;
+    /* border: 1px red solid; */
 `
 const Wrap=styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px gray solid;
+    /* border: 1px gray solid; */
     padding: 4px;
 `
 const Title=styled.h2`
@@ -68,34 +72,44 @@ const InputTitle=styled.input`
     font-weight: 600;
     margin-bottom:20px;
 `
-const MainImg=styled.img`
-    max-width:600px;
+const MainImgWrap=styled.div`
+display: flex;
+align-items: center;
+    width: 620px;
     height: 400px;
+    position: relative;
 `
-const Dark=styled.div`
-  /* position:absolute; */
-  /* top:0;
-  left:0; */
-  width:100%;
-  height:100%;
-  background:rgba(0, 0, 0, 0.65);
-
-  opacity:1;
-  transition:all .2s linear;
+const MainImg=styled.img`
+    width:95%;
+    height: 90%;
 `
-const A=styled.a`
-    ${Dark}:hover {
-    /* background:rgba(0, 0, 0, 0.65);  */
-    opacity:0.8;
-    cursor: pointer;
-}
+const Ji=styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.65);
+  opacity: 0;
+  &:hover{
+    opacity: 0.8;
+  }
 `
 const SubImg=styled.img`
+    width: 100%;
+    height: 100%;
+`
+const SubImgBox=styled.div`
+position: relative;
     width: 230px;
     height: 120px;
+   
 `
 const Bot=styled.div`
-    border: 1px red solid;
     width: 100%;
     display: flex;
 `
@@ -103,14 +117,18 @@ const PulsBut=styled.button`
     width: 100px;
 `
 const Right=styled.div`
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     flex-direction:column;
     justify-content: space-around;
+    cursor: pointer;
     /* margin-left: 8px; */
 `
 const ImgWrap=styled.div`
+max-width: 950px;
     display: flex;
+    /* border: 1px green solid; */
+    justify-content: space-between;
 `
 const TT =styled.div`
     /* max-width: 1000px; */
@@ -120,7 +138,6 @@ const TT =styled.div`
     flex-direction: column;
 `
 const Top=styled.div`
-border: 1px red solid;
     /* width: 100%; */
     display: flex;
     flex-direction: column;
@@ -129,13 +146,42 @@ const DateInput=styled.input`
     width: 400px;
 `
 const ImgInput=styled.input`
-    position: absolute;
-    left: 50%;
+position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+    /* left: 50%;  */
     /* width: 70px;
     height: 50px;
-    border-radius: 50%; */
+    border-radius: 50%;*/
 `
-
+const Txt=styled.div`
+    font-size: 20px;
+    font-weight:800;
+    color:white;
+`
+const FileLabel=styled.label`
+display: flex;
+align-items: center;
+justify-content: center;
+position: absolute;
+right: 0;
+Top:0;
+width: 70px;
+height: 65px;
+  background-color: #0B666A;
+  cursor: pointer;
+  border-radius: 50%;
+`
+const ButBox=styled.div`
+margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+`
 function Write (){
 //모집분야
 const [Field,setField]=useState('');
@@ -215,6 +261,7 @@ function list(){
             <Subtitle>사진</Subtitle>
             <ImgWrap>
             {/* 메인 프로젝트 기본이미지 바뀌는 코드 */}
+            <MainImgWrap>
                 {
                 Tab===0 ?(
                     <MainImg
@@ -236,12 +283,23 @@ function list(){
                     src={Img[0]}
                     />
                 }
+                <FileLabel for="file"><FiFilePlus size={40} color="white"/></FileLabel>
+                <ImgInput type="file" id="file" onChange={saveFileImg} onClick={()=>{setTab(3)}}></ImgInput>
+                </MainImgWrap>
                 {/* 마지막인덱스값 가져와야함 or 3 */}
-                <ImgInput type="file" onChange={saveFileImg} onClick={()=>{setTab(Tab.length-1)}}></ImgInput>
                 <Right>
-                <a onClick={()=>{setTab(0)}}><SubImg src={Img[0]}></SubImg></a>
-                <a onClick={()=>{setTab(1)}}><SubImg src={Img[1]}></SubImg></a>
-                <a onClick={()=>{setTab(2)}}><SubImg src={Img[2]}></SubImg></a>
+                <SubImgBox onClick={()=>{setTab(0)}}>
+                    <SubImg src={Img[0]}></SubImg>
+                    <Ji><Txt>기본 이미지 입니다.</Txt><Txt>클릭 해주세요.</Txt></Ji>
+                </SubImgBox>
+                <SubImgBox onClick={()=>{setTab(1)}}>
+                    <SubImg src={Img[1]}></SubImg>
+                    <Ji><Txt>기본 이미지 입니다.</Txt><Txt>클릭 해주세요.</Txt></Ji>
+                </SubImgBox>
+                <SubImgBox onClick={()=>{setTab(2)}}>
+                    <SubImg src={Img[2]}></SubImg>
+                    <Ji><Txt>기본 이미지 입니다.</Txt><Txt>클릭 해주세요.</Txt></Ji>
+                </SubImgBox>
                     {/* {
                         Img.map((list,index)=>(
                             <SubImg src={Img[index]}></SubImg>
@@ -282,12 +340,14 @@ function list(){
                 </div>
             </Bot>
          </Wrap>
-         <But background_color="gray" onClick={()=>{
-                            Submit();
-                        }}>취소</But>
-        <But onClick={()=>{
-                            Submit();
-                        }}>수정</But>
+         <ButBox>
+            <But background_color="gray" onClick={()=>{
+                                Submit();
+                            }}>취소</But>
+            <But onClick={()=>{
+                                Submit();
+                            }}>수정</But>
+        </ButBox>
         </WriteWrap>
     )
 }
