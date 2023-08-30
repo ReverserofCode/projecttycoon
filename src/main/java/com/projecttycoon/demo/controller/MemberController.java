@@ -27,7 +27,7 @@ public class MemberController {
     }
 
     @GetMapping("/sessionObject")
-    public MemberLoginDTO loginProcess(@AuthenticationPrincipal MemberLoginDTO memberLoginDTO) {
+    public MemberLoginDTO requestSession(@AuthenticationPrincipal MemberLoginDTO memberLoginDTO) {
         log.info(memberLoginDTO);
         return memberLoginDTO;
     }

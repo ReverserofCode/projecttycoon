@@ -34,12 +34,20 @@ public class SecurityConfig {
                             .anyRequest().authenticated();
                 })
                 .formLogin()
+                .loginPage("/PageLogin/index.html")
+                .loginProcessingUrl("/login")
+                .successHandler(new CustomLoginSuccessHandler())
+
+
                 .usernameParameter("memberId")
                 .passwordParameter("memberPw")
                 .defaultSuccessUrl("/")
+
                 .and()
+
                 .logout()
                 .logoutUrl("/api/logoutProcess")
+
                 .and()
                 .csrf().disable();
 

@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Log4j2
 @Controller
 public class WebController {
-    @RequestMapping("/api/signup")
-    public String signupPage() { // 회원가입페이지
-        return "signup";
+
+    @RequestMapping("/api/login")
+    public String initiatingLogin() {
+        return "/static/PageLogin/index.html";
     }
 
     @RequestMapping("/uploadEx")
@@ -48,4 +49,6 @@ public class WebController {
     public String callPageProjectBoardDetail() {
         return "/static/PageProjectBoardDetail/index.html";
     }
+
+
 }
