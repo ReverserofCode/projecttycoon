@@ -28,7 +28,7 @@ public class MemberController {
 
     @GetMapping("/sessionObject")
     public MemberLoginDTO requestSession(@AuthenticationPrincipal MemberLoginDTO memberLoginDTO) {
-        log.info(memberLoginDTO);
+        log.info("Call request Session : "+memberLoginDTO);
         return memberLoginDTO;
     }
 
