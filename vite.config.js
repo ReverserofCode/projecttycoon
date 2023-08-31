@@ -8,6 +8,9 @@ export default defineConfig({
     outDir:'PageProjectBoardDetail'
   },
   server:{
-    port:3000
+    port:3000,
+    proxy:{
+      '/api':'http://projecttycoon.com'
+    }
   }
 })

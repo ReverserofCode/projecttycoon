@@ -148,8 +148,8 @@ function DetailPage() {
   }, [value?.projectWantedRole]);
   useEffect(() => {
     const path = window.location.href.split("/");
-    // console.log(path[5]);
-    setValue(GetProjectFromID(path[5]));
+    // console.log(path);
+    // setValue(GetProjectFromID(path[4]));
   }, []);
   return (
     <Container>

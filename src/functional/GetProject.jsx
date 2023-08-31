@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const GetProjectFromID = async (id) => {
   const data = await axios
-    .get("/api/project/id")
+    .get(`/api/project/${id}`)
     .then((res) => {
       return res.data;
     })
