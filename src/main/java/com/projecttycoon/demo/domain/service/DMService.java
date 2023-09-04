@@ -79,7 +79,12 @@ public class DMService {
     public List<DMEntity> readDMroom(Long DMroomId) {
         System.out.println("DMroomID: " + DMroomId);
         DMroomEntity dmroom = dmroomRepository.findByDMroomId(DMroomId);
+
+        // 메시지를 읽음표시
+        dmRepository.DMreadCheck(dmroom);
         return dmRepository.findAllByDMroom(dmroom);
     }
+
+    
 }
 

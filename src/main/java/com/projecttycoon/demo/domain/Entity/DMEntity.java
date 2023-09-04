@@ -20,7 +20,7 @@ import javax.persistence.*;
 @Builder
 @Table(name="DMData")
 @EntityListeners(AuditingEntityListener.class)
-public class DMEntity {
+public class DMEntity extends TimeStamp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
