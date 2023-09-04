@@ -10,6 +10,8 @@ import com.projecttycoon.demo.domain.repository.DMroomRepository;
 import com.projecttycoon.demo.domain.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -76,12 +78,18 @@ public class DMService {
     }
 
     // DM 대화창 가져오기
-    public List<DMEntity> readDMroom(Long DMroomId) {
+    public List<DMEntity> readDMroom(Long DMroomId,  MemberEntity loggedInUser) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loggedInUsername = authentication.getName();
+
         System.out.println("DMroomID: " + DMroomId);
         DMroomEntity dmroom = dmroomRepository.findByDMroomId(DMroomId);
 
-        // 메시지를 읽음표시(false->true)
-        dmRepository.DMreadCheck(dmroom);
+        // 메시지를 읽음표시(false->true) - 받는 사람(DMTo)가 현재 사용자와 같을 경우에만 변경
+        if (dmroom != null && dmroom.getDMTo() != null && dmroom.getDMTo().equals(loggedInUser)) {
+            dmRepository.DMreadCheck(dmroom,loggedInUser);
+        }
+
         return dmRepository.findAllByDMroom(dmroom);
     }
     

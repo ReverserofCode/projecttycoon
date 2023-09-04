@@ -14,15 +14,12 @@ import java.util.List;
 
 
 public interface DMRepository extends JpaRepository<DMEntity, Long> {
-
-
     List<DMEntity> findAllByDMFromAndDMTo(MemberEntity DMFrom, MemberEntity DMTo);
     List<DMEntity> findAllByDMroom(DMroomEntity DMroom);
 
-    //메시지 읽음표시
+    // 메시지 읽음표시
     @Transactional
     @Modifying
-    @Query("UPDATE DMEntity dm SET dm.DMRead = true WHERE dm.DMroom = :dmroom")
-    void DMreadCheck(@Param("dmroom") DMroomEntity dmroom);
-
+    @Query("UPDATE DMEntity dm SET dm.DMRead = true WHERE dm.DMroom = :dmroom AND dm.DMTo = :dmTo AND dm.DMRead = false")
+    void DMreadCheck(@Param("dmroom") DMroomEntity dmroom, @Param("dmTo") MemberEntity dmTo);
 }
