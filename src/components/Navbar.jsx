@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { useParams } from "react-router-dom";
 import "./Navbar.css";
 const Container = styled.div`
   display: flex;
@@ -52,7 +51,6 @@ const Wrap = styled.div`
 `;
 
 function Navbar() {
-  const { params } = useParams();
   return (
     <Container>
       <Wrap>
@@ -61,16 +59,19 @@ function Navbar() {
           <Link className="menu" href="http://projecttycoon.com">
             <Items>홈</Items>
           </Link>
-          <Link className="menu" href="http://projecttycoon.com">
+          <Link className="menu" href="http://projecttycoon.com/projects">
             <Items>프로젝트 팀</Items>
           </Link>
-          <Link className="menu" href="http://projecttycoon.com">
+          <Link className="menu" href="http://projecttycoon.com/members">
             <Items>멤버리스트</Items>
           </Link>
-          <Link className="menu" href="http://projecttycoon.com">
+          <Link className="menu" href="http://projecttycoon.com/myPage">
             <Items>내 페이지</Items>
           </Link>
-          <Link className="menu" href="http://projecttycoon.com">
+          <Link
+            className="menu"
+            href="http://www.projecttycoon.com/callPageNewProject"
+          >
             <Items>새로운 글쓰기</Items>
           </Link>
         </Lists>
