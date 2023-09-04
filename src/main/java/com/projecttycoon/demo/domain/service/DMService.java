@@ -83,14 +83,23 @@ public class DMService {
         String loggedInUsername = authentication.getName();
 
         System.out.println("DMroomID: " + DMroomId);
+        System.out.println("Authentication: " + loggedInUsername);
+
+
         DMroomEntity dmroom = dmroomRepository.findByDMroomId(DMroomId);
+        List<DMEntity> DMList = dmRepository.findAllByDMroom(dmroom);
+
+        boolean dmreadExecute = false;
+        if(DMList != null && DMList.get(DMList.size()-1).getDMTo().equals(loggedInUser)) {
+            dmreadExecute = true;
+        }
 
         // 메시지를 읽음표시(false->true) - 받는 사람(DMTo)가 현재 사용자와 같을 경우에만 변경
-        if (dmroom != null && dmroom.getDMTo() != null && dmroom.getDMTo().equals(loggedInUser)) {
+        if (dmreadExecute) {
             dmRepository.DMreadCheck(dmroom,loggedInUser);
         }
 
-        return dmRepository.findAllByDMroom(dmroom);
+        return DMList;
     }
     
 }

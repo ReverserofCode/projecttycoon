@@ -59,6 +59,7 @@ public class DMController extends TimeStamp {
     @GetMapping("/getMessages/{DMroomId}")
     public List<DMEntity> openDMroom(@PathVariable Long DMroomId, Authentication authentication) {
         String loggedInUsername = authentication.getName();
+        log.info("session: {}", loggedInUsername);
         MemberEntity loggedInUser = memberRepository.findByMemberId(loggedInUsername).orElse(null);
 
         List<DMEntity> response = dmService.readDMroom(DMroomId, loggedInUser);

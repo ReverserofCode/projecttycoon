@@ -20,6 +20,7 @@ public interface DMRepository extends JpaRepository<DMEntity, Long> {
     // 메시지 읽음표시
     @Transactional
     @Modifying
-    @Query("UPDATE DMEntity dm SET dm.DMRead = true WHERE dm.DMroom = :dmroom AND dm.DMTo = :dmTo AND dm.DMRead = false")
+    @Query("UPDATE DMEntity dm SET dm.DMRead = true " +
+            "WHERE dm.DMroom = :dmroom AND dm.DMTo = :dmTo AND dm.DMRead = false")
     void DMreadCheck(@Param("dmroom") DMroomEntity dmroom, @Param("dmTo") MemberEntity dmTo);
 }
