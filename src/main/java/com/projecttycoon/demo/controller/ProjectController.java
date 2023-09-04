@@ -92,11 +92,9 @@ public class ProjectController {
     }
 
     @GetMapping("/callProjectDetail/{id}")
-    public String callProjectDetailIdParam(@PathVariable String id) {
+    public void callProjectDetailIdParam(@PathVariable String id) {
         log.info("Request Detail Number : " + id);
         log.info("Call Project Detail Id");
-
-        return id;
     }
 
 }
