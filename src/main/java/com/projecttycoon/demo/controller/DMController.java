@@ -63,8 +63,8 @@ public class DMController extends TimeStamp {
 
         List<DMEntity> response = dmService.readDMroom(DMroomId, loggedInUser);
         log.info("response size: {}", response.size());
-        log.info("last ID: {}", response.get(response.size() - 1).getDMId());
-        log.info("last Content: {}", response.get(response.size() - 1).getDMContent());
+//        log.info("last ID: {}", response.get(response.size() - 1).getDMId());
+//        log.info("last Content: {}", response.get(response.size() - 1).getDMContent());
         return response;
     }
 }
