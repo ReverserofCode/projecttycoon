@@ -84,7 +84,6 @@ public class DMService {
         dmRepository.DMreadCheck(dmroom);
         return dmRepository.findAllByDMroom(dmroom);
     }
-
     
 }
 
