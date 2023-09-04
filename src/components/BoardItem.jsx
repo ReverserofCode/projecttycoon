@@ -96,6 +96,7 @@ function BoardItem({
   filter,
   academy,
   image,
+  id,
 }) {
   const FilterIcons = useCallback(() => {
     let contents = [];
@@ -162,7 +163,11 @@ function BoardItem({
     return contents;
   }, [filter]);
   return (
-    <BoardBase>
+    <BoardBase
+      onClick={() => {
+        window.location.href = `http://projecttycoon.com/api/callPageProjectBoardDetail/${id}`;
+      }}
+    >
       <TagContainer>
         {status ? (
           <TagItem>

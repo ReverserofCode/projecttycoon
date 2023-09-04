@@ -70,6 +70,7 @@ function ProjectPage() {
           filter={bufRoleValue}
           academy={boardList[i]?.projectAcademy}
           image={boardList[i]?.projectFilePath}
+          id={boardList[i]?.projectId}
           key={`board item ${i}`}
         />
       );
