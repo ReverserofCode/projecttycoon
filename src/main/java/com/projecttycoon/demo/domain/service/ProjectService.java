@@ -70,6 +70,9 @@ public class ProjectService {
         PageRequest pageRequest = PageRequest.of(page, 8);
     }
 
-
+    public ProjectEntity getProjectById(Long id) {
+        return projectRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Project not found with id: " + id));
+    }
 
 }

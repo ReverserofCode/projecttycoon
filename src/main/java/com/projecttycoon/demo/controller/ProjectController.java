@@ -10,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import com.projecttycoon.demo.domain.Entity.RoleInfo;
 
 import java.util.List;
 import java.util.Optional;
@@ -56,6 +57,7 @@ public class ProjectController {
     @PostMapping("/projectRegister")
     public String saveProject(@RequestPart(value = "file") MultipartFile file, @RequestPart(value = "projectRequestDTO") ProjectRequestDTO projectRequestDTO) throws Exception {
         log.info("Call Method saveProject ");
+        // projectRequestDTO에서 projectWantedRole을 배열로 받음
         projectService.createProject(projectRequestDTO, file);
         return "success";
     }
@@ -90,5 +92,24 @@ public class ProjectController {
         return projectRepository.findById(id).orElse(null);
     }
 
+    @GetMapping("/{id}/checkRoleInfo")
+    public void checkRoleInfo(@PathVariable Long id) {
+        ProjectEntity projectEntity = projectService.getProjectById(id);
+        List<com.projecttycoon.demo.domain.Entity.RoleInfo> roleInfoList = projectEntity.getParsedProjectWantedRole();
+
+        if (roleInfoList != null) {
+            for (RoleInfo roleInfo : roleInfoList) {
+                String roleName = roleInfo.getRole(); // Role
+                int complete = roleInfo.getComplete(); // complete
+                int personnel = roleInfo.getPersonnel(); // personnel
+
+                System.out.println("Role: " + roleName);
+                System.out.println("Complete: " + complete);
+                System.out.println("Personnel: " + personnel);
+            }
+        } else {
+            System.out.println("roleInfoList is null");
+        }
+    }
 
 }

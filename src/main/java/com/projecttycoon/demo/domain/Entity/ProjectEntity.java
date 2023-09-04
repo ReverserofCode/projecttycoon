@@ -1,12 +1,17 @@
 package com.projecttycoon.demo.domain.Entity;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.projecttycoon.demo.domain.TimeStamp;
 import com.projecttycoon.demo.domain.dto.ProjectRequestDTO;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.management.relation.RoleInfo;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 //사용자에게 노출되는 프로젝트들의 상세 내역의 데이터를 담을 DB 설계
@@ -23,13 +28,14 @@ public class ProjectEntity extends TimeStamp {
     @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long projectId;
-
     @Column
     private String projectTitle;
     @Column
     private String projectContent;
-    @Column
+
+    @Column(columnDefinition = "JSON")
     private String projectWantedRole;
+
     @Column(nullable = true)
     private Date projectDue;
     @Column
@@ -46,6 +52,7 @@ public class ProjectEntity extends TimeStamp {
     private String projectFileName;
     @Column
     private int projectScrapNum;
+
 
     public ProjectEntity(ProjectRequestDTO projectDto) {
         this.projectTitle = projectDto.getProjectTitle();
@@ -90,4 +97,17 @@ public class ProjectEntity extends TimeStamp {
         }
         //if문 없는 경우 value=null로 리턴되는 상황이 있어 if문 사용
     }
+
+    public List<RoleInfo> getParsedProjectWantedRole() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.readValue(this.projectWantedRole, new TypeReference<List<RoleInfo>>() {});
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+
 }
