@@ -80,7 +80,7 @@ public class DMService {
         System.out.println("DMroomID: " + DMroomId);
         DMroomEntity dmroom = dmroomRepository.findByDMroomId(DMroomId);
 
-        // 메시지를 읽음표시
+        // 메시지를 읽음표시(false->true)
         dmRepository.DMreadCheck(dmroom);
         return dmRepository.findAllByDMroom(dmroom);
     }
