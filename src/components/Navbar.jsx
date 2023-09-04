@@ -56,21 +56,24 @@ function Navbar() {
   return (
     <Container>
       <Wrap>
-        <NavHeader src="http://projecttycoon.com/static/images/Logo%20Test.png" />
+        <NavHeader src="http://projecttycoon.com/static/images/Logo Test.png" />
         <Lists gap={"30px"}>
           <Link className="menu" href="http://projecttycoon.com">
             <Items>홈</Items>
           </Link>
-          <Link className="menu" href="http://projecttycoon.com">
+          <Link className="menu" href="http://projecttycoon.com/projects">
             <Items>프로젝트 팀</Items>
           </Link>
-          <Link className="menu" href="http://projecttycoon.com">
+          <Link className="menu" href="http://projecttycoon.com/members">
             <Items>멤버리스트</Items>
           </Link>
-          <Link className="menu" href="http://projecttycoon.com">
+          <Link className="menu" href="http://projecttycoon.com/myPage">
             <Items>내 페이지</Items>
           </Link>
-          <Link className="menu" href="http://projecttycoon.com">
+          <Link
+            className="menu"
+            href="http://www.projecttycoon.com/callPageNewProject"
+          >
             <Items>새로운 글쓰기</Items>
           </Link>
         </Lists>
