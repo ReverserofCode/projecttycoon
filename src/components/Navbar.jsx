@@ -56,7 +56,7 @@ function Navbar() {
   return (
     <Container>
       <Wrap>
-        <NavHeader src="./Logo Test.png" />
+        <NavHeader src="http://projecttycoon.com/static/images/Logo%20Test.png" />
         <Lists gap={"30px"}>
           <Link className="menu" href="http://projecttycoon.com">
             <Items>홈</Items>

@@ -54,14 +54,20 @@ function ProjectPage() {
   const handleBoardItemGen = useCallback(() => {
     let contents = [];
     for (let i = 0; i < boardList.length; i++) {
+      let bufRole = JSON.parse(
+        boardList[i]?.projectWantedRole.replace(/'/g, '"')
+      );
+      let bufRoleValue = [];
+      for (let j = 0; j < bufRole.length; j++) {
+        bufRoleValue.push(bufRole[j].Role);
+      }
       contents.push(
         <BoardItem
           status={boardList[i]?.projectStatus}
           createDate={boardList[i]?.createdAt.split("").slice(2, 10).join("")}
           DeadLine={boardList[i]?.projectDue.split("").slice(2, 10).join("")}
           title={boardList[i]?.projectTitle}
-          filter={["Front", "Back"]}
-          // filter={boardList[i]?.projectWantedRole}
+          filter={bufRoleValue}
           academy={boardList[i]?.projectAcademy}
           image={boardList[i]?.projectFilePath}
           key={`board item ${i}`}
@@ -80,7 +86,7 @@ function ProjectPage() {
       <SideContents>
         <MainHeader>프로젝트 필터</MainHeader>
         <SelectSide header={"지역"} contents={Place} handleSelect={PlaceSet} />
-        <CheckSide contents={Recruit} header={"모집 분야"}></CheckSide>
+        <CheckSide contents={Recruit} header={"모집 분야"} />
       </SideContents>
       <MainContents>
         <Board>{handleBoardItemGen()}</Board>
