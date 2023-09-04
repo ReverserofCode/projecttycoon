@@ -11,6 +11,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,5 +91,12 @@ public class ProjectController {
         return projectRepository.findById(id).orElse(null);
     }
 
+    @GetMapping("/callProjectDetail/{id}")
+    public String callProjectDetailIdParam(@PathVariable String id) {
+        log.info("Request Detail Number : " + id);
+        log.info("Call Project Detail Id");
+
+        return id;
+    }
 
 }

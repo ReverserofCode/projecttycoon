@@ -2,8 +2,11 @@ package com.projecttycoon.demo.controller;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.websocket.server.PathParam;
 
 
 //웹 사이트 내에서 다른 사이트에 대한 요청을 처리하는 컨르롤러
@@ -49,6 +52,5 @@ public class WebController {
     public String callPageProjectBoardDetail() {
         return "/static/PageProjectBoardDetail/index.html";
     }
-
 
 }
