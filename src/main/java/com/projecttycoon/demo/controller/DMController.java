@@ -14,6 +14,7 @@ import com.projecttycoon.demo.domain.service.DMService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,11 +57,15 @@ public class DMController extends TimeStamp {
     // DMroomId로 해당 DM창의 대화 보여주는 API
     // 동작 확인 O
     @GetMapping("/getMessages/{DMroomId}")
-    public List<DMEntity> openDMroom(@PathVariable Long DMroomId) {
-        List<DMEntity> response = dmService.readDMroom(DMroomId);
+    public List<DMEntity> openDMroom(@PathVariable Long DMroomId, Authentication authentication) {
+        String loggedInUsername = authentication.getName();
+        log.info("session: {}", loggedInUsername);
+        MemberEntity loggedInUser = memberRepository.findByMemberId(loggedInUsername).orElse(null);
+
+        List<DMEntity> response = dmService.readDMroom(DMroomId, loggedInUser);
         log.info("response size: {}", response.size());
-        log.info("last ID: {}", response.get(response.size() - 1).getDMId());
-        log.info("last Content: {}", response.get(response.size() - 1).getDMContent());
+//        log.info("last ID: {}", response.get(response.size() - 1).getDMId());
+//        log.info("last Content: {}", response.get(response.size() - 1).getDMContent());
         return response;
     }
 }

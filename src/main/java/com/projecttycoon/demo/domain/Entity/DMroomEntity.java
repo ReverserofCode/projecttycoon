@@ -21,7 +21,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name="DMroomData")
 @EntityListeners(AuditingEntityListener.class)
-public class DMroomEntity {
+public class DMroomEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
