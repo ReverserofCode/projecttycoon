@@ -1,5 +1,6 @@
 package com.projecttycoon.demo.domain.dto;
 
+import com.projecttycoon.demo.domain.Entity.MemberEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,5 +20,17 @@ public class MemberRequestDTO  {
     private String memberLink;
     private String memberAcademy;
     private String memberNickname;
+
+    public MemberRequestDTO(MemberEntity memberEntity){
+        this.memberId = memberEntity.getMemberId();
+        this.memberPw = memberEntity.getMemberPw();
+        this.memberRole = memberEntity.getMemberRole();
+        this.memberIntroduce = memberEntity.getMemberIntroduce();
+        this.memberFilePath = memberEntity.getMemberFilePath();
+        this.memberFileName = memberEntity.getMemberFileName();
+        this.memberLink = memberEntity.getMemberLink();
+        this.memberAcademy = memberEntity.getMemberAcademy();
+        this.memberNickname = memberEntity.getMemberNickname();
+    }
 
 }
