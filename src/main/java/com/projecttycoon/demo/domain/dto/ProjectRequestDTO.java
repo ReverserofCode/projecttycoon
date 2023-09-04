@@ -1,6 +1,7 @@
 package com.projecttycoon.demo.domain.dto;
 
 
+import com.projecttycoon.demo.domain.Entity.RoleInfo2;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.AllArgsConstructor;
@@ -20,11 +21,7 @@ import java.util.List;
 public class ProjectRequestDTO {
     private String projectTitle;    //프로젝트글제목
     private String projectContent;  //프로젝트글 본문
-
     private String projectWantedRole;   //프로젝트글 모집분야
-    //String 타입으로 데이터를 받는 경우, 클라이언트에서 요청을 수정하여 projectWantedRole을 배열 형식으로 보내야함
-    //projectWantedRole 필드를 배열 형식으로 수정 230904
-
     private Boolean projectStatus;       //프로젝트글 마감여부(True=모집중)
     private Date projectDue;        //프로젝트글 마감날짜
     private String projectAcademy;  //프로젝트글 진행 학원지점

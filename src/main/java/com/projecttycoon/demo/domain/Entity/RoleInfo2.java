@@ -1,17 +1,16 @@
-
 package com.projecttycoon.demo.domain.Entity;
 
-public class RoleInfo {
-    private String Role;
+public class RoleInfo2 {
+    private String role;
     private int complete;
     private int personnel;
 
     public String getRole() {
-        return Role;
+        return role;
     }
 
     public void setRole(String role) {
-        Role = role;
+        this.role = role;
     }
 
     public int getComplete() {
@@ -29,8 +28,6 @@ public class RoleInfo {
     public void setPersonnel(int personnel) {
         this.personnel = personnel;
     }
-
-
 
 
 }

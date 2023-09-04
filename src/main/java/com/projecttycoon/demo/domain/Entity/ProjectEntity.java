@@ -8,7 +8,6 @@ import com.projecttycoon.demo.domain.dto.ProjectRequestDTO;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.management.relation.RoleInfo;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -98,10 +97,10 @@ public class ProjectEntity extends TimeStamp {
         //if문 없는 경우 value=null로 리턴되는 상황이 있어 if문 사용
     }
 
-    public List<RoleInfo> getParsedProjectWantedRole() {
+    public List<RoleInfo2> getParsedProjectWantedRole() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            return objectMapper.readValue(this.projectWantedRole, new TypeReference<List<RoleInfo>>() {});
+            return objectMapper.readValue(this.projectWantedRole, new TypeReference<List<RoleInfo2>>() {});
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             return null;

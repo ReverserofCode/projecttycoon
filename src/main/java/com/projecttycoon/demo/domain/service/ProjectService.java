@@ -1,10 +1,9 @@
 package com.projecttycoon.demo.domain.service;
 
-
+import com.projecttycoon.demo.domain.Entity.RoleInfo2;
 import com.projecttycoon.demo.domain.Entity.ProjectEntity;
 import com.projecttycoon.demo.domain.dto.ProjectRequestDTO;
 import com.projecttycoon.demo.domain.repository.ProjectRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -41,6 +41,27 @@ public class ProjectService {
 
         ProjectEntity projectEntity = new ProjectEntity(projectRequestDTO);
         projectRepository.save(projectEntity);
+
+        // 파싱된 데이터 확인 코드 추가
+        checkParsedRoleInfo(projectEntity);
+    }
+    // 파싱된 데이터 확인을 위한 메서드
+    private void checkParsedRoleInfo(ProjectEntity projectEntity) {
+        List<RoleInfo2> roleInfoList = projectEntity.getParsedProjectWantedRole();
+
+        if (roleInfoList != null) {
+            for (RoleInfo2 roleInfo : roleInfoList) {
+                String roleName = roleInfo.getRole(); // Role
+                int complete = roleInfo.getComplete(); // complete
+                int personnel = roleInfo.getPersonnel(); // personnel
+
+                System.out.println("Role: " + roleName);
+                System.out.println("Complete: " + complete);
+                System.out.println("Personnel: " + personnel);
+            }
+        } else {
+            System.out.println("roleInfoList is null");
+        }
     }
 
     public ProjectEntity oneProject(Long id) {

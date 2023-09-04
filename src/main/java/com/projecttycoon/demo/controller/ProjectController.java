@@ -2,6 +2,7 @@ package com.projecttycoon.demo.controller;
 
 import com.projecttycoon.demo.domain.Entity.ProjectEntity;
 import com.projecttycoon.demo.domain.Entity.ProjectSpecifications;
+import com.projecttycoon.demo.domain.Entity.RoleInfo2;
 import com.projecttycoon.demo.domain.dto.ProjectRequestDTO;
 import com.projecttycoon.demo.domain.repository.ProjectRepository;
 import com.projecttycoon.demo.domain.service.ProjectService;
@@ -10,11 +11,9 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import com.projecttycoon.demo.domain.Entity.RoleInfo;
 
 import java.util.List;
 import java.util.Optional;
-
 
 @Log4j2
 @RestController // @Controller 대신 @RestController로 변경
@@ -90,26 +89,6 @@ public class ProjectController {
 //        pe = projectRepository.findById(id).get();
 //        return pe;
         return projectRepository.findById(id).orElse(null);
-    }
-
-    @GetMapping("/{id}/checkRoleInfo")
-    public void checkRoleInfo(@PathVariable Long id) {
-        ProjectEntity projectEntity = projectService.getProjectById(id);
-        List<com.projecttycoon.demo.domain.Entity.RoleInfo> roleInfoList = projectEntity.getParsedProjectWantedRole();
-
-        if (roleInfoList != null) {
-            for (RoleInfo roleInfo : roleInfoList) {
-                String roleName = roleInfo.getRole(); // Role
-                int complete = roleInfo.getComplete(); // complete
-                int personnel = roleInfo.getPersonnel(); // personnel
-
-                System.out.println("Role: " + roleName);
-                System.out.println("Complete: " + complete);
-                System.out.println("Personnel: " + personnel);
-            }
-        } else {
-            System.out.println("roleInfoList is null");
-        }
     }
 
 }
