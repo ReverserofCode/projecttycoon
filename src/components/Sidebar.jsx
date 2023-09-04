@@ -80,7 +80,7 @@ function Sidebar({ value }) {
         <Recruit key={`Recruit ${i}`}>
           <RecruitIcon>{value?.projectWantedRole[i].Role}</RecruitIcon>
           <RecruitNumbers>
-            <RecruitNow>{value?.projectWantedRole[i].complete}</RecruitNow>/
+            <RecruitNow>{value?.projectWantedRole[i].comeplete}</RecruitNow>/
             <RecruitDone>{value?.projectWantedRole[i].personnel}</RecruitDone>
           </RecruitNumbers>
         </Recruit>

@@ -39,11 +39,17 @@ const MainTitle = styled.h2`
   border-bottom: 5px solid #d9d9d9;
   padding: 10px 0px;
 `;
-const Poster = styled.img`
+const PosterContain = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   border-top: 5px solid #35a29f;
   border-bottom: 5px solid #35a29f;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+`;
+const Poster = styled.img`
+  height: 500px;
 `;
 const ProjectInfos = styled.div`
   display: flex;
@@ -134,6 +140,7 @@ function DetailPage() {
     projectFileName: "projectImage",
     projectScrapNum: 10,
   });
+  const [test, setTest] = useState("");
   const handleRecruits = useCallback(() => {
     let contents = [];
     for (let i = 0; i < value?.projectWantedRole.length; i++) {
@@ -148,8 +155,25 @@ function DetailPage() {
   }, [value?.projectWantedRole]);
   useEffect(() => {
     const path = window.location.href.split("/");
-    // console.log(path);
-    // setValue(GetProjectFromID(path[4]));
+    GetProjectFromID(path[4]).then((res) => {
+      let buf = {
+        createdAt: res.createdAt,
+        modifiedAt: res.modifiedAt,
+        projectId: res.projectId,
+        projectTitle: res.projectTitle,
+        projectContent: res.projectContent,
+        projectWantedRole: JSON.parse(res.projectWantedRole.replace(/'/g, '"')),
+        projectDue: res.projectDue,
+        projectAcademy: res.projectAcademy,
+        projectStatus: res.projectStatus,
+        projectWriterId: res.projectWriterId,
+        projectWriterNick: res.projectWriterNick,
+        projectFilePath: res.projectFilePath,
+        projectFileName: res.projectFileName,
+        projectScrapNum: res.projectScrapNum,
+      };
+      setValue(buf);
+    });
   }, []);
   return (
     <Container>
@@ -159,7 +183,9 @@ function DetailPage() {
       </SideContents>
       <MainContents>
         <MainTitle>{value?.projectTitle}</MainTitle>
-        <Poster src={"http://projecttycoon.com" + value?.projectFilePath} />
+        <PosterContain>
+          <Poster src={"http://projecttycoon.com" + value?.projectFilePath} />
+        </PosterContain>
         <ProjectInfos>
           <InfoColumn>
             <InfoRow>
