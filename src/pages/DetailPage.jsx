@@ -155,7 +155,7 @@ function DetailPage() {
   }, [value?.projectWantedRole]);
   useEffect(() => {
     const path = window.location.href.split("/");
-    GetProjectFromID(path[4]).then((res) => {
+    GetProjectFromID(path[5]).then((res) => {
       let buf = {
         createdAt: res.createdAt,
         modifiedAt: res.modifiedAt,
