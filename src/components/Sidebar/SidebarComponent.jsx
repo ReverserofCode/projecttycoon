@@ -78,7 +78,7 @@ export function CheckSide({ header, contents, handleSet }) {
       );
     }
     return lists;
-  }, [contents]);
+  }, [contents, handleContain]);
   return (
     <Base>
       <FilterHeader>{header}</FilterHeader>
