@@ -53,6 +53,7 @@ public class ProjectEntity extends TimeStamp {
     private int projectScrapNum;
 
 
+
     public ProjectEntity(ProjectRequestDTO projectDto) {
         this.projectTitle = projectDto.getProjectTitle();
         this.projectContent = projectDto.getProjectContent();
@@ -97,6 +98,7 @@ public class ProjectEntity extends TimeStamp {
         //if문 없는 경우 value=null로 리턴되는 상황이 있어 if문 사용
     }
 
+    //String으로 입력받은 projectWantedRole을 RoleInfo2라는 리스트로 파싱
     public List<RoleInfo2> getParsedProjectWantedRole() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
