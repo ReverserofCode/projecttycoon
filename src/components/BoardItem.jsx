@@ -165,7 +165,7 @@ function BoardItem({
   return (
     <BoardBase
       onClick={() => {
-        window.location.href = `http://projecttycoon.com/api/callPageProjectBoardDetail/${id}`;
+        window.location.href = `http://projecttycoon.com/callPageProjectBoardDetail/${id}`;
       }}
     >
       <TagContainer>
