@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { Base, FilterHeader } from "./SidebarStyle";
 import { AiOutlineCheckCircle, AiFillCheckCircle } from "react-icons/ai";
 const CheckContainer = styled.div`
@@ -10,7 +10,10 @@ const CheckContainer = styled.div`
   font-size: 20px;
   user-select: none;
   :hover {
-    color: #9ed8ff;
+    color: #4fb8ff;
+  }
+  &.select {
+    color: #4fb8ff;
   }
 `;
 const Select = styled.select`
@@ -44,17 +47,32 @@ export function SelectSide({ header, contents, handleSelect }) {
 }
 
 /** Check 태그를 이용하는 Side Bar형태 */
-export function CheckSide({ header, contents, handleSelect }) {
+export function CheckSide({ header, contents, handleSet }) {
+  const Reference = useRef([]);
+  const handleContain = useCallback(() => {
+    let refArray = [];
+    for (let i = 0; i < Reference.current.length; i++) {
+      Reference.current[i].classList.length === 2
+        ? refArray.push(Reference.current[i].innerText)
+        : "";
+    }
+    handleSet(refArray);
+  }, [handleSet]);
   const CheckLists = useCallback(() => {
     let lists = [];
     for (let i = 0; i < contents.length; i++) {
       lists.push(
         <CheckContainer
+          ref={(el) => {
+            Reference.current[i] = el;
+          }}
           key={`check contents ${i}`}
-          // onClick={handleSelect(contents[i])}
+          onClick={() => {
+            Reference.current[i].classList.toggle("select");
+            handleContain();
+          }}
         >
-          <AiOutlineCheckCircle></AiOutlineCheckCircle>
-          {/* <AiFillCheckCircle color="#9ED8FF"></AiFillCheckCircle> */}
+          <AiOutlineCheckCircle />
           {contents[i]}
         </CheckContainer>
       );
@@ -68,4 +86,3 @@ export function CheckSide({ header, contents, handleSelect }) {
     </Base>
   );
 }
-// export default SelectSide;

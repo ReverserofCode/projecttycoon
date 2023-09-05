@@ -13,6 +13,7 @@ const MainContainer = styled.div`
 `;
 const ContentsWrap = styled.div`
   max-width: 1440px;
+  width: 100%;
 `;
 
 function App() {
