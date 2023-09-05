@@ -140,7 +140,6 @@ function DetailPage() {
     projectFileName: "projectImage",
     projectScrapNum: 10,
   });
-  const [test, setTest] = useState("");
   const handleRecruits = useCallback(() => {
     let contents = [];
     for (let i = 0; i < value?.projectWantedRole.length; i++) {
@@ -155,7 +154,7 @@ function DetailPage() {
   }, [value?.projectWantedRole]);
   useEffect(() => {
     const path = window.location.href.split("/");
-    GetProjectFromID(path[5]).then((res) => {
+    GetProjectFromID(path[4]).then((res) => {
       let buf = {
         createdAt: res.createdAt,
         modifiedAt: res.modifiedAt,

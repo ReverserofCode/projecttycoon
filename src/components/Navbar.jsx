@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { useParams } from "react-router-dom";
 import "./Navbar.css";
 const Container = styled.div`
   display: flex;
@@ -52,11 +51,9 @@ const Wrap = styled.div`
 `;
 
 function Navbar() {
-  const { params } = useParams();
   return (
     <Container>
       <Wrap>
-        <NavHeader src="http://projecttycoon.com/static/images/Logo%20Test.png" />
         <NavHeader src="http://projecttycoon.com/static/images/Logo Test.png" />
         <Lists gap={"30px"}>
           <Link className="menu" href="http://projecttycoon.com">
