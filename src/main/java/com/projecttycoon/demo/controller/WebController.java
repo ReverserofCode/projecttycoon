@@ -80,9 +80,7 @@ public class WebController {
 
     @GetMapping("/api/signup")
     public String callSingUpPage(){
-
        log.info("call SingUpPage");
-
        return "/static/PageSignUp/index.html";
     }
 
