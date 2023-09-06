@@ -1,11 +1,7 @@
 package com.projecttycoon.demo.domain.dto;
 
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.AllArgsConstructor;
-import lombok.Setter;
-import org.springframework.web.multipart.MultipartFile;
+import lombok.*;
 
 import java.util.Date;
 
@@ -14,6 +10,7 @@ import java.util.Date;
 @Setter
 @Getter
 @Builder
+@ToString
 @AllArgsConstructor
 public class ProjectRequestDTO {
     private String projectTitle;    //프로젝트글제목
