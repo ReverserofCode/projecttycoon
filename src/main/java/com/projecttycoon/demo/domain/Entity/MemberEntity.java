@@ -34,10 +34,13 @@ public class MemberEntity extends TimeStamp {
     private String memberIntroduce;
     @Column(name = "memberLink")
     private String memberLink;
-    @Column(name = "memberFilePath")
+    @Column(name = "memberFilePath",nullable = true)
     private String memberFilePath;
-    @Column(name = "memberFileName")
+    @Column(name = "memberFileName",nullable = true)
     private String memberFileName;
+    @Column(name = "memberStack")
+    private String memberStack;
+
 
     @Column(name = "authority")
     @ElementCollection(fetch = FetchType.LAZY)
@@ -56,8 +59,7 @@ public class MemberEntity extends TimeStamp {
         this.memberRole = requestDTO.getMemberRole();
         this.memberIntroduce = requestDTO.getMemberIntroduce();
         this.memberLink = requestDTO.getMemberLink();
-        this.memberFilePath = requestDTO.getMemberFilePath();
-        this.memberFileName = requestDTO.getMemberFileName();
+        this.memberStack = requestDTO.getMemberStack();
         this.memberAuthority = new HashSet<>();
     }
 
@@ -81,8 +83,6 @@ public class MemberEntity extends TimeStamp {
         this.memberRole = requestDTO.getMemberRole();
         this.memberIntroduce = requestDTO.getMemberIntroduce();
         this.memberLink = requestDTO.getMemberLink();
-        this.memberFilePath = requestDTO.getMemberFilePath();
-        this.memberFileName = requestDTO.getMemberFileName();
         this.memberAuthority = new HashSet<>();
     }
 

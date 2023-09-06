@@ -37,11 +37,10 @@ public class MemberController {
     }
 
     @PostMapping("/api/memberRegister")
-    public String registerDB(@RequestBody MemberRequestDTO memberRequestDTO) {
-        log.info(memberRequestDTO.getMemberId());
-        memberService.registerMember(memberRequestDTO);
+    public void registerDB(@RequestBody MemberRequestDTO memberRequestDTO) {
         log.info("call registerDB");
-        return "/api/login";
+        log.info("memberRegister check memberRequestDTO : "+memberRequestDTO.toString());
+        memberService.registerMember(memberRequestDTO);
     }
 
     @PutMapping("/api/memberUpdate/{memberId}")

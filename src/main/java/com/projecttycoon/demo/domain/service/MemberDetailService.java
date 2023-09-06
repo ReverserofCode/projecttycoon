@@ -43,6 +43,7 @@ public class MemberDetailService implements UserDetailsService {
                 member.getMemberFileName(),
                 member.getMemberId(),
                 member.getMemberPw(),
+                member.getMemberStack(),
                 member.getMemberAuthority().stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role.name())).collect(Collectors.toSet())
         );
 
