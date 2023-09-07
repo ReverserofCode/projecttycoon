@@ -63,7 +63,7 @@ Error generating stack: `+i.message+`
   list-style: none;
   gap: ${e=>e.gap};
   color: ${e=>e.color?e.color:"#071952"};
-`,S1=I.image`
+`,S1=I.img`
   height: 50px;
 `,gt=I.li`
   font-size: 20px;
@@ -81,7 +81,7 @@ Error generating stack: `+i.message+`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;function k1(){const[e,t]=B.useState("");return B.useEffect(()=>{y1().then(n=>{t(n)})},[]),_.jsx(v1,{children:_.jsxs(x1,{children:[_.jsx(w1,{src:"http://projecttycoon.com/static/images/Logo Test.png"}),_.jsxs(tl,{gap:"30px",children:[_.jsx(Bt,{className:"menu",href:"http://projecttycoon.com",children:_.jsx(gt,{children:"홈"})}),_.jsx(Bt,{className:"menu",href:"http://projecttycoon.com/projects",children:_.jsx(gt,{children:"프로젝트 팀"})}),_.jsx(Bt,{className:"menu",href:"http://projecttycoon.com/members",children:_.jsx(gt,{children:"멤버리스트"})}),_.jsx(Bt,{className:"menu",href:"http://projecttycoon.com/myPage",children:_.jsx(gt,{children:"내 페이지"})}),_.jsx(Bt,{className:"menu",href:"http://www.projecttycoon.com/callPageNewProject",children:_.jsx(gt,{children:"새로운 글쓰기"})})]}),e===""?_.jsxs(tl,{gap:"47px",color:"#35A29F",children:[_.jsx(Bt,{className:"user",href:"http://projecttycoon.com/api/login",children:_.jsx(gt,{children:"로그인"})}),_.jsx(Bt,{className:"user",href:"http://projecttycoon.com/api/signup",children:_.jsx(gt,{children:"회원가입"})})]}):_.jsxs(tl,{gap:"20px",color:"#35A29F",onClick:()=>{g1()},children:[_.jsx(S1,{src:e==null?void 0:e.memberFilePath}),_.jsx(gt,{children:"로그아웃"})]})]})})}const E1=I.div`
+`;function k1(){const[e,t]=B.useState("");return B.useEffect(()=>{y1().then(n=>{t(n)})},[]),_.jsx(v1,{children:_.jsxs(x1,{children:[_.jsx(w1,{src:"http://projecttycoon.com/static/images/Logo Test.png"}),_.jsxs(tl,{gap:"30px",children:[_.jsx(Bt,{className:"menu",href:"http://projecttycoon.com",children:_.jsx(gt,{children:"홈"})}),_.jsx(Bt,{className:"menu",href:"http://projecttycoon.com/projects",children:_.jsx(gt,{children:"프로젝트 팀"})}),_.jsx(Bt,{className:"menu",href:"http://projecttycoon.com/members",children:_.jsx(gt,{children:"멤버리스트"})}),_.jsx(Bt,{className:"menu",href:"http://projecttycoon.com/myPage",children:_.jsx(gt,{children:"내 페이지"})}),_.jsx(Bt,{className:"menu",href:"http://www.projecttycoon.com/callPageNewProject",children:_.jsx(gt,{children:"새로운 글쓰기"})})]}),e===""?_.jsxs(tl,{gap:"47px",color:"#35A29F",children:[_.jsx(Bt,{className:"user",href:"http://projecttycoon.com/api/login",children:_.jsx(gt,{children:"로그인"})}),_.jsx(Bt,{className:"user",href:"http://projecttycoon.com/api/signup",children:_.jsx(gt,{children:"회원가입"})})]}):_.jsxs(tl,{gap:"20px",color:"#35A29F",onClick:()=>{g1(),t("")},children:[_.jsx(S1,{src:e==null?void 0:e.memberFilePath}),_.jsx(gt,{children:"로그아웃"})]})]})})}const E1=I.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
