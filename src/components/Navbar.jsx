@@ -32,7 +32,7 @@ const Lists = styled.ul`
     return props.color ? props.color : "#071952";
   }};
 `;
-const UserIcon = styled.image`
+const UserIcon = styled.img`
   height: 50px;
 `;
 const Items = styled.li`
