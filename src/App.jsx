@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import Navbar from "./components/Navbar";
+import DMRoom from "./pages/DMRoom";
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -11,13 +12,20 @@ const MainContainer = styled.div`
 `;
 const Wrap = styled.div`
   max-width: 1440px;
+  width: 100%;
 `;
 
 function App() {
+  const [userData, setUserData] = useState("");
+  const handleSetUserData = useCallback((value) => {
+    setUserData(value);
+  }, []);
   return (
     <MainContainer>
-      <Navbar />
-      <Wrap></Wrap>
+      <Navbar userData={userData} handleSetUserData={handleSetUserData} />
+      <Wrap>
+        <DMRoom userData={userData}></DMRoom>
+      </Wrap>
     </MainContainer>
   );
 }

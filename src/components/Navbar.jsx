@@ -55,13 +55,12 @@ const Wrap = styled.div`
   align-items: center;
 `;
 
-function Navbar() {
-  const [userData, setUserData] = useState("");
+function Navbar({ userData, handleSetUserData }) {
   useEffect(() => {
     LoginCheck().then((res) => {
-      setUserData(res);
+      handleSetUserData(res);
     });
-  }, []);
+  }, [handleSetUserData]);
   return (
     <Container>
       <Wrap>
@@ -101,7 +100,7 @@ function Navbar() {
             color="#35A29F"
             onClick={() => {
               Logout();
-              setUserData("");
+              handleSetUserData("");
             }}
           >
             <UserIcon src={userData?.memberFilePath} />
