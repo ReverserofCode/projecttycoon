@@ -47,6 +47,8 @@ public class SecurityConfig {
 
                 .logout()
                 .logoutUrl("/api/logoutProcess")
+                .logoutSuccessUrl("/")
+
 
                 .and()
                 .csrf().disable();

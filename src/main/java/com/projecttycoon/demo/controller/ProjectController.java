@@ -56,7 +56,6 @@ public class ProjectController {
     public String saveProject(@RequestPart(value = "file", required = false) MultipartFile file, @RequestPart(value = "projectRequestDTO") ProjectRequestDTO projectRequestDTO) throws Exception {
         log.info("Call Method saveProject ");
         log.info("Send From frontPage ProjectRequestDTO Data : "+projectRequestDTO.toString());
-        log.info("Send From frontPage file Data : "+file.getOriginalFilename());
         projectService.createProject(projectRequestDTO, file);
         return "success";
     }
