@@ -18,13 +18,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
-public class DMController extends TimeStamp {
+public class DMController {
     private final DMService dmService;
     private final DMRepository dmRepository;
     private final DMroomRepository dmroomRepository;
@@ -49,8 +50,9 @@ public class DMController extends TimeStamp {
     // 현재 사용자의 DMroom List 반환하는 API
     // 동작 확인 O
     @GetMapping("/dmroomList/{userId}")
-    public List<DMroomEntity> getDMList(@PathVariable String userId) {
-        List<DMroomEntity> response = dmService.readDMroomList(userId);
+    public List<DMEntity> getDMList(@PathVariable String userId) {
+        List<DMEntity> response = dmService.readDMroomList(userId);
+
         return response;
     }
 
