@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useState } from "react";
 import { SelectSide, CheckSide } from "../components/Sidebar/SidebarComponent";
-import { MainHeader } from "../components/Sidebar/SidebarStyle";
+import { MainHeader, SubmitButton } from "../components/Sidebar/SidebarStyle";
 import BoardItem from "../components/BoardItem";
 import { Place, Recruit } from "../Filter.json";
 import { BoardListGet } from "../functional/BoardList";
@@ -31,7 +31,6 @@ const MainContents = styled.div`
   align-items: center;
   margin-left: 50px;
   width: 100%;
-  height: 200vh;
 `;
 const Board = styled.div`
   display: flex;
@@ -48,22 +47,33 @@ const Board = styled.div`
 function ProjectPage() {
   const [boardList, setBoardList] = useState([]);
   const [placeSelect, setPlaceSelect] = useState("");
+  const [RecruitSelect, setRecruitSelect] = useState("");
+  const handleSet = useCallback((e) => {
+    setRecruitSelect(e);
+  }, []);
   const PlaceSet = useCallback((value) => {
     setPlaceSelect(value);
   }, []);
   const handleBoardItemGen = useCallback(() => {
     let contents = [];
     for (let i = 0; i < boardList.length; i++) {
+      let bufRole = JSON.parse(
+        boardList[i]?.projectWantedRole.replace(/'/g, '"')
+      );
+      let bufRoleValue = [];
+      for (let j = 0; j < bufRole.length; j++) {
+        bufRoleValue.push(bufRole[j].Role);
+      }
       contents.push(
         <BoardItem
           status={boardList[i]?.projectStatus}
           createDate={boardList[i]?.createdAt.split("").slice(2, 10).join("")}
           DeadLine={boardList[i]?.projectDue.split("").slice(2, 10).join("")}
           title={boardList[i]?.projectTitle}
-          filter={["Front", "Back"]}
-          // filter={boardList[i]?.projectWantedRole}
+          filter={bufRoleValue}
           academy={boardList[i]?.projectAcademy}
           image={boardList[i]?.projectFilePath}
+          id={boardList[i]?.projectId}
           key={`board item ${i}`}
         />
       );
@@ -80,7 +90,12 @@ function ProjectPage() {
       <SideContents>
         <MainHeader>프로젝트 필터</MainHeader>
         <SelectSide header={"지역"} contents={Place} handleSelect={PlaceSet} />
-        <CheckSide contents={Recruit} header={"모집 분야"}></CheckSide>
+        <CheckSide
+          contents={Recruit}
+          header={"모집 분야"}
+          handleSet={handleSet}
+        />
+        <SubmitButton>검색</SubmitButton>
       </SideContents>
       <MainContents>
         <Board>{handleBoardItemGen()}</Board>

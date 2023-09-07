@@ -96,42 +96,66 @@ function BoardItem({
   filter,
   academy,
   image,
+  id,
 }) {
   const FilterIcons = useCallback(() => {
     let contents = [];
     for (let i = 0; i < filter.length; i++) {
       switch (filter[i]) {
-        case "Back":
+        case "back":
           contents.push(
-            <FilterIcon src="./BackEnd.png" key={`Filter Icon ${i}`} />
+            <FilterIcon
+              src="http://projecttycoon.com/static/images/BackEnd.png"
+              key={`Filter Icon ${i}`}
+            />
           );
           break;
-        case "Front":
+        case "front":
           contents.push(
-            <FilterIcon src="./FrontEnd.png" key={`Filter Icon ${i}`} />
+            <FilterIcon
+              src="http://projecttycoon.com/static/images/FrontEnd.png"
+              key={`Filter Icon ${i}`}
+            />
           );
           break;
-        case "Bigdata":
+        case "bigData":
           contents.push(
-            <FilterIcon src="./BigData.png" key={`Filter Icon ${i}`} />
+            <FilterIcon
+              src="http://projecttycoon.com/static/images/BigData.png"
+              key={`Filter Icon ${i}`}
+            />
           );
           break;
         case "AI":
-          contents.push(<FilterIcon src="./AI.png" key={`Filter Icon ${i}`} />);
-          break;
-        case "Server":
           contents.push(
-            <FilterIcon src="./ServerAdmin.png" key={`Filter Icon ${i}`} />
+            <FilterIcon
+              src="http://projecttycoon.com/static/images/AI.png"
+              key={`Filter Icon ${i}`}
+            />
           );
           break;
-        case "Security":
+        case "server":
           contents.push(
-            <FilterIcon src="./Security.png" key={`Filter Icon ${i}`} />
+            <FilterIcon
+              src="http://projecttycoon.com/static/images/ServerAdmin.png"
+              key={`Filter Icon ${i}`}
+            />
           );
           break;
-        case "Network":
+        case "security":
           contents.push(
-            <FilterIcon src="./Network.png" key={`Filter Icon ${i}`} />
+            <FilterIcon
+              src="http://projecttycoon.com/static/images/Security.png"
+              key={`Filter Icon ${i}`}
+            />
+          );
+          break;
+        case "network":
+          contents.push(
+            <FilterIcon
+              src="http://projecttycoon.com/static/images/Network.png"
+              key={`Filter Icon ${i}`}
+            />
           );
           break;
       }
@@ -139,7 +163,11 @@ function BoardItem({
     return contents;
   }, [filter]);
   return (
-    <BoardBase>
+    <BoardBase
+      onClick={() => {
+        window.location.href = `http://projecttycoon.com/callPageProjectBoardDetail/${id}`;
+      }}
+    >
       <TagContainer>
         {status ? (
           <TagItem>
