@@ -101,6 +101,7 @@ function Navbar() {
             color="#35A29F"
             onClick={() => {
               Logout();
+              setUserData("");
             }}
           >
             <UserIcon src={userData?.memberFilePath} />
