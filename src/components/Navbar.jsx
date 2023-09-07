@@ -32,7 +32,7 @@ const Lists = styled.ul`
     return props.color ? props.color : "#071952";
   }};
 `;
-const UserIcon = styled.image`
+const UserIcon = styled.img`
   height: 50px;
 `;
 const Items = styled.li`
@@ -59,7 +59,6 @@ function Navbar() {
   const [userData, setUserData] = useState("");
   useEffect(() => {
     LoginCheck().then((res) => {
-      console.log(res);
       setUserData(res);
     });
   }, []);
@@ -102,6 +101,7 @@ function Navbar() {
             color="#35A29F"
             onClick={() => {
               Logout();
+              setUserData("");
             }}
           >
             <UserIcon src={userData?.memberFilePath} />
