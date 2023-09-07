@@ -8,6 +8,10 @@ export default defineConfig({
     outDir:'Default'
   },
   server:{
-    port:3000
+    port:3000,
+    proxy:{
+      "/sessionObject":"http://projecttycoon.com",
+      "/api/logoutProcess":"http://projecttycoon.com"
+    }
   }
 })
