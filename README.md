@@ -9,4 +9,5 @@
 # 프론트엔드 컴포넌트 리스트
 |File Name                 	|Info  	                |Progress       |
 |:--                        |:--:     		        |:--:           |
-|loginProcess               |로그인 테스트용 컴포넌트 |진행중          |
+|loginProcess               |로그인 테스트용 컴포넌트 |완료          |
+|DMProcess                  |DM 테스트용 페이지      |진행중         |
