@@ -65,7 +65,7 @@ function ProjectPage() {
       );
       let bufRoleValue = [];
       for (let j = 0; j < bufRole.length; j++) {
-        bufRoleValue.push(bufRole[j].role);
+        bufRoleValue.push(bufRole[j].Role);
       }
       contents.push(
         <BoardItem
