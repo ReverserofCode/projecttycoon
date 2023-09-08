@@ -48,12 +48,15 @@ function ProjectPage() {
   const [boardList, setBoardList] = useState([]);
   const [placeSelect, setPlaceSelect] = useState("");
   const [RecruitSelect, setRecruitSelect] = useState("");
+  /** 모집분야 설정 */
   const handleSet = useCallback((e) => {
     setRecruitSelect(e);
   }, []);
+  /** 학원지점 설정 */
   const PlaceSet = useCallback((value) => {
     setPlaceSelect(value);
   }, []);
+  /** 프로젝트 아이템 생성 */
   const handleBoardItemGen = useCallback(() => {
     let contents = [];
     for (let i = 0; i < boardList.length; i++) {
@@ -67,8 +70,8 @@ function ProjectPage() {
       contents.push(
         <BoardItem
           status={boardList[i]?.projectStatus}
-          createDate={boardList[i]?.createdAt.split("").slice(2, 10).join("")}
-          DeadLine={boardList[i]?.projectDue.split("").slice(2, 10).join("")}
+          createDate={boardList[i]?.createdAt.split("").slice(0, 10).join("")}
+          DeadLine={boardList[i]?.projectDue.split("").slice(0, 10).join("")}
           title={boardList[i]?.projectTitle}
           filter={bufRoleValue}
           academy={boardList[i]?.projectAcademy}
