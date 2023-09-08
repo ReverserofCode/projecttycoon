@@ -67,7 +67,7 @@ const InfoColumn = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   width: fit-content;
   gap: 15px;
 `;
@@ -95,6 +95,15 @@ const InfoCell = styled.div`
 const InfoTitle = styled.span``;
 const InfoValue = styled.span`
   font-weight: 600;
+`;
+const InfoRole = styled.img`
+  height: 30px;
+  padding: 3px;
+  box-sizing: border-box;
+`;
+const InfoPersonnel = styled.span`
+  font-weight: 600;
+  width: 50px;
 `;
 const InfoDate = styled.span`
   color: #949494;
@@ -140,18 +149,89 @@ function DetailPage() {
     projectFileName: "projectImage",
     projectScrapNum: 10,
   });
+  const handleRoleIcon = useCallback((role) => {
+    let contents = "";
+    switch (role) {
+      case "back":
+        contents = (
+          <InfoRole
+            src="http://projecttycoon.com/static/images/BackEnd.png"
+            key={`Filter Icon `}
+          />
+        );
+        break;
+      case "front":
+        contents = (
+          <InfoRole
+            src="http://projecttycoon.com/static/images/FrontEnd.png"
+            key={`Filter Icon `}
+          />
+        );
+        break;
+      case "bigData":
+        contents.push(
+          <InfoRole
+            src="http://projecttycoon.com/static/images/BigData.png"
+            key={`Filter Icon `}
+          />
+        );
+        break;
+      case "AI":
+        contents = (
+          <InfoRole
+            src="http://projecttycoon.com/static/images/AI.png"
+            key={`Filter Icon `}
+          />
+        );
+        break;
+      case "server":
+        contents = (
+          <InfoRole
+            src="http://projecttycoon.com/static/images/ServerAdmin.png"
+            key={`Filter Icon `}
+          />
+        );
+        break;
+      case "security":
+        contents = (
+          <InfoRole
+            src="http://projecttycoon.com/static/images/Security.png"
+            key={`Filter Icon `}
+          />
+        );
+        break;
+      case "network":
+        contents = (
+          <InfoRole
+            src="http://projecttycoon.com/static/images/Network.png"
+            key={`Filter Icon `}
+          />
+        );
+        break;
+      default:
+        contents = (
+          <InfoRole
+            src="http://projecttycoon.com/static/images/Network.png"
+            key={`Filter Icon `}
+          />
+        );
+    }
+    return contents;
+  }, []);
   const handleRecruits = useCallback(() => {
     let contents = [];
     for (let i = 0; i < value?.projectWantedRole.length; i++) {
       contents.push(
         <InfoRow>
-          <InfoValue>{value?.projectWantedRole[i].Role}</InfoValue>
-          <InfoValue>{value?.projectWantedRole[i].personnel}명</InfoValue>
+          {handleRoleIcon(value?.projectWantedRole[i].role)}
+          <InfoPersonnel>
+            {value?.projectWantedRole[i].personnel}명
+          </InfoPersonnel>
         </InfoRow>
       );
     }
     return contents;
-  }, [value?.projectWantedRole]);
+  }, [handleRoleIcon, value?.projectWantedRole]);
   useEffect(() => {
     const path = window.location.href.split("/");
     GetProjectFromID(path[4]).then((res) => {
@@ -197,9 +277,8 @@ function DetailPage() {
             </InfoRow>
           </InfoColumn>
           <InfoColumn>
-            <InfoRow></InfoRow>
             <InfoRow>
-              <InfoTitle>시작예정일</InfoTitle>
+              <InfoTitle>모집 마감일</InfoTitle>
               <InfoValue>{value?.projectDue.slice(0, 10)}</InfoValue>
             </InfoRow>
             <InfoRow>

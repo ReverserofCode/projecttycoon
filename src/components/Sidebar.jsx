@@ -53,7 +53,7 @@ const RecruitContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
 `;
 const Recruit = styled.div`
@@ -64,11 +64,13 @@ const Recruit = styled.div`
 `;
 const RecruitIcon = styled.span`
   height: 30px;
+  width: 80px;
 `;
 const RecruitNumbers = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 30px;
 `;
 const RecruitNow = styled.span``;
 const RecruitDone = styled.span``;
@@ -78,9 +80,11 @@ function Sidebar({ value }) {
     for (let i = 0; i < value?.projectWantedRole.length; i++) {
       contents.push(
         <Recruit key={`Recruit ${i}`}>
-          <RecruitIcon>{value?.projectWantedRole[i].Role}</RecruitIcon>
+          <RecruitIcon>
+            {String(value?.projectWantedRole[i].role).toUpperCase()}
+          </RecruitIcon>
           <RecruitNumbers>
-            <RecruitNow>{value?.projectWantedRole[i].comeplete}</RecruitNow>/
+            <RecruitNow>{value?.projectWantedRole[i].complete}</RecruitNow>/
             <RecruitDone>{value?.projectWantedRole[i].personnel}</RecruitDone>
           </RecruitNumbers>
         </Recruit>
