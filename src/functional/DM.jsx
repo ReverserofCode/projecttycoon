@@ -40,22 +40,48 @@ export const DMGetMessage = async (id) => {
   return await data;
 };
 export const DMSend = async (message, targetId, myId, dmId) => {
-  let data = await axios
-    .post(
-      `/api/dmsend`,
-      JSON.stringify({
-        DMFromId: myId,
-        DMToId: targetId,
-        DMContent: message,
-        DMroomId: dmId,
-        DMRead: false,
-      })
-    )
-    .then(() => {
-      console.log("message send! o(*￣▽￣*)ブ");
+  let data = JSON.stringify({
+    DMFromId: myId,
+    DMToId: targetId,
+    DMContent: message,
+    DMroomId: dmId,
+    DMRead: false,
+  });
+
+  let config = {
+    method: "post",
+    maxBodyLength: Infinity,
+    url: "/api/dmsend",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  await axios
+    .request(config)
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((error) => {
+      console.log(error);
     });
-  return await data;
+  // let data = await axios
+  //   .post(
+  //     `/api/dmsend`,
+  //     JSON.stringify({
+  //       DMFromId: myId,
+  //       DMToId: targetId,
+  //       DMContent: message,
+  //       DMroomId: dmId,
+  //       DMRead: false,
+  //     })
+  //   )
+  //   .then(() => {
+  //     console.log("message send! o(*￣▽￣*)ブ");
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+  // return await data;
 };

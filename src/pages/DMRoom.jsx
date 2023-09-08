@@ -82,50 +82,7 @@ const SubmitButton = styled.div`
 `;
 
 function DMRoom({ userData }) {
-  const [DMList, setDMList] = useState([
-    {
-      createdAt: "2023-09-07T08:03:18.073+00:00",
-      modifiedAt: "2023-09-07T08:03:18.073+00:00",
-      dmcontent: "리ㄹㅇㄴㄹㄴㅇㄹ얼서버!!",
-      dmread: false,
-      dmroom: {
-        dmroomId: 1,
-        dmfrom: {
-          createdAt: "2023-09-07T07:37:28.735+00:00",
-          modifiedAt: "2023-09-07T07:37:28.735+00:00",
-          memberId: "test10",
-          memberPw:
-            "$2a$10$d3YuOWKdU/ATN.nyPTFpR.CcZoNjjjalizZytETqc1SIIevW0aL9K",
-          memberNickname: "test10",
-          memberAcademy: "test",
-          memberRole: "test",
-          memberIntroduce: "test",
-          memberLink: "test",
-          memberFilePath: null,
-          memberFileName: null,
-          memberStack: null,
-          memberAuthority: ["USER"],
-        },
-        dmto: {
-          createdAt: "2023-09-07T07:37:54.786+00:00",
-          modifiedAt: "2023-09-07T07:37:54.786+00:00",
-          memberId: "test11",
-          memberPw:
-            "$2a$10$.FKxV5AFhJcJU81dfJwZ7elIuzYjt14qQwvsDS6.UNKlX92sBXWhi",
-          memberNickname: "test11",
-          memberAcademy: "test",
-          memberRole: "test",
-          memberIntroduce: "test",
-          memberLink: "test",
-          memberFilePath: null,
-          memberFileName: null,
-          memberStack: null,
-          memberAuthority: ["USER"],
-        },
-      },
-      dmid: 32,
-    },
-  ]);
+  const [DMList, setDMList] = useState([]);
   const [DMOpen, setDMOpen] = useState(false);
   const [sendMod, setSendMod] = useState("chatlist");
   const handleSetMod = useCallback((value) => {
@@ -144,6 +101,7 @@ function DMRoom({ userData }) {
         Mod={sendMod}
         myId={userData?.memberId}
         handleSetMod={handleSetMod}
+        handleGetList={handleGetList}
       />
       <HoverIcon
         onClick={() => {

@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { BsChatText, BsSend } from "react-icons/bs";
 import { AiOutlineStar } from "react-icons/ai";
-import { DMGetMessage, DMSend } from "../functional/DM";
+import { DMGetMessage, DMListCall, DMSend } from "../functional/DM";
 const Container = styled.div`
   transition: 200ms;
   box-sizing: border-box;
@@ -287,305 +287,10 @@ const ChatSendButton = styled.div`
   }
 `;
 
-function DMmodal({ status, DMList, Mod, handleSetMod, myId }) {
-  const [chatTarget, setChatTarget] = useState([
-    {
-      createdAt: "2023-09-07T08:03:18.073+00:00",
-      modifiedAt: "2023-09-07T08:03:18.073+00:00",
-      dmcontent: "리ㄹㅇㄴㄹㄴㅇㄹ얼서버!!",
-      dmread: true,
-      dmroom: {
-        dmroomId: 1,
-        dmfrom: {
-          createdAt: "2023-09-07T07:37:28.735+00:00",
-          modifiedAt: "2023-09-07T07:37:28.735+00:00",
-          memberId: "test10",
-          memberPw:
-            "$2a$10$d3YuOWKdU/ATN.nyPTFpR.CcZoNjjjalizZytETqc1SIIevW0aL9K",
-          memberNickname: "test10",
-          memberAcademy: "test",
-          memberRole: "test",
-          memberIntroduce: "test",
-          memberLink: "test",
-          memberFilePath: null,
-          memberFileName: null,
-          memberStack: null,
-          memberAuthority: ["USER"],
-        },
-        dmto: {
-          createdAt: "2023-09-07T07:37:54.786+00:00",
-          modifiedAt: "2023-09-07T07:37:54.786+00:00",
-          memberId: "test11",
-          memberPw:
-            "$2a$10$.FKxV5AFhJcJU81dfJwZ7elIuzYjt14qQwvsDS6.UNKlX92sBXWhi",
-          memberNickname: "test11",
-          memberAcademy: "test",
-          memberRole: "test",
-          memberIntroduce: "test",
-          memberLink: "test",
-          memberFilePath: null,
-          memberFileName: null,
-          memberStack: null,
-          memberAuthority: ["USER"],
-        },
-      },
-      dmid: 32,
-    },
-  ]);
-  const [chatData, setChatData] = useState([
-    {
-      createdAt: "2023-09-07T07:38:54.848+00:00",
-      modifiedAt: "2023-09-07T07:38:54.848+00:00",
-      dmcontent: "리얼서버!!",
-      dmread: true,
-      dmroom: {
-        dmroomId: 1,
-        dmfrom: {
-          createdAt: "2023-09-07T07:37:28.735+00:00",
-          modifiedAt: "2023-09-07T07:37:28.735+00:00",
-          memberId: "test10",
-          memberPw:
-            "$2a$10$d3YuOWKdU/ATN.nyPTFpR.CcZoNjjjalizZytETqc1SIIevW0aL9K",
-          memberNickname: "test10",
-          memberAcademy: "test",
-          memberRole: "test",
-          memberIntroduce: "test",
-          memberLink: "test",
-          memberFilePath: null,
-          memberFileName: null,
-          memberStack: null,
-          memberAuthority: ["USER"],
-        },
-        dmto: {
-          createdAt: "2023-09-07T07:37:54.786+00:00",
-          modifiedAt: "2023-09-07T07:37:54.786+00:00",
-          memberId: "test11",
-          memberPw:
-            "$2a$10$.FKxV5AFhJcJU81dfJwZ7elIuzYjt14qQwvsDS6.UNKlX92sBXWhi",
-          memberNickname: "test11",
-          memberAcademy: "test",
-          memberRole: "test",
-          memberIntroduce: "test",
-          memberLink: "test",
-          memberFilePath: null,
-          memberFileName: null,
-          memberStack: null,
-          memberAuthority: ["USER"],
-        },
-      },
-      dmid: 24,
-    },
-    {
-      createdAt: "2023-09-07T07:59:59.764+00:00",
-      modifiedAt: "2023-09-07T07:59:59.764+00:00",
-      dmcontent: "리ㄹㅇㄴㄹㄴㅇㄹ얼서버!!",
-      dmread: true,
-      dmroom: {
-        dmroomId: 1,
-        dmfrom: {
-          createdAt: "2023-09-07T07:37:28.735+00:00",
-          modifiedAt: "2023-09-07T07:37:28.735+00:00",
-          memberId: "test10",
-          memberPw:
-            "$2a$10$d3YuOWKdU/ATN.nyPTFpR.CcZoNjjjalizZytETqc1SIIevW0aL9K",
-          memberNickname: "test10",
-          memberAcademy: "test",
-          memberRole: "test",
-          memberIntroduce: "test",
-          memberLink: "test",
-          memberFilePath: null,
-          memberFileName: null,
-          memberStack: null,
-          memberAuthority: ["USER"],
-        },
-        dmto: {
-          createdAt: "2023-09-07T07:37:54.786+00:00",
-          modifiedAt: "2023-09-07T07:37:54.786+00:00",
-          memberId: "test11",
-          memberPw:
-            "$2a$10$.FKxV5AFhJcJU81dfJwZ7elIuzYjt14qQwvsDS6.UNKlX92sBXWhi",
-          memberNickname: "test11",
-          memberAcademy: "test",
-          memberRole: "test",
-          memberIntroduce: "test",
-          memberLink: "test",
-          memberFilePath: null,
-          memberFileName: null,
-          memberStack: null,
-          memberAuthority: ["USER"],
-        },
-      },
-      dmid: 28,
-    },
-    {
-      createdAt: "2023-09-07T08:01:14.881+00:00",
-      modifiedAt: "2023-09-07T08:01:14.881+00:00",
-      dmcontent: "ㄹㄴㅇㄹㄴㅇㄹ리ㄹㅇㄴㄹㄴㅇㄹ얼서버!!",
-      dmread: true,
-      dmroom: {
-        dmroomId: 1,
-        dmfrom: {
-          createdAt: "2023-09-07T07:37:28.735+00:00",
-          modifiedAt: "2023-09-07T07:37:28.735+00:00",
-          memberId: "test10",
-          memberPw:
-            "$2a$10$d3YuOWKdU/ATN.nyPTFpR.CcZoNjjjalizZytETqc1SIIevW0aL9K",
-          memberNickname: "test10",
-          memberAcademy: "test",
-          memberRole: "test",
-          memberIntroduce: "test",
-          memberLink: "test",
-          memberFilePath: null,
-          memberFileName: null,
-          memberStack: null,
-          memberAuthority: ["USER"],
-        },
-        dmto: {
-          createdAt: "2023-09-07T07:37:54.786+00:00",
-          modifiedAt: "2023-09-07T07:37:54.786+00:00",
-          memberId: "test11",
-          memberPw:
-            "$2a$10$.FKxV5AFhJcJU81dfJwZ7elIuzYjt14qQwvsDS6.UNKlX92sBXWhi",
-          memberNickname: "test11",
-          memberAcademy: "test",
-          memberRole: "test",
-          memberIntroduce: "test",
-          memberLink: "test",
-          memberFilePath: null,
-          memberFileName: null,
-          memberStack: null,
-          memberAuthority: ["USER"],
-        },
-      },
-      dmid: 29,
-    },
-    {
-      createdAt: "2023-09-07T08:02:01.749+00:00",
-      modifiedAt: "2023-09-07T08:02:01.749+00:00",
-      dmcontent: "ㄹㄴㅇㄹㄴㅇㄹ리ㄹㅇㄴㄹㄴㅇㄹ얼서버!!",
-      dmread: true,
-      dmroom: {
-        dmroomId: 1,
-        dmfrom: {
-          createdAt: "2023-09-07T07:37:28.735+00:00",
-          modifiedAt: "2023-09-07T07:37:28.735+00:00",
-          memberId: "test10",
-          memberPw:
-            "$2a$10$d3YuOWKdU/ATN.nyPTFpR.CcZoNjjjalizZytETqc1SIIevW0aL9K",
-          memberNickname: "test10",
-          memberAcademy: "test",
-          memberRole: "test",
-          memberIntroduce: "test",
-          memberLink: "test",
-          memberFilePath: null,
-          memberFileName: null,
-          memberStack: null,
-          memberAuthority: ["USER"],
-        },
-        dmto: {
-          createdAt: "2023-09-07T07:37:54.786+00:00",
-          modifiedAt: "2023-09-07T07:37:54.786+00:00",
-          memberId: "test11",
-          memberPw:
-            "$2a$10$.FKxV5AFhJcJU81dfJwZ7elIuzYjt14qQwvsDS6.UNKlX92sBXWhi",
-          memberNickname: "test11",
-          memberAcademy: "test",
-          memberRole: "test",
-          memberIntroduce: "test",
-          memberLink: "test",
-          memberFilePath: null,
-          memberFileName: null,
-          memberStack: null,
-          memberAuthority: ["USER"],
-        },
-      },
-      dmid: 30,
-    },
-    {
-      createdAt: "2023-09-07T08:02:29.095+00:00",
-      modifiedAt: "2023-09-07T08:02:29.095+00:00",
-      dmcontent: "@@@@@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@@@@",
-      dmread: true,
-      dmroom: {
-        dmroomId: 1,
-        dmfrom: {
-          createdAt: "2023-09-07T07:37:28.735+00:00",
-          modifiedAt: "2023-09-07T07:37:28.735+00:00",
-          memberId: "test10",
-          memberPw:
-            "$2a$10$d3YuOWKdU/ATN.nyPTFpR.CcZoNjjjalizZytETqc1SIIevW0aL9K",
-          memberNickname: "test10",
-          memberAcademy: "test",
-          memberRole: "test",
-          memberIntroduce: "test",
-          memberLink: "test",
-          memberFilePath: null,
-          memberFileName: null,
-          memberStack: null,
-          memberAuthority: ["USER"],
-        },
-        dmto: {
-          createdAt: "2023-09-07T07:37:54.786+00:00",
-          modifiedAt: "2023-09-07T07:37:54.786+00:00",
-          memberId: "test11",
-          memberPw:
-            "$2a$10$.FKxV5AFhJcJU81dfJwZ7elIuzYjt14qQwvsDS6.UNKlX92sBXWhi",
-          memberNickname: "test11",
-          memberAcademy: "test",
-          memberRole: "test",
-          memberIntroduce: "test",
-          memberLink: "test",
-          memberFilePath: null,
-          memberFileName: null,
-          memberStack: null,
-          memberAuthority: ["USER"],
-        },
-      },
-      dmid: 31,
-    },
-    {
-      createdAt: "2023-09-07T08:03:18.073+00:00",
-      modifiedAt: "2023-09-07T08:03:18.073+00:00",
-      dmcontent: "리ㄹㅇㄴㄹㄴㅇㄹ얼서버!!",
-      dmread: true,
-      dmroom: {
-        dmroomId: 1,
-        dmfrom: {
-          createdAt: "2023-09-07T07:37:28.735+00:00",
-          modifiedAt: "2023-09-07T07:37:28.735+00:00",
-          memberId: "test10",
-          memberPw:
-            "$2a$10$d3YuOWKdU/ATN.nyPTFpR.CcZoNjjjalizZytETqc1SIIevW0aL9K",
-          memberNickname: "test10",
-          memberAcademy: "test",
-          memberRole: "test",
-          memberIntroduce: "test",
-          memberLink: "test",
-          memberFilePath: null,
-          memberFileName: null,
-          memberStack: null,
-          memberAuthority: ["USER"],
-        },
-        dmto: {
-          createdAt: "2023-09-07T07:37:54.786+00:00",
-          modifiedAt: "2023-09-07T07:37:54.786+00:00",
-          memberId: "test11",
-          memberPw:
-            "$2a$10$.FKxV5AFhJcJU81dfJwZ7elIuzYjt14qQwvsDS6.UNKlX92sBXWhi",
-          memberNickname: "test11",
-          memberAcademy: "test",
-          memberRole: "test",
-          memberIntroduce: "test",
-          memberLink: "test",
-          memberFilePath: null,
-          memberFileName: null,
-          memberStack: null,
-          memberAuthority: ["USER"],
-        },
-      },
-      dmid: 32,
-    },
-  ]);
+function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
+  const [targetId, setTargetId] = useState("");
+  const [chatTarget, setChatTarget] = useState([]);
+  const [chatData, setChatData] = useState([]);
   const ChatRef = useRef(null);
   const [chatInput, setChatInput] = useState("");
   const handleSend = useCallback(() => {
@@ -612,9 +317,7 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId }) {
       hour = hour < 10 ? "0" + hour : hour;
       min = min < 10 ? "0" + min : min;
       const time = hour + ":" + min;
-      if (
-        chatData[i].dmroom.dmfrom.memberId === chatTarget.dmroom.dmto.memberId
-      ) {
+      if (chatData[i].dmroom.dmfrom.memberId === targetId) {
         contents.push(
           <ChatGet key={`Chat ${i}`}>
             <ChatDateZone>
@@ -641,7 +344,7 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId }) {
       }
     }
     return contents;
-  }, [chatData, chatTarget]);
+  }, [chatData, targetId]);
   const handleDMListGen = useCallback(() => {
     let contents = [];
     for (let i = 0; i < DMList.length; i++) {
@@ -657,6 +360,11 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId }) {
           onClick={() => {
             handleSetMod("chat");
             setChatTarget(DMList[i]);
+            setTargetId(
+              DMList[i]?.dmroom.dmto.memberId === myId
+                ? DMList[i]?.dmroom.dmfrom.memberId
+                : DMList[i]?.dmroom.dmto.memberId
+            );
             DMGetMessage(DMList[i]?.dmroom.dmroomId).then((res) => {
               setChatData(res);
             });
@@ -679,7 +387,7 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId }) {
       );
     }
     return contents;
-  }, [DMList, handleSetMod]);
+  }, [DMList, handleSetMod, myId]);
   return (
     <Container status={status}>
       <HeaderZone>
@@ -691,6 +399,7 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId }) {
           <IconButton
             onClick={() => {
               handleSetMod("chatlist");
+              handleGetList();
             }}
           >
             <BsChatText />
@@ -702,8 +411,19 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId }) {
       ) : Mod === "chat" ? (
         <ChatBase>
           <ChatHeaderZone>
-            <DMProfileIcon src={chatTarget.dmroom.dmto.memberFilePath} />
-            <DMInfoName> {chatTarget.dmroom.dmto.memberNickname}</DMInfoName>
+            <DMProfileIcon
+              src={
+                chatTarget.dmroom.dmto.memberId === targetId
+                  ? chatTarget.dmroom.dmto.memberFilePath
+                  : chatTarget.dmroom.dmfrom.memberFilePath
+              }
+            />
+            <DMInfoName>
+              {" "}
+              {chatTarget.dmroom.dmto.memberId === targetId
+                ? chatTarget.dmroom.dmto.memberNickname
+                : chatTarget.dmroom.dmfrom.memberNickname}
+            </DMInfoName>
           </ChatHeaderZone>
           <ChatListUp
             ref={ChatRef}
