@@ -4,7 +4,7 @@ package com.projecttycoon.demo.domain.service;
 import com.projecttycoon.demo.domain.Entity.ProjectEntity;
 import com.projecttycoon.demo.domain.dto.ProjectRequestDTO;
 import com.projecttycoon.demo.domain.repository.ProjectRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.util.UUID;
 
+@Log4j2
 @Service
 public class ProjectService {
 
@@ -27,6 +28,8 @@ public class ProjectService {
     public void createProject(ProjectRequestDTO projectRequestDTO, MultipartFile file) throws Exception {
 
         if(file != null){
+
+            log.info("OriginalFile Name : "+file.getOriginalFilename());
             // 파일 업로드 처리 시작
             String filePath = System.getProperty("user.dir") // 프로젝트 경로를 가져옴
                     + "/src/main/webapp/"; // 파일이 저장될 폴더의 경로
