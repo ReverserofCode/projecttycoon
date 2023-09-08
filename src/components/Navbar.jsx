@@ -1,16 +1,17 @@
 import styled from "@emotion/styled";
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import "./Navbar.css";
+import { LoginCheck } from "../functional/LoginCheck";
+import { Logout } from "../functional/Logout";
 const Container = styled.div`
   display: flex;
   box-sizing: border-box;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 0 30px;
   width: 100%;
   border-bottom: 1px solid #071952;
-  @media screen and (min-width: 700px) {
+  @media screen and (max-width: 700px) {
     height: 64px;
   }
 `;
@@ -30,6 +31,9 @@ const Lists = styled.ul`
   color: ${(props) => {
     return props.color ? props.color : "#071952";
   }};
+`;
+const UserIcon = styled.img`
+  height: 50px;
 `;
 const Items = styled.li`
   font-size: 20px;
@@ -52,7 +56,12 @@ const Wrap = styled.div`
 `;
 
 function Navbar() {
-  const { params } = useParams();
+  const [userData, setUserData] = useState("");
+  useEffect(() => {
+    LoginCheck().then((res) => {
+      setUserData(res);
+    });
+  }, []);
   return (
     <Container>
       <Wrap>
@@ -77,14 +86,28 @@ function Navbar() {
             <Items>새로운 글쓰기</Items>
           </Link>
         </Lists>
-        <Lists gap={"47px"} color="#35A29F">
-          <Link className="user" href="http://projecttycoon.com/api/login">
-            <Items>로그인</Items>
-          </Link>
-          <Link className="user" href="http://projecttycoon.com/api/signup">
-            <Items>회원가입</Items>
-          </Link>
-        </Lists>
+        {userData === "" ? (
+          <Lists gap={"47px"} color="#35A29F">
+            <Link className="user" href="http://projecttycoon.com/api/login">
+              <Items>로그인</Items>
+            </Link>
+            <Link className="user" href="http://projecttycoon.com/api/signup">
+              <Items>회원가입</Items>
+            </Link>
+          </Lists>
+        ) : (
+          <Lists
+            gap={"20px"}
+            color="#35A29F"
+            onClick={() => {
+              Logout();
+              setUserData("");
+            }}
+          >
+            <UserIcon src={userData?.memberFilePath} />
+            <Items>로그아웃</Items>
+          </Lists>
+        )}
       </Wrap>
     </Container>
   );
