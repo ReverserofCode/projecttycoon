@@ -165,7 +165,7 @@ const ChatListUp = styled.div`
   align-items: center;
   padding: 5px;
   width: 100%;
-  height: 100%;
+  height: 424px;
   overflow-y: scroll;
   gap: 10px;
   ::-webkit-scrollbar-track {
@@ -317,7 +317,7 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
       hour = hour < 10 ? "0" + hour : hour;
       min = min < 10 ? "0" + min : min;
       const time = hour + ":" + min;
-      if (chatData[i].dmroom.dmfrom.memberId === targetId) {
+      if (chatData[i].dmroom.dmfrom.memberId !== targetId) {
         contents.push(
           <ChatGet key={`Chat ${i}`}>
             <ChatDateZone>
