@@ -4,6 +4,7 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import Sidebar from "../components/Sidebar";
 import purify from "dompurify";
 import { GetProjectFromID } from "../functional/GetProject";
+import "highlight.js/styles/obsidian.css";
 
 const Container = styled.div`
   display: flex;
