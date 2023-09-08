@@ -69,7 +69,6 @@ public class WebController {
         Optional<ProjectEntity> object = projectRepository.findById(id);
 
         if (object.isPresent()) {
-
             log.info("call Detail Page and target Object detected");
             mav.addObject("projectDTO", object.get());
             mav.setViewName("forward:/static/PageProjectBoardDetail/index.html");
@@ -82,6 +81,12 @@ public class WebController {
     public String callSingUpPage(){
        log.info("call SingUpPage");
        return "/static/PageSignUp/index.html";
+    }
+
+    @GetMapping("/callDmProcess")
+    public String callDmProcess(){
+       log.info("call DmProcess ");
+       return "/static/DMProcess/index.html";
     }
 
 }

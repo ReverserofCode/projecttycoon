@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Log4j2
 @RestController
 @RequiredArgsConstructor
@@ -68,4 +70,9 @@ public class MemberController {
         return memberRequestDTO;
     }
 
+    @GetMapping("/api/getClientIp")
+    public String getClientIp (HttpServletRequest request){
+        String clientIp = request.getRemoteAddr();
+        return clientIp;
+    }
 }

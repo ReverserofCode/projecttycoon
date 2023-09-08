@@ -68,7 +68,11 @@ public class DMService {
     // 현재 사용자의 모든 DM방 불러오기
     @Transactional(readOnly = true)
     public List<DMEntity> readDMroomList(String memberId) {
+
         MemberEntity user = memberRepository.findByMemberId(memberId).get();
+
+
+
         System.out.println(user);
         List<DMroomEntity> response_roomList = dmroomRepository.findDMroomList(user);
         List<DMEntity> response_lastDMList = new ArrayList<DMEntity>() ;
