@@ -223,7 +223,7 @@ function DetailPage() {
     for (let i = 0; i < value?.projectWantedRole.length; i++) {
       contents.push(
         <InfoRow>
-          {handleRoleIcon(value?.projectWantedRole[i].role)}
+          {handleRoleIcon(value?.projectWantedRole[i].Role)}
           <InfoPersonnel>
             {value?.projectWantedRole[i].personnel}명
           </InfoPersonnel>

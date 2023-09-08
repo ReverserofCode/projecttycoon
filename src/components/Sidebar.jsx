@@ -81,7 +81,7 @@ function Sidebar({ value }) {
       contents.push(
         <Recruit key={`Recruit ${i}`}>
           <RecruitIcon>
-            {String(value?.projectWantedRole[i].role).toUpperCase()}
+            {String(value?.projectWantedRole[i].Role).toUpperCase()}
           </RecruitIcon>
           <RecruitNumbers>
             <RecruitNow>{value?.projectWantedRole[i].complete}</RecruitNow>/
