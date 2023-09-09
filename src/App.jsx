@@ -10,6 +10,7 @@ const MainContainer = styled.div`
   width: 100%;
   min-height: 100%;
 `;
+/** 메인 콘텐츠가 담기는 사이즈 제한 콘테이너 태그 */
 const ContentsWrap = styled.div`
   max-width: 1440px;
   width: 100%;

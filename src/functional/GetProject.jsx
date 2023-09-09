@@ -1,5 +1,6 @@
 import axios from "axios";
 
+/** 프로젝트 ID를 통해 프로젝트르 불러오는 function */
 export const GetProjectFromID = async (id) => {
   const data = await axios
     .get(`/api/project/${id}`)
