@@ -273,7 +273,7 @@ function DetailPage() {
       //   setMyId(res);
       // });
     });
-  }, []);
+  }, [handleSetValue]);
   return (
     <Container>
       <SideContents>

@@ -9,7 +9,6 @@ export const RoleUpdate = async (origin, role) => {
   }
   if (ComPer === role.length) roleStatus = false;
   let buf = {
-    projectId: 69,
     projectTitle: origin.projectTitle,
     projectContent: origin.projectContent,
     projectWantedRole: role,
@@ -23,11 +22,15 @@ export const RoleUpdate = async (origin, role) => {
     projectScrapNum: origin.projectScrapNum,
   };
   let data = new FormData();
-  data.append("projectRequestDTO", new Blob[JSON.stringify(buf)](), {
-    contentType: "application/json",
-  });
+  data.append(
+    "projectRequestDTO",
+    new Blob([JSON.stringify(buf)], { type: "application/json" }),
+    {
+      contentType: "application/json",
+    }
+  );
   await axios
-    .post(``)
+    .put(`/api/project/${origin.projectId}`)
     .then(() => {})
     .catch((err) => {
       console.log(err);
