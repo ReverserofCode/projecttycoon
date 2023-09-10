@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Navbar.css";
-import { LoginCheck } from "../functional/LoginCheck";
-import { Logout } from "../functional/Logout";
+import LoginCheck from "../functional/LoginCheck";
+import Logout from "../functional/Logout";
 const Container = styled.div`
   display: flex;
   box-sizing: border-box;
@@ -15,6 +15,7 @@ const Container = styled.div`
     height: 64px;
   }
 `;
+/** 네비게이션 바의 로고 태그 */
 const NavHeader = styled.img`
   width: 55px;
   height: 55px;
@@ -22,6 +23,7 @@ const NavHeader = styled.img`
     scale: 1.11;
   }
 `;
+/** 네비게이션 바의 페이지를 담고잇는 콘테이너 리스트 태그 */
 const Lists = styled.ul`
   display: flex;
   justify-content: center;
@@ -32,9 +34,7 @@ const Lists = styled.ul`
     return props.color ? props.color : "#071952";
   }};
 `;
-const UserIcon = styled.img`
-  height: 50px;
-`;
+/** 네비게이션 바의 페이지를 담당하는 리스트 아이템 태그 */
 const Items = styled.li`
   font-size: 20px;
   user-select: none;
@@ -44,9 +44,11 @@ const Items = styled.li`
     font-weight: 600;
   }
 `;
+/** 네비게이션 바의 페이지 이동 태그 */
 const Link = styled.a`
   text-decoration: none;
 `;
+/** 네비게이션 바의 width를 제한하는 태그 */
 const Wrap = styled.div`
   width: 1400px;
   margin: 0 auto;

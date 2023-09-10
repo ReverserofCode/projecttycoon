@@ -1,4 +1,5 @@
 import axios from "axios";
+/** DM 리스트를 가져오는 function */
 export const DMListCall = async (id) => {
   let data = await axios
     .get(`/api/dmroomList/${id}`)
@@ -10,6 +11,7 @@ export const DMListCall = async (id) => {
     });
   return await data;
 };
+/** DM방을 생성하는 function */
 export const DMRoomGen = async (myId, targetId) => {
   let data = await axios
     .post(
@@ -28,6 +30,7 @@ export const DMRoomGen = async (myId, targetId) => {
     });
   return await data;
 };
+/** DM방의 메세지를 가져오는 function */
 export const DMGetMessage = async (id) => {
   let data = await axios
     .get(`/api/getMessages/${id}`)
@@ -39,6 +42,7 @@ export const DMGetMessage = async (id) => {
     });
   return await data;
 };
+/** DM방에 메세지를 보내는 function */
 export const DMSend = async (message, targetId, myId, dmId) => {
   let data = JSON.stringify({
     DMFromId: myId,
@@ -66,22 +70,4 @@ export const DMSend = async (message, targetId, myId, dmId) => {
     .catch((error) => {
       console.log(error);
     });
-  // let data = await axios
-  //   .post(
-  //     `/api/dmsend`,
-  //     JSON.stringify({
-  //       DMFromId: myId,
-  //       DMToId: targetId,
-  //       DMContent: message,
-  //       DMroomId: dmId,
-  //       DMRead: false,
-  //     })
-  //   )
-  //   .then(() => {
-  //     console.log("message send! o(*￣▽￣*)ブ");
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-  // return await data;
 };

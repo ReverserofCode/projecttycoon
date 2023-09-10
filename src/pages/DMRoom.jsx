@@ -2,7 +2,8 @@ import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import { AiOutlinePlus } from "react-icons/ai";
 import DMmodal from "../components/DMmodal";
-import { DMListCall, DMRoomGen } from "../functional/DM";
+import { DMListCall } from "../functional/DM";
+/** DM room을 담고있는 콘테이너 태그 */
 const Container = styled.div`
   transition: 200ms;
   display: flex;
@@ -12,6 +13,7 @@ const Container = styled.div`
   width: 100%;
   position: relative;
 `;
+/** 하단에 fix되어 항상 보이는 버튼 태그 */
 const HoverIcon = styled.div`
   display: flex;
   justify-content: center;
@@ -50,44 +52,18 @@ const HoverIcon = styled.div`
     }
   }
 `;
-const DMTester = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px dashed black;
-  padding: 5px;
-`;
-const DMTestInput = styled.input`
-  height: 30px;
-  width: 100px;
-  margin-right: 10px;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid black;
-  padding: 0 10px;
-`;
-const SubmitButton = styled.div`
-  display: flex;
-  padding: 5px 10px;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid black;
-  user-select: none;
-  :hover {
-    background-color: #c9c9c9;
-  }
-  :active {
-    background-color: white;
-  }
-`;
-
 function DMRoom({ userData }) {
+  /** 자신의 DM 리스트 state */
   const [DMList, setDMList] = useState([]);
+  /** DM 창이 열려있는지 확인하는 state */
   const [DMOpen, setDMOpen] = useState(false);
+  /** DM창의 모드를 확인하는 state */
   const [sendMod, setSendMod] = useState("chatlist");
+  /** DM창의 모드를 변경하는 function */
   const handleSetMod = useCallback((value) => {
     setSendMod(value);
   }, []);
+  /** 자신의 ID를 통해 자신의 DM 리스트를 가져오는 funtion */
   const handleGetList = useCallback(() => {
     DMListCall(userData?.memberId).then((res) => {
       setDMList(res);
