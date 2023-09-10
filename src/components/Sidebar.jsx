@@ -220,28 +220,28 @@ function Sidebar({ value, myId, handleSetValue }) {
           onClick={() => {
             setModifyMod(false);
             RoleUpdate(value, Roles).then(() => {
-              const path = window.location.href.split("/");
-              GetProjectFromID(path[4]).then((res) => {
-                let buf = {
-                  createdAt: res.createdAt,
-                  modifiedAt: res.modifiedAt,
-                  projectId: res.projectId,
-                  projectTitle: res.projectTitle,
-                  projectContent: res.projectContent,
-                  projectWantedRole: JSON.parse(
-                    res.projectWantedRole.replace(/'/g, '"')
-                  ),
-                  projectDue: res.projectDue,
-                  projectAcademy: res.projectAcademy,
-                  projectStatus: res.projectStatus,
-                  projectWriterId: res.projectWriterId,
-                  projectWriterNick: res.projectWriterNick,
-                  projectFilePath: res.projectFilePath,
-                  projectFileName: res.projectFileName,
-                  projectScrapNum: res.projectScrapNum,
-                };
-                handleSetValue(buf);
-              });
+              // const path = window.location.href.split("/");
+              // GetProjectFromID(path[4]).then((res) => {
+              //   let buf = {
+              //     createdAt: res.createdAt,
+              //     modifiedAt: res.modifiedAt,
+              //     projectId: res.projectId,
+              //     projectTitle: res.projectTitle,
+              //     projectContent: res.projectContent,
+              //     projectWantedRole: JSON.parse(
+              //       res.projectWantedRole.replace(/'/g, '"')
+              //     ),
+              //     projectDue: res.projectDue,
+              //     projectAcademy: res.projectAcademy,
+              //     projectStatus: res.projectStatus,
+              //     projectWriterId: res.projectWriterId,
+              //     projectWriterNick: res.projectWriterNick,
+              //     projectFilePath: res.projectFilePath,
+              //     projectFileName: res.projectFileName,
+              //     projectScrapNum: res.projectScrapNum,
+              //   };
+              //   handleSetValue(buf);
+              // });
             });
           }}
         >

@@ -2,37 +2,34 @@ import axios from "axios";
 
 export const RoleUpdate = async (origin, role) => {
   let roleStatus = origin.projectStatus;
-  let ComPer = role.length;
+  let count = 0;
   for (let i = 0; i < role.length; i++) {
-    if (!roleStatus) break;
-    if (role[i].complete === role[i].personnel) ComPer += 1;
+    if (role[i].complete === role[i].personnel) count += 1;
+    else break;
   }
-  if (ComPer === role.length) roleStatus = false;
-  let buf = {
-    projectTitle: origin.projectTitle,
-    projectContent: origin.projectContent,
-    projectWantedRole: role,
-    projectDue: origin.projectDue,
-    projectAcademy: origin.projectAcademy,
+  if (count === role.length) roleStatus = false;
+  else roleStatus = true;
+  let data = JSON.stringify({
+    projectWantedRole: JSON.stringify(role),
     projectStatus: roleStatus,
-    projectWriterId: origin.projectWriterId,
-    projectWriterNick: origin.projectWriterNick,
-    projectFilePath: origin.projectFilePath,
-    projectFileName: origin.projectFileName,
-    projectScrapNum: origin.projectScrapNum,
+  });
+
+  let config = {
+    method: "put",
+    maxBodyLength: Infinity,
+    url: "http://projecttycoon.com/api/project/14",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: data,
   };
-  let data = new FormData();
-  data.append(
-    "projectRequestDTO",
-    new Blob([JSON.stringify(buf)], { type: "application/json" }),
-    {
-      contentType: "application/json",
-    }
-  );
-  await axios
-    .put(`/api/project/${origin.projectId}`)
-    .then(() => {})
-    .catch((err) => {
-      console.log(err);
+  console.log(data);
+  axios
+    .request(config)
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch((error) => {
+      console.log(error);
     });
 };
