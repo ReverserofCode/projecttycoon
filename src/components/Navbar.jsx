@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Navbar.css";
 import LoginCheck from "../functional/LoginCheck";
-import LogOut from "../functional/LogOut";
+import Logout from "../functional/Logout";
 const Container = styled.div`
   display: flex;
   box-sizing: border-box;
