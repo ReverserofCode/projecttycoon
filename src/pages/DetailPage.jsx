@@ -137,7 +137,7 @@ const Preview = styled.div`
     background-color: #ffffebd1;
   }
 `;
-function DetailPage() {
+function DetailPage({ userData }) {
   const [value, setValue] = useState({
     createdAt: "2023-08-19T06:54:37.741+00:00",
     modifiedAt: "2023-08-19T06:54:37.741+00:00",
@@ -160,7 +160,6 @@ function DetailPage() {
     projectFileName: "projectImage",
     projectScrapNum: 10,
   });
-  const [myId, setMyId] = useState("Tester");
   /** 모집분야를 상세 설명란에 Icon으로 표기해주는 function */
   const handleRoleIcon = useCallback((role) => {
     let contents = "";
@@ -269,16 +268,17 @@ function DetailPage() {
         projectScrapNum: res.projectScrapNum,
       };
       handleSetValue(buf);
-      // SessionIdCall().then((res) => {
-      //   setMyId(res);
-      // });
     });
   }, [handleSetValue]);
   return (
     <Container>
       <SideContents>
         <AiOutlineArrowLeft fontSize={"30px"} />
-        <Sidebar value={value} myId={myId} handleSetValue={handleSetValue} />
+        <Sidebar
+          value={value}
+          userData={userData}
+          handleSetValue={handleSetValue}
+        />
       </SideContents>
       <MainContents>
         <MainTitle>{value?.projectTitle}</MainTitle>

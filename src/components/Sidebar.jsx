@@ -136,7 +136,7 @@ const RecruitModifyButton = styled.div`
   }
 `;
 
-function Sidebar({ value, myId, handleSetValue }) {
+function Sidebar({ value, userData, handleSetValue }) {
   /** 모집인원 수정 모드 */
   const [modifyMod, setModifyMod] = useState(false);
   /** 수정하기 위한 복제 projectWantedRole */
@@ -154,7 +154,7 @@ function Sidebar({ value, myId, handleSetValue }) {
             <RecruitNow>{Roles[i]?.complete}</RecruitNow>/
             <RecruitDone>{Roles[i]?.personnel}</RecruitDone>
           </RecruitNumbers>
-          {value.projectWriterId === myId && modifyMod ? (
+          {value.projectWriterId === userData.memberId && modifyMod ? (
             <RecruitModifyContainer>
               <RecruitModifyButton
                 onClick={() => {
@@ -186,7 +186,13 @@ function Sidebar({ value, myId, handleSetValue }) {
       );
     }
     return contents;
-  }, [Roles, modifyMod, myId, value?.projectWantedRole, value.projectWriterId]);
+  }, [
+    Roles,
+    modifyMod,
+    userData.memberId,
+    value?.projectWantedRole,
+    value.projectWriterId,
+  ]);
   useEffect(() => {
     setRoles(value?.projectWantedRole);
   }, [value?.projectWantedRole]);
@@ -204,7 +210,7 @@ function Sidebar({ value, myId, handleSetValue }) {
         <Title>모집 분야</Title>
         <RecruitContainer>{handleRecruit()}</RecruitContainer>
       </Contents>
-      {value.projectWriterId === myId && !modifyMod ? (
+      {value.projectWriterId === userData.memberId && !modifyMod ? (
         <RecruitSubmitButton
           onClick={() => {
             setModifyMod(true);
@@ -215,7 +221,7 @@ function Sidebar({ value, myId, handleSetValue }) {
       ) : (
         ""
       )}
-      {value.projectWriterId === myId && modifyMod ? (
+      {value.projectWriterId === userData.memberId && modifyMod ? (
         <RecruitSubmitButton
           onClick={() => {
             setModifyMod(false);

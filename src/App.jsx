@@ -17,12 +17,16 @@ const ContentsWrap = styled.div`
 `;
 
 function App() {
+  const [userData, setUserData] = useState("");
+  const handleSetUserData = useCallback((value) => {
+    setUserData(value);
+  }, []);
   return (
     <MainContainer>
-      <Navbar />
-      <ContentsWrap>
-        <DetailPage />
-      </ContentsWrap>
+      <Navbar userData={userData} handleSetUserData={handleSetUserData} />
+      <Wrap>
+        <DetailPage userData={userData} />
+      </Wrap>
     </MainContainer>
   );
 }
