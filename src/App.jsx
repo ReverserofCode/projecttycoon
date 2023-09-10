@@ -16,11 +16,14 @@ const ContentsWrap = styled.div`
   max-width: 1440px;
   width: 100%;
 `;
-
 function App() {
+  const [userData, setUserData] = useState("");
+  const handleSetUserData = useCallback((value) => {
+    setUserData(value);
+  }, []);
   return (
     <MainContainer>
-      <Navbar />
+      <Navbar userData={userData} handleSetUserData={handleSetUserData} />
       <ContentsWrap>
         <ProjectPage />
       </ContentsWrap>
