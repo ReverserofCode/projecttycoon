@@ -3,6 +3,7 @@ import React, { useCallback } from "react";
 import { BsClipboard2Check } from "react-icons/bs";
 import { BiStopwatch } from "react-icons/bi";
 import { TbSchool } from "react-icons/tb";
+/** 보드아이템을 담고있는 컨테이너 태그 */
 const BoardBase = styled.div`
   transition: 300ms ease-in-out;
   display: flex;
@@ -20,6 +21,7 @@ const BoardBase = styled.div`
     scale: 1.03;
   }
 `;
+/** 보드아이템의 태그들을 담고있는 콘테이너 태그 */
 const TagContainer = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -28,6 +30,7 @@ const TagContainer = styled.div`
   width: 100%;
   height: 27px;
 `;
+/** 보드아이템의 태그 */
 const TagItem = styled.div`
   display: flex;
   box-sizing: border-box;
@@ -40,6 +43,7 @@ const TagItem = styled.div`
   border: 2px solid #f4d160;
   border-radius: 15px;
 `;
+/** 보드아이템의 메인이미지를 담고있는 콘테이너 태그 */
 const PosterContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -49,9 +53,11 @@ const PosterContainer = styled.div`
   overflow: hidden;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
+/** 보드아이템의 메인이미지 태그 */
 const Poster = styled.img`
   height: 100px;
 `;
+/** 보드아이템의 프로젝트 제목 및 날짜를 담고있는 콘테이너 태그 */
 const ProjectInfo = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -60,10 +66,12 @@ const ProjectInfo = styled.div`
   width: 100%;
   gap: 10px;
 `;
+/** 보드아이템의 프로젝트 날짜 태그 */
 const Date = styled.span`
   font-size: 16px;
   color: rgba(148, 148, 148, 0.67);
 `;
+/** 보드아이템의 프로젝트 제목 태그 */
 const Title = styled.span`
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -74,6 +82,7 @@ const Title = styled.span`
   word-break: break-word;
   font-weight: bold;
 `;
+/** 보드아이템의 모집분야를 담고있는 콘테이너 태그 */
 const Recruits = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -84,6 +93,7 @@ const Recruits = styled.div`
   padding: 10px 5px 0;
   box-sizing: border-box;
 `;
+/** 보드아이템의 모집분야를 icon으로 표기하는 태그 */
 const FilterIcon = styled.img`
   width: 35px;
 `;
@@ -98,6 +108,7 @@ function BoardItem({
   image,
   id,
 }) {
+  /** 보드아이템의 콘텐츠로부터 모집분야를 icon으로 표기해주는 function */
   const FilterIcons = useCallback(() => {
     let contents = [];
     for (let i = 0; i < filter.length; i++) {

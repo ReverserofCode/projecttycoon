@@ -5,6 +5,7 @@ import { MainHeader, SubmitButton } from "../components/Sidebar/SidebarStyle";
 import BoardItem from "../components/BoardItem";
 import { Place, Recruit } from "../Filter.json";
 import { BoardListGet } from "../functional/BoardList";
+/** 프로젝트 페이지의 컴포넌트를 담고있는 콘테이너 태그 */
 const PageContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -13,6 +14,7 @@ const PageContainer = styled.div`
   height: fit-content;
   margin-top: 20px;
 `;
+/** 프로젝트 페이지의 사이드바 콘테이너 태그 */
 const SideContents = styled.div`
   display: flex;
   flex-direction: column;
@@ -23,6 +25,7 @@ const SideContents = styled.div`
   left: 10px;
   gap: 15px;
 `;
+/** 프로젝트 페이지의 메인 내용을 담고 있는 콘테이너 태그 */
 const MainContents = styled.div`
   display: flex;
   box-sizing: border-box;
@@ -32,6 +35,7 @@ const MainContents = styled.div`
   margin-left: 50px;
   width: 100%;
 `;
+/** 프로젝트 페이지의 메인 내용중 프로젝트 리스트를 담고있는 콘테이너 태그 */
 const Board = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -45,8 +49,11 @@ const Board = styled.div`
 `;
 /** 프로젝트 페이지 */
 function ProjectPage() {
+  /** 프로젝트 리스트 state */
   const [boardList, setBoardList] = useState([]);
+  /** 사이드바의 지역 state */
   const [placeSelect, setPlaceSelect] = useState("");
+  /** 사이드바의 모집분야 state */
   const [RecruitSelect, setRecruitSelect] = useState("");
   /** 모집분야 설정 */
   const handleSet = useCallback((e) => {

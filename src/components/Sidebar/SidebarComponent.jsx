@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useRef } from "react";
 import { Base, FilterHeader } from "./SidebarStyle";
-import { AiOutlineCheckCircle, AiFillCheckCircle } from "react-icons/ai";
+import { AiOutlineCheckCircle } from "react-icons/ai";
+/** 체크 형태의 아이템을 담고있는 컨테이너  태그*/
 const CheckContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -16,6 +17,7 @@ const CheckContainer = styled.div`
     color: #4fb8ff;
   }
 `;
+/** 셀렉트 형태의 아이템을 담고있는 컨테이너 태그 */
 const Select = styled.select`
   min-width: 100px;
   font-size: 15px;
@@ -24,6 +26,7 @@ const Select = styled.select`
 `;
 /** Slect 태그를 이용하는 Side Bar형태 */
 export function SelectSide({ header, contents, handleSelect }) {
+  /** 콘텐츠를 받아와 option태그로 생성하는 function */
   const Options = useCallback(() => {
     let option = [];
     for (let i = 0; i < contents.length; i++) {
@@ -48,7 +51,9 @@ export function SelectSide({ header, contents, handleSelect }) {
 
 /** Check 태그를 이용하는 Side Bar형태 */
 export function CheckSide({ header, contents, handleSet }) {
+  /** 콘텐츠별로 각각의 reference 를 지정하는 ref */
   const Reference = useRef([]);
+  /** 체크 콘텐츠를 클릭시 실행되어 state를 변경시키는 function */
   const handleContain = useCallback(() => {
     let refArray = [];
     for (let i = 0; i < Reference.current.length; i++) {
@@ -58,6 +63,7 @@ export function CheckSide({ header, contents, handleSet }) {
     }
     handleSet(refArray);
   }, [handleSet]);
+  /** 콘텐츠를 받아와 체크 콘텐츠로 변환하고 ref를 지정해주는 function */
   const CheckLists = useCallback(() => {
     let lists = [];
     for (let i = 0; i < contents.length; i++) {

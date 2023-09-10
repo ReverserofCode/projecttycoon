@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-
+/** 사이드바에서 사용되는 메인 제목 태그 */
 export const MainHeader = styled.div`
   display: flex;
   justify-content: space-between;
@@ -9,6 +9,7 @@ export const MainHeader = styled.div`
   user-select: none;
   width: 100%;
 `;
+/** 사이드바에서 사용되는 자체 배경 태그 */
 export const Base = styled.div`
   display: flex;
   box-sizing: border-box;
@@ -23,11 +24,13 @@ export const Base = styled.div`
   gap: 25px;
   border-radius: 10px;
 `;
+/** 사이드 바의 필터의 제목 태그 */
 export const FilterHeader = styled.div`
   font-size: 25px;
   user-select: none;
   color: #0b666a;
 `;
+/** 사이드바의 필터적용후 사용되는 submit 태그 */
 export const SubmitButton = styled.div`
   transition: 100ms;
   box-sizing: border-box;
