@@ -4,7 +4,7 @@ import { RiKakaoTalkFill } from "react-icons/ri";
 import { SiNaver } from "react-icons/si";
 import { BsArrowRight } from "react-icons/bs";
 import { KakaoLogin } from "../functional/KakaoLogin";
-
+/** 소셜로그인을 담고 있는 콘테이너 태그 */
 const SocialLoginContainer = styled.div`
   display: flex;
   box-sizing: border-box;
@@ -14,6 +14,7 @@ const SocialLoginContainer = styled.div`
   gap: 10px;
   width: 100%;
 `;
+/** 소셜로그인 버튼 태그 */
 const ButtonBase = styled.div`
   display: flex;
   box-sizing: border-box;
@@ -34,11 +35,13 @@ const ButtonBase = styled.div`
     scale: 0.99;
   }
 `;
+/** 소셜로그인 버튼에 들어가는 기본 icon 태그 */
 const LogoBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
+/** 소셜로그인 버튼에 들어가는 기본 text 태그 */
 const TextInfo = styled.span`
   font-size: 20px;
 `;

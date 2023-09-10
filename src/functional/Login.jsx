@@ -1,5 +1,6 @@
 import axios from "axios";
 
+/** 메인 로그인으로 요청을 보내는 fnction */
 export const LoginSubmit = async (id, password) => {
   const DataFormat = new FormData();
   DataFormat.append("memberId", id);

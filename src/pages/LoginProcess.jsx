@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import { Header30 } from "../components/TextFormat";
 import LoginForm from "../components/LoginForm";
 import SocialLogin from "../components/SocialLogin";
 import { SubmitButton } from "../components/Buttons";
-// import { KakaoUserDataGet } from "../functional/KakaoLogin";
-
+/** 로그인 페이지의 컴포넌트를 담고있는 콘테이너 태그 */
 const LoginPage = styled.div`
   display: flex;
   flex-direction: column;
@@ -15,6 +14,7 @@ const LoginPage = styled.div`
   width: 100%;
   margin-top: 100px;
 `;
+/** 메인 로그인을 담고있는 콘테이너 태그 */
 const LoginBase = styled.div`
   display: flex;
   box-sizing: border-box;
@@ -30,6 +30,7 @@ const LoginBase = styled.div`
     padding: 30px 20px;
   }
 `;
+/** 하단에 위치해 분할해주는 표기 태그 */
 const Devider = styled.div`
   width: 100%;
   height: 1px;
@@ -37,7 +38,6 @@ const Devider = styled.div`
 `;
 
 function LoginProcess() {
-  const [userData, setUserData] = useState("");
   return (
     <LoginPage>
       <LoginBase>

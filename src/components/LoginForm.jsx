@@ -3,7 +3,7 @@ import React, { useCallback, useState } from "react";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { SubmitButton } from "./Buttons";
 import { LoginSubmit } from "../functional/Login";
-
+/** 메인 로그인의 콘테이너 태그 */
 const LoginFormContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -13,6 +13,7 @@ const LoginFormContainer = styled.div`
   width: 100%;
   box-sizing: border-box;
 `;
+/** 모든 input의 형태를 담당 하는 태그 */
 const InputModel = styled.input`
   box-sizing: border-box;
   font-size: 20px;
@@ -22,6 +23,7 @@ const InputModel = styled.input`
   border-radius: 5px;
   border-color: 0.5px solid #d9d9d9;
 `;
+/** 비밀번호의 확인을 위해 input과 type 변환 버튼을 담고있는 콘테이너 태그 */
 const PasswordZone = styled.div`
   display: flex;
   justify-content: center;
@@ -29,6 +31,7 @@ const PasswordZone = styled.div`
   position: relative;
   width: 100%;
 `;
+/** 비밀번호 type 변환 버튼을 담고 있는 콘테이너 태그 */
 const PasswordViewButton = styled.div`
   display: flex;
   justify-content: center;
@@ -40,9 +43,13 @@ const PasswordViewButton = styled.div`
 `;
 /** 자체 로그인 Component */
 function LoginForm() {
+  /** Id를 보관하는 state */
   const [id, setId] = useState("");
+  /** Password를 보관하는 state */
   const [password, setPassword] = useState("");
+  /** Password의 Type을 담당하는 state */
   const [view, setView] = useState("password");
+  /** 메인 로그인 요청을 보내는 function */
   const handleLogin = useCallback(() => {
     LoginSubmit(id, password).then((data) => {
       console.log(data);
@@ -67,7 +74,7 @@ function LoginForm() {
             e.preventDefault();
             setPassword(e.target.value);
           }}
-        ></InputModel>
+        />
         <PasswordViewButton>
           {view === "password" ? (
             <AiOutlineEye
