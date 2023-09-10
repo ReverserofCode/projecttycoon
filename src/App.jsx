@@ -24,7 +24,6 @@ function App() {
     <MainContainer>
       <Navbar userData={userData} handleSetUserData={handleSetUserData} />
       <Wrap>
-        <DMRoom userData={userData}></DMRoom>
       </Wrap>
     </MainContainer>
   );
