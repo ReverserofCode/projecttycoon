@@ -1,6 +1,6 @@
 package com.projecttycoon.demo.domain.service;
 
-
+import com.projecttycoon.demo.domain.Entity.RoleInfo2;
 import com.projecttycoon.demo.domain.Entity.ProjectEntity;
 import com.projecttycoon.demo.domain.dto.ProjectRequestDTO;
 import com.projecttycoon.demo.domain.repository.ProjectRepository;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 @Log4j2
@@ -47,6 +48,27 @@ public class ProjectService {
         // 파일 업로드 처리 끝
         ProjectEntity projectEntity = new ProjectEntity(projectRequestDTO);
         projectRepository.save(projectEntity);
+
+        // 파싱된 데이터 확인 코드 추가
+        checkParsedRoleInfo(projectEntity);
+    }
+    // 파싱된 데이터 확인을 위한 메서드
+    private void checkParsedRoleInfo(ProjectEntity projectEntity) {
+        List<RoleInfo2> roleInfoList = projectEntity.getParsedProjectWantedRole();
+
+        if (roleInfoList != null) {
+            for (RoleInfo2 roleInfo : roleInfoList) {
+                String roleName = roleInfo.getRole(); // Role
+                int complete = roleInfo.getComplete(); // complete
+                int personnel = roleInfo.getPersonnel(); // personnel
+
+                System.out.println("Role: " + roleName);
+                System.out.println("Complete: " + complete);
+                System.out.println("Personnel: " + personnel);
+            }
+        } else {
+            System.out.println("roleInfoList is null");
+        }
     }
 
     public ProjectEntity oneProject(Long id) {
@@ -74,6 +96,11 @@ public class ProjectService {
 
     public void searchProject(String projectName, int page) {
         PageRequest pageRequest = PageRequest.of(page, 8);
+    }
+
+    public ProjectEntity getProjectById(Long id) {
+        return projectRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Project not found with id: " + id));
     }
 
 }

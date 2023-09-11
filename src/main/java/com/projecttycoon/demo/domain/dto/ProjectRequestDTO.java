@@ -3,7 +3,9 @@ package com.projecttycoon.demo.domain.dto;
 
 import lombok.*;
 
+import javax.management.relation.RoleInfo;
 import java.util.Date;
+import java.util.List;
 
 
 //데이터를 실제로 이동시키는 클래스이다.

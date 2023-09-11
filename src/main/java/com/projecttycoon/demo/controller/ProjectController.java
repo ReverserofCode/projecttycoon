@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.Optional;
 
-
 @Log4j2
 @RestController // @Controller 대신 @RestController로 변경
 @RequiredArgsConstructor
@@ -22,6 +21,7 @@ public class ProjectController {
 
     private final ProjectService projectService;
     private final ProjectRepository projectRepository;
+
 
     //필터링없이 전체출력
     @GetMapping("/projectAllRequest")
@@ -40,16 +40,33 @@ public class ProjectController {
         return projectRepository.findAll(spec);
     }
 
-    //프로젝트상태+모집역할로 필터링
-    @GetMapping("/projectsByStatusAndRoles")
-    public List<ProjectEntity> getProjectsByStatusAndRoles(@RequestParam("status") boolean status, @RequestParam("roles") String[] roles) {
-        Specification<ProjectEntity> statusSpec = ProjectSpecifications.hasStatus(status);
-        Specification<ProjectEntity> rolesSpec = ProjectSpecifications.hasWantedRole(roles);
 
-        Specification<ProjectEntity> combinedSpec = Specification.where(statusSpec).and(rolesSpec);
+//    //모집역할 여러개일때
+    @GetMapping("/projectsByRoles")
+    public List<ProjectEntity> getProjectsByRoles(@RequestParam("roles") String... roles) {
+        log.info("메서드 getProjectsByRoles 호출");
 
-        return projectRepository.findAll(combinedSpec);
+        if (roles.length == 0) {
+            // 아무런 역할도 입력하지 않은 경우 모든 프로젝트 반환
+            return projectRepository.findAll();
+        }
+
+        Specification<ProjectEntity> spec = ProjectSpecifications.hasRoles(roles);
+        return projectRepository.findAll(spec);
     }
+
+//    //프로젝트상태+모집역할로 필터링
+    @GetMapping("/projectsByStatusAndAllRoles")
+    public List<ProjectEntity> getProjectsByStatusAndAllRoles(@RequestParam("status") boolean status, @RequestParam("roles") String... roles) {
+        log.info("메서드 getProjectsByStatusAndAllRoles 호출");
+
+        Specification<ProjectEntity> spec = ProjectSpecifications.hasStatusAndAllRoles(status, roles);
+        return projectRepository.findAll(spec);
+    }
+
+
+
+
 
 
     @PostMapping("/projectRegister")
@@ -84,12 +101,5 @@ public class ProjectController {
         return projectRepository.findById(id).orElse(null);
     }
 
-    @GetMapping("/callProjectDetail/{id}")
-    public String callProjectDetailIdParam(@PathVariable String id) {
-        log.info("Request Detail Number : " + id);
-        log.info("Call Project Detail Id");
-
-        return id;
-    }
 
 }
