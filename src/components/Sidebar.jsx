@@ -148,13 +148,13 @@ function Sidebar({ value, userData, handleSetValue }) {
       contents.push(
         <Recruit key={`Recruit ${i}`}>
           <RecruitIcon>
-            {String(value?.projectWantedRole[i].Role).toUpperCase()}
+            {String(value?.projectWantedRole[i].role).toUpperCase()}
           </RecruitIcon>
           <RecruitNumbers>
             <RecruitNow>{Roles[i]?.complete}</RecruitNow>/
             <RecruitDone>{Roles[i]?.personnel}</RecruitDone>
           </RecruitNumbers>
-          {value.projectWriterId === userData.memberId && modifyMod ? (
+          {value.projectWriterId === userData?.memberId && modifyMod ? (
             <RecruitModifyContainer>
               <RecruitModifyButton
                 onClick={() => {
@@ -189,7 +189,7 @@ function Sidebar({ value, userData, handleSetValue }) {
   }, [
     Roles,
     modifyMod,
-    userData.memberId,
+    userData?.memberId,
     value?.projectWantedRole,
     value.projectWriterId,
   ]);
@@ -210,7 +210,7 @@ function Sidebar({ value, userData, handleSetValue }) {
         <Title>모집 분야</Title>
         <RecruitContainer>{handleRecruit()}</RecruitContainer>
       </Contents>
-      {value.projectWriterId === userData.memberId && !modifyMod ? (
+      {value.projectWriterId === userData?.memberId && !modifyMod ? (
         <RecruitSubmitButton
           onClick={() => {
             setModifyMod(true);
@@ -221,7 +221,7 @@ function Sidebar({ value, userData, handleSetValue }) {
       ) : (
         ""
       )}
-      {value.projectWriterId === userData.memberId && modifyMod ? (
+      {value.projectWriterId === userData?.memberId && modifyMod ? (
         <RecruitSubmitButton
           onClick={() => {
             setModifyMod(false);
