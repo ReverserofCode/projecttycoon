@@ -99,10 +99,10 @@ public class ProjectEntity extends TimeStamp {
     }
 
     //String으로 입력받은 projectWantedRole을 RoleInfo2라는 리스트로 파싱
-    public List<RoleInfo2> getParsedProjectWantedRole() {
+    public List<ProjectRoleInfo> getParsedProjectWantedRole() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            return objectMapper.readValue(this.projectWantedRole, new TypeReference<List<RoleInfo2>>() {});
+            return objectMapper.readValue(this.projectWantedRole, new TypeReference<List<ProjectRoleInfo>>() {});
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             return null;

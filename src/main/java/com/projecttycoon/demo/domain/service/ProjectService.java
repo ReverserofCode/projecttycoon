@@ -1,6 +1,6 @@
 package com.projecttycoon.demo.domain.service;
 
-import com.projecttycoon.demo.domain.Entity.RoleInfo2;
+import com.projecttycoon.demo.domain.Entity.ProjectRoleInfo;
 import com.projecttycoon.demo.domain.Entity.ProjectEntity;
 import com.projecttycoon.demo.domain.dto.ProjectRequestDTO;
 import com.projecttycoon.demo.domain.repository.ProjectRepository;
@@ -54,10 +54,10 @@ public class ProjectService {
     }
     // 파싱된 데이터 확인을 위한 메서드
     private void checkParsedRoleInfo(ProjectEntity projectEntity) {
-        List<RoleInfo2> roleInfoList = projectEntity.getParsedProjectWantedRole();
+        List<ProjectRoleInfo> roleInfoList = projectEntity.getParsedProjectWantedRole();
 
         if (roleInfoList != null) {
-            for (RoleInfo2 roleInfo : roleInfoList) {
+            for (ProjectRoleInfo roleInfo : roleInfoList) {
                 String roleName = roleInfo.getRole(); // Role
                 int complete = roleInfo.getComplete(); // complete
                 int personnel = roleInfo.getPersonnel(); // personnel

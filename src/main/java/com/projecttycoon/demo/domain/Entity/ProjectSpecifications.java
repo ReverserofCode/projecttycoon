@@ -16,7 +16,6 @@ public class ProjectSpecifications {
         };
     }
 
-
     //projectWantedRole 로 필터
     public static Specification<ProjectEntity> hasRoles(String... roles) {
         return (root, query, criteriaBuilder) -> {
