@@ -57,8 +57,8 @@ export function CheckSide({ header, contents, handleSet }) {
   const handleContain = useCallback(() => {
     let refArray = [];
     for (let i = 0; i < Reference.current.length; i++) {
-      Reference.current[i].classList.length === 2
-        ? refArray.push(Reference.current[i].innerText)
+      Reference.current[i].classList.length === 3
+        ? refArray.push(Reference.current[i].classList[0])
         : "";
     }
     handleSet(refArray);
@@ -77,9 +77,10 @@ export function CheckSide({ header, contents, handleSet }) {
             Reference.current[i].classList.toggle("select");
             handleContain();
           }}
+          className={contents[i].value}
         >
           <AiOutlineCheckCircle />
-          {contents[i]}
+          {contents[i].content}
         </CheckContainer>
       );
     }
