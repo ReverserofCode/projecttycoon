@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import Navbar from "./components/Navbar";
 import DetailPage from "./pages/DetailPage";
@@ -11,7 +11,7 @@ const MainContainer = styled.div`
   min-height: 100%;
 `;
 /** 메인 콘텐츠가 담기는 사이즈 제한 콘테이너 태그 */
-const ContentsWrap = styled.div`
+const Wrap = styled.div`
   max-width: 1440px;
   width: 100%;
 `;
