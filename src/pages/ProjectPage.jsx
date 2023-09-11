@@ -5,6 +5,7 @@ import { MainHeader, SubmitButton } from "../components/Sidebar/SidebarStyle";
 import BoardItem from "../components/BoardItem";
 import { Place, Recruit } from "../Filter.json";
 import { BoardListGet } from "../functional/BoardList";
+import { GetFilterList } from "../functional/FilterGet";
 /** 프로젝트 페이지의 컴포넌트를 담고있는 콘테이너 태그 */
 const PageContainer = styled.div`
   display: flex;
@@ -105,7 +106,15 @@ function ProjectPage() {
           header={"모집 분야"}
           handleSet={handleSet}
         />
-        <SubmitButton>검색</SubmitButton>
+        <SubmitButton
+          onClick={() => {
+            GetFilterList(true, RecruitSelect).then((res) => {
+              setBoardList(res);
+            });
+          }}
+        >
+          검색
+        </SubmitButton>
       </SideContents>
       <MainContents>
         <Board>{handleBoardItemGen()}</Board>
