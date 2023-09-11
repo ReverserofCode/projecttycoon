@@ -17,7 +17,7 @@ const Wrap = styled.div`
 `;
 
 function App() {
-  const [userData, setUserData] = useState("");
+  const [userData, setUserData] = useState();
   const handleSetUserData = useCallback((value) => {
     setUserData(value);
   }, []);
