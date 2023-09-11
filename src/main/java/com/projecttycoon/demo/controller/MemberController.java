@@ -12,6 +12,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Log4j2
 @RestController
@@ -69,6 +70,13 @@ public class MemberController {
         MemberRequestDTO memberRequestDTO = new MemberRequestDTO(memberRepository.findByMemberId(memberLoginDTO.getMemberId()).orElseThrow());
         return memberRequestDTO;
     }
+
+    @GetMapping("/api/callAllMemberRequest")
+    public List<MemberEntity> requestAllMember(){
+        log.info("requestAllMember");
+        return memberRepository.findAll();
+    }
+
 
     @GetMapping("/api/getClientIp")
     public String getClientIp (HttpServletRequest request){
