@@ -56,7 +56,9 @@ const Wrap = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-
+const UserIcon = styled.image`
+  height: 50px;
+`;
 function Navbar({ userData, handleSetUserData }) {
   useEffect(() => {
     LoginCheck().then((res) => {
