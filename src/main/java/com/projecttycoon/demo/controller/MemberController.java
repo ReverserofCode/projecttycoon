@@ -7,12 +7,16 @@ import com.projecttycoon.demo.domain.repository.MemberRepository;
 import com.projecttycoon.demo.domain.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.apache.el.parser.BooleanNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 @Log4j2
 @RestController
@@ -21,6 +25,9 @@ public class MemberController {
 
     final MemberRepository memberRepository;
     MemberService memberService;
+    boolean duplicateCheck = false;
+    MemberRequestDTO memberRequestDTO;
+
 
     @Autowired
     MemberController(MemberService memberService, MemberRepository memberRepository) {
@@ -35,14 +42,14 @@ public class MemberController {
 
     @GetMapping("/sessionObject")
     public MemberLoginDTO requestSession(@AuthenticationPrincipal MemberLoginDTO memberLoginDTO) {
-        log.info("Call request Session : "+memberLoginDTO);
+        log.info("Call request Session : " + memberLoginDTO);
         return memberLoginDTO;
     }
 
     @PostMapping("/api/memberRegister")
     public void registerDB(@RequestBody MemberRequestDTO memberRequestDTO) {
         log.info("call registerDB");
-        log.info("memberRegister check memberRequestDTO : "+memberRequestDTO.toString());
+        log.info("memberRegister check memberRequestDTO : " + memberRequestDTO.toString());
         memberService.registerMember(memberRequestDTO);
     }
 
@@ -61,25 +68,36 @@ public class MemberController {
 
     @GetMapping("/api/memberPage/{memberId}")
     public MemberRequestDTO memberPage(@PathVariable String memberId) {
-        MemberRequestDTO memberRequestDTO = new MemberRequestDTO(memberRepository.findByMemberId(memberId).orElseThrow());
+        memberRequestDTO = new MemberRequestDTO(memberRepository.findByMemberId(memberId).orElseThrow());
         return memberRequestDTO;
     }
 
     @GetMapping("/api/mypage")
     public MemberRequestDTO mypage(@AuthenticationPrincipal MemberLoginDTO memberLoginDTO) {
-        MemberRequestDTO memberRequestDTO = new MemberRequestDTO(memberRepository.findByMemberId(memberLoginDTO.getMemberId()).orElseThrow());
+        memberRequestDTO = new MemberRequestDTO(memberRepository.findByMemberId(memberLoginDTO.getMemberId()).orElseThrow());
         return memberRequestDTO;
     }
 
     @GetMapping("/api/callAllMemberRequest")
-    public List<MemberEntity> requestAllMember(){
+    public List<MemberEntity> requestAllMember() {
         log.info("requestAllMember");
         return memberRepository.findAll();
     }
 
+    @RequestMapping("/api/checkDuplicateMemberId/{checkId}")
+    public ResponseEntity<String> checkMemberId(@PathVariable String checkId) {
+
+        log.info("check MemberId duplicate method");
+        Optional<MemberEntity> checkEntity = memberRepository.findById(checkId);
+        if (checkEntity.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Duplicate member ID");
+        }
+        return ResponseEntity.ok("Member ID is available");
+    }
+
 
     @GetMapping("/api/getClientIp")
-    public String getClientIp (HttpServletRequest request){
+    public String getClientIp(HttpServletRequest request) {
         String clientIp = request.getRemoteAddr();
         return clientIp;
     }
