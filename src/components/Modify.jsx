@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import styled from "@emotion/styled";
-import QuillTestPage from "../TestCode/QuillTest";
+import QuillTestPage from "./QuillTest";
 import { FiFilePlus } from "react-icons/fi";
 import { PostAction } from "../functional/PostAction";
 import { default1, default2, default3 } from "../img/Images";
