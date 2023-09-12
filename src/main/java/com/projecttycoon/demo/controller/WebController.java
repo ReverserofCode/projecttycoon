@@ -1,6 +1,8 @@
 package com.projecttycoon.demo.controller;
 
+import com.projecttycoon.demo.domain.Entity.MemberEntity;
 import com.projecttycoon.demo.domain.Entity.ProjectEntity;
+import com.projecttycoon.demo.domain.repository.MemberRepository;
 import com.projecttycoon.demo.domain.repository.ProjectRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,56 +12,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.swing.text.html.Option;
-import javax.websocket.server.PathParam;
 import java.util.Optional;
-
 
 //웹 사이트 내에서 다른 사이트에 대한 요청을 처리하는 컨르롤러
 @Log4j2
 @Controller
 public class WebController {
 
-   ProjectRepository projectRepository;
-   @Autowired
-   public WebController(ProjectRepository projectRepository){
-       this.projectRepository = projectRepository;
-   }
+    ProjectRepository projectRepository;
+    MemberRepository memberRepository;
 
-
-    @RequestMapping("/api/login")
-    public String initiatingLogin() {
-        return "/static/PageLogin/index.html";
+    @Autowired
+    public WebController(ProjectRepository projectRepository, MemberRepository memberRepository) {
+        this.projectRepository = projectRepository;
+        this.memberRepository = memberRepository;
     }
 
     @GetMapping("/")
     public String callMain() {
-        return "/static/PageProjectBoard/index.html";
+        return "forward:/static/PageProjectBoard/index.html";
     }
 
-    @GetMapping("/PageLogin")
-    public String callPageLogin() {
-        return "/static/PageLogin/index.html";
+    @RequestMapping("/api/login")
+    public String initiatingLogin() {
+        return "forward:/static/PageLogin/index.html";
     }
 
     @GetMapping("/PageProjectBoard")
     public String callPageProjectBoard() {
-        return "/static/PageProjectBoard/index.html";
+        return "forward:/static/PageProjectBoard/index.html";
     }
 
     @GetMapping("/loginProcess")
     public String callLoginProcess() {
-        return "/static/loginProcess/index.html";
+        return "forward:/static/loginProcess/index.html";
     }
 
     @GetMapping("/callPageNewProject")
     public String callPageNewProject() {
-        return "/static/PageNewProject/index.html";
-    }
-
-    @GetMapping("/callPageProjectBoardDetail")
-    public String callPageBoardDetail(){
-       return "/static/PageProjectBoardDetail/index.html";
+        return "forward:/static/PageNewProject/index.html";
     }
 
     @GetMapping("/callPageProjectBoardDetail/{id}")
@@ -77,16 +68,30 @@ public class WebController {
         return mav;
     }
 
+    @GetMapping("/callMemberDetailPage/{id}")
+    public ModelAndView callPageMemberDetail(@PathVariable String id) {
+        ModelAndView mav = new ModelAndView();
+        Optional<MemberEntity> object = memberRepository.findByMemberId(id);
+        if (object.isPresent()) {
+            log.info("call MemberPage and send intel");
+            mav.addObject("memberDTO", object.get());
+            mav.setViewName("foward:/static/");
+        }
+
+        return mav;
+    }
+
+
     @GetMapping("/api/signup")
-    public String callSingUpPage(){
-       log.info("call SingUpPage");
-       return "/static/PageSignUp/index.html";
+    public String callSingUpPage() {
+        log.info("call SingUpPage");
+        return "forward:/static/PageSignUp/index.html";
     }
 
     @GetMapping("/callDmProcess")
-    public String callDmProcess(){
-       log.info("call DmProcess ");
-       return "/static/DMProcess/index.html";
+    public String callDmProcess() {
+        log.info("call DmProcess ");
+        return "forward:/static/DMProcess/index.html";
     }
 
 }
