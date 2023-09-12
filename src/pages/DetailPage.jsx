@@ -5,7 +5,6 @@ import Sidebar from "../components/Sidebar";
 import purify from "dompurify";
 import { GetProjectFromID } from "../functional/GetProject";
 import "highlight.js/styles/obsidian.css";
-import { SessionIdCall } from "../functional/GetSession";
 
 const Container = styled.div`
   display: flex;
@@ -37,6 +36,7 @@ const MainContents = styled.div`
   margin-left: 50px;
   width: 100%;
   max-width: 1000px;
+  position: relative;
 `;
 /** 프로젝트 제목 태그 */
 const MainTitle = styled.h2`
@@ -137,7 +137,28 @@ const Preview = styled.div`
     background-color: #ffffebd1;
   }
 `;
+const ModifyButton = styled.div`
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  background-color: #d9d9d9;
+  border: 1px solid black;
+  user-select: none;
+  cursor: pointer;
+  :hover {
+    background-color: #c9c9c9;
+  }
+  :active {
+    background-color: #d9d9d9;
+  }
+`;
 function DetailPage({ userData }) {
+  const [mod, setMod] = useState("main");
   const [value, setValue] = useState({
     createdAt: "2023-08-19T06:54:37.741+00:00",
     modifiedAt: "2023-08-19T06:54:37.741+00:00",
@@ -145,10 +166,10 @@ function DetailPage({ userData }) {
     projectTitle: "Test title item length test. how long text viewing",
     projectContent: "testContents",
     projectWantedRole: [
-      { Role: "back", complete: 1, personnel: 3 },
-      { Role: "front", complete: 0, personnel: 2 },
-      { Role: "back", complete: 1, personnel: 3 },
-      { Role: "front", complete: 0, personnel: 2 },
+      { role: "back", complete: 1, personnel: 3 },
+      { role: "front", complete: 0, personnel: 2 },
+      { role: "back", complete: 1, personnel: 3 },
+      { role: "front", complete: 0, personnel: 2 },
     ],
     projectDue: "2023-08-16T00:00:00.000+00:00",
     projectAcademy: "강남",
@@ -188,7 +209,7 @@ function DetailPage({ userData }) {
           />
         );
         break;
-      case "AI":
+      case "ai":
         contents = (
           <InfoRole
             src="http://projecttycoon.com/static/images/AI.png"
@@ -236,7 +257,7 @@ function DetailPage({ userData }) {
     for (let i = 0; i < value?.projectWantedRole.length; i++) {
       contents.push(
         <InfoRow key={`Recruits ${i}`}>
-          {handleRoleIcon(value?.projectWantedRole[i].Role)}
+          {handleRoleIcon(value?.projectWantedRole[i].role)}
           <InfoPersonnel>
             {value?.projectWantedRole[i].personnel}명
           </InfoPersonnel>
@@ -281,6 +302,17 @@ function DetailPage({ userData }) {
         />
       </SideContents>
       <MainContents>
+        {value.projectWriterId === userData?.memberId ? (
+          <ModifyButton
+            onClick={() => {
+              setMod("modify");
+            }}
+          >
+            수정
+          </ModifyButton>
+        ) : (
+          ""
+        )}
         <MainTitle>{value?.projectTitle}</MainTitle>
         <PosterContain>
           <Poster src={"http://projecttycoon.com" + value?.projectFilePath} />

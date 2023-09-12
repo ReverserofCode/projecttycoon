@@ -17,7 +17,7 @@ export const RoleUpdate = async (origin, role) => {
   let config = {
     method: "put",
     maxBodyLength: Infinity,
-    url: "http://projecttycoon.com/api/project/14",
+    url: `http://projecttycoon.com/api/project/${origin.projectId}`,
     headers: {
       "Content-Type": "application/json",
     },
