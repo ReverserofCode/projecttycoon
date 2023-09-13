@@ -326,28 +326,35 @@ function Register() {
       alert("모든 필수 항목을 입력해주세요.");
       return; // 필수 입력 항목 중 하나라도 비어있으면 함수 종료
     }
-    if (!idRegex.test(id)) {
-      setIdError("아이디는 4~12자의 영문 대소문자와 숫자로 이루어져야 합니다.");
-      return; // 아이디 형식이 맞지 않으면 함수 종료
-    }
+    let errorMessage = "";
 
-    // 닉네임 형식 검증
+    if (!idRegex.test(id)) {
+      errorMessage += "아이디를 형식에 맞게 작성해 주세요.\n";
+    }
     if (!nickRegex.test(nick)) {
-      setNickError(
-        "닉네임은 2~10자의 영문 대소문자, 숫자, 한글로 이루어져야 합니다."
-      );
-      return; // 닉네임 형식이 맞지 않으면 함수 종료
+      errorMessage += "닉네임을 형식에 맞게 작성해 주세요.\n";
     }
     if (!passwordRegex.test(pw)) {
-      setPwError(
-        "비밀번호는 8자 이상, 영문 대소문자, 숫자, 특수문자를 포함해야 합니다."
-      );
-      return; // 비밀번호 형식이 맞지 않으면 제출 중단
+      errorMessage +=
+        "비밀번호는 8자 이상, 영문 대소문자, 숫자, 특수문자를 포함해야 합니다.\n";
+    }
+    if (pw !== pwConfirm) {
+      errorMessage += "비밀번호가 일치하지 않습니다.\n";
     }
 
-    if (pw !== pwConfirm) {
-      alert("비밀번호가 일치하지 않습니다.");
-      return; // 비밀번호와 비밀번호 확인이 일치하지 않으면 함수 종료
+    // 개별적인 알림 메시지 생성
+    if (!idRegex.test(id) && !passwordRegex.test(pw)) {
+      errorMessage = "아이디와 비밀번호 형식을 확인해주세요.\n";
+    } else if (!idRegex.test(id) && !nickRegex.test(nick)) {
+      errorMessage = "아이디와 닉네임 형식을 확인해주세요.\n";
+    } else if (!idRegex.test(id) && pw !== pwConfirm) {
+      errorMessage = "아이디와 비밀번호 형식을 확인해주세요.\n";
+    } else if (!nickRegex.test(nick) && pw !== pwConfirm) {
+      errorMessage = "닉네임 형식과 비밀번호를 확인해주세요.\n";
+    }
+    if (errorMessage !== "") {
+      alert(errorMessage.trim());
+      return;
     }
 
     const userData = JSON.stringify({
