@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import axios from "axios";
 import "./Register.css";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { BiLogoReact, BiDownArrow, BiLogoGithub } from "react-icons/bi";
 import { FaMicroblog } from "react-icons/fa";
 import { SiRabbitmq } from "react-icons/si";
@@ -53,6 +53,7 @@ const CustomOption = styled.div`
   border-radius: 10px;
   border: 1px solid black;
   height: 100px;
+  z-index: 1;
   margin: 0 auto;
   position: absolute;
   background-color: #ffffff;
@@ -217,16 +218,19 @@ function Register() {
   const [selected, setSelected] = useState("Git");
   const [click, setClick] = useState(false);
   const [linkInput, setLinkInput] = useState(""); // 입력값 따로 관리
-  const [linkInputs, setLinkInputs] = useState([""]);
+  const [linkInputs, setLinkInputs] = useState([
+    { option: "Git", value: "", isOpen: false },
+  ]);
+
   const handleAddLinkInput = () => {
-    const newLinkInputs = [...linkInputs, ""];
-    setLinkInputs(newLinkInputs);
+    const newLinkInput = { option: "Git", value: "", isOpen: false };
+    setLinkInputs([...linkInputs, newLinkInput]);
   };
-  // 링크삭제
+
   const handleDeleteLinkInput = (indexToDelete) => {
     if (linkInputs.length === 1) {
-      // 입력란이 1개만 남았을 때는 삭제하지 않고 값을 비웁니다.
-      setLinkInputs([""]);
+      const newLinkInputs = [{ option: "Git", value: "", isOpen: false }];
+      setLinkInputs(newLinkInputs);
     } else {
       const newLinkInputs = linkInputs.filter(
         (_, index) => index !== indexToDelete
@@ -234,6 +238,59 @@ function Register() {
       setLinkInputs(newLinkInputs);
     }
   };
+
+  const handleLinkInputToggle = (index) => {
+    const newLinkInputs = [...linkInputs];
+    newLinkInputs[index].isOpen = !newLinkInputs[index].isOpen;
+    setLinkInputs(newLinkInputs);
+  };
+
+  const handleOptionSelect = (index, selectedOption) => {
+    const newLinkInputs = [...linkInputs];
+    newLinkInputs[index].option = selectedOption;
+    newLinkInputs[index].isOpen = false;
+    setLinkInputs(newLinkInputs);
+  };
+
+  const handleLinkInputChange = (index, newValue) => {
+    const newLinkInputs = [...linkInputs];
+    newLinkInputs[index].value = newValue;
+    setLinkInputs(newLinkInputs);
+  };
+
+  const [linkOptionStates, setLinkOptionStates] = useState(
+    linkInputs.map(() => false)
+  );
+
+  // 링크 옵션을 열기 위한 함수
+  const handleOpenLinkOption = (index) => {
+    const updatedStates = linkOptionStates.map((state, i) =>
+      i === index ? !state : false
+    );
+    setLinkOptionStates(updatedStates);
+  };
+
+  // 링크 옵션을 닫기 위한 함수
+  const handleCloseLinkOption = () => {
+    setLinkOptionStates(linkOptionStates.map(() => false));
+  };
+  useEffect(() => {
+    document.addEventListener("mousedown", (e) => {
+      // 링크 옵션 외의 영역을 클릭했을 때 링크 옵션 닫기
+      if (!e.target.closest(".LinkForm")) {
+        handleCloseLinkOption();
+      }
+    });
+
+    // 컴포넌트가 언마운트될 때 이벤트 핸들러를 정리(clean-up)
+    return () => {
+      document.removeEventListener("mousedown", (e) => {
+        if (!e.target.closest(".LinkForm")) {
+          handleCloseLinkOption();
+        }
+      });
+    };
+  }, []);
 
   // 비밀번호
   const passwordRegex =
@@ -322,7 +379,12 @@ function Register() {
       memberRole: selectedJob,
       memberAcademy: selectedPlace,
       memberStack: JSON.stringify(stack),
-      memberLink: linkInput,
+      memberLinks: JSON.stringify(
+        linkInputs.map((input) => ({
+          option: input.option,
+          value: input.value,
+        }))
+      ),
       memberIntroduce: introduce,
       // memberFilePath: "http://projecttycoon.com/static/images/Logo%20Test.png",
       // memberFileName: "test",
@@ -529,74 +591,47 @@ function Register() {
             display: "flex",
             alignItems: "center",
             gap: "10px",
+            marginLeft: index > 0 ? "55px" : "0px",
           }}
+          onClick={() => handleOpenLinkOption(index)} // 클릭하면 링크 옵션 열기
         >
           <div className="LinkForm">
-            <CustomSelect onClick={() => setClick(!click)}>
-              {selected}
+            <CustomSelect onClick={() => handleLinkInputToggle(index)}>
+              {linkInput.option}{" "}
               <BiDownArrow style={{ position: "absolute", right: "5px" }} />
             </CustomSelect>
-
-            {click ? (
-              <CustomOption style={{ display: "flex", flexDirection: "col" }}>
+            {linkInput.isOpen && (
+              <CustomOption>
                 <div className="LinkInput">
-                  <Options
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const selectedValue = e.currentTarget.innerText;
-                      setSelected(selectedValue);
-                      setClick(!click);
-                    }}
-                  >
+                  <Options onClick={() => handleOptionSelect(index, "Git")}>
                     Git <BiLogoGithub />
                   </Options>
-                  <Options
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const selectedValue = e.currentTarget.innerText;
-                      setSelected(selectedValue);
-                      setClick(!click);
-                    }}
-                  >
+                  <Options onClick={() => handleOptionSelect(index, "Blog")}>
                     Blog <FaMicroblog />
                   </Options>
-                  <Options
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const selectedValue = e.currentTarget.innerText;
-                      setSelected(selectedValue);
-                      setClick(!click);
-                    }}
-                  >
+                  <Options onClick={() => handleOptionSelect(index, "Other")}>
                     그 외 <TiMessageTyping />
                   </Options>
                 </div>
               </CustomOption>
-            ) : (
-              ""
             )}
           </div>
-
           <LinkForm
-            placeholder={selected + " " + " " + "주소를 모두 입력해주세요."} // 선택된 값으로 placeholder 설정
-            value={linkInput} // linkInput 값을 입력 값으로 설정
-            // onChange={(e) => setLinkInput(e.target.value)} // 입력 시 linkInput 값 업데이트
-            onChange={(e) => {
-              e.preventDefault();
-              const newLinkInputs = [...linkInputs];
-              newLinkInputs[index] = e.target.value; // 현재 input 값을 업데이트
-              setLinkInputs(newLinkInputs);
-            }}
+            placeholder={linkInput.option + " 주소를 모두 입력해주세요."}
+            value={linkInput.value}
+            onChange={(e) => handleLinkInputChange(index, e.target.value)}
           />
-
-          <div
-            className="delete-button"
-            onClick={() => handleDeleteLinkInput(index)}
-          >
-            <TiDelete size="45" className="deleteBtn"></TiDelete>
-          </div>
+          {index !== 0 && (
+            <div
+              className="delete-button"
+              onClick={() => handleDeleteLinkInput(index)}
+            >
+              <TiDelete size="45" className="deleteBtn"></TiDelete>
+            </div>
+          )}
         </LinkArea>
       ))}
+
       <div className="plus-button" onClick={handleAddLinkInput}>
         <BsPlusSquareDotted size="45" className="PlusBtn"></BsPlusSquareDotted>
       </div>
