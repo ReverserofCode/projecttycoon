@@ -3,9 +3,7 @@
 //2.파일선택 input css
 //3.전체적인 배치 (padding,magin) 다시주기
 //4.모집분야 재배치
-//기능구현 
-//기본이미지 마지막으로 할 수 있게끔 마지막인덱스값
-//
+//삭제버튼
 import { useEffect, useRef, useState,useCallback } from "react"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -109,14 +107,15 @@ const SubImgBox=styled.div`
 position: relative;
     width: 230px;
     height: 120px;
-   
 `
 const Bot=styled.div`
     width: 100%;
     display: flex;
+    justify-content: space-around;
+    /* border: 1px gray solid; */
 `
-const PulsBut=styled.button`
-    width: 100px;
+const DeleteBtn=styled.button`
+  width: 35px;
 `
 const Right=styled.div`
     /* width: 100%; */
@@ -133,19 +132,22 @@ max-width: 950px;
     justify-content: space-between;
 `
 const TT =styled.div`
-    /* max-width: 1000px; */
-    /* width: 100%; */
-    /* border: 1px red solid; */
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 4px;
 `
 const Top=styled.div`
-    /* width: 100%; */
+    /* border: 1px solid blue; */
+    max-width: 400px;
+    width: 100%;
     display: flex;
     flex-direction: column;
 `
 const DateInput=styled.input`
-    width: 400px;
+    width: 100%;
+    max-width: 385px;
+    height: 40px;
 `
 const ImgInput=styled.input`
 position: absolute;
@@ -183,6 +185,16 @@ const ButBox=styled.div`
 margin-top: 20px;
     display: flex;
     justify-content: space-around;
+`
+const PlusBtn=styled.button`
+    width: 44px;
+    font-size: 12px;
+    border-radius: 50%;
+`
+const SubTitleWrap=styled.div`
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
 `
 function Write (){
     useEffect(()=>{
@@ -239,7 +251,8 @@ const [imageMod, setImageMod] = useState(false);
 //모집지역
 const [academy, setAcademy] = useState("");
 //모집분야-초기값
-const [selectFields, setSelectFields] = useState([{ role: 'back',complete:0,personnel: 1 }]);
+const [selectFields, setSelectFields] = useState([{ role: 'back',complete:0,personnel: 1, st:false }]);
+const [삭제,삭제버튼]= useState(false);
 const fields = [
     { label: "백엔드", value: "back" },
     { label: "프론트엔드", value: "front" },
@@ -300,14 +313,30 @@ const Params = {
 //But
 const handleAddButton = () => {
     if (selectFields.length < 7) {
-      setSelectFields([...selectFields, { role: 'back', complete:0,personnel: 1 }]); // 추가 시 초기 선택 항목을 'back'으로 설정
+      setSelectFields([...selectFields, { role: 'back', complete:0,personnel: 1  ,st:true}]); // 추가 시 초기 선택 항목을 'back'으로 설정
     }
+    // 삭제버튼(true)
   };
-  const handleDeleteButton = (index) => {
-    const updatedSelectFields = [...selectFields];
-    updatedSelectFields.splice(index, 1);
-    setSelectFields(updatedSelectFields);
-  };
+  
+    const handleDeleteButton = (indexDelete) => {
+        // if(selectFields[0]){
+        //     삭제버튼(false)
+        // }
+        const updatedSelectFields = selectFields.filter((_, index)=> index!== indexDelete);
+        setSelectFields(updatedSelectFields);
+    }
+//   const handleDeleteButton = (index) => {
+//     if(selectFields.length===0){
+//         삭제버튼(false)
+//     }
+//     else if(selectFields.length<1){
+//         삭제버튼(true)
+//     }
+//     const updatedSelectFields = [...selectFields];
+//     updatedSelectFields.splice(index, 1);
+//     setSelectFields(updatedSelectFields);
+//     console.log(index)
+//   };
 const Submit=async()=>{
      if(Deadline == ''){
          alert("마감 날짜를 선택해주세요");
@@ -379,7 +408,6 @@ const Submit=async()=>{
                     saveFileImg(e.currentTarget.files[0]);
                     }}></ImgInput>
                 </MainImgWrap>
-                {/* 마지막인덱스값 가져와야함 or 3 */}
                 <Right>
                 <SubImgBox onClick={()=>{setImg(default1)}}>
                     <SubImg src={"http://projecttycoon.com" + default1}></SubImg>
@@ -407,7 +435,7 @@ const Submit=async()=>{
                 <Top>
                     <div>
                         <Subtitle>모집 지역</Subtitle>
-                        <Select onChange={handleNewacademy} width="405px">
+                        <Select onChange={handleNewacademy} width="390px">
                             <option value="강남">강남</option>
                             <option value="신촌/홍대">신촌/홍대</option>
                             <option value="노원">노원</option>
@@ -422,37 +450,33 @@ const Submit=async()=>{
                         <DateInput type="date" onChange={handleNewdeadline} value={Deadline}></DateInput>
                     </div>
                 </Top>
-                <div>
-                    <Subtitle>모집 분야</Subtitle>
-                        <TT>
+                <Top>
+                    <SubTitleWrap>
+                        <Subtitle>모집 분야</Subtitle>
+                        <PlusBtn onClick={handleAddButton}>추가</PlusBtn>
+                    </SubTitleWrap>
                          {selectFields.map((selectField, index) => (
                             <div key={index}>
-                                <label>
-                                    과목:
-                                    <select defaultValue={selectField.field} onChange={(event) => handleNewFieldChange(event, index)}>
+                                <TT>
+                                    <Select width="270px" defaultValue={selectField.field} onChange={(event) => handleNewFieldChange(event, index)}>
                                     {fields.map((field, fieldIndex) => (
                                         <option key={fieldIndex} value={field.value}>
                                         {field.label}
                                         </option>
                                     ))}
-                                    </select>
-                                </label>
-                                <label>
-                                    인원:
-                                    <select value={selectField.personnel} onChange={(event) => handleNewPersonnelChange(event, index)}>
+                                    </Select>
+                                    <Select width="80px" value={selectField.personnel} onChange={(event) => handleNewPersonnelChange(event, index)}>
                                     {peopleLabels.map((label, labelIndex) => (
                                         <option key={labelIndex} value={labelIndex + 1}>
                                         {label}
                                         </option>
                                     ))}
-                                    </select>
-                                </label>
-                            <button onClick={() => handleDeleteButton(index)}>삭제</button>
+                                    </Select>
+                                    <DeleteBtn onClick={() => handleDeleteButton(index)}>-</DeleteBtn>
+                                </TT>
                             </div>
                         ))}
-                        </TT>
-                    <PulsBut onClick={handleAddButton}>+</PulsBut>
-                </div>
+                </Top>
             </Bot>
          </Wrap>
          <ButBox>
@@ -461,7 +485,7 @@ const Submit=async()=>{
                             }}>취소</But>
             <But onClick={()=>{
                                 Submit();
-                            }}>수정</But>
+                            }}>작성</But>
         </ButBox>
         </WriteWrap>
     )
