@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import axios from "axios";
 import "./Register.css";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { BiLogoReact, BiDownArrow, BiLogoGithub } from "react-icons/bi";
 import { FaMicroblog } from "react-icons/fa";
 import { SiRabbitmq } from "react-icons/si";
@@ -221,12 +221,13 @@ function Register() {
   const [linkInputs, setLinkInputs] = useState([
     { option: "Git", value: "", isOpen: false },
   ]);
-
+  // 추가
   const handleAddLinkInput = () => {
     const newLinkInput = { option: "Git", value: "", isOpen: false };
     setLinkInputs([...linkInputs, newLinkInput]);
   };
 
+  // 삭제
   const handleDeleteLinkInput = (indexToDelete) => {
     if (linkInputs.length === 1) {
       const newLinkInputs = [{ option: "Git", value: "", isOpen: false }];
@@ -237,12 +238,6 @@ function Register() {
       );
       setLinkInputs(newLinkInputs);
     }
-  };
-
-  const handleLinkInputToggle = (index) => {
-    const newLinkInputs = [...linkInputs];
-    newLinkInputs[index].isOpen = !newLinkInputs[index].isOpen;
-    setLinkInputs(newLinkInputs);
   };
 
   const handleOptionSelect = (index, selectedOption) => {
@@ -261,7 +256,12 @@ function Register() {
   const [linkOptionStates, setLinkOptionStates] = useState(
     linkInputs.map(() => false)
   );
-
+  // 옵션열고 닫기
+  const handleLinkInputToggle = (index) => {
+    const newLinkInputs = [...linkInputs];
+    newLinkInputs[index].isOpen = !newLinkInputs[index].isOpen;
+    setLinkInputs(newLinkInputs);
+  };
   // 링크 옵션을 열기 위한 함수
   const handleOpenLinkOption = (index) => {
     const updatedStates = linkOptionStates.map((state, i) =>
@@ -269,28 +269,6 @@ function Register() {
     );
     setLinkOptionStates(updatedStates);
   };
-
-  // 링크 옵션을 닫기 위한 함수
-  const handleCloseLinkOption = () => {
-    setLinkOptionStates(linkOptionStates.map(() => false));
-  };
-  useEffect(() => {
-    document.addEventListener("mousedown", (e) => {
-      // 링크 옵션 외의 영역을 클릭했을 때 링크 옵션 닫기
-      if (!e.target.closest(".LinkForm")) {
-        handleCloseLinkOption();
-      }
-    });
-
-    // 컴포넌트가 언마운트될 때 이벤트 핸들러를 정리(clean-up)
-    return () => {
-      document.removeEventListener("mousedown", (e) => {
-        if (!e.target.closest(".LinkForm")) {
-          handleCloseLinkOption();
-        }
-      });
-    };
-  }, []);
 
   // 비밀번호
   const passwordRegex =
