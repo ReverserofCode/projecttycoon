@@ -1,0 +1,52 @@
+
+span{
+    color:#F4D160;
+    font-weight:bold;
+    font-size:1.2em;
+    padding-right: 6px;
+}
+input {
+    display: block;
+    height: 45px;
+    width: 410px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #D0D0D0;
+    background-color: #ffffff;
+    margin-top: 10px;
+    margin-bottom: 27px;
+    outline: none;
+
+}
+
+select {
+    display: block;
+    height: 65px;
+    width: 530px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #D0D0D0;
+    background-color: #ffffff;
+    margin-top: 10px;
+    margin-bottom: 27px;
+}
+option{
+    font-size: 1.3em;
+}
+.LinkForm {
+    position: relative;
+    margin: 0 auto;
+}
+.deleteBtn {
+    color:#aaaaaa;
+    cursor: pointer;
+}
+.deleteBtn:hover {
+    color:#F4D160;
+    cursor: pointer;
+}
+.PlusBtn {
+    color:#aaaaaa;
+    background-color: #ffffff; 
+    cursor: pointer;
+}
