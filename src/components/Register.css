@@ -40,11 +40,13 @@ option{
 .deleteBtn {
     color:#aaaaaa;
     cursor: pointer;
+    padding-bottom: 15px;
 }
 .deleteBtn:hover {
     color:#F4D160;
     cursor: pointer;
 }
+
 .PlusBtn {
     color:#aaaaaa;
     background-color: #ffffff; 
