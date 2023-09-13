@@ -3,15 +3,17 @@
 //2.파일선택 input css
 //3.전체적인 배치 (padding,magin) 다시주기
 //4.모집분야 재배치
-import { useState } from "react"
+//기능구현 
+//기본이미지 마지막으로 할 수 있게끔 마지막인덱스값
+//
+import { useEffect, useRef, useState,useCallback } from "react"
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "@emotion/styled";
 
 import QuillTestPage from "../TestCode/QuillTest";
-import DefaultImg from '../img/default.png';
-import TwoImg from '../img/two.png';
-import ThreeImg from '../img/three.png'
-import TestImg from '../img/test.png'
+import { default1, default2, default3 } from "../img/images";
+
 
 import {FiFilePlus} from "react-icons/fi"
 
@@ -183,121 +185,212 @@ margin-top: 20px;
     justify-content: space-around;
 `
 function Write (){
-//모집분야
-const [Field,setField]=useState('');
-//모집분야-인원
-const [Personnel,setPersonnel]=useState('');
-//모집분야-추가버튼의 카운트
-const [Count,setCount]=useState(1);
-//프젝 기본 이미지들
-const [Img,setImg]=useState([DefaultImg,TwoImg,ThreeImg,])
-//프젝 기본 이미지-탭
-const [Tab,setTab]=useState(0);
-
-
-const fieldHandling=(e)=>{
-    setField(e.target.value);
-    console.log(e.target.value);
-    console.log(Field);
-}
-const personnelHandling=(e)=>{
-    setPersonnel(e.target.value);
-}
-const Submit=()=>{
-    axios
-    .post(`/api/projectRegister`)
-    .then((res)=>{console.log(res,'성공')})
-    .catch((error)=>{
-        if(error){
-            console.log('err',error)
-        }
+    useEffect(()=>{
+        console.log(JSON.stringify(Params));
+        console.log(selectFields)
     })
+//test
+// const [test,setTest]=useState({
+//     fieldd:"",
+//     person:""
+// })
+// const {fieldd,person}=test;
+// const onChange=e=>{
+//     const {name,value}=e.target;
+//     setTest({
+//         ...test,
+//         [name]: value
+//     })
+// }
+// const [user,setUser]=useState([{
+//     fieldd:"back",
+//     complete:0,
+//     person:"1"
+// },
+// ])
+// const userID=useRef(1);
+// const onCreate=()=>{
+//     const role={
+//         fieldd,
+//         complete:userID.current,
+//         person
+//     };
+//     setUser([...user,role])
+    // setTest({
+    //     fieldd:"",
+    //     person:""
+    // });
+//     userID.current+=1;
+//     setCount(Count+1);
+//     console.log(user)
+// }
+//제목
+const [title,setTitle]=useState('') 
+//프로젝트 내용
+const [contents, setContents] = useState("");
+//모집 마감일
+const [Deadline,setDeadline]=useState('')
+/**이미지 저장 */
+const [imgFile, setImgFile] = useState();
+//프젝 기본 이미지들
+const [Img,setImg]=useState(default1)
+//이미지 디폴트 = false이미지 input = true
+const [imageMod, setImageMod] = useState(false);
+//모집지역
+const [academy, setAcademy] = useState("");
+//모집분야-초기값
+const [selectFields, setSelectFields] = useState([{ role: 'back',complete:0,personnel: 1 }]);
+const fields = [
+    { label: "백엔드", value: "back" },
+    { label: "프론트엔드", value: "front" },
+    { label: "AI", value: "ai" },
+    { label: "빅데이터", value: "bigData" },
+    { label: "서버관리자", value: "server" },
+    { label: "정보보안", value: "security" },
+    { label: "네트워크관리자", value: "netWork" },
+  ]; 
+const peopleLabels = ["1명", "2명", "3명", "4명", "5명이상"];
+//role
+const handleNewFieldChange = (event, index) => {
+    const updatedSelectFields = [...selectFields];
+    updatedSelectFields[index].role = event.target.value;
+    setSelectFields(updatedSelectFields);
+  };
+//personnel
+  const handleNewPersonnelChange = (event, index) => {
+    const updatedSelectFields = [...selectFields];
+    updatedSelectFields[index].personnel = parseInt(event.target.value);
+    setSelectFields(updatedSelectFields);
+  };
+const handleNewtitle=(e)=>{
+    setTitle(e.target.value)
 }
-const PulsButton=()=>{
-    setCount(Count+1);
-    console.log(Count);
+const handleNewdeadline=(e)=>{
+    setDeadline(e.target.value);
+    // console.log(Deadline)
 }
-
+const handleNewacademy=(e)=>{
+    setAcademy(e.target.value)
+}
+const handleNewcontents = useCallback((data) => {
+    setContents(data);
+  }, []);
 //유저-파일change
-const saveFileImg=(e)=>{ 
-    let arr = [...Img,URL.createObjectURL(e.target.files[0])];
-    setImg(arr);
-    console.log(e.target.files[0]);
-    console.log(arr);
+const saveFileImg=(file)=>{ 
+    setImgFile(file)
+    setImageMod(true)
+    let Reader = new FileReader();
+    Reader.readAsDataURL(file);
+    Reader.onloadend = (path) => {
+        setImg(path.currentTarget.result);
+      };
 }
-function list(){
-    let arr=[];
-    for(let i=0; i<Count;i++){
-        arr.push(
-            <>
-             <Select  width="700px"onChange={fieldHandling}>
-                <option value="back">백엔드</option>
-                <option value="front">프론트엔드</option>
-                <option value="ai">AI</option>
-                <option value="bigData">빅데이터</option>
-                <option value="server">서버관리자</option>
-                <option value="security">정보보안</option>
-                <option value="netWork">네트워크 관리자</option>
-             </Select>
-             <SubSelect onChange={personnelHandling}>
-                <option value="back">1명</option>
-                <option value="back">2명</option>
-                <option value="back">3명</option>
-                <option value="back">4명</option>
-                <option value="back">5명 이상</option>
-             </SubSelect>
-            </>
-        )
+// const ar=[{Role:"back",complete:0,personnel:"1"}]
+const Params = {
+    projectTitle: title,
+    projectContent: contents,
+    projectWantedRole: JSON.stringify(selectFields),
+    projectStatus: true,
+    projectDue:Deadline,
+    projectAcademy: academy,
+    projectWriterId: "ID",
+    projectWriterNick: "닉네임",
+    projectScarpNum: 10,
+  };
+//But
+const handleAddButton = () => {
+    if (selectFields.length < 7) {
+      setSelectFields([...selectFields, { role: 'back', complete:0,personnel: 1 }]); // 추가 시 초기 선택 항목을 'back'으로 설정
     }
-    console.log(arr);
-    return arr;
+  };
+  const handleDeleteButton = (index) => {
+    const updatedSelectFields = [...selectFields];
+    updatedSelectFields.splice(index, 1);
+    setSelectFields(updatedSelectFields);
+  };
+const Submit=async()=>{
+     if(Deadline == ''){
+         alert("마감 날짜를 선택해주세요");
+        return false;
+    }
+    let data = new FormData();
+    if(imageMod)data.append("file",imgFile)
+    data.append('projectRequestDTO', 
+    new Blob([JSON.stringify(Params)], { type: "application/json" }),
+    {
+      contentType: "application/json",
+    });
+    // axios({
+    //     method: 'post',
+    //     maxBodyLength: Infinity,
+    //     url: `/api/projectRegister`,
+    //     // headers: { 
+    //     //     ...data.getHeaders()
+    //     // },
+    //     data : data
+    // })
+    // .then((response) => {
+    //     console.log(JSON.stringify(response.data));
+    //   })
+    // .catch((error) => {
+    //     console.log(error);
+    // })
+    axios
+    .post("/api/projectRegister", data, {
+      headers: { "Content-Type": "multipart/form-data" 
+      },
+    })
+    .then((res) => {
+      alert(res);
+    })
+    .catch((err) => {
+      console.log(err);
+      alert("등록 실패, 콘솔에서 error확인");
+    });
 }
     return(
         <WriteWrap>
          <Wrap>
             <Title>📌 프로젝트에 대해 소개해주세요.</Title>
             <Subtitle>제목</Subtitle>
-            <InputTitle placeholder="제목을 작성해주세요."></InputTitle>
+            <InputTitle onChange={handleNewtitle}placeholder="제목을 작성해주세요."></InputTitle>
             <Subtitle>사진</Subtitle>
             <ImgWrap>
             {/* 메인 프로젝트 기본이미지 바뀌는 코드 */}
             <MainImgWrap>
                 {
-                Tab===0 ?(
+                Img===default1 ?(
                     <MainImg
-                    src={Img[Tab]}
+                    src={"http://projecttycoon.com" + default1}
                     />
-                    )
-                    :(Tab===1)?(
-                        <MainImg
-                    src={Img[Tab]}
+                    ): Img===default2 ?(
+                    <MainImg
+                    src={"http://projecttycoon.com" + default2}
                     />
-                    ):(Tab===2)?(<MainImg
-                    src={Img[Tab]}
+                    ):Img===default3 ? (
+                    <MainImg
+                    src={"http://projecttycoon.com" + default3}
                     />
-                    ):(Tab===3)?(
-                        <MainImg
-                        src={Img[3]}
-                        />  
-                    ):<MainImg
-                    src={Img[0]}
-                    />
+                    ):<MainImg src={Img}></MainImg>
                 }
                 <FileLabel for="file"><FiFilePlus size={40} color="white"/></FileLabel>
-                <ImgInput type="file" id="file" onChange={saveFileImg} onClick={()=>{setTab(3)}}></ImgInput>
+                <ImgInput type="file" id="file" onChange={(e)=>{
+                    e.preventDefault();
+                    saveFileImg(e.currentTarget.files[0]);
+                    }}></ImgInput>
                 </MainImgWrap>
                 {/* 마지막인덱스값 가져와야함 or 3 */}
                 <Right>
-                <SubImgBox onClick={()=>{setTab(0)}}>
-                    <SubImg src={Img[0]}></SubImg>
+                <SubImgBox onClick={()=>{setImg(default1)}}>
+                    <SubImg src={"http://projecttycoon.com" + default1}></SubImg>
                     <Ji><Txt>기본 이미지 입니다.</Txt><Txt>클릭 해주세요.</Txt></Ji>
                 </SubImgBox>
-                <SubImgBox onClick={()=>{setTab(1)}}>
-                    <SubImg src={Img[1]}></SubImg>
+                <SubImgBox onClick={()=>{setImg(default2)}}>
+                    <SubImg src={"http://projecttycoon.com" + default2}></SubImg>
                     <Ji><Txt>기본 이미지 입니다.</Txt><Txt>클릭 해주세요.</Txt></Ji>
                 </SubImgBox>
-                <SubImgBox onClick={()=>{setTab(2)}}>
-                    <SubImg src={Img[2]}></SubImg>
+                <SubImgBox onClick={()=>{setImg(default3)}}>
+                    <SubImg src={"http://projecttycoon.com" + default3}></SubImg>
                     <Ji><Txt>기본 이미지 입니다.</Txt><Txt>클릭 해주세요.</Txt></Ji>
                 </SubImgBox>
                     {/* {
@@ -308,41 +401,63 @@ function list(){
                     {/* <input type="file" onChange={saveFileImg}></input> */}
                 </Right>
             </ImgWrap>
-            <QuillTestPage/>
+            <QuillTestPage handleNewcontents={handleNewcontents}/>
             <Title>📌 프로젝트 기본 정보를 입력해주세요.</Title>
             <Bot>
                 <Top>
                     <div>
                         <Subtitle>모집 지역</Subtitle>
-                        <Select width="405px">
-                            <option value="">강남</option>
-                            <option value="">신촌/홍대</option>
-                            <option value="">노원</option>
-                            <option value="">인천</option>
-                            <option value="">대전</option>
-                            <option value="">대구</option>
-                            <option value="">부산</option>
+                        <Select onChange={handleNewacademy} width="405px">
+                            <option value="강남">강남</option>
+                            <option value="신촌/홍대">신촌/홍대</option>
+                            <option value="노원">노원</option>
+                            <option value="인천">인천</option>
+                            <option value="대전">대전</option>
+                            <option value="대구">대구</option>
+                            <option value="부산">부산</option>
                         </Select>
                     </div>
                     <div>
                         <Subtitle>모집 마감일</Subtitle>
-                        <DateInput type="date"></DateInput>
+                        <DateInput type="date" onChange={handleNewdeadline} value={Deadline}></DateInput>
                     </div>
                 </Top>
                 <div>
                     <Subtitle>모집 분야</Subtitle>
                         <TT>
-                            {
-                            list()
-                            }
+                         {selectFields.map((selectField, index) => (
+                            <div key={index}>
+                                <label>
+                                    과목:
+                                    <select defaultValue={selectField.field} onChange={(event) => handleNewFieldChange(event, index)}>
+                                    {fields.map((field, fieldIndex) => (
+                                        <option key={fieldIndex} value={field.value}>
+                                        {field.label}
+                                        </option>
+                                    ))}
+                                    </select>
+                                </label>
+                                <label>
+                                    인원:
+                                    <select value={selectField.personnel} onChange={(event) => handleNewPersonnelChange(event, index)}>
+                                    {peopleLabels.map((label, labelIndex) => (
+                                        <option key={labelIndex} value={labelIndex + 1}>
+                                        {label}
+                                        </option>
+                                    ))}
+                                    </select>
+                                </label>
+                            <button onClick={() => handleDeleteButton(index)}>삭제</button>
+                            </div>
+                        ))}
                         </TT>
-                    <PulsBut onClick={PulsButton}>+</PulsBut>
+                    <PulsBut onClick={handleAddButton}>+</PulsBut>
                 </div>
             </Bot>
          </Wrap>
          <ButBox>
             <But background_color="gray" onClick={()=>{
-                                Submit();
+                                 window.history.back();
                             }}>취소</But>
             <But onClick={()=>{
                                 Submit();

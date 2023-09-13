@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import purify from "dompurify";
@@ -49,8 +49,11 @@ const Preview = styled.div`
   } */
 `;
 
-function QuillTestPage() {
+function QuillTestPage({handleNewcontents}) {
   const [value, setValue] = useState("");
+  useEffect(() => {
+    handleNewcontents(value);
+  }, [handleNewcontents, value]);
   return (
     <>
       <Container>
