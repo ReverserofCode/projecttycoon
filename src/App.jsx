@@ -1,14 +1,11 @@
 import React from "react";
 import styled from "@emotion/styled";
-
 import Navbar from "./components/Navbar";
 import Write from "./page/Write";
-import TestWrite from "./TestCode/TestWrite";
-// import Input from "./components/Input"s
 
 const MainContainer = styled.div`
-margin: 0 auto;
-padding: 0;
+  margin: 0 auto;
+  padding: 0;
   display: flex;
   flex-direction: column;
   /* justify-content: flex-start; */
@@ -16,13 +13,21 @@ padding: 0;
   /* width: 100%; */
   /* min-height: 100%; */
 `;
+/** 메인 콘텐츠가 담기는 사이즈 제한 콘테이너 태그 */
+const Wrap = styled.div`
+  max-width: 1440px;
+  width: 100%;
+`;
 
 function App() {
+  const [userData, setUserData] = useState("");
+  const handleSetUserData = useCallback((value) => {
+    setUserData(value);
+  }, []);
   return (
     <MainContainer>
-      <Navbar />
-      <Write></Write>
-      {/* <TestWrite></TestWrite> */}
+      <Navbar userData={userData} handleSetUserData={handleSetUserData} />
+      <Write userData={userData}></Write>
     </MainContainer>
   );
 }
