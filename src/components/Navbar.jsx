@@ -75,7 +75,7 @@ function Navbar() {
           </Link>
           <Link
             className="menu"
-            href="http://www.projecttycoon.com/callPageNewProject"
+            href="http://projecttycoon.com/callPageNewProject"
           >
             <Items>새로운 글쓰기</Items>
           </Link>
