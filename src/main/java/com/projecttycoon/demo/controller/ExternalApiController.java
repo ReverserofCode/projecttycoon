@@ -17,7 +17,7 @@ public class ExternalApiController {
     private String apiUrl = "http://openapi.seoul.go.kr:8088";
     private final String service = "jobNewDealBizOpenInfo";
     private final int startIndex = 1;
-    private final int endIndex = 2000;
+    private final int endIndex = 1000;
 
     @GetMapping("/callNewListInSeoul")
     public ResponseEntity<String> callJobList() {

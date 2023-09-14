@@ -7,12 +7,12 @@ import com.projecttycoon.demo.domain.repository.MemberRepository;
 import com.projecttycoon.demo.domain.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.apache.el.parser.BooleanNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -27,7 +27,6 @@ public class MemberController {
     MemberService memberService;
     boolean duplicateCheck = false;
     MemberRequestDTO memberRequestDTO;
-
 
     @Autowired
     MemberController(MemberService memberService, MemberRepository memberRepository) {
@@ -47,17 +46,17 @@ public class MemberController {
     }
 
     @PostMapping("/api/memberRegister")
-    public void registerDB(@RequestBody MemberRequestDTO memberRequestDTO) {
+    public ResponseEntity<String> registerDB(@RequestBody MemberRequestDTO memberRequestDTO) {
         log.info("call registerDB");
         log.info("memberRegister check memberRequestDTO : " + memberRequestDTO.toString());
         memberService.registerMember(memberRequestDTO);
+        return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/static/PageProjectBoard/index.html").build();
     }
 
     @PutMapping("/api/memberUpdate/{memberId}")
     public void updateDb(@PathVariable String memberId, @RequestBody MemberRequestDTO memberRequestDTO) {
         log.info("call updateDb");
         log.info(memberId);
-
         memberService.memberUpdate(memberId, memberRequestDTO);
     }
 
@@ -73,7 +72,9 @@ public class MemberController {
     }
 
     @GetMapping("/api/mypage")
-    public MemberRequestDTO mypage(@AuthenticationPrincipal MemberLoginDTO memberLoginDTO) {
+    public MemberRequestDTO myPage(@AuthenticationPrincipal MemberLoginDTO memberLoginDTO) {
+
+        log.info("Call myPage");
         memberRequestDTO = new MemberRequestDTO(memberRepository.findByMemberId(memberLoginDTO.getMemberId()).orElseThrow());
         return memberRequestDTO;
     }
