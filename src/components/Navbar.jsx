@@ -61,9 +61,9 @@ const UserIcon = styled.image`
 `;
 function Navbar({ userData, handleSetUserData }) {
   useEffect(() => {
-    // LoginCheck().then((res) => {
-    //   handleSetUserData(res);
-    // });
+    LoginCheck().then((res) => {
+      handleSetUserData(res);
+    });
   }, [handleSetUserData]);
   return (
     <Container>
@@ -84,7 +84,7 @@ function Navbar({ userData, handleSetUserData }) {
           </Link>
           <Link
             className="menu"
-            href="http://www.projecttycoon.com/callPageNewProject"
+            href="http://projecttycoon.com/callPageNewProject"
           >
             <Items>새로운 글쓰기</Items>
           </Link>
