@@ -251,8 +251,9 @@ const [imageMod, setImageMod] = useState(false);
 //모집지역
 const [academy, setAcademy] = useState("");
 //모집분야-초기값
-const [selectFields, setSelectFields] = useState([{ role: 'back',complete:0,personnel: 1, st:false }]);
-const [삭제,삭제버튼]= useState(false);
+const [selectFields, setSelectFields] = useState([{ role: 'back',complete:0,personnel: 1 }]);
+//현재날짜
+const currentDate = new Date().toISOString().split('T')[0];
 const fields = [
     { label: "백엔드", value: "back" },
     { label: "프론트엔드", value: "front" },
@@ -298,7 +299,6 @@ const saveFileImg=(file)=>{
         setImg(path.currentTarget.result);
       };
 }
-// const ar=[{Role:"back",complete:0,personnel:"1"}]
 const Params = {
     projectTitle: title,
     projectContent: contents,
@@ -313,16 +313,17 @@ const Params = {
 //But
 const handleAddButton = () => {
     if (selectFields.length < 7) {
-      setSelectFields([...selectFields, { role: 'back', complete:0,personnel: 1  ,st:true}]); // 추가 시 초기 선택 항목을 'back'으로 설정
+      setSelectFields([...selectFields, { role: 'back', complete:0,personnel: 1  }]); // 추가 시 초기 선택 항목을 'back'으로 설정
     }
     // 삭제버튼(true)
   };
   
     const handleDeleteButton = (indexDelete) => {
-        // if(selectFields[0]){
-        //     삭제버튼(false)
-        // }
-        const updatedSelectFields = selectFields.filter((_, index)=> index!== indexDelete);
+        if (indexDelete === 0) {
+            // 첫 번째 요소는 삭제하지 않도록 예외 처리
+            return;
+          }
+        const updatedSelectFields = selectFields.filter((list, index)=> index!== indexDelete);
         setSelectFields(updatedSelectFields);
     }
 //   const handleDeleteButton = (index) => {
@@ -447,7 +448,7 @@ const Submit=async()=>{
                     </div>
                     <div>
                         <Subtitle>모집 마감일</Subtitle>
-                        <DateInput type="date" onChange={handleNewdeadline} value={Deadline}></DateInput>
+                        <DateInput type="date" onChange={handleNewdeadline} value={Deadline} min={currentDate}></DateInput>
                     </div>
                 </Top>
                 <Top>
@@ -472,7 +473,11 @@ const Submit=async()=>{
                                         </option>
                                     ))}
                                     </Select>
-                                    <DeleteBtn onClick={() => handleDeleteButton(index)}>-</DeleteBtn>
+                                    {
+                                        index>0&&(
+                                            <DeleteBtn onClick={() => handleDeleteButton(index)}>-</DeleteBtn>
+                                        )
+                                    }
                                 </TT>
                             </div>
                         ))}
