@@ -386,7 +386,7 @@ const Submit=async()=>{
             <InputTitle onChange={handleNewtitle}placeholder="제목을 작성해주세요."></InputTitle>
             <Subtitle>사진</Subtitle>
             <ImgWrap>
-            {/* 메인 프로젝트 기본이미지 바뀌는 코드 */}
+            {/* 메인프로젝트기본이미지바뀌는코드 */}
             <MainImgWrap>
                 {
                 Img===default1 ?(
