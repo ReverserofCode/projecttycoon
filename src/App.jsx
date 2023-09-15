@@ -1,6 +1,8 @@
 import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import Navbar from "./components/Navbar";
+import UserMyPage from '../src/page/userMyPage'
+
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -24,6 +26,7 @@ function App() {
     <MainContainer>
       <Navbar userData={userData} handleSetUserData={handleSetUserData} />
       <Wrap>
+        <UserMyPage/>
       </Wrap>
     </MainContainer>
   );
