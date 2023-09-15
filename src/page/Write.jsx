@@ -131,7 +131,7 @@ max-width: 950px;
     /* border: 1px green solid; */
     justify-content: space-between;
 `
-const TT =styled.div`
+const Ty =styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -458,7 +458,7 @@ const Submit=async()=>{
                     </SubTitleWrap>
                          {selectFields.map((selectField, index) => (
                             <div key={index}>
-                                <TT>
+                                <Ty>
                                     <Select width="270px" defaultValue={selectField.field} onChange={(event) => handleNewFieldChange(event, index)}>
                                     {fields.map((field, fieldIndex) => (
                                         <option key={fieldIndex} value={field.value}>
@@ -478,7 +478,7 @@ const Submit=async()=>{
                                             <DeleteBtn onClick={() => handleDeleteButton(index)}>-</DeleteBtn>
                                         )
                                     }
-                                </TT>
+                                </Ty>
                             </div>
                         ))}
                 </Top>
