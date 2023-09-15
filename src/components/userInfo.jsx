@@ -31,6 +31,9 @@ const XsmallBox=styled.div`
 const But=styled.button`
 `
 function UserInfo(){
+    useEffect(()=>{
+        console.log(memberInfo)
+    })
     const handleInputChange = (event, info) => {
         const updatedMemberInfo = { ...memberInfo, [info]: event.target.value };
         setMemberInfo(updatedMemberInfo);
@@ -38,8 +41,7 @@ function UserInfo(){
     const handleCloseClick = () => {
         setIsEditing(true);
       };
-    
-      const handleSaveClick = () => {
+    const handleSaveClick = () => {
         setIsEditing(false);
       };
     const info = {
@@ -65,7 +67,11 @@ function UserInfo(){
         <Box>
             <SmallBox>닉네임</SmallBox>
             {/* isEditing===ture  */}
-            {
+            <input
+                    type="text"
+                    value={memberInfo.memberNickname}
+                    onChange={(event)=>handleInputChange(event, 'memberNickname')}/>
+            {/* {
                 isEditing?(
                     <XsmallBox>
                         <input
@@ -81,13 +87,12 @@ function UserInfo(){
                     <div>{memberInfo.memberNickname}</div>
                     <But onClick={handleCloseClick}>수정</But>
                   </XsmallBox>
-            }
+            } */}
         </Box>
         <Box>
-            <SmallBox>위치</SmallBox>
+            <SmallBox>위치select으로 </SmallBox>
             <XsmallBox>
                 <div>{memberInfo.memberAcademy}</div>
-                <But onClick={handleCloseClick}>수정</But>
             </XsmallBox>
         </Box>
         <Box>
@@ -102,29 +107,28 @@ function UserInfo(){
         <Box>
             <SmallBox>한줄소개</SmallBox>
             <XsmallBox>
-                <div>{memberInfo.memberIntroduce}</div>
-                <But onClick={handleCloseClick}>수정</But>
+                <input
+                    type="text"
+                    value={memberInfo.memberIntroduce}
+                    onChange={(event)=>handleInputChange(event, 'memberIntroduce')}/>
             </XsmallBox>
         </Box>
         <Box>
             <SmallBox>역할</SmallBox>
             <XsmallBox>
                 <div>{memberInfo.memberRole}</div>
-                <But onClick={handleCloseClick}>수정</But>
             </XsmallBox>
         </Box>
         <Box>
             <SmallBox>언어</SmallBox>
             <XsmallBox>
                 <div>{memberInfo.memberStack}</div>
-                <But onClick={handleCloseClick}>수정</But>
             </XsmallBox>
         </Box>
         <Box>
             <SmallBox>개인링크</SmallBox>
             <XsmallBox>
                 <div>{memberInfo.memberLink}</div>
-                <But onClick={handleCloseClick}>수정</But>
             </XsmallBox>
         </Box>
         </>
