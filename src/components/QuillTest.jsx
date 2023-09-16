@@ -17,8 +17,8 @@ const Container = styled.div`
   }
 `;
 
-function QuillTestPage({ handleSetContents }) {
-  const [value, setValue] = useState("");
+function QuillTestPage({ handleSetContents, originContents }) {
+  const [value, setValue] = useState(originContents);
   useEffect(() => {
     handleSetContents(value);
   }, [handleSetContents, value]);

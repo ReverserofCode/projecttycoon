@@ -61,9 +61,9 @@ const UserIcon = styled.image`
 `;
 function Navbar({ userData, handleSetUserData }) {
   useEffect(() => {
-    LoginCheck().then((res) => {
-      handleSetUserData(res);
-    });
+    // LoginCheck().then((res) => {
+    //   handleSetUserData(res);
+    // });
   }, [handleSetUserData]);
   return (
     <Container>

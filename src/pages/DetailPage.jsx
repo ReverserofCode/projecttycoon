@@ -5,6 +5,7 @@ import Sidebar from "../components/Sidebar";
 import purify from "dompurify";
 import { GetProjectFromID } from "../functional/GetProject";
 import "highlight.js/styles/obsidian.css";
+import Modify from "../components/Modify";
 
 const Container = styled.div`
   display: flex;
@@ -292,60 +293,68 @@ function DetailPage({ userData }) {
     });
   }, [handleSetValue]);
   return (
-    <Container>
-      <SideContents>
-        <AiOutlineArrowLeft fontSize={"30px"} />
-        <Sidebar
-          value={value}
-          userData={userData}
-          handleSetValue={handleSetValue}
-        />
-      </SideContents>
-      <MainContents>
-        {value.projectWriterId === userData?.memberId ? (
-          <ModifyButton
-            onClick={() => {
-              setMod("modify");
-            }}
-          >
-            수정
-          </ModifyButton>
-        ) : (
-          ""
-        )}
-        <MainTitle>{value?.projectTitle}</MainTitle>
-        <PosterContain>
-          <Poster src={"http://projecttycoon.com" + value?.projectFilePath} />
-        </PosterContain>
-        <ProjectInfos>
-          <InfoColumn>
-            <InfoRow>
-              <InfoTitle>{value?.projectWriterNick}</InfoTitle>
-              <InfoDate>{value?.createdAt.slice(0, 10)}</InfoDate>
-            </InfoRow>
-            <InfoRow>
-              <InfoTitle>모집인원</InfoTitle>
-              <InfoCell>{handleRecruits()}</InfoCell>
-            </InfoRow>
-          </InfoColumn>
-          <InfoColumn>
-            <InfoRow>
-              <InfoTitle>모집 마감일</InfoTitle>
-              <InfoValue>{value?.projectDue.slice(0, 10)}</InfoValue>
-            </InfoRow>
-            <InfoRow>
-              <InfoTitle>진행학원</InfoTitle>
-              <InfoValue>{value?.projectAcademy} 아카데미</InfoValue>
-            </InfoRow>
-          </InfoColumn>
-        </ProjectInfos>
-        <Preview
-          dangerouslySetInnerHTML={{
-            __html: purify.sanitize(value?.projectContent),
-          }}
-        />
-      </MainContents>
-    </Container>
+    <>
+      {mod === "main" ? (
+        <Container>
+          <SideContents>
+            <AiOutlineArrowLeft fontSize={"30px"} />
+            <Sidebar
+              value={value}
+              userData={userData}
+              handleSetValue={handleSetValue}
+            />
+          </SideContents>
+          <MainContents>
+            {value.projectWriterId === userData?.memberId ? (
+              <ModifyButton
+                onClick={() => {
+                  setMod("modify");
+                }}
+              >
+                수정
+              </ModifyButton>
+            ) : (
+              ""
+            )}
+            <MainTitle>{value?.projectTitle}</MainTitle>
+            <PosterContain>
+              <Poster
+                src={"http://projecttycoon.com" + value?.projectFilePath}
+              />
+            </PosterContain>
+            <ProjectInfos>
+              <InfoColumn>
+                <InfoRow>
+                  <InfoTitle>{value?.projectWriterNick}</InfoTitle>
+                  <InfoDate>{value?.createdAt.slice(0, 10)}</InfoDate>
+                </InfoRow>
+                <InfoRow>
+                  <InfoTitle>모집인원</InfoTitle>
+                  <InfoCell>{handleRecruits()}</InfoCell>
+                </InfoRow>
+              </InfoColumn>
+              <InfoColumn>
+                <InfoRow>
+                  <InfoTitle>모집 마감일</InfoTitle>
+                  <InfoValue>{value?.projectDue.slice(0, 10)}</InfoValue>
+                </InfoRow>
+                <InfoRow>
+                  <InfoTitle>진행학원</InfoTitle>
+                  <InfoValue>{value?.projectAcademy} 아카데미</InfoValue>
+                </InfoRow>
+              </InfoColumn>
+            </ProjectInfos>
+            <Preview
+              dangerouslySetInnerHTML={{
+                __html: purify.sanitize(value?.projectContent),
+              }}
+            />
+          </MainContents>
+        </Container>
+      ) : (
+        <Modify userData={userData} originData={value}></Modify>
+      )}
+    </>
   );
 }
 
