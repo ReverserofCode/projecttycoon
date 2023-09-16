@@ -119,15 +119,7 @@ function ProjectPage() {
         />
         <SubmitButton
           onClick={() => {
-            let status =
-              statusSelect.length === 2
-                ? ""
-                : statusSelect[0] === "T"
-                ? true
-                : statusSelect[0] === "F"
-                ? false
-                : "";
-            GetFilterList(status, RecruitSelect).then((res) => {
+            GetFilterList(statusSelect, RecruitSelect).then((res) => {
               setBoardList(res);
             });
           }}

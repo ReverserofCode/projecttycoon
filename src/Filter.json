@@ -19,7 +19,7 @@
         {"content":"네트워크 관리자","value":"network"}
     ],
     "Status":[
-        {"content":"모집중","value":"T"},
-        {"content":"모집마감","value":"F"}
+        {"content":"모집중","value":"true"},
+        {"content":"모집마감","value":"false"}
     ]
 }
