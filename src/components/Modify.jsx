@@ -1,8 +1,7 @@
-import { useEffect, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import axios from "axios";
 import styled from "@emotion/styled";
 import QuillTestPage from "./QuillTest";
-import { FiFilePlus } from "react-icons/fi";
 
 const But = styled.button`
   border: none;
@@ -92,29 +91,6 @@ const DateInput = styled.input`
   max-width: 385px;
   height: 40px;
 `;
-const ImgInput = styled.input`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-`;
-const FileLabel = styled.label`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 70px;
-  height: 65px;
-  background-color: #0b666a;
-  cursor: pointer;
-  border-radius: 50%;
-`;
 const ButBox = styled.div`
   margin-top: 20px;
   display: flex;
@@ -187,27 +163,6 @@ function Modify({ userData, originData }) {
   const handleNewcontents = useCallback((data) => {
     setContents(data);
   }, []);
-  //유저-파일change
-  const saveFileImg = (file) => {
-    setImgFile(file);
-    setImageMod(true);
-    let Reader = new FileReader();
-    Reader.readAsDataURL(file);
-    Reader.onloadend = (path) => {
-      setImg(path.currentTarget.result);
-    };
-  };
-  const Params = {
-    projectTitle: title,
-    projectContent: contents,
-    projectWantedRole: JSON.stringify(selectFields),
-    projectStatus: true,
-    projectDue: Deadline,
-    projectAcademy: academy,
-    projectWriterId: userData?.memberId,
-    projectWriterNick: userData?.memberNickName,
-    projectScarpNum: 0,
-  };
   //But
   const handleAddButton = () => {
     if (selectFields.length < 7) {
@@ -229,9 +184,19 @@ function Modify({ userData, originData }) {
     setSelectFields(updatedSelectFields);
   };
   const Submit = async () => {
+    let Params = {
+      projectTitle: title,
+      projectContent: contents,
+      projectWantedRole: JSON.stringify(selectFields),
+      projectStatus: true,
+      projectDue: Deadline,
+      projectAcademy: academy,
+      projectWriterId: userData?.memberId,
+    };
+    console.log(JSON.stringify(Params));
     axios
       .put(`/api/project/${originData?.projectId}`, JSON.stringify(Params), {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: { "Content-Type": "application/json" },
       })
       .then((res) => {
         alert("프로젝트가 정상적으로 수정 되었습니다.");
@@ -255,18 +220,7 @@ function Modify({ userData, originData }) {
         <Subtitle>사진</Subtitle>
         <ImgWrap>
           <MainImgWrap>
-            <MainImg src={Img}></MainImg>
-            {/* <FileLabel for="file">
-              <FiFilePlus size={40} color="white" />
-            </FileLabel> */}
-            {/* <ImgInput
-              type="file"
-              id="file"
-              onChange={(e) => {
-                e.preventDefault();
-                saveFileImg(e.currentTarget.files[0]);
-              }}
-            /> */}
+            <MainImg src={Img} />
           </MainImgWrap>
         </ImgWrap>
         <QuillTestPage
