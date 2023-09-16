@@ -17,5 +17,9 @@
         {"content":"서버관리자","value":"serveradmin"},
         {"content":"정보보안","value":"security"},
         {"content":"네트워크 관리자","value":"network"}
+    ],
+    "Status":[
+        {"content":"모집중","value":"T"},
+        {"content":"모집마감","value":"F"}
     ]
 }

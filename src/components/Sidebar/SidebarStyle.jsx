@@ -16,12 +16,12 @@ export const Base = styled.div`
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  padding: 24px 0 40px 50px;
+  padding: 20px 0 20px 40px;
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
   border: 1px solid var(--main-color-main-color-2, #0b666a);
   min-width: 250px;
   width: 100%;
-  gap: 25px;
+  gap: 15px;
   border-radius: 10px;
 `;
 /** 사이드 바의 필터의 제목 태그 */

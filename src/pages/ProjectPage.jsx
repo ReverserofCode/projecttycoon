@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { SelectSide, CheckSide } from "../components/Sidebar/SidebarComponent";
 import { MainHeader, SubmitButton } from "../components/Sidebar/SidebarStyle";
 import BoardItem from "../components/BoardItem";
-import { Place, Recruit } from "../Filter.json";
+import { Place, Recruit, Status } from "../Filter.json";
 import { BoardListGet } from "../functional/BoardList";
 import { GetFilterList } from "../functional/FilterGet";
 /** 프로젝트 페이지의 컴포넌트를 담고있는 콘테이너 태그 */
@@ -22,7 +22,7 @@ const SideContents = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   position: sticky;
-  top: 80px;
+  top: 10px;
   left: 10px;
   gap: 15px;
 `;
@@ -55,10 +55,16 @@ function ProjectPage() {
   /** 사이드바의 지역 state */
   const [placeSelect, setPlaceSelect] = useState("");
   /** 사이드바의 모집분야 state */
-  const [RecruitSelect, setRecruitSelect] = useState("");
+  const [RecruitSelect, setRecruitSelect] = useState([]);
+  /** 사이드바의 모집분야 state */
+  const [statusSelect, setStatusSelect] = useState([]);
   /** 모집분야 설정 */
-  const handleSet = useCallback((e) => {
+  const handleSetRecruit = useCallback((e) => {
     setRecruitSelect(e);
+  }, []);
+  /** 모집분야 설정 */
+  const handleSetStatus = useCallback((e) => {
+    setStatusSelect(e);
   }, []);
   /** 학원지점 설정 */
   const PlaceSet = useCallback((value) => {
@@ -67,7 +73,7 @@ function ProjectPage() {
   /** 프로젝트 아이템 생성 */
   const handleBoardItemGen = useCallback(() => {
     let contents = [];
-    for (let i = 0; i < boardList.length; i++) {
+    for (let i = 0; i < boardList?.length; i++) {
       let bufRole = JSON.parse(
         boardList[i]?.projectWantedRole.replace(/'/g, '"')
       );
@@ -102,13 +108,26 @@ function ProjectPage() {
         <MainHeader>프로젝트 필터</MainHeader>
         <SelectSide header={"지역"} contents={Place} handleSelect={PlaceSet} />
         <CheckSide
+          contents={Status}
+          header={"모집 현황"}
+          handleSet={handleSetStatus}
+        />
+        <CheckSide
           contents={Recruit}
           header={"모집 분야"}
-          handleSet={handleSet}
+          handleSet={handleSetRecruit}
         />
         <SubmitButton
           onClick={() => {
-            GetFilterList(true, RecruitSelect).then((res) => {
+            let status =
+              statusSelect.length === 2
+                ? ""
+                : statusSelect[0] === "T"
+                ? true
+                : statusSelect[0] === "F"
+                ? false
+                : "";
+            GetFilterList(status, RecruitSelect).then((res) => {
               setBoardList(res);
             });
           }}
