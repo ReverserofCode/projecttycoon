@@ -11,7 +11,7 @@ export default defineConfig({
     port:3000,
     proxy:{
       "/sessionObject":"http://projecttycoon.com",
-      "/api/logoutProcess":"http://projecttycoon.com"
+      "/api":"http://projecttycoon.com"
     }
   }
 })
