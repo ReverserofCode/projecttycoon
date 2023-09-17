@@ -1,0 +1,25 @@
+{
+    "Place":[
+        "전체",
+        "강남",
+        "신촌/홍대",
+        "노원",
+        "인천",
+        "대전",
+        "대구",
+        "부산"
+    ],
+    "Recruit":[
+        {"content":"백엔드","value":"back"},
+        {"content":"프론트엔드","value":"front"},
+        {"content":"빅데이터","value":"bigdata"},
+        {"content":"AI","value":"ai"},
+        {"content":"서버관리자","value":"serveradmin"},
+        {"content":"정보보안","value":"security"},
+        {"content":"네트워크 관리자","value":"network"}
+    ],
+    "Status":[
+        {"content":"모집중","value":"true"},
+        {"content":"모집마감","value":"false"}
+    ]
+}
