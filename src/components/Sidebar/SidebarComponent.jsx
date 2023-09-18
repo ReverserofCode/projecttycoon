@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useCallback, useRef } from "react";
+import React, { useEffect, useCallback, useRef } from "react";
 import { Base, FilterHeader } from "./SidebarStyle";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 /** 체크 형태의 아이템을 담고있는 컨테이너  태그*/
@@ -26,14 +26,14 @@ const Select = styled.select`
 `;
 /** Select 태그를 이용하는 Side Bar형태 */
 export function SelectSide({ header, contents, handleSelect }) {
-  /** 콘텐츠를 받아와 option태그로 생성하는 function */
   const Options = useCallback(() => {
-    let option = [];
-    for (let i = 0; i < contents.length; i++) {
-      option.push(<option key={`option item ${i}`}>{contents[i]}</option>);
-    }
-    return option;
+    return contents.map((item, index) => (
+      <option key={`option item ${index}`} value={item.value}>
+        {item.content}
+      </option>
+    ));
   }, [contents]);
+
   return (
     <Base>
       <FilterHeader>{header}</FilterHeader>
@@ -49,43 +49,47 @@ export function SelectSide({ header, contents, handleSelect }) {
   );
 }
 
-/** Check 태그를 이용하는 Side Bar형태 */
 export function CheckSide({ header, contents, handleSet }) {
-  /** 콘텐츠별로 각각의 reference 를 지정하는 ref */
   const Reference = useRef([]);
-  /** 체크 콘텐츠를 클릭시 실행되어 state를 변경시키는 function */
+
+  useEffect(() => {
+    // 초기에 선택된 항목들을 설정합니다.
+    contents.forEach((item, index) => {
+      if (item.selected) {
+        Reference.current[index].classList.add("select");
+      }
+    });
+  }, [contents]);
+
   const handleContain = useCallback(() => {
     let refArray = [];
     for (let i = 0; i < Reference.current.length; i++) {
-      Reference.current[i].classList.length === 3
-        ? refArray.push(Reference.current[i].classList[0])
-        : "";
+      if (Reference.current[i].classList.contains("select")) {
+        refArray.push(contents[i].value);
+      }
     }
     handleSet(refArray);
-  }, [handleSet]);
-  /** 콘텐츠를 받아와 체크 콘텐츠로 변환하고 ref를 지정해주는 function */
+  }, [contents, handleSet]);
+
   const CheckLists = useCallback(() => {
-    let lists = [];
-    for (let i = 0; i < contents.length; i++) {
-      lists.push(
-        <CheckContainer
-          ref={(el) => {
-            Reference.current[i] = el;
-          }}
-          key={`check contents ${i}`}
-          onClick={() => {
-            Reference.current[i].classList.toggle("select");
-            handleContain();
-          }}
-          className={contents[i].value}
-        >
-          <AiOutlineCheckCircle />
-          {contents[i].content}
-        </CheckContainer>
-      );
-    }
-    return lists;
+    return contents.map((item, index) => (
+      <CheckContainer
+        ref={(el) => {
+          Reference.current[index] = el;
+        }}
+        key={`check contents ${index}`}
+        onClick={() => {
+          Reference.current[index].classList.toggle("select");
+          handleContain();
+        }}
+        className={item.selected ? "select" : ""}
+      >
+        <AiOutlineCheckCircle />
+        {item.content}
+      </CheckContainer>
+    ));
   }, [contents, handleContain]);
+
   return (
     <Base>
       <FilterHeader>{header}</FilterHeader>

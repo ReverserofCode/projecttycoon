@@ -20,6 +20,8 @@ const BoardBase = styled.div`
   box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.25);
   :hover {
     scale: 1.03;
+    color: #000000;
+    font-weight: bold;
   }
 `;
 /** 보드아이템의 태그들을 담고있는 콘테이너 태그 */
@@ -30,6 +32,7 @@ const TagContainer = styled.div`
   gap: 10px;
   width: 100%;
   height: 27px;
+  margin-bottom: 20px;
 `;
 /** 보드아이템의 태그 */
 const TagItem = styled.div`
@@ -95,111 +98,75 @@ const Recruits = styled.div`
   box-sizing: border-box;
 `;
 /** 보드아이템의 모집분야를 icon으로 표기하는 태그 */
-const FilterIcon = styled.img`
-  width: 35px;
+// const FilterIcon = styled.img`
+//   width: 35px;
+// `;
+const FilterIcon = styled.p`
+  font-size: 15px;
 `;
 
 function BoardItem({
-  title,
-  createDate,
-  DeadLine,
-  status,
-  filter,
+  icon,
+  nick,
+  introduce,
+  memberRole = [], // Rename the prop for clarity
   academy,
-  image,
-  id,
+  handleBoardItemGen,
 }) {
-  /** 보드아이템의 콘텐츠로부터 모집분야를 icon으로 표기해주는 function */
   const FilterIcons = useCallback(() => {
     let contents = [];
-    for (let i = 0; i < filter.length; i++) {
-      switch (filter[i]) {
-        case "back":
+    for (let i = 0; i < memberRole.length; i++) {
+      // 모집분야에 따라 아이콘과 텍스트를 생성
+      switch (memberRole[i]) {
+        case "BackEnd":
           contents.push(
-            <FilterIcon
-              src="http://projecttycoon.com/static/images/BackEnd.png"
-              key={`Filter Icon ${i}`}
-            />
+            <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
           );
           break;
-        case "front":
+        case "FrontEnd":
           contents.push(
-            <FilterIcon
-              src="http://projecttycoon.com/static/images/FrontEnd.png"
-              key={`Filter Icon ${i}`}
-            />
+            <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
           );
           break;
-        case "bigData":
+        case "BigData":
           contents.push(
-            <FilterIcon
-              src="http://projecttycoon.com/static/images/BigData.png"
-              key={`Filter Icon ${i}`}
-            />
+            <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
           );
           break;
         case "AI":
           contents.push(
-            <FilterIcon
-              src="http://projecttycoon.com/static/images/AI.png"
-              key={`Filter Icon ${i}`}
-            />
+            <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
           );
           break;
-        case "server":
+        case "Server":
           contents.push(
-            <FilterIcon
-              src="http://projecttycoon.com/static/images/ServerAdmin.png"
-              key={`Filter Icon ${i}`}
-            />
+            <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
           );
           break;
-        case "security":
+        case "Security":
           contents.push(
-            <FilterIcon
-              src="http://projecttycoon.com/static/images/Security.png"
-              key={`Filter Icon ${i}`}
-            />
+            <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
           );
           break;
-        case "network":
+        case "Network":
           contents.push(
-            <FilterIcon
-              src="http://projecttycoon.com/static/images/Network.png"
-              key={`Filter Icon ${i}`}
-            />
+            <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
+          );
+          break;
+        default:
+          // 기타 모집분야 처리
+          contents.push(
+            <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
           );
           break;
       }
     }
     return contents;
-  }, [filter]);
+  }, [memberRole]);
+
   return (
-    <BoardBase
-      onClick={() => {
-        window.location.href = `http://projecttycoon.com/callPageProjectBoardDetail/${id}`;
-      }}
-    >
+    <BoardBase>
       <TagContainer>
-        {status ? (
-          <TagItem>
-            <BsClipboard2Check
-              color={"#35A29F"}
-              fontSize={"13px"}
-              style={{ marginRight: "5px" }}
-            />{" "}
-            모집중
-          </TagItem>
-        ) : (
-          <TagItem>
-            <BiStopwatch
-              color={"#FF5151"}
-              fontSize={"13px"}
-              style={{ marginRight: "5px" }}
-            />{" "}
-            모집완료
-          </TagItem>
-        )}
         <TagItem>
           <TbSchool
             color={"#75C2F6"}
@@ -209,16 +176,11 @@ function BoardItem({
           {academy}
         </TagItem>
       </TagContainer>
-      <PosterContainer>
-        <Poster src={"http://projecttycoon.com" + image} />
-      </PosterContainer>
-      <ProjectInfo>
-        <Date>
-          {createDate} ~ {DeadLine}
-        </Date>
-        <Title>{title}</Title>
-        <Recruits>{FilterIcons()}</Recruits>
-      </ProjectInfo>
+      <TagContainer>
+        <TagItem>
+          <Recruits>{FilterIcons()}</Recruits>
+        </TagItem>
+      </TagContainer>
     </BoardBase>
   );
 }

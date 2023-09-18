@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useState } from "react";
 import { SelectSide, CheckSide } from "../components/Sidebar/SidebarComponent";
 import { MainHeader, SubmitButton } from "../components/Sidebar/SidebarStyle";
-import BoardItem from "../components/BoardItem";
+import MemberPage from "../components/MemberPage";
 import { Place, Recruit, Status } from "../Filter.json";
 import { BoardListGet } from "../functional/BoardList";
 import { GetFilterList } from "../functional/FilterGet";
@@ -13,8 +13,10 @@ const PageContainer = styled.div`
   align-items: flex-start;
   width: 100%;
   height: fit-content;
-  margin-top: 20px;
+  margin-top: 50px;
+  margin-bottom: 100px;
 `;
+
 /** 프로젝트 페이지의 사이드바 콘테이너 태그 */
 const SideContents = styled.div`
   display: flex;
@@ -51,21 +53,26 @@ const Board = styled.div`
 /** 프로젝트 페이지 */
 function ProjectPage() {
   /** 프로젝트 리스트 state */
-  const [boardList, setBoardList] = useState([]);
-  /** 사이드바의 지역 state */
+  // 필터 선택 상태를 관리할 useState 훅
+  const [boardList, setBoardList] = useState([]); // boardList를 초기화하고 데이터를 저장할 상태
+
   const [placeSelect, setPlaceSelect] = useState("");
-  /** 사이드바의 모집분야 state */
   const [RecruitSelect, setRecruitSelect] = useState([]);
-  /** 사이드바의 모집분야 state */
   const [statusSelect, setStatusSelect] = useState([]);
-  /** 모집분야 설정 */
+
+  // 필터 선택 시 호출되는 함수
+  const handleSetPlace = useCallback((e) => {
+    setPlaceSelect(e);
+  }, []);
+
   const handleSetRecruit = useCallback((e) => {
     setRecruitSelect(e);
   }, []);
-  /** 모집분야 설정 */
+
   const handleSetStatus = useCallback((e) => {
     setStatusSelect(e);
   }, []);
+
   /** 학원지점 설정 */
   const PlaceSet = useCallback((e) => {
     setPlaceSelect(e);
@@ -74,24 +81,27 @@ function ProjectPage() {
   const handleBoardItemGen = useCallback(() => {
     let contents = [];
     for (let i = 0; i < boardList?.length; i++) {
+      const memberRole = boardList[i]?.memberRole;
+      // console.log("Member Role for item", i, ":", memberRole);
       let bufRole = JSON.parse(
-        boardList[i]?.projectWantedRole.replace(/'/g, '"')
+        boardList[i]?.projectWantedRole?.replace(/'/g, '"') || "[]"
       );
       let bufRoleValue = [];
-      for (let j = 0; j < bufRole.length; j++) {
-        bufRoleValue.push(bufRole[j].role);
+      if (Array.isArray(bufRole)) {
+        // Check if bufRole is an array
+        for (let j = 0; j < bufRole.length; j++) {
+          bufRoleValue.push(bufRole[j].role);
+        }
       }
       contents.push(
-        <BoardItem
-          status={boardList[i]?.projectStatus}
-          createDate={boardList[i]?.createdAt.split("").slice(0, 10).join("")}
-          DeadLine={boardList[i]?.projectDue.split("").slice(0, 10).join("")}
-          title={boardList[i]?.projectTitle}
-          filter={bufRoleValue}
-          academy={boardList[i]?.projectAcademy}
-          image={boardList[i]?.projectFilePath}
-          id={boardList[i]?.projectId}
+        <MemberPage
           key={`board item ${i}`}
+          icon={boardList[i]?.memberFilePath}
+          nick={boardList[i]?.memberNickname}
+          academy={boardList[i]?.memberAcademy}
+          filter={boardList[i]?.memberRole}
+          introduce={boardList[i]?.memberIntroduce}
+          stack={boardList[i]?.memberStack}
         />
       );
     }
@@ -99,38 +109,36 @@ function ProjectPage() {
   }, [boardList]);
   useEffect(() => {
     BoardListGet().then((res) => {
+      console.log("boardList:", res); // Log boardList to inspect its structure
       setBoardList(res);
     });
   }, []);
   return (
     <PageContainer>
       <SideContents>
-        <MainHeader>프로젝트 필터</MainHeader>
-        <CheckSide //header={"지역"} contents={Place} handleSelect={PlaceSet}
+        <MainHeader></MainHeader>
+        <CheckSide
           contents={Place}
           header={"지역"}
-          handleSet={PlaceSet}
+          selected={placeSelect}
+          handleSet={handleSetPlace}
         />
-        {/* <CheckSide
-          contents={Status}
-          header={"모집 현황"}
-          handleSet={handleSetStatus}
-        /> */}
         <CheckSide
           contents={Recruit}
           header={"모집 분야"}
+          selected={RecruitSelect}
           handleSet={handleSetRecruit}
         />
         <SubmitButton
           onClick={() => {
-            GetFilterList(statusSelect, RecruitSelect, setPlaceSelect).then(
+            GetFilterList(statusSelect, RecruitSelect, placeSelect).then(
               (res) => {
                 setBoardList(res);
               }
             );
           }}
         >
-          검색
+          검 색
         </SubmitButton>
       </SideContents>
       <MainContents>

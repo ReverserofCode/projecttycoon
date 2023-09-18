@@ -28,7 +28,8 @@ export const Base = styled.div`
 export const FilterHeader = styled.div`
   font-size: 25px;
   user-select: none;
-  color: #0b666a;
+  font-weight: 600;
+  color: #071952;
 `;
 /** 사이드바의 필터적용후 사용되는 submit 태그 */
 export const SubmitButton = styled.div`
@@ -42,12 +43,15 @@ export const SubmitButton = styled.div`
   border-radius: 5px;
   border: 1px solid var(--main-color-main-color-2, #071952);
   width: 100%;
+  height: 50px;
   font-size: 25px;
-  color: #0b666a;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #07305e;
   user-select: none;
   cursor: pointer;
   :hover {
-    background: var(--main-color-main-color-2, #0b666a);
+    background: var(--main-color-main-color-2, #082d56c4);
     color: #ffffff;
   }
   :active {
