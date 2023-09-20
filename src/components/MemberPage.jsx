@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import axios from "axios";
+import ReactDOM from "react-dom/client";
 import "../components/MemberPage.css";
 // import { BoardListGet } from "../functional/BoardList";
 import React, { useEffect, useState, useCallback } from "react";
@@ -12,24 +13,7 @@ import { BiStopwatch } from "react-icons/bi";
 import { GoHeartFill } from "react-icons/go";
 import { TbSchool } from "react-icons/tb";
 import { AiFillMail } from "react-icons/ai";
-import RubyIcon from "../imge/Ruby.png";
-import JavaIcon from "../imge/Java.png";
-import CSSIcon from "../imge/CSS.png";
-import JavaScriptIcon from "../imge/JS.png";
-import PythonIcon from "../imge/Python.png";
-import CIcon from "../imge/C.png";
-import CIcon2 from "../imge/CHash.png";
-import PHPIcon from "../imge/PHP.png";
-import GoIcon from "../imge/GO.png";
-import HTMLIcon from "../imge/HTML.png";
-import KotlinIcon from "../imge/Kotlin.png";
-import SQLIcon from "../imge/SQL.png";
-import NodeIcon from "../imge/Node.png";
-import TypeScriptIcon from "../imge/Ts.png";
-import JQueryIcon from "../imge/JQuery.png";
-import ReactIcon from "../imge/React.png";
-import VueIcon from "../imge/Vue.png";
-import DefaultIcon from "../imge/default.png";
+import { BoardListGet } from "../functional/BoardList";
 
 /** 보드아이템을 담고있는 컨테이너 태그 */
 const Container = styled.div`
@@ -258,121 +242,115 @@ function MemberPage({
     return contents;
   }, [memberRole]);
 
-  // API에서 스택 정보 가져오기
-  // 컴포넌트가 마운트될 때 한 번만 실행
-  useEffect(() => {
-    async function fetchStackImages() {
-      try {
-        const response = await axios.get("/api/callAllMemberRequest");
-        const data = response.data;
-
-        // API로부터 받은 정보 중 스택 정보만 추출하여 상태로 설정
-        if (data && Array.isArray(data.stack)) {
-          setStackImages(data.stack);
-        }
-      } catch (error) {
-        console.error("API 요청 중 오류 발생:", error);
-      }
-    }
-
-    fetchStackImages();
-  }, []);
-
   // 스택 이미지 정보를 상태로 관리
-  const [stackImages, setStackImages] = useState([]);
+  const [stackImages, setStackImages] = useState([stack]);
 
   const generateStackIcons = useCallback(() => {
     if (!Array.isArray(stackImages)) {
       return [];
     }
-
-    return stackImages.map((stackItem, i) => {
+    let contents = [];
+    for (let i = 0; i < stackImages?.length; i++) {
+      // stackImages.map((stackItem, i) => {
       let imageUrl;
       let altText;
-
-      // Stack item names can be used to determine the image source and alt text
-      switch (stackItem) {
-        case "Java":
-          imageUrl = JavaIcon;
-          altText = "Java";
-          break;
-        case "R":
-          imageUrl = RubyIcon;
-          altText = "R";
-          break;
-        case "CSS":
-          imageUrl = CSSIcon;
-          altText = "CSS";
-          break;
-        case "JavaScript":
-          imageUrl = JavaScriptIcon;
-          altText = "JavaScript";
-          break;
-        case "Python":
-          imageUrl = PythonIcon;
-          altText = "Python";
-          break;
-        case "C/C++":
-          imageUrl = CIcon;
-          altText = "C/C++";
-          break;
-        case "Node.js":
-          imageUrl = NodeIcon;
-          altText = "Node.js";
-          break;
-        case "C#":
-          imageUrl = CIcon2;
-          altText = "C#";
-          break;
-        case "SQL":
-          imageUrl = SQLIcon;
-          altText = "SQL";
-          break;
-        case "PHP":
-          imageUrl = PHPIcon;
-          altText = "PHP";
-          break;
-        case "HTML":
-          imageUrl = HTMLIcon;
-          altText = "HTML";
-          break;
-        case "Kotlin":
-          imageUrl = KotlinIcon;
-          altText = "Kotlin";
-          break;
-        case "Go":
-          imageUrl = GoIcon;
-          altText = "Go";
-          break;
-        case "TypeScript":
-          imageUrl = TypeScriptIcon;
-          altText = "TypeScript";
-          break;
-        case "JQuery":
-          imageUrl = JQueryIcon;
-          altText = "JQuery";
-          break;
-        case "React":
-          imageUrl = ReactIcon;
-          altText = "React";
-          break;
-        case "Vue":
-          imageUrl = VueIcon;
-          altText = "Vue";
-          break;
-        default:
-          imageUrl = DefaultIcon; // 기본 이미지 파일 경로
-          altText = stackItem;
-          break;
+      if (stackImages[i] === "Java") {
+        imageUrl = "Java.png";
+      } else if (stackImages[i] === "C") {
+        imageUrl = "C.png";
       }
+      // Stack item names can be used to determine the image source and alt text
+      // switch (stackImages[i]) {
+      //   case "Java":
+      //     imageUrl = "Java.png";
+      //     altText = "Java";
+      //     break;
+      //   case "R":
+      //     imageUrl = RubyIcon;
+      //     altText = "R";
+      //     break;
+      //   case "CSS":
+      //     imageUrl = CSSIcon;
+      //     altText = "CSS";
+      //     break;
+      //   case "JavaScript":
+      //     imageUrl = JavaScriptIcon;
+      //     altText = "JavaScript";
+      //     break;
+      //   case "Python":
+      //     imageUrl = PythonIcon;
+      //     altText = "Python";
+      //     break;
+      //   case "C":
+      //     imageUrl = CIcon;
+      //     altText = "C";
+      //     break;
+      //   case "C++":
+      //     imageUrl = CPlusICon;
+      //     altText = "C++";
+      //     break;
+      //   case "Node.js":
+      //     imageUrl = NodeIcon;
+      //     altText = "Node.js";
+      //     break;
+      //   case "C#":
+      //     imageUrl = CIcon2;
+      //     altText = "C#";
+      //     break;
+      //   case "SQL":
+      //     imageUrl = SQLIcon;
+      //     altText = "SQL";
+      //     break;
+      //   case "PHP":
+      //     imageUrl = PHPIcon;
+      //     altText = "PHP";
+      //     break;
+      //   case "HTML":
+      //     imageUrl = HTMLIcon;
+      //     altText = "HTML";
+      //     break;
+      //   case "Kotlin":
+      //     imageUrl = KotlinIcon;
+      //     altText = "Kotlin";
+      //     break;
+      //   case "Go":
+      //     imageUrl = GoIcon;
+      //     altText = "Go";
+      //     break;
+      //   case "TypeScript":
+      //     imageUrl = TypeScriptIcon;
+      //     altText = "TypeScript";
+      //     break;
+      //   case "JQuery":
+      //     imageUrl = JQueryIcon;
+      //     altText = "JQuery";
+      //     break;
+      //   case "React":
+      //     imageUrl = ReactIcon;
+      //     altText = "React";
+      //     break;
+      //   case "Vue":
+      //     imageUrl = VueIcon;
+      //     altText = "Vue";
+      //     break;
+      //   default:
+      //     imageUrl = DefaultIcon; // 기본 이미지 파일 경로
+      //     altText = "";
+      //     break;
+      // }
       console.log("Image URL:", imageUrl); // 이미지 URL을 로그에 출력
       console.log("Alt Text:", altText); // alt 텍스트를 로그에 출력
-      return (
+      contents.push(
         <FilterIcon key={`Filter Icon ${i}`}>
-          <img src={imageUrl} alt={altText} style={{ width: "20px" }} />
+          <img
+            src={"http://projecttycoon.com/static/images/" + imageUrl}
+            // alt={altText}
+            style={{ width: "20px" }}
+          />
         </FilterIcon>
       );
-    });
+    }
+    return contents;
   }, [stackImages]);
 
   // 하트이미지 color변경
@@ -398,7 +376,7 @@ function MemberPage({
         heartIcon.removeEventListener("click", toggleHeartColor);
       }
     };
-  }, [postId]);
+  }, [postId, stack]);
 
   return (
     <Container>
@@ -454,13 +432,7 @@ function MemberPage({
                 fontSize={"34px"}
                 color={"#42404016"}
               ></BsCircleFill>
-              <CustomHeartIcon
-                isHeartClicked={isHeartClicked}
-                // 아이콘의 색상을 isHeartClicked 상태에 따라 변경합니다.
-                // style={{
-                //   color: isHeartClicked ? "#d42f2fc4" : "#212b2c35",
-                // }}
-              />
+              <CustomHeartIcon isHeartClicked={isHeartClicked} />
             </div>
           </div>
         </TagContainer>

@@ -1,13 +1,12 @@
 {
     "Place":[
-        "전체",
-        "강남",
-        "신촌/홍대",
-        "노원",
-        "인천",
-        "대전",
-        "대구",
-        "부산"
+        {"content":"강남","value":"강남"},
+        {"content":"신촌/홍대","value":"신촌/홍대"},
+        {"content":"노원","value":"노원"},
+        {"content":"인천","value":"인천"},
+        {"content":"대전","value":"대전"},
+        {"content":"대구","value":"대구"},
+        {"content":"부산","value":"부산"}
     ],
     "Recruit":[
         {"content":"백엔드","value":"back"},

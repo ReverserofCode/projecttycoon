@@ -102,7 +102,7 @@ function ProjectPage() {
           academy={boardList[i]?.memberAcademy}
           filter={boardList[i]?.memberRole}
           introduce={boardList[i]?.memberIntroduce}
-          stack={boardList[i]?.memberStack}
+          stack={JSON.parse(boardList[i]?.memberStack)}
           postId={boardList[i]?.memberId}
         />
       );
