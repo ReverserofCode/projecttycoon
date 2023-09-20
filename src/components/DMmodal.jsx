@@ -349,7 +349,7 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
       hour = hour < 10 ? "0" + hour : hour;
       min = min < 10 ? "0" + min : min;
       const time = hour + ":" + min;
-      if (chatData[i].dmroom.dmfrom.memberId !== targetId) {
+      if (chatData[i].dmfrom.memberId !== targetId) {
         contents.push(
           <ChatGet key={`Chat ${i}`}>
             <ChatDateZone>
