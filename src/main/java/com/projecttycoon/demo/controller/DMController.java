@@ -23,8 +23,6 @@ import java.util.List;
 @RequestMapping("/api")
 public class DMController {
     private final DMService dmService;
-    private final DMRepository dmRepository;
-    private final DMroomRepository dmroomRepository;
     private final MemberRepository memberRepository;
 
     // 두 사용자의 ID를 받아 DM Room 생성 및 오픈하는 API
