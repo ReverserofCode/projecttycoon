@@ -331,7 +331,7 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
         setChatData(res);
       });
     });
-  }, [chatInput, chatTarget.dmroom.dmroomId, myId, targetId]);
+  }, [chatInput, chatTarget, myId, targetId]);
   /** 채팅내용 리스트로부터 채팅 아이템을 생성 하는 function */
   const handleChatGen = useCallback(() => {
     let contents = [];
@@ -400,11 +400,7 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
         >
           <DMProfileIcon src={DMList[i]?.dmroom.dmto.memberFilePath} />
           <DMInfo>
-            <DMInfoName>
-              {DMList[i]?.dmroom.dmto.memberId === myId
-                ? DMList[i]?.dmroom.dmfrom.memberNickname
-                : DMList[i]?.dmroom.dmto.memberNickname}
-            </DMInfoName>
+            <DMInfoName>{DMList[i]?.dmroom.dmto.memberNickname}</DMInfoName>
             <DMInfoContents>{DMList[i]?.dmcontent}</DMInfoContents>
           </DMInfo>
           <DMStatus>
