@@ -325,18 +325,13 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
   const [chatInput, setChatInput] = useState("");
   /** 채팅 내용을 보내는 function */
   const handleSend = useCallback(() => {
-    DMSend(
-      chatInput,
-      chatTarget.dmroom.dmto.memberId,
-      myId,
-      chatTarget.dmroom.dmroomId
-    ).then(() => {
+    DMSend(chatInput, targetId, myId, chatTarget.dmroom.dmroomId).then(() => {
       setChatInput("");
       DMGetMessage(chatTarget.dmroom.dmroomId).then((res) => {
         setChatData(res);
       });
     });
-  }, [chatInput, chatTarget, myId]);
+  }, [chatInput, chatTarget.dmroom.dmroomId, myId, targetId]);
   /** 채팅내용 리스트로부터 채팅 아이템을 생성 하는 function */
   const handleChatGen = useCallback(() => {
     let contents = [];
@@ -405,7 +400,11 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
         >
           <DMProfileIcon src={DMList[i]?.dmroom.dmto.memberFilePath} />
           <DMInfo>
-            <DMInfoName>{DMList[i]?.dmroom.dmto.memberNickname}</DMInfoName>
+            <DMInfoName>
+              {DMList[i]?.dmroom.dmto.memberId === myId
+                ? DMList[i]?.dmroom.dmfrom.memberNickname
+                : DMList[i]?.dmroom.dmto.memberNickname}
+            </DMInfoName>
             <DMInfoContents>{DMList[i]?.dmcontent}</DMInfoContents>
           </DMInfo>
           <DMStatus>
@@ -447,15 +446,15 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
             <DMProfileIcon
               src={
                 chatTarget.dmroom.dmto.memberId === targetId
-                  ? chatTarget.dmroom.dmto.memberFilePath
-                  : chatTarget.dmroom.dmfrom.memberFilePath
+                  ? chatTarget.dmroom.dmfrom.memberFilePath
+                  : chatTarget.dmroom.dmto.memberFilePath
               }
             />
             <DMInfoName>
               {" "}
               {chatTarget.dmroom.dmto.memberId === targetId
-                ? chatTarget.dmroom.dmto.memberNickname
-                : chatTarget.dmroom.dmfrom.memberNickname}
+                ? chatTarget.dmroom.dmfrom.memberNickname
+                : chatTarget.dmroom.dmto.memberNickname}
             </DMInfoName>
           </ChatHeaderZone>
           <ChatListUp
