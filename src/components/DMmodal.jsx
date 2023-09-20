@@ -410,7 +410,7 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
           </DMInfo>
           <DMStatus>
             <DMStatusTime>{time}</DMStatusTime>
-            {DMList[i]?.dmread ? (
+            {DMList[i]?.dmto?.memberId === myId && DMList[i]?.dmread ? (
               <DMStatusTime />
             ) : (
               <DMStatusNow>N</DMStatusNow>
