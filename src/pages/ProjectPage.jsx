@@ -96,6 +96,7 @@ function ProjectPage() {
       contents.push(
         <MemberPage
           key={`board item ${i}`}
+          memberRole={boardList[i]?.memberRole}
           icon={boardList[i]?.memberFilePath}
           nick={boardList[i]?.memberNickname}
           academy={boardList[i]?.memberAcademy}

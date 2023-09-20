@@ -1,20 +1,23 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useCallback, useRef } from "react";
 import { Base, FilterHeader } from "./SidebarStyle";
-import { AiOutlineCheckCircle } from "react-icons/Ai";
+import { AiOutlineCheckCircle } from "react-icons/ai";
 /** 체크 형태의 아이템을 담고있는 컨테이너  태그*/
 const CheckContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 600;
   gap: 5px;
   font-size: 20px;
   user-select: none;
   :hover {
-    color: #4fb8ff;
+    color: #6474db;
+    /* color: #4fb8ff; */
   }
   &.select {
-    color: #4fb8ff;
+    color: #6474db;
+    /* color:#4fb8ff; */
   }
 `;
 /** 셀렉트 형태의 아이템을 담고있는 컨테이너 태그 */

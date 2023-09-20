@@ -46,7 +46,7 @@ const BoardBase = styled.div`
   width: 270px;
   height: 335px;
   border-radius: 15px;
-  border: 1px solid #071952;
+  border: 1px solid #60636b28;
   box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.25);
   :hover {
     transform: scale(1.04);
@@ -209,7 +209,7 @@ function MemberPage({
 }) {
   const generateRoleIcons = useCallback(() => {
     let contents = [];
-    for (let i = 0; i < memberRole.length; i++) {
+    for (let i = 0; i < memberRole?.length; i++) {
       // 모집분야에 따라 아이콘과 텍스트를 생성
       switch (memberRole[i]) {
         case "BackEnd":
