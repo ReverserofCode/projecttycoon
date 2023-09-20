@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useState } from "react";
-import { SelectSide, CheckSide } from "../components/Sidebar/SidebarComponent";
+import { CheckSide } from "../components/Sidebar/SidebarComponent";
 import { MainHeader, SubmitButton } from "../components/Sidebar/SidebarStyle";
 import MemberPage from "../components/MemberPage";
 import { Place, Recruit, Status } from "../Filter.json";
@@ -102,6 +102,7 @@ function ProjectPage() {
           filter={boardList[i]?.memberRole}
           introduce={boardList[i]?.memberIntroduce}
           stack={boardList[i]?.memberStack}
+          postId={boardList[i]?.memberId}
         />
       );
     }

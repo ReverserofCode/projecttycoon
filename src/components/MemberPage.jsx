@@ -1,9 +1,35 @@
 import styled from "@emotion/styled";
-import React, { useCallback } from "react";
-import { BsClipboard2Check } from "react-icons/bs";
+import axios from "axios";
+import "../components/MemberPage.css";
+// import { BoardListGet } from "../functional/BoardList";
+import React, { useEffect, useState, useCallback } from "react";
+import {
+  BsClipboard2Check,
+  BsFillSuitHeartFill,
+  BsCircleFill,
+} from "react-icons/bs";
 import { BiStopwatch } from "react-icons/bi";
+import { GoHeartFill } from "react-icons/go";
 import { TbSchool } from "react-icons/tb";
+import { AiFillMail } from "react-icons/ai";
 import RubyIcon from "../imge/Ruby.png";
+import JavaIcon from "../imge/Java.png";
+import CSSIcon from "../imge/CSS.png";
+import JavaScriptIcon from "../imge/JS.png";
+import PythonIcon from "../imge/Python.png";
+import CIcon from "../imge/C.png";
+import CIcon2 from "../imge/CHash.png";
+import PHPIcon from "../imge/PHP.png";
+import GoIcon from "../imge/GO.png";
+import HTMLIcon from "../imge/HTML.png";
+import KotlinIcon from "../imge/Kotlin.png";
+import SQLIcon from "../imge/SQL.png";
+import NodeIcon from "../imge/Node.png";
+import TypeScriptIcon from "../imge/Ts.png";
+import JQueryIcon from "../imge/JQuery.png";
+import ReactIcon from "../imge/React.png";
+import VueIcon from "../imge/Vue.png";
+import DefaultIcon from "../imge/default.png";
 
 /** 보드아이템을 담고있는 컨테이너 태그 */
 const Container = styled.div`
@@ -40,6 +66,28 @@ const TagContainer = styled.div`
   height: 22px;
   margin-bottom: 7px;
 `;
+/** 보드아이템의 태그 */
+const TagItem = styled.div`
+  display: flex;
+  float: left;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  padding: 6px 16px;
+  margin-left: 20px;
+  margin-right: 10px;
+  font-size: 0.9em;
+  white-space: nowrap;
+  background-color: #fbeeac;
+  border: 2px solid #f4d160;
+  border-radius: 10px;
+  font-weight: bold;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
 /** 보드아이템의 메인이미지를 담고있는 콘테이너 태그 */
 const PosterContainer = styled.div`
   display: flex;
@@ -120,7 +168,7 @@ const MemberIntroduce = styled.span`
   padding-left: 10px;
   padding-right: 10px;
 `;
-// MemberStack
+//멤버스택
 const StackContainer = styled.div`
   position: absolute;
   box-sizing: border-box;
@@ -134,6 +182,21 @@ const StackContainer = styled.div`
 const MemberStack = styled.img`
   width: 20px; /* 이미지의 너비 조정 */
 `;
+// 찜하기 - 하트아이콘
+const CustomHeartIcon = ({ isHeartClicked }) => {
+  return (
+    <GoHeartFill
+      style={{
+        fontSize: "22px",
+        position: "absolute",
+        top: "7px",
+        left: "6px",
+        color: isHeartClicked ? "#ec0c0cbb" : "#212b2c35",
+        cursor: "pointer",
+      }}
+    />
+  );
+};
 function MemberPage({
   icon,
   nick,
@@ -142,6 +205,7 @@ function MemberPage({
   academy,
   stack,
   handleBoardItemGen,
+  postId,
 }) {
   const generateRoleIcons = useCallback(() => {
     let contents = [];
@@ -194,47 +258,148 @@ function MemberPage({
     return contents;
   }, [memberRole]);
 
-  const generateStackIcons = useCallback(() => {
-    let contents = [];
-    for (let i = 0; i < stack.length; i++) {
-      switch (stack[i]) {
-        case "PHP":
-          contents.push(<FilterIcon key={`Filter Icon ${i}`}>PHP</FilterIcon>);
-          break;
-        case "R":
-          contents.push(
-            <FilterIcon key={`Filter Icon ${i}`}>
-              <img
-                src={RubyIcon}
-                alt="R"
-                style={{ width: "20px" }} // 이미지 크기 조절
-              />
-            </FilterIcon>
-          );
-          break;
-        case "CSS":
-          contents.push(
-            <FilterIcon key={`Filter Icon ${i}`}>
-              <CssIcon />
-            </FilterIcon>
-          );
-          break;
-        case "JavaScript":
-          contents.push(
-            <FilterIcon key={`Filter Icon ${i}`}>
-              <JavaScriptIcon />
-            </FilterIcon>
-          );
-          break;
-        default:
-          contents.push(
-            <FilterIcon key={`Filter Icon ${i}`}>{stack[i]}</FilterIcon>
-          );
-          break;
+  // API에서 스택 정보 가져오기
+  // 컴포넌트가 마운트될 때 한 번만 실행
+  useEffect(() => {
+    async function fetchStackImages() {
+      try {
+        const response = await axios.get("/api/callAllMemberRequest");
+        const data = response.data;
+
+        // API로부터 받은 정보 중 스택 정보만 추출하여 상태로 설정
+        if (data && Array.isArray(data.stack)) {
+          setStackImages(data.stack);
+        }
+      } catch (error) {
+        console.error("API 요청 중 오류 발생:", error);
       }
     }
-    return contents;
-  }, [stack]);
+
+    fetchStackImages();
+  }, []);
+
+  // 스택 이미지 정보를 상태로 관리
+  const [stackImages, setStackImages] = useState([]);
+
+  const generateStackIcons = useCallback(() => {
+    if (!Array.isArray(stackImages)) {
+      return [];
+    }
+
+    return stackImages.map((stackItem, i) => {
+      let imageUrl;
+      let altText;
+
+      // Stack item names can be used to determine the image source and alt text
+      switch (stackItem) {
+        case "Java":
+          imageUrl = JavaIcon;
+          altText = "Java";
+          break;
+        case "R":
+          imageUrl = RubyIcon;
+          altText = "R";
+          break;
+        case "CSS":
+          imageUrl = CSSIcon;
+          altText = "CSS";
+          break;
+        case "JavaScript":
+          imageUrl = JavaScriptIcon;
+          altText = "JavaScript";
+          break;
+        case "Python":
+          imageUrl = PythonIcon;
+          altText = "Python";
+          break;
+        case "C/C++":
+          imageUrl = CIcon;
+          altText = "C/C++";
+          break;
+        case "Node.js":
+          imageUrl = NodeIcon;
+          altText = "Node.js";
+          break;
+        case "C#":
+          imageUrl = CIcon2;
+          altText = "C#";
+          break;
+        case "SQL":
+          imageUrl = SQLIcon;
+          altText = "SQL";
+          break;
+        case "PHP":
+          imageUrl = PHPIcon;
+          altText = "PHP";
+          break;
+        case "HTML":
+          imageUrl = HTMLIcon;
+          altText = "HTML";
+          break;
+        case "Kotlin":
+          imageUrl = KotlinIcon;
+          altText = "Kotlin";
+          break;
+        case "Go":
+          imageUrl = GoIcon;
+          altText = "Go";
+          break;
+        case "TypeScript":
+          imageUrl = TypeScriptIcon;
+          altText = "TypeScript";
+          break;
+        case "JQuery":
+          imageUrl = JQueryIcon;
+          altText = "JQuery";
+          break;
+        case "React":
+          imageUrl = ReactIcon;
+          altText = "React";
+          break;
+        case "Vue":
+          imageUrl = VueIcon;
+          altText = "Vue";
+          break;
+        default:
+          imageUrl = DefaultIcon; // 기본 이미지 파일 경로
+          altText = stackItem;
+          break;
+      }
+      console.log("Image URL:", imageUrl); // 이미지 URL을 로그에 출력
+      console.log("Alt Text:", altText); // alt 텍스트를 로그에 출력
+      return (
+        <FilterIcon key={`Filter Icon ${i}`}>
+          <img src={imageUrl} alt={altText} style={{ width: "20px" }} />
+        </FilterIcon>
+      );
+    });
+  }, [stackImages]);
+
+  // 하트이미지 color변경
+  const [isHeartClicked, setIsHeartClicked] = useState(false);
+
+  const toggleHeartColor = (event) => {
+    // console.log("Heart icon clicked");
+    // 이벤트 전파를 막음
+    event.stopPropagation();
+    setIsHeartClicked((prevIsHeartClicked) => !prevIsHeartClicked);
+  };
+
+  useEffect(() => {
+    // 게시글의 하트 아이콘 클릭 이벤트 핸들러를 게시글마다 등록
+    const heartIcon = document.querySelector(`.heart-icon-${postId}`);
+
+    if (heartIcon) {
+      heartIcon.addEventListener("click", toggleHeartColor);
+    }
+    return () => {
+      // 컴포넌트가 언마운트되면 이벤트 리스너 제거
+      if (heartIcon) {
+        heartIcon.removeEventListener("click", toggleHeartColor);
+      }
+    };
+  }, [postId]);
+
   return (
     <Container>
       <BoardBase>
@@ -255,10 +420,51 @@ function MemberPage({
         </IntroduceArea>
 
         <TagContainer>
-          <StackContainer>
-            {generateStackIcons()} {/* JSX 배열을 렌더링 */}
-          </StackContainer>
+          {stackImages.length > 0 && (
+            <StackContainer>{generateStackIcons()}</StackContainer>
+          )}
         </TagContainer>
+        <TagContainer>
+          <div style={{ display: "flex", alignItems: "flex-start" }}>
+            <TagItem>
+              <AiFillMail
+                color={"#0B666A"}
+                fontSize={"20px"}
+                style={{
+                  marginRight: "10px",
+                }}
+              ></AiFillMail>
+              DM
+            </TagItem>
+            <div
+              style={{
+                position: "relative",
+                marginLeft: "7px",
+                cursor: "pointer",
+              }}
+              onClick={(event) => toggleHeartColor(event)}
+            >
+              <BsCircleFill
+                className={`heart-icon heart-icon-${postId}`}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                }}
+                fontSize={"34px"}
+                color={"#42404016"}
+              ></BsCircleFill>
+              <CustomHeartIcon
+                isHeartClicked={isHeartClicked}
+                // 아이콘의 색상을 isHeartClicked 상태에 따라 변경합니다.
+                // style={{
+                //   color: isHeartClicked ? "#d42f2fc4" : "#212b2c35",
+                // }}
+              />
+            </div>
+          </div>
+        </TagContainer>
+        <TagContainer></TagContainer>
       </BoardBase>
     </Container>
   );

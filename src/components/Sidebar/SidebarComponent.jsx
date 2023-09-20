@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useCallback, useRef } from "react";
 import { Base, FilterHeader } from "./SidebarStyle";
-import { AiOutlineCheckCircle } from "react-icons/ai";
+import { AiOutlineCheckCircle } from "react-icons/Ai";
 /** 체크 형태의 아이템을 담고있는 컨테이너  태그*/
 const CheckContainer = styled.div`
   display: flex;
