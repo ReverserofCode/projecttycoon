@@ -364,7 +364,7 @@ function Register() {
       memberRole: selectedJob,
       memberAcademy: selectedPlace,
       memberStack: JSON.stringify(stack),
-      memberLinks: JSON.stringify(
+      memberLink: JSON.stringify(
         linkInputs.map((input) => ({
           option: input.option,
           value: input.value,
