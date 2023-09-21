@@ -55,6 +55,17 @@ function LoginForm() {
       console.log(data);
     });
   }, [id, password]);
+  /** 메인 로그인 요청을 보내는 function */
+  const handleEnterLogin = useCallback(
+    (e) => {
+      if (e.key === "Enter") {
+        LoginSubmit(id, password).then((data) => {
+          console.log(data);
+        });
+      }
+    },
+    [id, password]
+  );
   return (
     <LoginFormContainer>
       <InputModel
@@ -74,6 +85,7 @@ function LoginForm() {
             e.preventDefault();
             setPassword(e.target.value);
           }}
+          onKeyDown={handleEnterLogin}
         />
         <PasswordViewButton>
           {view === "password" ? (

@@ -11,7 +11,9 @@ export const LoginSubmit = async (id, password) => {
       window.location.href = "http://projecttycoon.com";
     })
     .catch((error) => {
-      console.log(error);
+      alert(
+        "로그인이 정상적으로 처리되지 않았습니다.\n아이디, 비밀번호를 확인해주세요"
+      );
     });
   return await data;
 };
