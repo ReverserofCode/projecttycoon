@@ -115,7 +115,7 @@ const MemberNick = styled.p`
 `;
 /** 멤버직무 */
 // 모집분야
-const FilterIcon = styled.p`
+const FilterIcon = styled.span`
   font-size: 15px;
 `;
 const TextRole = styled.span`
@@ -182,15 +182,17 @@ const CustomHeartIcon = ({ isHeartClicked }) => {
   );
 };
 function MemberPage({
+  memberRole = [], // Rename the prop for clarity
   icon,
   nick,
-  introduce,
-  memberRole = [], // Rename the prop for clarity
   academy,
+  introduce,
   stack,
-  handleBoardItemGen,
   postId,
+  handleBoardItemGen,
 }) {
+  // 스택 이미지 정보를 상태로 관리
+  const [stackImages, setStackImages] = useState([]);
   const generateRoleIcons = useCallback(() => {
     let contents = [];
     for (let i = 0; i < memberRole?.length; i++) {
@@ -242,116 +244,53 @@ function MemberPage({
     return contents;
   }, [memberRole]);
 
-  // 스택 이미지 정보를 상태로 관리
-  const [stackImages, setStackImages] = useState([stack]);
-
   const generateStackIcons = useCallback(() => {
-    if (!Array.isArray(stackImages)) {
-      return [];
-    }
     let contents = [];
-    for (let i = 0; i < stackImages?.length; i++) {
-      // stackImages.map((stackItem, i) => {
-      let imageUrl;
-      let altText;
-      if (stackImages[i] === "Java") {
-        imageUrl = "Java.png";
-      } else if (stackImages[i] === "C") {
-        imageUrl = "C.png";
+    for (let i = 0; i < stack?.length; i++) {
+      if (stack[i] === "Java") {
+        contents.push(
+          <FilterIcon key={`Filter Icon ${i}`}>
+            <img
+              src={"http://projecttycoon.com/static/images/" + "Java.png"}
+              style={{ width: "20px" }}
+            />
+          </FilterIcon>
+        );
+      } else if (stack[i] === "R") {
+        contents.push(
+          <FilterIcon key={`Filter Icon ${i}`}>
+            <img
+              src={"http://projecttycoon.com/static/images/" + "RubyIcon.png"}
+              style={{ width: "20px" }}
+            />
+          </FilterIcon>
+        );
+      } else if (stack[i] === "CSS") {
+        contents.push(
+          <FilterIcon key={`Filter Icon ${i}`}>
+            <img
+              src={"http://projecttycoon.com/static/images/" + "CSSIcon.png"}
+              style={{ width: "20px" }}
+            />
+          </FilterIcon>
+        );
+      } else if (stack[i] === "JavaScript") {
+        contents.push(
+          <FilterIcon key={`Filter Icon ${i}`}>
+            <img
+              src={
+                "http://projecttycoon.com/static/images/" + "JavaScriptIcon.png"
+              }
+              style={{ width: "20px" }}
+            />
+          </FilterIcon>
+        );
+      } else {
+        contents.push("");
       }
-      // Stack item names can be used to determine the image source and alt text
-      // switch (stackImages[i]) {
-      //   case "Java":
-      //     imageUrl = "Java.png";
-      //     altText = "Java";
-      //     break;
-      //   case "R":
-      //     imageUrl = RubyIcon;
-      //     altText = "R";
-      //     break;
-      //   case "CSS":
-      //     imageUrl = CSSIcon;
-      //     altText = "CSS";
-      //     break;
-      //   case "JavaScript":
-      //     imageUrl = JavaScriptIcon;
-      //     altText = "JavaScript";
-      //     break;
-      //   case "Python":
-      //     imageUrl = PythonIcon;
-      //     altText = "Python";
-      //     break;
-      //   case "C":
-      //     imageUrl = CIcon;
-      //     altText = "C";
-      //     break;
-      //   case "C++":
-      //     imageUrl = CPlusICon;
-      //     altText = "C++";
-      //     break;
-      //   case "Node.js":
-      //     imageUrl = NodeIcon;
-      //     altText = "Node.js";
-      //     break;
-      //   case "C#":
-      //     imageUrl = CIcon2;
-      //     altText = "C#";
-      //     break;
-      //   case "SQL":
-      //     imageUrl = SQLIcon;
-      //     altText = "SQL";
-      //     break;
-      //   case "PHP":
-      //     imageUrl = PHPIcon;
-      //     altText = "PHP";
-      //     break;
-      //   case "HTML":
-      //     imageUrl = HTMLIcon;
-      //     altText = "HTML";
-      //     break;
-      //   case "Kotlin":
-      //     imageUrl = KotlinIcon;
-      //     altText = "Kotlin";
-      //     break;
-      //   case "Go":
-      //     imageUrl = GoIcon;
-      //     altText = "Go";
-      //     break;
-      //   case "TypeScript":
-      //     imageUrl = TypeScriptIcon;
-      //     altText = "TypeScript";
-      //     break;
-      //   case "JQuery":
-      //     imageUrl = JQueryIcon;
-      //     altText = "JQuery";
-      //     break;
-      //   case "React":
-      //     imageUrl = ReactIcon;
-      //     altText = "React";
-      //     break;
-      //   case "Vue":
-      //     imageUrl = VueIcon;
-      //     altText = "Vue";
-      //     break;
-      //   default:
-      //     imageUrl = DefaultIcon; // 기본 이미지 파일 경로
-      //     altText = "";
-      //     break;
-      // }
-      console.log("Image URL:", imageUrl); // 이미지 URL을 로그에 출력
-      console.log("Alt Text:", altText); // alt 텍스트를 로그에 출력
-      contents.push(
-        <FilterIcon key={`Filter Icon ${i}`}>
-          <img
-            src={"http://projecttycoon.com/static/images/" + imageUrl}
-            // alt={altText}
-            style={{ width: "20px" }}
-          />
-        </FilterIcon>
-      );
     }
     return contents;
-  }, [stackImages]);
+  }, [stack]);
 
   // 하트이미지 color변경
   const [isHeartClicked, setIsHeartClicked] = useState(false);
@@ -398,7 +337,7 @@ function MemberPage({
         </IntroduceArea>
 
         <TagContainer>
-          {stackImages.length > 0 && (
+          {stack?.length > 0 && (
             <StackContainer>{generateStackIcons()}</StackContainer>
           )}
         </TagContainer>

@@ -17,12 +17,21 @@ import axios from "axios";
 //   }
 // };
 export const BoardListGet = async () => {
-  try {
-    const response = await axios.get("/api/callAllMemberRequest");
-    const data = response.data;
-    return data;
-  } catch (error) {
-    console.error("API 요청 중 오류 발생:", error);
-    throw error;
-  }
+  const data = await axios
+    .get("/api/callAllMemberRequest")
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  return await data;
+  // try {
+  //   const response = await axios.get("/api/callAllMemberRequest");
+  //   const data = response.data;
+  //   return data;
+  // } catch (error) {
+  //   console.error("API 요청 중 오류 발생:", error);
+  //   throw error;
+  // }
 };
