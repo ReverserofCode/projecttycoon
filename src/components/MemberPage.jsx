@@ -260,7 +260,7 @@ function MemberPage({
         contents.push(
           <FilterIcon key={`Filter Icon ${i}`}>
             <img
-              src={"http://projecttycoon.com/static/images/" + "RubyIcon.png"}
+              src={"http://projecttycoon.com/static/images/" + "Ruby.png"}
               style={{ width: "20px" }}
             />
           </FilterIcon>
@@ -269,7 +269,7 @@ function MemberPage({
         contents.push(
           <FilterIcon key={`Filter Icon ${i}`}>
             <img
-              src={"http://projecttycoon.com/static/images/" + "CSSIcon.png"}
+              src={"http://projecttycoon.com/static/images/" + "CSS.png"}
               style={{ width: "20px" }}
             />
           </FilterIcon>
@@ -278,9 +278,133 @@ function MemberPage({
         contents.push(
           <FilterIcon key={`Filter Icon ${i}`}>
             <img
-              src={
-                "http://projecttycoon.com/static/images/" + "JavaScriptIcon.png"
-              }
+              src={"http://projecttycoon.com/static/images/" + "JS.png"}
+              style={{ width: "20px" }}
+            />
+          </FilterIcon>
+        );
+      } else if (stack[i] === "Vue") {
+        contents.push(
+          <FilterIcon key={`Filter Icon ${i}`}>
+            <img
+              src={"http://projecttycoon.com/static/images/" + "Vue.png"}
+              style={{ width: "20px" }}
+            />
+          </FilterIcon>
+        );
+      } else if (stack[i] === "C") {
+        contents.push(
+          <FilterIcon key={`Filter Icon ${i}`}>
+            <img
+              src={"http://projecttycoon.com/static/images/" + "C.png"}
+              style={{ width: "20px" }}
+            />
+          </FilterIcon>
+        );
+      } else if (stack[i] === "C#") {
+        contents.push(
+          <FilterIcon key={`Filter Icon ${i}`}>
+            <img
+              src={"http://projecttycoon.com/static/images/" + "CHash.png"}
+              style={{ width: "20px" }}
+            />
+          </FilterIcon>
+        );
+      } else if (stack[i] === "C++") {
+        contents.push(
+          <FilterIcon key={`Filter Icon ${i}`}>
+            <img
+              src={"http://projecttycoon.com/static/images/" + "Cpp.png"}
+              style={{ width: "20px" }}
+            />
+          </FilterIcon>
+        );
+      } else if (stack[i] === "Go") {
+        contents.push(
+          <FilterIcon key={`Filter Icon ${i}`}>
+            <img
+              src={"http://projecttycoon.com/static/images/" + "GO.png"}
+              style={{ width: "20px" }}
+            />
+          </FilterIcon>
+        );
+      } else if (stack[i] === "HTML") {
+        contents.push(
+          <FilterIcon key={`Filter Icon ${i}`}>
+            <img
+              src={"http://projecttycoon.com/static/images/" + "HTML.png"}
+              style={{ width: "20px" }}
+            />
+          </FilterIcon>
+        );
+      } else if (stack[i] === "JQuery") {
+        contents.push(
+          <FilterIcon key={`Filter Icon ${i}`}>
+            <img
+              src={"http://projecttycoon.com/static/images/" + "JQuery.png"}
+              style={{ width: "20px" }}
+            />
+          </FilterIcon>
+        );
+      } else if (stack[i] === "Kotlin") {
+        contents.push(
+          <FilterIcon key={`Filter Icon ${i}`}>
+            <img
+              src={"http://projecttycoon.com/static/images/" + "Kotlin.png"}
+              style={{ width: "30px" }}
+            />
+          </FilterIcon>
+        );
+      } else if (stack[i] === "Node.js") {
+        contents.push(
+          <FilterIcon key={`Filter Icon ${i}`}>
+            <img
+              src={"http://projecttycoon.com/static/images/" + "Node.png"}
+              style={{ width: "20px" }}
+            />
+          </FilterIcon>
+        );
+      } else if (stack[i] === "PHP") {
+        contents.push(
+          <FilterIcon key={`Filter Icon ${i}`}>
+            <img
+              src={"http://projecttycoon.com/static/images/" + "PHP.png"}
+              style={{ width: "20px" }}
+            />
+          </FilterIcon>
+        );
+      } else if (stack[i] === "Python") {
+        contents.push(
+          <FilterIcon key={`Filter Icon ${i}`}>
+            <img
+              src={"http://projecttycoon.com/static/images/" + "Python.png"}
+              style={{ width: "20px" }}
+            />
+          </FilterIcon>
+        );
+      } else if (stack[i] === "React") {
+        contents.push(
+          <FilterIcon key={`Filter Icon ${i}`}>
+            <img
+              src={"http://projecttycoon.com/static/images/" + "React.png"}
+              style={{ width: "20px" }}
+            />
+          </FilterIcon>
+        );
+      } else if (stack[i] === "SQL") {
+        contents.push(
+          <FilterIcon key={`Filter Icon ${i}`}>
+            <img
+              src={"http://projecttycoon.com/static/images/" + "SQL.png"}
+              style={{ width: "20px" }}
+            />
+          </FilterIcon>
+        );
+      } else if (stack[i] === "TypeScript") {
+        contents.push(
+          <FilterIcon key={`Filter Icon ${i}`}>
+            <img
+              src={"http://projecttycoon.com/static/images/" + "Ts.png"}
               style={{ width: "20px" }}
             />
           </FilterIcon>
