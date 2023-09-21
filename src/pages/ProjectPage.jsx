@@ -73,7 +73,7 @@ function ProjectPage() {
   /** 프로젝트 아이템 생성 */
   const handleBoardItemGen = useCallback(() => {
     let contents = [];
-    for (let i = 0; i < boardList?.length; i++) {
+    for (let i = boardList?.length - 1; i >= 0; i--) {
       let bufRole = JSON.parse(
         boardList[i]?.projectWantedRole.replace(/'/g, '"')
       );
