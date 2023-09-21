@@ -26,7 +26,7 @@ const BoardBase = styled.div`
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  padding: 0 10px;
+  padding: 10px 10px;
   width: 270px;
   height: 335px;
   border-radius: 15px;
@@ -39,6 +39,17 @@ const BoardBase = styled.div`
     font-weight: 800;
   }
 `;
+// const StackArea = styled.div`
+//   position: relative;
+//   box-sizing: border-box;
+//   justify-content: center;
+//   align-items: flex-start;
+//   gap: 10px;
+//   width: 100%;
+//   /* height: auto; */
+//   margin-bottom: 7px;
+//   float: left;
+// `;
 /** 보드아이템의 태그들을 담고있는 콘테이너 태그 */
 const TagContainer = styled.div`
   position: relative;
@@ -50,6 +61,7 @@ const TagContainer = styled.div`
   height: 22px;
   margin-bottom: 7px;
 `;
+
 /** 보드아이템의 태그 */
 const TagItem = styled.div`
   display: flex;
@@ -101,9 +113,9 @@ const ProfileArea = styled.div`
 `;
 // 멤버닉네임
 const MemberNick = styled.p`
-  white-space: nowrap; /* Prevent text from wrapping to the next line */
-  overflow: hidden; /* Hide any overflowing text */
-  text-overflow: ellipsis; /* Display an ellipsis (...) for overflowed text */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   box-sizing: border-box;
   position: absolute;
   left: 140px;
@@ -116,10 +128,10 @@ const MemberNick = styled.p`
 /** 멤버직무 */
 // 모집분야
 const FilterIcon = styled.span`
-  font-size: 15px;
+  padding: 2px 5px;
 `;
 const TextRole = styled.span`
-  font-size: 13px;
+  font-size: 10px;
   color: #464242;
   position: absolute;
   left: 130px;
@@ -129,7 +141,7 @@ const TextRole = styled.span`
 `;
 /** 멤버지점 */
 const TextPlace = styled.span`
-  font-size: 13px;
+  font-size: 10px;
   color: #464242;
   position: absolute;
   left: 130px;
@@ -140,31 +152,36 @@ const TextPlace = styled.span`
 
 // 멤버 한줄 소개
 const IntroduceArea = styled.div`
-  margin: 0 auto;
-  margin-top: 20px;
   position: relative;
+  box-sizing: border-box;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
   width: 100%;
+  max-height: 40px; /* Adjust this value to your desired maximum height */
 `;
 const MemberIntroduce = styled.span`
+  /* white-space: nowrap; */
+  max-height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
   position: absolute;
   left: 0;
   bottom: 50px;
   padding-left: 10px;
   padding-right: 10px;
+  font-size: 0.9em;
 `;
 //멤버스택
 const StackContainer = styled.div`
   position: absolute;
+  bottom: 5px;
   box-sizing: border-box;
   justify-content: center;
   align-items: flex-start;
   gap: 10px;
   width: 100%;
-  height: 22px;
-  margin-bottom: 7px;
-`;
-const MemberStack = styled.img`
-  width: 20px; /* 이미지의 너비 조정 */
 `;
 // 찜하기 - 하트아이콘
 const CustomHeartIcon = ({ isHeartClicked }) => {
@@ -355,7 +372,7 @@ function MemberPage({
             />
           </FilterIcon>
         );
-      } else if (stack[i] === "Node.js") {
+      } else if (stack[i] === "NodeJs") {
         contents.push(
           <FilterIcon key={`Filter Icon ${i}`}>
             <img
@@ -466,7 +483,13 @@ function MemberPage({
           )}
         </TagContainer>
         <TagContainer>
-          <div style={{ display: "flex", alignItems: "flex-start" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "flex-start",
+              marginBottom: "20px",
+            }}
+          >
             <TagItem>
               <AiFillMail
                 color={"#0B666A"}
