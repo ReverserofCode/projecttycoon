@@ -100,7 +100,7 @@ function ProjectPage() {
           icon={boardList[i]?.memberFilePath}
           nick={boardList[i]?.memberNickname}
           academy={boardList[i]?.memberAcademy}
-          // filter={boardList[i]?.memberRole}
+          filter={boardList[i]?.memberRole}
           introduce={boardList[i]?.memberIntroduce}
           stack={JSON.parse(boardList[i]?.memberStack)}
           postId={boardList[i]?.memberId}
@@ -111,6 +111,7 @@ function ProjectPage() {
   }, [boardList]);
   useEffect(() => {
     BoardListGet().then((res) => {
+      console.log("boardList:", res); // Log boardList to inspect its structure
       setBoardList(res);
     });
   }, []);

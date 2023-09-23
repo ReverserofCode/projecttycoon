@@ -4,11 +4,7 @@ import ReactDOM from "react-dom/client";
 import "../components/MemberPage.css";
 // import { BoardListGet } from "../functional/BoardList";
 import React, { useEffect, useState, useCallback } from "react";
-import {
-  BsClipboard2Check,
-  BsFillSuitHeartFill,
-  BsCircleFill,
-} from "react-icons/bs";
+import { BsCircleFill } from "react-icons/bs";
 import { BiStopwatch } from "react-icons/bi";
 import { GoHeartFill } from "react-icons/go";
 import { TbSchool } from "react-icons/tb";
@@ -39,17 +35,6 @@ const BoardBase = styled.div`
     font-weight: 800;
   }
 `;
-// const StackArea = styled.div`
-//   position: relative;
-//   box-sizing: border-box;
-//   justify-content: center;
-//   align-items: flex-start;
-//   gap: 10px;
-//   width: 100%;
-//   /* height: auto; */
-//   margin-bottom: 7px;
-//   float: left;
-// `;
 /** 보드아이템의 태그들을 담고있는 콘테이너 태그 */
 const TagContainer = styled.div`
   position: relative;
@@ -176,7 +161,8 @@ const MemberIntroduce = styled.span`
 //멤버스택
 const StackContainer = styled.div`
   position: absolute;
-  bottom: 5px;
+  bottom: 0px;
+  left: 5px;
   box-sizing: border-box;
   justify-content: center;
   align-items: flex-start;
@@ -192,7 +178,7 @@ const CustomHeartIcon = ({ isHeartClicked }) => {
         position: "absolute",
         top: "7px",
         left: "6px",
-        color: isHeartClicked ? "#ec0c0cbb" : "#212b2c35",
+        color: isHeartClicked ? "#C70C0C" : "#212b2c35",
         cursor: "pointer",
       }}
     />
@@ -269,7 +255,7 @@ function MemberPage({
           <FilterIcon key={`Filter Icon ${i}`}>
             <img
               src={"http://projecttycoon.com/static/images/" + "Java.png"}
-              style={{ width: "20px" }}
+              style={{ width: "30px" }}
             />
           </FilterIcon>
         );
@@ -278,7 +264,7 @@ function MemberPage({
           <FilterIcon key={`Filter Icon ${i}`}>
             <img
               src={"http://projecttycoon.com/static/images/" + "Ruby.png"}
-              style={{ width: "20px" }}
+              style={{ width: "25px" }}
             />
           </FilterIcon>
         );
@@ -287,7 +273,7 @@ function MemberPage({
           <FilterIcon key={`Filter Icon ${i}`}>
             <img
               src={"http://projecttycoon.com/static/images/" + "CSS.png"}
-              style={{ width: "20px" }}
+              style={{ width: "23px" }}
             />
           </FilterIcon>
         );
@@ -305,7 +291,7 @@ function MemberPage({
           <FilterIcon key={`Filter Icon ${i}`}>
             <img
               src={"http://projecttycoon.com/static/images/" + "Vue.png"}
-              style={{ width: "20px" }}
+              style={{ width: "22px" }}
             />
           </FilterIcon>
         );
@@ -314,7 +300,7 @@ function MemberPage({
           <FilterIcon key={`Filter Icon ${i}`}>
             <img
               src={"http://projecttycoon.com/static/images/" + "C.png"}
-              style={{ width: "20px" }}
+              style={{ width: "22px" }}
             />
           </FilterIcon>
         );
@@ -323,7 +309,7 @@ function MemberPage({
           <FilterIcon key={`Filter Icon ${i}`}>
             <img
               src={"http://projecttycoon.com/static/images/" + "CHash.png"}
-              style={{ width: "20px" }}
+              style={{ width: "25px" }}
             />
           </FilterIcon>
         );
@@ -332,7 +318,7 @@ function MemberPage({
           <FilterIcon key={`Filter Icon ${i}`}>
             <img
               src={"http://projecttycoon.com/static/images/" + "Cpp.png"}
-              style={{ width: "20px" }}
+              style={{ width: "22px" }}
             />
           </FilterIcon>
         );
@@ -341,7 +327,7 @@ function MemberPage({
           <FilterIcon key={`Filter Icon ${i}`}>
             <img
               src={"http://projecttycoon.com/static/images/" + "GO.png"}
-              style={{ width: "20px" }}
+              style={{ width: "32px" }}
             />
           </FilterIcon>
         );
@@ -359,7 +345,7 @@ function MemberPage({
           <FilterIcon key={`Filter Icon ${i}`}>
             <img
               src={"http://projecttycoon.com/static/images/" + "JQuery.png"}
-              style={{ width: "20px" }}
+              style={{ width: "22px" }}
             />
           </FilterIcon>
         );
@@ -377,7 +363,7 @@ function MemberPage({
           <FilterIcon key={`Filter Icon ${i}`}>
             <img
               src={"http://projecttycoon.com/static/images/" + "Node.png"}
-              style={{ width: "20px" }}
+              style={{ width: "25px" }}
             />
           </FilterIcon>
         );
@@ -386,7 +372,7 @@ function MemberPage({
           <FilterIcon key={`Filter Icon ${i}`}>
             <img
               src={"http://projecttycoon.com/static/images/" + "PHP.png"}
-              style={{ width: "20px" }}
+              style={{ width: "30px" }}
             />
           </FilterIcon>
         );
@@ -395,7 +381,7 @@ function MemberPage({
           <FilterIcon key={`Filter Icon ${i}`}>
             <img
               src={"http://projecttycoon.com/static/images/" + "Python.png"}
-              style={{ width: "20px" }}
+              style={{ width: "25px" }}
             />
           </FilterIcon>
         );
@@ -404,7 +390,7 @@ function MemberPage({
           <FilterIcon key={`Filter Icon ${i}`}>
             <img
               src={"http://projecttycoon.com/static/images/" + "React.png"}
-              style={{ width: "20px" }}
+              style={{ width: "23px" }}
             />
           </FilterIcon>
         );
@@ -413,7 +399,7 @@ function MemberPage({
           <FilterIcon key={`Filter Icon ${i}`}>
             <img
               src={"http://projecttycoon.com/static/images/" + "SQL.png"}
-              style={{ width: "20px" }}
+              style={{ width: "40px" }}
             />
           </FilterIcon>
         );
@@ -422,7 +408,7 @@ function MemberPage({
           <FilterIcon key={`Filter Icon ${i}`}>
             <img
               src={"http://projecttycoon.com/static/images/" + "Ts.png"}
-              style={{ width: "20px" }}
+              style={{ width: "30px" }}
             />
           </FilterIcon>
         );
@@ -460,7 +446,11 @@ function MemberPage({
 
   return (
     <Container>
-      <BoardBase>
+      <BoardBase
+        onClick={() => {
+          window.location.href = `http://projecttycoon.com/member/${id}`;
+        }}
+      >
         <ProfileArea>
           <PosterContainer>
             <MyProfile></MyProfile>
@@ -516,7 +506,7 @@ function MemberPage({
                   left: 0,
                 }}
                 fontSize={"34px"}
-                color={"#42404016"}
+                color={"#F5F5F5"}
               ></BsCircleFill>
               <CustomHeartIcon isHeartClicked={isHeartClicked} />
             </div>
