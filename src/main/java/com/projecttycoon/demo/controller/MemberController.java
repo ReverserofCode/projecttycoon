@@ -1,6 +1,7 @@
 package com.projecttycoon.demo.controller;
 
 import com.projecttycoon.demo.domain.Entity.MemberEntity;
+import com.projecttycoon.demo.domain.Entity.MemberSpecifications;
 import com.projecttycoon.demo.domain.dto.MemberLoginDTO;
 import com.projecttycoon.demo.domain.dto.MemberRequestDTO;
 import com.projecttycoon.demo.domain.repository.MemberRepository;
@@ -8,25 +9,18 @@ import com.projecttycoon.demo.domain.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Optional;
 
 @Log4j2
 @RestController
 @RequiredArgsConstructor
 public class MemberController {
-
     final MemberRepository memberRepository;
     MemberService memberService;
-    boolean duplicateCheck = false;
-    MemberRequestDTO memberRequestDTO;
 
     @Autowired
     MemberController(MemberService memberService, MemberRepository memberRepository) {
@@ -40,18 +34,27 @@ public class MemberController {
     }
 
     @GetMapping("/sessionObject")
-    public MemberLoginDTO requestSession(@AuthenticationPrincipal MemberLoginDTO memberLoginDTO) {
-        log.info("Call request Session : " + memberLoginDTO);
+    public MemberLoginDTO loginProcess(@AuthenticationPrincipal MemberLoginDTO memberLoginDTO) {
+
+        log.info(memberLoginDTO);
         return memberLoginDTO;
     }
 
     @PostMapping("/api/memberRegister")
-    public ResponseEntity<String> registerDB(@RequestBody MemberRequestDTO memberRequestDTO) {
-        log.info("call registerDB");
-        log.info("memberRegister check memberRequestDTO : " + memberRequestDTO.toString());
+    public void registerDB(@RequestBody MemberRequestDTO memberRequestDTO) {
+        memberRequestDTO.setMemberFileName(memberService.createIcon());
+        memberRequestDTO.setMemberFilePath("static/icons/");
+        log.info(memberRequestDTO.getMemberId());
         memberService.registerMember(memberRequestDTO);
-        return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/static/PageProjectBoard/index.html").build();
+        log.info(memberRequestDTO);
+        log.info("call registerDB");
     }
+
+    @PostMapping("/api/loginProcess")
+    public void loginProcess() {
+
+    }
+
 
     @PutMapping("/api/memberUpdate/{memberId}")
     public void updateDb(@PathVariable String memberId, @RequestBody MemberRequestDTO memberRequestDTO) {
@@ -67,39 +70,53 @@ public class MemberController {
 
     @GetMapping("/api/memberPage/{memberId}")
     public MemberRequestDTO memberPage(@PathVariable String memberId) {
-        memberRequestDTO = new MemberRequestDTO(memberRepository.findByMemberId(memberId).orElseThrow());
+        MemberRequestDTO memberRequestDTO = new MemberRequestDTO(memberRepository.findByMemberId(memberId).orElseThrow());
         return memberRequestDTO;
     }
 
     @GetMapping("/api/mypage")
-    public MemberRequestDTO myPage(@AuthenticationPrincipal MemberLoginDTO memberLoginDTO) {
-
-        log.info("Call myPage");
-        memberRequestDTO = new MemberRequestDTO(memberRepository.findByMemberId(memberLoginDTO.getMemberId()).orElseThrow());
+    public MemberRequestDTO mypage(@AuthenticationPrincipal MemberLoginDTO memberLoginDTO) {
+        MemberRequestDTO memberRequestDTO = new MemberRequestDTO(memberRepository.findByMemberId(memberLoginDTO.getMemberId()).orElseThrow());
         return memberRequestDTO;
     }
 
-    @GetMapping("/api/callAllMemberRequest")
-    public List<MemberEntity> requestAllMember() {
-        log.info("requestAllMember");
-        return memberRepository.findAll();
+    @GetMapping("/api/memberList")
+    public List<MemberRequestDTO> memberList(){
+        return memberService.memberList();
     }
 
-    @RequestMapping("/api/checkDuplicateMemberId/{checkId}")
-    public ResponseEntity<String> checkMemberId(@PathVariable String checkId) {
+    //지역 필터링
+    @GetMapping("/api/membersByAcademy")
+    public List<MemberEntity> getMemberByAcademy(@RequestParam("memberAcademy") String memberAcademy) {
+        log.info("메서드 getProjectsByStatus 호출");
 
-        log.info("check MemberId duplicate method");
-        Optional<MemberEntity> checkEntity = memberRepository.findById(checkId);
-        if (checkEntity.isPresent()) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Duplicate member ID");
+        Specification<MemberEntity> spec = MemberSpecifications.hasMemberAcademy(memberAcademy);
+        return memberRepository.findAll(spec);
+    }
+
+
+    //분야 필터링
+    @GetMapping("/api/membersByRole")
+    public List<MemberEntity> getMemberByRole(@RequestParam("memberRole") String memberRole) {
+        log.info("메서드 getProjectsByRoles 호출");
+
+        if (memberRole.length() == 0) {
+            // 아무런 역할도 입력하지 않은 경우 모든 프로젝트 반환
+            return memberRepository.findAll();
         }
-        return ResponseEntity.ok("Member ID is available");
+
+        Specification<MemberEntity> spec = MemberSpecifications.hasMemberRole(memberRole);
+        return memberRepository.findAll(spec);
+    }
+
+    //분야+지역 필터링
+    @GetMapping("/api/memberByAcademyAndRole")
+    public List<MemberEntity> getMemberByAcademyAndRole(@RequestParam("memberAcademy") String memberAcademy, @RequestParam("memberRole") String memberRole) {
+        log.info("메서드 getProjectsByStatusAndAllRoles 호출");
+
+        Specification<MemberEntity> spec = MemberSpecifications.hasMemberAcademyAndMemberRole(memberAcademy, memberRole);
+        return memberRepository.findAll(spec);
     }
 
 
-    @GetMapping("/api/getClientIp")
-    public String getClientIp(HttpServletRequest request) {
-        String clientIp = request.getRemoteAddr();
-        return clientIp;
-    }
 }

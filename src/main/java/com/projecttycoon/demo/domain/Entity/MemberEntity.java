@@ -29,7 +29,7 @@ public class MemberEntity extends TimeStamp {
     @Column(name = "memberAcademy")
     private String memberAcademy;
     @Column(name = "memberRole")
-    private String memberRole; //멤버역할 (권한아님)
+    private String memberRole; //멤버역할 (권한아님) << 기술스택(프론트, 백)
     @Column(name = "memberIntroduce")
     private String memberIntroduce;
     @Column(name = "memberLink")
@@ -38,7 +38,7 @@ public class MemberEntity extends TimeStamp {
     private String memberFilePath;
     @Column(name = "memberFileName",nullable = true)
     private String memberFileName;
-    @Column(name = "memberStack")
+    @Column(name = "memberStack", nullable = true)
     private String memberStack;
 
 
@@ -59,6 +59,8 @@ public class MemberEntity extends TimeStamp {
         this.memberRole = requestDTO.getMemberRole();
         this.memberIntroduce = requestDTO.getMemberIntroduce();
         this.memberLink = requestDTO.getMemberLink();
+        this.memberFileName = requestDTO.getMemberFileName();
+        this.memberFilePath = requestDTO.getMemberFilePath();
         this.memberStack = requestDTO.getMemberStack();
         this.memberAuthority = new HashSet<>();
     }

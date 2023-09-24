@@ -16,6 +16,8 @@ public class MemberRequestDTO  {
     private String memberLink;
     private String memberAcademy;
     private String memberNickname;
+    private String memberFilePath;
+    private String memberFileName;
     private String memberStack;
 
     public MemberRequestDTO(MemberEntity memberEntity){
@@ -26,6 +28,8 @@ public class MemberRequestDTO  {
         this.memberLink = memberEntity.getMemberLink();
         this.memberAcademy = memberEntity.getMemberAcademy();
         this.memberNickname = memberEntity.getMemberNickname();
+        this.memberFilePath = memberEntity.getMemberFilePath();
+        this.memberFileName = memberEntity.getMemberFileName();
         this.memberStack = memberEntity.getMemberStack();
     }
 
