@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useCallback, useEffect, useState } from "react";
 import { AiOutlinePlusSquare, AiOutlineMinusCircle } from "react-icons/ai";
+import { BsChatDots } from "react-icons/bs";
 import { RoleUpdate } from "../functional/PostProjectUpdate";
 import { GetProjectFromID } from "../functional/GetProject";
 /** 배경이 되는 콘테이너 태그 */
@@ -135,8 +136,47 @@ const RecruitModifyButton = styled.div`
     color: red;
   }
 `;
+const Writer = styled.div`
+  transition: 300ms;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 65px;
+  height: 65px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  overflow: hidden;
+  user-select: none;
+  cursor: pointer;
+  :active {
+    scale: 0.97;
+  }
+`;
+const WriterImg = styled.img`
+  border-radius: 50%;
+  height: 60%;
+`;
+const WriterNick = styled.span``;
+const WriterDMButton = styled.div`
+  transition: 300ms;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border: 2px solid #f4d160;
+  background: #fbeeac;
+  font-family: "Noto Sans KR", sans-serif;
+  padding: 5px 20px;
+  width: 100%;
+  user-select: none;
+  :active {
+    scale: 0.97;
+  }
+`;
 
-function Sidebar({ value, userData, handleSetValue }) {
+function Sidebar({ value, userData, writer }) {
   /** 모집인원 수정 모드 */
   const [modifyMod, setModifyMod] = useState(false);
   /** 수정하기 위한 복제 projectWantedRole */
@@ -240,8 +280,23 @@ function Sidebar({ value, userData, handleSetValue }) {
       )}
       <Contents>
         <Title>작성자</Title>
+        <Writer>
+          <WriterImg
+            src={"http://projecttycoon.com" + "/static/images/Logo Test.png"}
+          />
+          <WriterNick>{writer?.memberNickname}</WriterNick>
+        </Writer>
       </Contents>
-      <Contents></Contents>
+      <Contents>
+        <WriterDMButton>
+          <BsChatDots
+            color="#35A29F"
+            fontSize={"20px"}
+            style={{ marginRight: "5px" }}
+          />{" "}
+          1대1 DM
+        </WriterDMButton>
+      </Contents>
     </Base>
   );
 }

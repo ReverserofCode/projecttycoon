@@ -6,6 +6,9 @@ import purify from "dompurify";
 import { GetProjectFromID } from "../functional/GetProject";
 import "highlight.js/styles/obsidian.css";
 import Modify from "../components/Modify";
+import Comment from "../components/Comment";
+import Like from "../components/Like";
+import { GetWriterData } from "../functional/GetWriterData";
 
 const Container = styled.div`
   display: flex;
@@ -38,12 +41,14 @@ const MainContents = styled.div`
   width: 100%;
   max-width: 1000px;
   position: relative;
+  margin-bottom: 100px;
 `;
 /** 프로젝트 제목 태그 */
 const MainTitle = styled.h2`
   width: 100%;
   border-bottom: 5px solid #d9d9d9;
   padding: 10px 0px;
+  position: relative;
 `;
 /** 메인 이미지 콘테이너 태그 */
 const PosterContain = styled.div`
@@ -123,7 +128,7 @@ const InfoDate = styled.span`
 /** ProjectContent내부의 데이터를 불러와 html화 시켜주는 태그 */
 const Preview = styled.div`
   margin-top: 20px;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
   display: flex;
   width: 100%;
   box-sizing: border-box;
@@ -160,6 +165,7 @@ const ModifyButton = styled.div`
 `;
 function DetailPage({ userData }) {
   const [mod, setMod] = useState("main");
+  const [writer, setWriter] = useState({});
   const [value, setValue] = useState({
     createdAt: "2023-08-19T06:54:37.741+00:00",
     modifiedAt: "2023-08-19T06:54:37.741+00:00",
@@ -290,6 +296,9 @@ function DetailPage({ userData }) {
         projectScrapNum: res.projectScrapNum,
       };
       handleSetValue(buf);
+      GetWriterData(res.projectWriterId).then((res) => {
+        setWriter(res);
+      });
     });
   }, [handleSetValue]);
   return (
@@ -298,11 +307,7 @@ function DetailPage({ userData }) {
         <Container>
           <SideContents>
             <AiOutlineArrowLeft fontSize={"30px"} />
-            <Sidebar
-              value={value}
-              userData={userData}
-              handleSetValue={handleSetValue}
-            />
+            <Sidebar value={value} userData={userData} writer={writer} />
           </SideContents>
           <MainContents>
             {value.projectWriterId === userData?.memberId ? (
@@ -316,7 +321,14 @@ function DetailPage({ userData }) {
             ) : (
               ""
             )}
-            <MainTitle>{value?.projectTitle}</MainTitle>
+            <MainTitle>
+              {value?.projectTitle}
+              {userData?.memberId === value?.projectWriterId ? (
+                ""
+              ) : (
+                <Like userData={userData} />
+              )}
+            </MainTitle>
             <PosterContain>
               <Poster
                 src={"http://projecttycoon.com" + value?.projectFilePath}
@@ -349,6 +361,7 @@ function DetailPage({ userData }) {
                 __html: purify.sanitize(value?.projectContent),
               }}
             />
+            <Comment userData={userData}></Comment>
           </MainContents>
         </Container>
       ) : (
