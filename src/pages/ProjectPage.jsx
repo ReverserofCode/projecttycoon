@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { SelectSide, CheckSide } from "../components/Sidebar/SidebarComponent";
 import { MainHeader, SubmitButton } from "../components/Sidebar/SidebarStyle";
 import BoardItem from "../components/BoardItem";
@@ -48,8 +48,50 @@ const Board = styled.div`
   margin-top: 20px;
   max-width: 1200px;
 `;
+/** 프로젝트 페이지 업데이트를 위한 loading 콘테이너 태그 */
+const Loader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+`;
+/** 프로젝트 페이지 업데이트를 위한 loading 테그 */
+const Loading = styled.span`
+  width: 48px;
+  height: 48px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  :after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-bottom-color: #ff3d00;
+  }
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
 /** 프로젝트 페이지 */
 function ProjectPage() {
+  /** 로딩 시점 확인용 ref */
+  const loader = useRef(null);
   /** 프로젝트 리스트 state */
   const [boardList, setBoardList] = useState([]);
   /** 사이드바의 지역 state */
@@ -58,6 +100,8 @@ function ProjectPage() {
   const [RecruitSelect, setRecruitSelect] = useState([]);
   /** 사이드바의 모집분야 state */
   const [statusSelect, setStatusSelect] = useState([]);
+  /** 프로젝트 로딩 길이 제한 state */
+  const [loadingLength, setLoadingLength] = useState(0);
   /** 모집분야 설정 */
   const handleSetRecruit = useCallback((e) => {
     setRecruitSelect(e);
@@ -73,7 +117,7 @@ function ProjectPage() {
   /** 프로젝트 아이템 생성 */
   const handleBoardItemGen = useCallback(() => {
     let contents = [];
-    for (let i = boardList?.length - 1; i >= 0; i--) {
+    for (let i = boardList?.length - 1; i >= loadingLength; i--) {
       let bufRole = JSON.parse(
         boardList[i]?.projectWantedRole.replace(/'/g, '"')
       );
@@ -95,13 +139,39 @@ function ProjectPage() {
         />
       );
     }
+    if (loadingLength !== 0)
+      contents.push(
+        <Loader ref={loader}>
+          <Loading />
+        </Loader>
+      );
     return contents;
-  }, [boardList]);
+  }, [boardList, loadingLength]);
   useEffect(() => {
+    let observer;
+    if (loader.current) {
+      observer = new IntersectionObserver(
+        ([e], observer) => {
+          if (e.isIntersecting) {
+            observer.unobserve(e.target);
+            loadingLength - 12 <= 0
+              ? setLoadingLength(0)
+              : setLoadingLength(loadingLength - 12);
+            observer.observe(e.target);
+          }
+        },
+        { threshold: 0.4, rootMargin: "-20px -20px" }
+      );
+      observer.observe(loader.current);
+    }
     BoardListGet().then((res) => {
       setBoardList(res);
+      setLoadingLength(res.length - 12);
     });
-  }, []);
+    return () => {
+      observer && observer.disconnect();
+    };
+  }, [loadingLength]);
   return (
     <PageContainer>
       <SideContents>
