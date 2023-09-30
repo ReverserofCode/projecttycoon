@@ -47,6 +47,7 @@ width: 100%;
     justify-content: space-between;
 `
 const Wrap=styled.div`
+font-size: 13px;
     margin: 0 auto;
     max-width: 1200px;
     width: 100%;
@@ -59,7 +60,7 @@ const Content=styled.div`
     border: 1px blue solid;
     margin: 0 auto;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     flex-direction: column;
 `
 const Bot =styled.div`
@@ -133,15 +134,84 @@ const StackSelect=styled.select`
     width: 200px;
     height: 28px;
 `
+const NavWrap=styled.div`
+    display: flex;
+`
+const But2=styled.button`
+border: none;
+  outline: none;
+    width: ${(props) => props.width || "420px"};
+  height: ${(props) => props.width || "30px"};
+  background-color: ${(props) => props.background_color || "#0B666A"};
+  color: white;
+`
+const But2Wrap=styled.div`
+margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+`
+const StackBut=styled.button`
+    background-color:#0B666A;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 15px;
+    padding: 8px 12px;
+    margin-right: 8px;
+`
+const StackButWrap=styled.div`
+overflow: auto;
+overflow-y: hidden;
+/* overflow-x: scroll; */
+    display: flex;
+    /* justify-content: space-around; */
+    align-items: center;
+    max-width: 500px;
+    width: 100%;
+    height: 100%;
+`
+const Nav=styled.div`
+font-size: 13px;
+/* font-weight: 800; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left:4px;
+    width: 160px;
+    border-bottom: 2px gray solid;
+`
+const Span=styled.div`
+    font-size: 10px;
+    color: #e63434;
+    font-weight: 800;
+`
+const LinkWrap=styled.div`
+    max-width: 700px;
+    width: 100%;
+  display: flex;
+  flex-direction: column;
+`
+const LinkButWrap=styled.div`
+    display: flex;
+`
+const LinkSelect=styled.select`
+    width: 70px;
+    height: 30px;
+`
+const LinkInput=styled.input`
+    width: 270px;
+    height: 23px;
+`
 function UserInfo(){
     function list(){
         return(
             <>
             {
              selectLink.map((list,index)=>(
-                <>
+                <LinkButWrap>
                     <div>
-                     <select defaultValue={list.option} onChange={(event)=>handleNewLinkChange(event,index)}>
+                     <LinkSelect defaultValue={list.option} onChange={(event)=>handleNewLinkChange(event,index)}>
                         {
                         links.map((link, linkIndex)=>(
                             <>
@@ -152,11 +222,11 @@ function UserInfo(){
                             </>
                         ))
                         }
-                     </select>
-                     <input 
+                     </LinkSelect>
+                     <LinkInput 
                      type="text" value={list.value} onChange={(event)=>handleNewLinkValueChange(event,index)}>
                         {/* onChange={(event)=>handleInputChange(event, 'memberNickname')} */}
-                     </input>
+                     </LinkInput>
                     </div>
                     {
                         index> 0 &&(
@@ -165,7 +235,7 @@ function UserInfo(){
                             </button>
                             )
                     }
-                    </>
+                    </LinkButWrap>
                 ))
             }
             </>
@@ -175,6 +245,13 @@ function UserInfo(){
         // console.log(memberInfo)
         console.log(selectLink)
     })
+    //비밀번호
+    const passwordRegex =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,30}$/;
+    const [pw, setPw] = useState("");
+    const [pwError, setPwError] = useState("");
+    const [pwConfirm, setPwConfirm] = useState(""); // Separate state for password confirmation
+    const [pwConfirmError, setPwConfirmError] = useState(""); // Separate error state for password confirmation
     //유저-수정 시 /input 관리
     const handleInputChange = (event, info) => {
         const updatedMemberInfo = { ...memberInfo, [info]: event.target.value };
@@ -313,6 +390,14 @@ const [selectedLanguages, setSelectedLanguages] = useState(memberInfo.memberStac
     return(
         <Wrap>
         <Content>
+            <NavWrap>
+                <Nav>
+                    내프로필
+                </Nav>
+                <Nav>
+                    활동관리
+                </Nav>
+            </NavWrap>
         <Top>
             <Right>
                 <ImgWrap>
@@ -356,13 +441,13 @@ const [selectedLanguages, setSelectedLanguages] = useState(memberInfo.memberStac
                 <Box>
                     <XsmallBox>
                         <input placeholder="새로운 비밀번호"/>
-                        <div>몇자리이상 입력하세요.</div>
+                        <Span>몇자리이상 입력하세요.</Span>
                     </XsmallBox>
                 </Box>
                 <Box>
                     <XsmallBox>
                         <input placeholder="새로운 비밀번호 재입력"/>
-                        <div>비밀번호가 일치하지 않습니다</div>
+                        <Span>비밀번호가 일치하지 않습니다</Span>
                         <But onClick={handleCloseClick}>수정</But>
                     </XsmallBox>
                 </Box>
@@ -389,13 +474,13 @@ const [selectedLanguages, setSelectedLanguages] = useState(memberInfo.memberStac
         <Box>
             <SmallBox>역할</SmallBox>
             <XsmallBox>
-                <select value={memberInfo.memberRole} onChange={(event)=>handleInputChange(event, 'memberRole')} >
+                <StackSelect value={memberInfo.memberRole} onChange={(event)=>handleInputChange(event, 'memberRole')} >
                     {fields.map((field, fieldIndex) => (
                         <option key={fieldIndex} value={field.value}>
                             {field.label}
                         </option>
                     ))} 
-                </select>
+                </StackSelect>
                 {/* <div>{memberInfo.memberRole}</div> */}
             </XsmallBox>
         </Box>
@@ -411,14 +496,14 @@ const [selectedLanguages, setSelectedLanguages] = useState(memberInfo.memberStac
                         </option>
                     ))} 
                 </StackSelect>
-                <div>*중복가능</div>
-                <div>
+                <Span>*5개까지 중복가능</Span>
+                <StackButWrap>
                     {selectedLanguages.map((selectedLanguage) => (
-                        <button type="button" key={selectedLanguage} onClick={() => handleLanguageButtonClick(selectedLanguage)}>
+                        <StackBut type="button" key={selectedLanguage} onClick={() => handleLanguageButtonClick(selectedLanguage)}>
                             {stacks.find((option) => option.value === selectedLanguage)?.label}
-                        </button>
+                        </StackBut>
                     ))}
-                </div>
+                </StackButWrap>
                 </>
                 ) : (
                     <>
@@ -429,23 +514,25 @@ const [selectedLanguages, setSelectedLanguages] = useState(memberInfo.memberStac
                         </option>
                     ))} 
                 </StackSelect>
-                    <p>선택한 언어가 없습니다.</p></>
+                    <Span>선택한 언어가 없습니다.</Span></>
                     )}
                 {/* <div>{memberInfo.memberStack}</div> */}
             </XsmallBox>
         </Box>
         <Box>
             <SmallBox>개인링크</SmallBox>
-            <XsmallBox>
+            <LinkWrap>
                 {list()}
-            </XsmallBox>
+            </LinkWrap>
             <button onClick={handleAddButton}>
-                플러스버튼
+                +
             </button>
         </Box>
         </Bot>
-        <button>취소</button>
-        <button>완료</button>
+        <But2Wrap>
+            <But2 background_color="gray">취소</But2>
+            <But2>완료</But2>
+        </But2Wrap>
         </Content>
         </Wrap>
     )
