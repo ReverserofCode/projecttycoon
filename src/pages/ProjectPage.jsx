@@ -147,31 +147,29 @@ function ProjectPage() {
       );
     return contents;
   }, [boardList, loadingLength]);
+  /** 프로젝트의 기본 정보를 가져오는 useEffect */
   useEffect(() => {
-    let observer;
-    if (loader.current) {
-      observer = new IntersectionObserver(
-        ([e], observer) => {
-          if (e.isIntersecting) {
-            observer.unobserve(e.target);
-            loadingLength - 12 <= 0
-              ? setLoadingLength(0)
-              : setLoadingLength(loadingLength - 12);
-            observer.observe(e.target);
-          }
-        },
-        { threshold: 0.4, rootMargin: "-20px -20px" }
-      );
-      observer.observe(loader.current);
-    }
     BoardListGet().then((res) => {
       setBoardList(res);
       setLoadingLength(res.length - 12);
     });
-    return () => {
-      observer && observer.disconnect();
-    };
-  }, [loadingLength]);
+  }, []);
+  /** 로딩 감시자를 할당 및 업데이트하는 useEffect */
+  useEffect(() => {
+    let observer;
+    if (loader.current) {
+      observer = new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) {
+          let buf = loadingLength - 12;
+          if (buf <= 0) {
+            setLoadingLength(0);
+          } else setLoadingLength(buf);
+        }
+      }, {});
+      observer.observe(loader.current);
+    }
+    return () => observer && observer.disconnect();
+  }, [loader, loadingLength]);
   return (
     <PageContainer>
       <SideContents>
