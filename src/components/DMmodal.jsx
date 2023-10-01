@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { BsChatText, BsSend } from "react-icons/bs";
 import { AiOutlineStar } from "react-icons/ai";
@@ -311,6 +311,14 @@ const ChatSendButton = styled.div`
     background-color: var(--sub-color-sub-color-3, #f4d160);
   }
 `;
+/** DM chat 스크롤을 이동시키기 위한 자리표시 태그 */
+const Loader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid black;
+`;
 
 function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
   /** 상대방의 id를 담고있는 state */
@@ -335,6 +343,7 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
   /** 채팅내용 리스트로부터 채팅 아이템을 생성 하는 function */
   const handleChatGen = useCallback(() => {
     let contents = [];
+    let loader = false;
     for (let i = 0; i < chatData.length; i++) {
       const date = new Date(chatData[i].createdAt);
       let month = date.getMonth() + 1;
@@ -344,6 +353,14 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
       hour = hour < 10 ? "0" + hour : hour;
       min = min < 10 ? "0" + min : min;
       const time = hour + ":" + min;
+      if (loader === false && chatData[i].dmread === false) {
+        loader = true;
+        contents.push(
+          <Loader ref={ScrollTo} key={`loading`}>
+            여기서 부터 확인하세요
+          </Loader>
+        );
+      }
       if (chatData[i].dmfrom.memberId !== targetId) {
         contents.push(
           <ChatGet key={`Chat ${i}`}>
@@ -398,17 +415,31 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
             });
           }}
         >
-          <DMProfileIcon src={DMList[i]?.dmroom.dmto.memberFilePath} />
+          <DMProfileIcon
+            src={
+              DMList[i]?.dmroom.dmto.memberId === myId
+                ? DMList[i]?.dmroom.dmfrom.memberFilePath
+                : DMList[i]?.dmroom.dmto.memberFilePath
+            }
+          />
           <DMInfo>
-            <DMInfoName>{DMList[i]?.dmroom.dmto.memberNickname}</DMInfoName>
+            <DMInfoName>
+              {DMList[i]?.dmroom.dmto.memberId === myId
+                ? DMList[i]?.dmroom.dmfrom.memberNickname
+                : DMList[i]?.dmroom.dmto.memberNickname}
+            </DMInfoName>
             <DMInfoContents>{DMList[i]?.dmcontent}</DMInfoContents>
           </DMInfo>
           <DMStatus>
             <DMStatusTime>{time}</DMStatusTime>
-            {DMList[i]?.dmto?.memberId === myId && DMList[i]?.dmread ? (
-              <DMStatusTime />
+            {DMList[i]?.dmto?.memberId === myId ? (
+              DMList[i]?.dmread ? (
+                <DMStatusTime />
+              ) : (
+                <DMStatusNow>N</DMStatusNow>
+              )
             ) : (
-              <DMStatusNow>N</DMStatusNow>
+              <DMStatusTime />
             )}
           </DMStatus>
         </DMItem>
@@ -416,6 +447,15 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
     }
     return contents;
   }, [DMList, handleSetMod, myId]);
+  useEffect(() => {
+    if (ChatRef.current) {
+      ChatRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "center",
+      });
+    }
+  }, []);
   return (
     <Container status={status}>
       <HeaderZone>
@@ -442,26 +482,18 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
             <DMProfileIcon
               src={
                 chatTarget.dmroom.dmto.memberId === targetId
-                  ? chatTarget.dmroom.dmfrom.memberFilePath
-                  : chatTarget.dmroom.dmto.memberFilePath
+                  ? chatTarget.dmroom.dmto.memberFilePath
+                  : chatTarget.dmroom.dmfrom.memberFilePath
               }
             />
             <DMInfoName>
               {" "}
               {chatTarget.dmroom.dmto.memberId === targetId
-                ? chatTarget.dmroom.dmfrom.memberNickname
-                : chatTarget.dmroom.dmto.memberNickname}
+                ? chatTarget.dmroom.dmto.memberNickname
+                : chatTarget.dmroom.dmfrom.memberNickname}
             </DMInfoName>
           </ChatHeaderZone>
-          <ChatListUp
-            ref={ChatRef}
-            onLoad={() => {
-              let Height = ChatRef.current.scrollHeight;
-              ChatRef.current.scrollTop = Height;
-            }}
-          >
-            {handleChatGen()}
-          </ChatListUp>
+          <ChatListUp>{handleChatGen()}</ChatListUp>
           <ChatInputZone>
             <ChatInput
               value={chatInput}
