@@ -137,7 +137,7 @@ function BoardItem({
             />
           );
           break;
-        case "AI":
+        case "ai":
           contents.push(
             <FilterIcon
               src="http://projecttycoon.com/static/images/AI.png"
