@@ -196,45 +196,6 @@ const SubTitleWrap = styled.div`
   justify-content: space-between;
 `;
 function Write({ userData }) {
-  useEffect(() => {
-    console.log(JSON.stringify(Params));
-    console.log(selectFields);
-  });
-  //test
-  // const [test,setTest]=useState({
-  //     fieldd:"",
-  //     person:""
-  // })
-  // const {fieldd,person}=test;
-  // const onChange=e=>{
-  //     const {name,value}=e.target;
-  //     setTest({
-  //         ...test,
-  //         [name]: value
-  //     })
-  // }
-  // const [user,setUser]=useState([{
-  //     fieldd:"back",
-  //     complete:0,
-  //     person:"1"
-  // },
-  // ])
-  // const userID=useRef(1);
-  // const onCreate=()=>{
-  //     const role={
-  //         fieldd,
-  //         complete:userID.current,
-  //         person
-  //     };
-  //     setUser([...user,role])
-  // setTest({
-  //     fieldd:"",
-  //     person:""
-  // });
-  //     userID.current+=1;
-  //     setCount(Count+1);
-  //     console.log(user)
-  // }
   //제목
   const [title, setTitle] = useState("");
   //프로젝트 내용
@@ -288,7 +249,9 @@ function Write({ userData }) {
     setAcademy(e.target.value);
   };
   const handleNewcontents = useCallback((data) => {
-    setContents(data);
+    if (data?.length >= 100) {
+      alert("제한 글자수를 초과했습니다.");
+    } else setContents(data);
   }, []);
   //유저-파일change
   const saveFileImg = (file) => {
@@ -332,18 +295,6 @@ function Write({ userData }) {
     );
     setSelectFields(updatedSelectFields);
   };
-  //   const handleDeleteButton = (index) => {
-  //     if(selectFields.length===0){
-  //         삭제버튼(false)
-  //     }
-  //     else if(selectFields.length<1){
-  //         삭제버튼(true)
-  //     }
-  //     const updatedSelectFields = [...selectFields];
-  //     updatedSelectFields.splice(index, 1);
-  //     setSelectFields(updatedSelectFields);
-  //     console.log(index)
-  //   };
   const Submit = async () => {
     if (Deadline == "") {
       alert("마감 날짜를 선택해주세요");
@@ -358,21 +309,6 @@ function Write({ userData }) {
         contentType: "application/json",
       }
     );
-    // axios({
-    //     method: 'post',
-    //     maxBodyLength: Infinity,
-    //     url: `/api/projectRegister`,
-    //     // headers: {
-    //     //     ...data.getHeaders()
-    //     // },
-    //     data : data
-    // })
-    // .then((response) => {
-    //     console.log(JSON.stringify(response.data));
-    //   })
-    // .catch((error) => {
-    //     console.log(error);
-    // })
     axios
       .post("/api/projectRegister", data, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -454,12 +390,6 @@ function Write({ userData }) {
                 <Txt>클릭 해주세요.</Txt>
               </Ji>
             </SubImgBox>
-            {/* {
-                        Img.map((list,index)=>(
-                            <SubImg src={Img[index]}></SubImg>
-                        ))
-                    } */}
-            {/* <input type="file" onChange={saveFileImg}></input> */}
           </Right>
         </ImgWrap>
         <QuillTestPage handleNewcontents={handleNewcontents} />
