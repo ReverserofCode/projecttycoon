@@ -52,3 +52,18 @@ option{
     background-color: #ffffff; 
     cursor: pointer;
 }
+.IdArea {
+    width: 550px;
+    position: relative;
+    margin-left: 30px;
+}
+.NickArea{
+    width: 550px;
+    position: relative;
+    margin-left: 30px;
+}
+.MultipleChoice{
+    color: rgb(212, 36, 36);
+    font-size: 0.7em;
+    margin-left: 20px;
+}

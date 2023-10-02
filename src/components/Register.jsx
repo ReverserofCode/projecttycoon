@@ -7,7 +7,7 @@ import { FaMicroblog } from "react-icons/fa";
 import { SiRabbitmq } from "react-icons/si";
 import { BsPlusSquareDotted } from "react-icons/bs";
 import { TiMessageTyping, TiDelete } from "react-icons/ti";
-
+import Modal from "../functional/Modal";
 // 전체틀 , 공통
 const Container = styled.div`
   display: flex;
@@ -206,6 +206,27 @@ const TextMany = styled.textarea`
   font-family: "맑은고딕";
 `;
 
+// 중복체크
+const CheckId = styled.button`
+  float: left;
+  margin-top: 16px;
+  margin-left: 15px;
+  padding: 10px 12px;
+  font-size: 0.7em;
+  font-weight: 500;
+  border: 1px solid #ffffff;
+  background-color: #71717145;
+  border-radius: 3px;
+  &:hover {
+    border-color: #fbeeac;
+    background-color: #fbeeac;
+    transition: 0.3s;
+    color: #4743439c;
+    font-size: 0.7em;
+    font-weight: 500;
+    cursor: pointer;
+  }
+`;
 // 에러메세지
 const ErrorMessage = styled.span`
   font-size: 1em;
@@ -270,6 +291,38 @@ function Register() {
     setLinkOptionStates(updatedStates);
   };
 
+  // 모달
+  // 아이디 중복 체크 모달 상태 변수
+  const [isIdModalOpen, setIsIdModalOpen] = useState(false);
+  // 닉네임 중복 체크 모달 상태 변수
+  const [isNickModalOpen, setIsNickModalOpen] = useState(false);
+  const [isNickAvailable, setIsNickAvailable] = useState(false);
+  const [isIdAvailable, setIsIdAvailable] = useState(false);
+  // 아이디 중복 체크 모달 열기
+  const openIdModal = () => {
+    setIsIdModalOpen(true);
+  };
+
+  // 닉네임 중복 체크 모달 열기
+  const openNickModal = () => {
+    setIsNickModalOpen(true);
+  };
+
+  // 아이디 중복 체크 모달 닫기
+  const closeIdModal = () => {
+    setIsIdModalOpen(false);
+  };
+
+  // 닉네임 중복 체크 모달 닫기
+  const closeNickModal = () => {
+    setIsNickModalOpen(false);
+  };
+
+  // 중복에러 메세지
+  const [isCheckingId, setIsCheckingId] = useState(false);
+  const [isCheckingNick, setIsCheckingNick] = useState(false);
+  const [idCheckMessage, setIdCheckMessage] = useState("");
+
   // 비밀번호
   const passwordRegex =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,30}$/;
@@ -280,10 +333,51 @@ function Register() {
   // 닉넴, 아이디
   const [nick, setNick] = useState("");
   const [id, setId] = useState("");
+
   const [idError, setIdError] = useState("");
   const [nickError, setNickError] = useState("");
   const idRegex = /^[a-zA-Z0-9_-]{4,15}$/; // 아이디 형식 검증 정규식
   const nickRegex = /^[a-zA-Z0-9가-힣_-]{2,12}$/;
+
+  // 아이디중복
+  // 중복 체크 로직
+  const handleCheckId = () => {
+    // 중복 체크 요청을 서버로 보냅니다.
+    axios
+      .get(`/api/callAllMemberRequest/user/nick?memberId=${nick}`)
+      .then((res) => {
+        const resMessage = res.data.message;
+        setIdCheckMessage(resMessage);
+
+        if (resMessage === "사용 가능한 아이디입니다.") {
+          openNickModal(); // Open the modal only if the nickname is available
+        }
+      })
+      .catch((error) => {
+        console.error("닉네임 중복 체크 에러:", error);
+      });
+    openIdModal();
+  };
+
+  // 닉네임중복 체크 로직
+  const handleCheckNick = () => {
+    axios
+      .get(`/api/callAllMemberRequest/user/nick?memberId=${nick}`)
+      .then((res) => {
+        const resMessage = res.data.message;
+        setIdCheckMessage(resMessage);
+        // Check if the nickname is available
+        if (resMessage === "사용 가능한 닉네임입니다.") {
+          setIsNickAvailable(true);
+        } else {
+          setIsNickAvailable(false);
+        }
+      })
+      .catch((error) => {
+        console.error("닉네임 중복 체크 에러:", error);
+      });
+    openNickModal(); // 닉네임 중복 체크 모달 열기
+  };
   // 한 줄 소개
   const [introduce, setIntroduce] = useState("");
 
@@ -400,46 +494,67 @@ function Register() {
         Tycoon에 오신 걸 환영합니다 !
         <SiRabbitmq size="34" className="rabbit" />
       </Title>
+      <div className="NickArea">
+        <ContentsTitle>
+          <span>*</span>닉네임
+        </ContentsTitle>
+        <InputForm
+          style={{ width: "350px", float: "left" }}
+          placeholder="사용하실 닉네임을 작성해주세요"
+          value={nick}
+          onChange={(e) => {
+            e.preventDefault();
+            const newNick = e.target.value;
+            setNick(newNick);
 
-      <ContentsTitle>
-        <span>*</span>닉네임
-      </ContentsTitle>
-      <InputForm
-        placeholder="사용하실 닉네임을 작성해주세요"
-        value={nick}
-        onChange={(e) => {
-          e.preventDefault();
-          const newNick = e.target.value;
-          setNick(newNick);
-
-          if (!nickRegex.test(newNick)) {
-            setNickError(
-              "2~12글자의 한글, 영문, 숫자, '_', '-'만 사용할 수 있습니다."
-            );
-          } else {
-            setNickError("");
-          }
-        }}
-      />
+            if (!nickRegex.test(newNick)) {
+              // Use setNickError instead of setIdErrMsg
+              setNickError(
+                "2~12글자의 한글, 영문, 숫자, '_', '-'만 사용할 수 있습니다."
+              );
+            } else {
+              // Use setNickError instead of setIdErrMsg
+              setNickError("");
+            }
+          }}
+        />
+        <CheckId onClick={handleCheckNick} disabled={isCheckingNick}>
+          {isCheckingNick ? "중복 체크 중..." : "닉네임 중복 체크"}
+        </CheckId>
+        {isNickModalOpen && (
+          <Modal onClose={closeNickModal}>닉네임 중복 체크</Modal>
+        )}
+      </div>
       {nickError && <ErrorMessage>{nickError}</ErrorMessage>}
 
-      <ContentsTitle>
-        <span>*</span>아이디
-      </ContentsTitle>
-      <InputForm
-        placeholder="사용하실 아이디를 작성해 주세요"
-        value={id}
-        onChange={(e) => {
-          e.preventDefault();
-          const newId = e.target.value;
-          setId(newId);
-          if (!idRegex.test(newId)) {
-            setIdError("4~15글자의 영문, 숫자, '_', '-'만 사용할 수 있습니다.");
-          } else {
-            setIdError("");
-          }
-        }}
-      />
+      <div className="IdArea">
+        <ContentsTitle>
+          <span>*</span>아이디
+        </ContentsTitle>
+        <InputForm
+          style={{ width: "350px", float: "left" }}
+          placeholder="사용하실 아이디를 작성해 주세요"
+          value={id}
+          onChange={(e) => {
+            e.preventDefault();
+            const newId = e.target.value;
+            setId(newId);
+            if (!idRegex.test(newId)) {
+              setIdError(
+                "4~15글자의 영문, 숫자, '_', '-'만 사용할 수 있습니다."
+              );
+            } else {
+              setIdError("");
+            }
+          }}
+        />
+        <CheckId onClick={handleCheckId} disabled={isCheckingId}>
+          {isCheckingId ? "중복 체크 중..." : "아이디 중복 체크"}
+        </CheckId>
+        {isIdModalOpen && (
+          <Modal onClose={closeIdModal}>{idCheckMessage}아이디 중복 체크</Modal>
+        )}
+      </div>
       {idError && <ErrorMessage>{idError}</ErrorMessage>}
 
       <ContentsTitle>
@@ -495,13 +610,13 @@ function Register() {
         onChange={(e) => setSelectedJob(e.target.value)} // Update selectedJob state
       >
         <option value="">선택</option>
-        <option value="백엔드">백엔드</option>
-        <option value="프론트엔드">프론트엔드</option>
-        <option value="빅데이터">빅데이터</option>
+        <option value="back">백엔드</option>
+        <option value="front">프론트엔드</option>
+        <option value="bigData">빅데이터</option>
         <option value="AI">AI</option>
-        <option value="서버관리자">서버관리자</option>
-        <option value="정보보안">정보보안</option>
-        <option value="네트워크관리자">네트워크관리자</option>
+        <option value="server">서버관리자</option>
+        <option value="security">정보보안</option>
+        <option value="network">네트워크관리자</option>
       </select>
       {!selectedJob && <ErrorMessage>직무를 선택해 주세요.</ErrorMessage>}
 
@@ -519,12 +634,14 @@ function Register() {
         <option value="대전">대전</option>
         <option value="대구">대구</option>
         <option value="인천">인천</option>
+        <option value="부산">부산</option>
       </select>
       {!selectedPlace && <ErrorMessage>학원지점을 선택해 주세요.</ErrorMessage>}
       {/* Display the selected job in an InputForm */}
 
       <ContentsTitle>
         <span>*</span>기술스택
+        <span className="MultipleChoice">※ 다수 선택 가능합니다.</span>
       </ContentsTitle>
       <Stacks>
         {stackItemGen()}
@@ -538,7 +655,8 @@ function Register() {
         >
           <option value="Java">Java</option>
           <option value="Python">Python</option>
-          <option value="C/C++">C/C++</option>
+          <option value="C">C</option>
+          <option value="C++">C++</option>
           <option value="C#">C#</option>
           <option value="PHP">PHP</option>
           <option value="SQL">SQL</option>
