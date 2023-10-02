@@ -251,7 +251,9 @@ function Write({ userData }) {
   const handleNewcontents = useCallback((data) => {
     if (data?.length >= 100) {
       alert("제한 글자수를 초과했습니다.");
-    } else setContents(data);
+    } else {
+      setContents(data);
+    }
   }, []);
   //유저-파일change
   const saveFileImg = (file) => {
@@ -392,7 +394,7 @@ function Write({ userData }) {
             </SubImgBox>
           </Right>
         </ImgWrap>
-        <QuillTestPage handleNewcontents={handleNewcontents} />
+        <QuillTestPage value={contents} handleChange={handleNewcontents} />
         <Title>📌 프로젝트 기본 정보를 입력해주세요.</Title>
         <Bot>
           <Top>
