@@ -17,34 +17,7 @@ const Wrap = styled.div`
 `;
 
 function App() {
-  const [userData, setUserData] = useState({
-    password: null,
-    username: "sift",
-    authorities: [
-      {
-        authority: "ROLE_USER",
-      },
-    ],
-    accountNonExpired: true,
-    accountNonLocked: true,
-    credentialsNonExpired: true,
-    enabled: true,
-    memberNickName: "sift",
-    memberAcademy: "노원",
-    memberRole: "프론트엔드",
-    memberIntroduce: "asdfasdfasd",
-    memberLink: null,
-    memberFilePath: null,
-    memberFileName: null,
-    memberId: "sift0419",
-    memberPw: "$2a$10$FAi0gFqHeCpdCKz26ApWTOdnisjPh5GCOEvSGdTYmGMGLp/3atBhW",
-    memberStack: '["CSS"]',
-    memberAuthority: [
-      {
-        authority: "ROLE_USER",
-      },
-    ],
-  });
+  const [userData, setUserData] = useState();
   const handleSetUserData = useCallback((value) => {
     setUserData(value);
   }, []);

@@ -295,10 +295,10 @@ function DetailPage({ userData }) {
         projectFileName: res.projectFileName,
         projectScrapNum: res.projectScrapNum,
       };
-      handleSetValue(buf);
       GetWriterData(res.projectWriterId).then((res) => {
         setWriter(res);
       });
+      handleSetValue(buf);
     });
   }, [handleSetValue]);
   return (
@@ -306,7 +306,12 @@ function DetailPage({ userData }) {
       {mod === "main" ? (
         <Container>
           <SideContents>
-            <AiOutlineArrowLeft fontSize={"30px"} />
+            <AiOutlineArrowLeft
+              fontSize={"30px"}
+              onClick={() => {
+                window.history.back();
+              }}
+            />
             <Sidebar value={value} userData={userData} writer={writer} />
           </SideContents>
           <MainContents>
