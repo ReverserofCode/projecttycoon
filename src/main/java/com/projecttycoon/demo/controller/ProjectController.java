@@ -3,7 +3,6 @@ import java.lang.String;
 
 import com.projecttycoon.demo.domain.Entity.ProjectEntity;
 import com.projecttycoon.demo.domain.Entity.ProjectSpecifications;
-import com.projecttycoon.demo.domain.Entity.ProjectSpecifications2;
 import com.projecttycoon.demo.domain.dto.ProjectRequestDTO;
 import com.projecttycoon.demo.domain.repository.ProjectRepository;
 import com.projecttycoon.demo.domain.service.ProjectService;
