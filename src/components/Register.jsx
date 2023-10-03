@@ -302,7 +302,12 @@ function Register() {
   const openIdModal = () => {
     setIsIdModalOpen(true);
   };
-
+  // 중복체크메세지
+  const CheckMessage = styled.span`
+    font-size: 1em;
+    color: #ff0000;
+    margin-bottom: 10px;
+  `;
   // 닉네임 중복 체크 모달 열기
   const openNickModal = () => {
     setIsNickModalOpen(true);
@@ -342,19 +347,21 @@ function Register() {
   // 아이디중복
   // 중복 체크 로직
   const handleCheckId = () => {
-    // 중복 체크 요청을 서버로 보냅니다.
+    // 중복 체크 요청을 서버로 보냄
     axios
-      .get(`/api/callAllMemberRequest/user/nick?memberId=${nick}`)
+      .get(`http://projecttycoon.com/api/callAllMemberRequest/${id}`)
       .then((res) => {
         const resMessage = res.data.message;
         setIdCheckMessage(resMessage);
 
         if (resMessage === "사용 가능한 아이디입니다.") {
-          openNickModal(); // Open the modal only if the nickname is available
+          setIsIdAvailable(true);
+        } else {
+          setIsIdAvailable(false);
         }
       })
       .catch((error) => {
-        console.error("닉네임 중복 체크 에러:", error);
+        console.error("아이디 중복 체크 에러:", error);
       });
     openIdModal();
   };
@@ -362,11 +369,11 @@ function Register() {
   // 닉네임중복 체크 로직
   const handleCheckNick = () => {
     axios
-      .get(`/api/callAllMemberRequest/user/nick?memberId=${nick}`)
+      .get(`http://projecttycoon.com/api/callAllMemberRequest/${nick}`)
       .then((res) => {
         const resMessage = res.data.message;
         setIdCheckMessage(resMessage);
-        // Check if the nickname is available
+
         if (resMessage === "사용 가능한 닉네임입니다.") {
           setIsNickAvailable(true);
         } else {
@@ -508,7 +515,6 @@ function Register() {
             setNick(newNick);
 
             if (!nickRegex.test(newNick)) {
-              // Use setNickError instead of setIdErrMsg
               setNickError(
                 "2~12글자의 한글, 영문, 숫자, '_', '-'만 사용할 수 있습니다."
               );
@@ -526,6 +532,11 @@ function Register() {
         )}
       </div>
       {nickError && <ErrorMessage>{nickError}</ErrorMessage>}
+
+      {isCheckingNick && <CheckMessage>중복 체크 중입니다...</CheckMessage>}
+      {isNickAvailable && (
+        <CheckMessage>사용 가능한 닉네임입니다.</CheckMessage>
+      )}
 
       <div className="IdArea">
         <ContentsTitle>
