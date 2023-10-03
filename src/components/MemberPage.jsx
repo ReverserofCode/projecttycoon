@@ -448,7 +448,7 @@ function MemberPage({
     <Container>
       <BoardBase
         onClick={() => {
-          window.location.href = `http://projecttycoon.com/memberId/${id}`;
+          window.location.href = `http://projecttycoon.com//api/memberPage/${memberId}`;
         }}
       >
         <ProfileArea>
