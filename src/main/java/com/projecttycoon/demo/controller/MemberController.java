@@ -117,6 +117,4 @@ public class MemberController {
         Specification<MemberEntity> spec = MemberSpecifications.hasMemberAcademyAndMemberRole(memberAcademy, memberRole);
         return memberRepository.findAll(spec);
     }
-
-
 }
