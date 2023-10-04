@@ -349,7 +349,7 @@ function Register() {
   const handleCheckId = () => {
     // 중복 체크 요청을 서버로 보냄
     axios
-      .get(`http://projecttycoon.com/api/callAllMemberRequest/${id}`)
+      .get(`/api/checkDuplicateMemberId/${id}`)
       .then((res) => {
         const resMessage = res.data.message;
         setIdCheckMessage(resMessage);
@@ -369,7 +369,7 @@ function Register() {
   // 닉네임중복 체크 로직
   const handleCheckNick = () => {
     axios
-      .get(`http://projecttycoon.com/api/callAllMemberRequest/${nick}`)
+      .get(`/api/checkDuplicateMemberId/${nick}`)
       .then((res) => {
         const resMessage = res.data.message;
         setIdCheckMessage(resMessage);
