@@ -3,12 +3,10 @@ import styled from "@emotion/styled";
 import axios from "axios";
 
 //데이터 받고
-//비밀번호 수정
 //file수정 ,삭제
-//비밀번호 수정버튼 없애기.
 //http://projecttycoon.com/api/mypage
 //memberFilePath + memberFileName = 프로필이미지
-//JSON Pa
+//post까지
 
 const Box=styled.div`
 padding:4px;
@@ -288,16 +286,20 @@ function UserInfo(){
         )
     }
     useEffect(()=>{
-        // console.log(memberInfo)
-        axios
-        .get ("/api/mypage")
+        handleGet()
+        console.log(memberInfo.memberFilePath+memberInfo.memberFileName)
+    })
+    const handleGet=async()=>{
+        await axios
+        .get("/api/mypage")
         .then((response)=>{
         console.log(response.data)
+        setMemberInfo(response.data)
         })  
         .catch((err)=>{
         console.log(err)
         })
-    })
+    }
     //비밀번호
     const passwordRegex =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,30}$/;
@@ -325,11 +327,6 @@ function UserInfo(){
             (list,index)=>index!==indexDelete
         );
         setSelectLink(update);
-        // const arr =memberInfo.memberLink
-        // const updatedSelectLinks = arr.filter(
-        //   (list, index) => index !== indexDelete
-        // );
-        // setMemberInfo({memberLink:updatedSelectLinks});
       };
      // 언어 버튼을 클릭했을 때 실행되는 핸들러 함수
     const handleLanguageButtonClick = (selectedLanguage) => {
@@ -420,12 +417,11 @@ function UserInfo(){
         memberPw: "$2a$10$.RgQLsqTWOEea2V36PEWwO296YoasJS5bXorBS0gWKFeBC6toXSty",
         memberRole: "front",
         memberIntroduce: "안녕",
-        memberLink: [
-            {option:"Git",value:"수정해야해요"},{option:"Blog",value:"수수수정"}
-        ],
+        memberLink: "[{\"option\":\"Git\",\"value\":\"www.naver.com\"},{\"option\":\"Blog\",\"value\":\"www.google.kr\"}]",
+
         memberAcademy: "부산",
         memberNickname: "haha",
-        memberStack: ["NodeJs"],
+        memberStack: "[\"HTML\",\"CSS\",\"JavaScript\",\"TypeScript\"]",
         memberFilePath:"static/icons/",
         memberFileName:"7_dog.png"
 
@@ -449,10 +445,12 @@ function UserInfo(){
 //유저-역할
     const [selectField,setSelectField]=useState(memberInfo.memberRole)
 //유저-개인링크
-    const [selectLink,setSelectLink]=useState(memberInfo.memberLink)
+    const [selectLink,setSelectLink]=useState(JSON.parse(memberInfo.memberLink))
     const [isEditing, setIsEditing] = useState(false);
 //유저-선택한언어
-const [selectedLanguages, setSelectedLanguages] = useState(memberInfo.memberStack);
+const [selectedLanguages, setSelectedLanguages] = useState(JSON.parse(memberInfo.memberStack));
+//유저-파일선택
+const [selectFile,setSelectFile]=useState(memberInfo.memberFilePath+memberInfo.memberFileName)
     return(
         <Wrap>
         <Content>
@@ -467,10 +465,14 @@ const [selectedLanguages, setSelectedLanguages] = useState(memberInfo.memberStac
         <Top>
             <Right>
                 <ImgWrap>
-                    <ImgBox>
+                    <ImgBox src={selectFile}>
                     </ImgBox>
                     <ButWrap>
-                        <But1>수정</But1>
+                        <input
+                        type="file"
+                        id="file"
+                        onChange={()=>{}}
+                        />
                         <But1>삭제</But1>
                     </ButWrap>
                 </ImgWrap>
@@ -547,7 +549,6 @@ const [selectedLanguages, setSelectedLanguages] = useState(memberInfo.memberStac
                               { pwConfirm  !== pw ?  <Span>비밀번호가 일치하지 않습니다.</Span> : 
                               <Span></Span>}
                         </div>
-                        <But onClick={handleNewPassWord}>수정</But>
                     </PwBox>
                 </Box>
             </Left>
@@ -588,6 +589,7 @@ const [selectedLanguages, setSelectedLanguages] = useState(memberInfo.memberStac
             <XsmallBox>
                 {selectedLanguages.length > 0 ? (
                 <>
+                <div>
                 <StackSelect value={selectedLanguages[selectedLanguages.length-1]} onChange={handleLanguageChange} >
                     {stacks.map((stack, stackIndex) => (
                         <option key={stackIndex} value={stack.value}>
@@ -596,6 +598,7 @@ const [selectedLanguages, setSelectedLanguages] = useState(memberInfo.memberStac
                     ))} 
                 </StackSelect>
                 <Span>중복가능</Span>
+                </div>
                 <StackButWrap>
                     {selectedLanguages.map((selectedLanguage) => (
                         <StackBut type="button" key={selectedLanguage} onClick={() => handleLanguageButtonClick(selectedLanguage)}>
@@ -635,7 +638,7 @@ const [selectedLanguages, setSelectedLanguages] = useState(memberInfo.memberStac
         </Content>
         </Wrap>
     )
-                    }
+    }
                 
 export default UserInfo;
 
