@@ -346,9 +346,9 @@ function Register() {
 
   // 아이디중복
   // 중복 체크 로직
-  const handleCheckId = () => {
+  const handleCheckId = async () => {
     // 중복 체크 요청을 서버로 보냄
-    axios
+    await axios
       .get(`/api/checkDuplicateMemberId/${id}`)
       .then((res) => {
         const resMessage = res.data.message;
@@ -367,8 +367,8 @@ function Register() {
   };
 
   // 닉네임중복 체크 로직
-  const handleCheckNick = () => {
-    axios
+  const handleCheckNick = async () => {
+    await axios
       .get(`/api/checkDuplicateMemberId/${nick}`)
       .then((res) => {
         const resMessage = res.data.message;
