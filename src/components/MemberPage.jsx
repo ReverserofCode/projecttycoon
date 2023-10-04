@@ -201,17 +201,17 @@ function MemberPage({
     for (let i = 0; i < memberRole?.length; i++) {
       // 모집분야에 따라 아이콘과 텍스트를 생성
       switch (memberRole[i]) {
-        case "BackEnd":
+        case "back":
           contents.push(
             <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
           );
           break;
-        case "FrontEnd":
+        case "Front":
           contents.push(
             <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
           );
           break;
-        case "BigData":
+        case "bigData":
           contents.push(
             <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
           );
@@ -221,17 +221,17 @@ function MemberPage({
             <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
           );
           break;
-        case "Server":
+        case "server":
           contents.push(
             <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
           );
           break;
-        case "Security":
+        case "security":
           contents.push(
             <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
           );
           break;
-        case "Network":
+        case "network":
           contents.push(
             <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
           );
