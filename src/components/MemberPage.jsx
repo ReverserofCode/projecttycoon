@@ -54,10 +54,11 @@ const TagItem = styled.div`
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
-  width: 160px;
+  width: 100%;
+  /* width: 160px; */
   padding: 6px 16px;
-  margin-left: 20px;
-  margin-right: 10px;
+  /* margin-left: 20px;
+  margin-right: 10px; */
   font-size: 0.9em;
   white-space: nowrap;
   background-color: #fbeeac;
@@ -415,7 +416,7 @@ function MemberPage({
         <ProfileArea>
           <PosterContainer>
             <MyProfile
-              src={`http://projecttycoon.com/static/icons/12_alpaca.png`}
+              src={`http://projecttycoon.com/static/icons/${icon}`}
             ></MyProfile>
           </PosterContainer>
           <MemberNick>{nick}</MemberNick>
@@ -447,13 +448,11 @@ function MemberPage({
               <AiFillMail
                 color={"#0B666A"}
                 fontSize={"20px"}
-                style={{
-                  marginRight: "10px",
-                }}
+                style={{ marginRight: "10px" }}
               ></AiFillMail>
               DM
             </TagItem>
-            <div
+            {/* <div
               style={{
                 position: "relative",
                 marginLeft: "7px",
@@ -472,7 +471,7 @@ function MemberPage({
                 color={"#F5F5F5"}
               ></BsCircleFill>
               <CustomHeartIcon isHeartClicked={isHeartClicked} />
-            </div>
+            </div> */}
           </div>
         </TagContainer>
         <TagContainer></TagContainer>

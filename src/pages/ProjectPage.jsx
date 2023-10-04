@@ -5,7 +5,7 @@ import { MainHeader, SubmitButton } from "../components/Sidebar/SidebarStyle";
 import MemberPage from "../components/MemberPage";
 import { Place, Recruit } from "../Filter.json";
 import { BoardListGet } from "../functional/BoardList";
-import { GetFilterList } from "../functional/FilterGet";
+import { FilterCall } from "../functional/FilterGet";
 /** 프로젝트 페이지의 컴포넌트를 담고있는 콘테이너 태그 */
 const PageContainer = styled.div`
   display: flex;
@@ -56,20 +56,15 @@ function ProjectPage() {
   // 필터 선택 상태를 관리할 useState 훅
   const [boardList, setBoardList] = useState([]); // boardList를 초기화하고 데이터를 저장할 상태
   const [placeSelect, setPlaceSelect] = useState("");
-  const [RecruitSelect, setRecruitSelect] = useState([]);
-  const [statusSelect, setStatusSelect] = useState([]);
+  const [RecruitSelect, setRecruitSelect] = useState("");
 
   // 필터 선택 시 호출되는 함수
   const handleSetPlace = useCallback((e) => {
     setPlaceSelect(e);
   }, []);
-
+  /** 모집 분야 설정 */
   const handleSetRecruit = useCallback((e) => {
     setRecruitSelect(e);
-  }, []);
-
-  const handleSetStatus = useCallback((e) => {
-    setStatusSelect(e);
   }, []);
 
   /** 학원지점 설정 */
@@ -81,22 +76,11 @@ function ProjectPage() {
   const handleBoardItemGen = useCallback(() => {
     let contents = [];
     for (let i = 0; i < boardList?.length; i++) {
-      const memberRole = boardList[i]?.memberRole;
-      // console.log("Member Role for item", i, ":", memberRole);
-      let bufRole = JSON.parse(
-        boardList[i]?.projectWantedRole?.replace(/'/g, '"') || "[]"
-      );
-      let bufRoleValue = [];
-      if (Array.isArray(bufRole)) {
-        for (let j = 0; j < bufRole.length; j++) {
-          bufRoleValue.push(bufRole[j].role);
-        }
-      }
       contents.push(
         <MemberPage
           key={`board item ${i}`}
           memberRole={boardList[i]?.memberRole}
-          icon={boardList[i]?.memberFilePath}
+          icon={boardList[i]?.memberFileName}
           postId={boardList[i]?.memberId}
           nick={boardList[i]?.memberNickname}
           academy={boardList[i]?.memberAcademy}
@@ -132,11 +116,9 @@ function ProjectPage() {
         />
         <SubmitButton
           onClick={() => {
-            GetFilterList(statusSelect, RecruitSelect, placeSelect).then(
-              (res) => {
-                setBoardList(res);
-              }
-            );
+            FilterCall(RecruitSelect, placeSelect).then((res) => {
+              setBoardList(res);
+            });
           }}
         >
           검 색
