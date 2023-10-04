@@ -2,6 +2,7 @@ package com.projecttycoon.demo.controller;
 
 import com.projecttycoon.demo.domain.Entity.MemberEntity;
 import com.projecttycoon.demo.domain.Entity.ProjectEntity;
+import com.projecttycoon.demo.domain.dto.MemberRequestDTO;
 import com.projecttycoon.demo.domain.repository.MemberRepository;
 import com.projecttycoon.demo.domain.repository.ProjectRepository;
 import lombok.extern.log4j.Log4j2;
@@ -19,8 +20,8 @@ import java.util.Optional;
 @Controller
 public class WebController {
 
-    ProjectRepository projectRepository;
-    MemberRepository memberRepository;
+    final ProjectRepository projectRepository;
+    final MemberRepository memberRepository;
 
     @Autowired
     public WebController(ProjectRepository projectRepository, MemberRepository memberRepository) {
@@ -51,11 +52,6 @@ public class WebController {
     @GetMapping("/callPageNewProject")
     public String callPageNewProject() {
         return "forward:/static/PageNewProject/index.html";
-    }
-    @GetMapping("/api/signup")
-    public String callSingUpPage() {
-        log.info("call SingUpPage");
-        return "forward:/static/PageSignUp/index.html";
     }
 
     @GetMapping("/callPageProjectBoardDetail/{id}")

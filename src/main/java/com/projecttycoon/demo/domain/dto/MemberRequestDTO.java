@@ -1,7 +1,11 @@
 package com.projecttycoon.demo.domain.dto;
 
 import com.projecttycoon.demo.domain.Entity.MemberEntity;
+import com.projecttycoon.demo.domain.Entity.ProjectEntity;
+import com.projecttycoon.demo.domain.repository.ProjectRepository;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,6 +23,7 @@ public class MemberRequestDTO  {
     private String memberFilePath;
     private String memberFileName;
     private String memberStack;
+    private List<ProjectEntity> mylist;
 
     public MemberRequestDTO(MemberEntity memberEntity){
         this.memberId = memberEntity.getMemberId();
