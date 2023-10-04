@@ -29,7 +29,7 @@ public class ProjectEntity extends TimeStamp {
     private Long projectId;
     @Column
     private String projectTitle;
-    @Column
+    @Column(length = 10000)
     private String projectContent;
 
     @Column(columnDefinition = "JSON")
