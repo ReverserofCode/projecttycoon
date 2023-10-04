@@ -2,9 +2,11 @@ package com.projecttycoon.demo.controller;
 
 import com.projecttycoon.demo.domain.Entity.MemberEntity;
 import com.projecttycoon.demo.domain.Entity.MemberSpecifications;
+import com.projecttycoon.demo.domain.Entity.ProjectEntity;
 import com.projecttycoon.demo.domain.dto.MemberLoginDTO;
 import com.projecttycoon.demo.domain.dto.MemberRequestDTO;
 import com.projecttycoon.demo.domain.repository.MemberRepository;
+import com.projecttycoon.demo.domain.repository.ProjectRepository;
 import com.projecttycoon.demo.domain.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -20,12 +22,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberController {
     final MemberRepository memberRepository;
+    final ProjectRepository projectRepository;
     MemberService memberService;
 
+
     @Autowired
-    MemberController(MemberService memberService, MemberRepository memberRepository) {
+    MemberController(MemberService memberService, MemberRepository memberRepository, ProjectRepository projectRepository) {
         this.memberService = memberService;
         this.memberRepository = memberRepository;
+        this.projectRepository = projectRepository;
     }
 
     @GetMapping("/api/callTest")
@@ -42,8 +47,8 @@ public class MemberController {
 
     @PostMapping("/api/memberRegister")
     public void registerDB(@RequestBody MemberRequestDTO memberRequestDTO) {
-        memberRequestDTO.setMemberFileName(memberService.createIcon());
-        memberRequestDTO.setMemberFilePath("static/icons/");
+        memberRequestDTO.setMemberFilePath("http://projecttycoon.com/static/icons/");
+        memberRequestDTO.setMemberFileName("http://projecttycoon.com/static/icons/"+memberService.createIcon());
         log.info(memberRequestDTO.getMemberId());
         memberService.registerMember(memberRequestDTO);
         log.info(memberRequestDTO);
@@ -77,6 +82,7 @@ public class MemberController {
     @GetMapping("/api/mypage")
     public MemberRequestDTO mypage(@AuthenticationPrincipal MemberLoginDTO memberLoginDTO) {
         MemberRequestDTO memberRequestDTO = new MemberRequestDTO(memberRepository.findByMemberId(memberLoginDTO.getMemberId()).orElseThrow());
+        memberRequestDTO.setMylist(projectRepository.findAllByProjectWriterId(memberRequestDTO.getMemberId()));
         return memberRequestDTO;
     }
 
@@ -116,6 +122,13 @@ public class MemberController {
 
         Specification<MemberEntity> spec = MemberSpecifications.hasMemberAcademyAndMemberRole(memberAcademy, memberRole);
         return memberRepository.findAll(spec);
+    }
+
+    @GetMapping("/api/memberIcon/{memberId}")
+    public String memberIcon(@PathVariable String memberId) {
+        MemberRequestDTO memberRequestDTO = new MemberRequestDTO(memberRepository.findByMemberId(memberId).orElseThrow());
+        String icon = memberRequestDTO.getMemberFilePath()+memberRequestDTO.getMemberFileName();
+        return icon;
     }
 
 

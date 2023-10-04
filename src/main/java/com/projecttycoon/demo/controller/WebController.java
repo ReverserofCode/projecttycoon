@@ -2,6 +2,7 @@ package com.projecttycoon.demo.controller;
 
 import com.projecttycoon.demo.domain.Entity.MemberEntity;
 import com.projecttycoon.demo.domain.Entity.ProjectEntity;
+import com.projecttycoon.demo.domain.dto.MemberRequestDTO;
 import com.projecttycoon.demo.domain.repository.MemberRepository;
 import com.projecttycoon.demo.domain.repository.ProjectRepository;
 import lombok.extern.log4j.Log4j2;
@@ -19,8 +20,8 @@ import java.util.Optional;
 @Controller
 public class WebController {
 
-    ProjectRepository projectRepository;
-    MemberRepository memberRepository;
+    final ProjectRepository projectRepository;
+    final MemberRepository memberRepository;
 
     @Autowired
     public WebController(ProjectRepository projectRepository, MemberRepository memberRepository) {
@@ -93,5 +94,6 @@ public class WebController {
         log.info("call DmProcess ");
         return "forward:/static/DMProcess/index.html";
     }
+
 
 }
