@@ -26,7 +26,7 @@ export const FilterCall = async (recruits, place) => {
   if (place !== "" && recruits !== "") {
     let data = await axios
       .get(
-        `/api/memberByAcademyAndRole?memberAcademy=${place}&memberRole=${recruits}`
+        `/api/membersByAcademyAndRole?memberAcademy=${place}&memberRole=${recruits}`
       )
       .then((res) => {
         return res.data;
