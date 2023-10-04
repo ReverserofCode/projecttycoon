@@ -490,6 +490,7 @@ function Register() {
       .request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
+        window.location.href = "http://projecttycoon.com/api/login";
       })
       .catch((error) => {
         console.log(error);
