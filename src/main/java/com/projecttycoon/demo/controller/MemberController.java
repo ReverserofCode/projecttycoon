@@ -110,7 +110,7 @@ public class MemberController {
     }
 
     //분야+지역 필터링
-    @GetMapping("/api/memberByAcademyAndRole")
+    @GetMapping("/api/membersByAcademyAndRole")
     public List<MemberEntity> getMemberByAcademyAndRole(@RequestParam("memberAcademy") String memberAcademy, @RequestParam("memberRole") String memberRole) {
         log.info("메서드 getProjectsByStatusAndAllRoles 호출");
 
