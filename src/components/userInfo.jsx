@@ -1,10 +1,17 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import styled from "@emotion/styled";
+import axios from "axios";
 
-//개인링크 > 추가버튼,삭제버튼
+//데이터 받고
 //비밀번호 수정
-//언어 중복되게
+//file수정 ,삭제
+//비밀번호 수정버튼 없애기.
+//http://projecttycoon.com/api/mypage
+//memberFilePath + memberFileName = 프로필이미지
+//JSON Pa
+
 const Box=styled.div`
+padding:4px;
     /* max-width: 500px; */
     width:100%;
     border-bottom:1px solid gray;
@@ -13,7 +20,8 @@ const Box=styled.div`
     align-items: center;
 `
 const SmallBox=styled.div`
-    width: 130px;
+ width: ${(props) => props.width || "130px"};
+
     height: 100%;
     border-right:1px gray solid;
     display: flex;
@@ -34,7 +42,7 @@ const But=styled.button`
 const Top=styled.div`
     width: 100%;
     display: flex;
-    border: 1px green solid;
+    /* border: 1px green solid; */
     padding: 20px;
     box-sizing: border-box;
 `
@@ -51,23 +59,26 @@ font-size: 13px;
     margin: 0 auto;
     max-width: 1200px;
     width: 100%;
-    border: 1px red solid;
+    /* border: 1px red solid; */
 `
 const Content=styled.div`
     padding: 8px;
     max-width: 1000px;
     width: 100%;
-    border: 1px blue solid;
+    /* border: 1px blue solid; */
     margin: 0 auto;
     display: flex;
     /* align-items: center; */
     flex-direction: column;
 `
+const LinkButBox=styled.div`
+    
+`
 const Bot =styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    border: 1px green solid;
+    /* border: 1px green solid; */
     padding: 20px;
     box-sizing: border-box;
     justify-content: space-between;
@@ -145,6 +156,21 @@ border: none;
   background-color: ${(props) => props.background_color || "#0B666A"};
   color: white;
 `
+const LinkBox=styled.div`
+padding:4px;
+     width:100%;
+    border-bottom:1px solid gray;
+    display: flex;
+    align-items: center;
+`
+const LinkSmallBox=styled.div`
+    width: 120px;
+    height: 50px;
+    border-right:1px gray solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
 const But2Wrap=styled.div`
 margin-top: 40px;
     display: flex;
@@ -182,26 +208,46 @@ font-size: 13px;
     border-bottom: 2px gray solid;
 `
 const Span=styled.div`
+padding: 4px;
     font-size: 10px;
     color: #e63434;
     font-weight: 800;
 `
 const LinkWrap=styled.div`
-    max-width: 700px;
+padding: 4px;
+ margin-left: 4px;
+    max-width: 500px;
     width: 100%;
   display: flex;
   flex-direction: column;
+  /* border: 1px red solid; */
 `
 const LinkButWrap=styled.div`
     display: flex;
+    justify-content: space-between;
 `
 const LinkSelect=styled.select`
-    width: 70px;
+    width: 80px;
     height: 30px;
+    margin-right: 4px;
+    margin-bottom: 4px;
 `
 const LinkInput=styled.input`
-    width: 270px;
+    width: 350px;
     height: 23px;
+`
+const PwBox=styled.div`
+    display: flex;
+    padding: 8px;
+    box-sizing: border-box;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+`
+const PwInput=styled.input`
+    max-width: 500px;
+    width: 100%;
+    padding: 4px 12px;
 `
 function UserInfo(){
     function list(){
@@ -243,7 +289,14 @@ function UserInfo(){
     }
     useEffect(()=>{
         // console.log(memberInfo)
-        console.log(selectLink)
+        axios
+        .get ("/api/mypage")
+        .then((response)=>{
+        console.log(response.data)
+        })  
+        .catch((err)=>{
+        console.log(err)
+        })
     })
     //비밀번호
     const passwordRegex =
@@ -302,13 +355,23 @@ function UserInfo(){
         setSelectLink(updatedSelectLink)
     }
     const handleAddButton = () => {
-        if (selectLink.length < 7) {
+        if (selectLink.length < 5) {
             setSelectLink([
             ...selectLink,
             {label:"Git",value:""},
           ]); // 추가 시 초기 선택 항목을 'Git'으로 설정
         }
       };
+    //비밀번호 수정 핸들
+    const handleNewPassWord = ()=>{
+        if(pw.length===0 || pwConfirm.length===0){
+            alert('새로운 비밀번호를 입력해주세요.')
+        }
+        else if(passwordRegex.test(pw)===false || passwordRegex.test(pwConfirm)===false){
+            alert('비밀번호를 다시입력해 주세요')
+        }
+        //비밀번호 바꿔야함
+    }
     const locations=[
         {label:'강남',value:'강남'},
         {label:'신촌/홍대',value:'신촌/홍대'},
@@ -362,7 +425,10 @@ function UserInfo(){
         ],
         memberAcademy: "부산",
         memberNickname: "haha",
-        memberStack: ["NodeJs"]
+        memberStack: ["NodeJs"],
+        memberFilePath:"static/icons/",
+        memberFileName:"7_dog.png"
+
       };
     //   const Params ={
     //     memberId:memberInfo.memberId,
@@ -439,17 +505,50 @@ const [selectedLanguages, setSelectedLanguages] = useState(memberInfo.memberStac
                     </XsmallBox>
                 </Box>
                 <Box>
-                    <XsmallBox>
-                        <input placeholder="새로운 비밀번호"/>
-                        <Span>몇자리이상 입력하세요.</Span>
-                    </XsmallBox>
+                    <PwBox>
+                        <div>
+                            <PwInput 
+                            placeholder="새로운 비밀번호"
+                            type="password"
+                            value={pw}
+                            onChange={(e)=>{
+                                const newPassWord=e.target.value
+                                setPw(newPassWord);
+                                if(!passwordRegex.test(newPassWord)){
+                                    setPwError(
+                                        "영문, 숫자, 특수문자 포함 8자리 이상 입력해 주세요."
+                                    )
+                                }
+                            }}/>
+                             { passwordRegex.test(pw) === true ?  <Span></Span> :
+                             <Span>영문, 숫자, 특수문자 포함 8자리 이상 입력해 주세요.</Span>
+                             }
+                        </div>
+                    </PwBox>
                 </Box>
                 <Box>
-                    <XsmallBox>
-                        <input placeholder="새로운 비밀번호 재입력"/>
-                        <Span>비밀번호가 일치하지 않습니다</Span>
-                        <But onClick={handleCloseClick}>수정</But>
-                    </XsmallBox>
+                    <PwBox>
+                        <div>
+                            <PwInput 
+                            placeholder="새로운 비밀번호 재입력"
+                            type="password"
+                            value={pwConfirm}
+                            onChange={(e) => {
+                                e.preventDefault();
+                                const newPasswordConfirm = e.target.value;
+                                setPwConfirm(newPasswordConfirm);
+                      
+                                if (newPasswordConfirm !== pw) {
+                                  setPwConfirmError("비밀번호가 일치하지 않습니다.");
+                                } else {
+                                  setPwConfirmError(""); // 일치하면 에러 메시지 제거
+                                }
+                              }}/>
+                              { pwConfirm  !== pw ?  <Span>비밀번호가 일치하지 않습니다.</Span> : 
+                              <Span></Span>}
+                        </div>
+                        <But onClick={handleNewPassWord}>수정</But>
+                    </PwBox>
                 </Box>
             </Left>
         </Top>
@@ -472,7 +571,7 @@ const [selectedLanguages, setSelectedLanguages] = useState(memberInfo.memberStac
             
             </div>
         <Box>
-            <SmallBox>역할</SmallBox>
+            <SmallBox width="140px">역할</SmallBox>
             <XsmallBox>
                 <StackSelect value={memberInfo.memberRole} onChange={(event)=>handleInputChange(event, 'memberRole')} >
                     {fields.map((field, fieldIndex) => (
@@ -485,7 +584,7 @@ const [selectedLanguages, setSelectedLanguages] = useState(memberInfo.memberStac
             </XsmallBox>
         </Box>
         <Box>
-            <SmallBox>언어</SmallBox>
+            <SmallBox width="140px">언어</SmallBox>
             <XsmallBox>
                 {selectedLanguages.length > 0 ? (
                 <>
@@ -496,7 +595,7 @@ const [selectedLanguages, setSelectedLanguages] = useState(memberInfo.memberStac
                         </option>
                     ))} 
                 </StackSelect>
-                <Span>*5개까지 중복가능</Span>
+                <Span>중복가능</Span>
                 <StackButWrap>
                     {selectedLanguages.map((selectedLanguage) => (
                         <StackBut type="button" key={selectedLanguage} onClick={() => handleLanguageButtonClick(selectedLanguage)}>
@@ -519,15 +618,15 @@ const [selectedLanguages, setSelectedLanguages] = useState(memberInfo.memberStac
                 {/* <div>{memberInfo.memberStack}</div> */}
             </XsmallBox>
         </Box>
-        <Box>
-            <SmallBox>개인링크</SmallBox>
+        <LinkBox>
+            <LinkSmallBox>개인링크</LinkSmallBox>
             <LinkWrap>
                 {list()}
             </LinkWrap>
             <button onClick={handleAddButton}>
                 +
             </button>
-        </Box>
+        </LinkBox>
         </Bot>
         <But2Wrap>
             <But2 background_color="gray">취소</But2>
