@@ -28,7 +28,7 @@ public class CommentEntity extends TimeStamp {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "projectId")
-    @OnDelete(action = OnDeleteAction.CASCADE) // 프로젝트 삭제되면 같이 삭제됨
+    @OnDelete(action = OnDeleteAction.CASCADE) // 프로젝트 삭제되면 같이 삭제됨.
     private ProjectEntity projectId;
 
     @ManyToOne(fetch = FetchType.EAGER)
