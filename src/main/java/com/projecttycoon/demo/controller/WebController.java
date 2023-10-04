@@ -52,13 +52,16 @@ public class WebController {
     public String callPageNewProject() {
         return "forward:/static/PageNewProject/index.html";
     }
+    @GetMapping("/api/signup")
+    public String callSingUpPage() {
+        log.info("call SingUpPage");
+        return "forward:/static/PageSignUp/index.html";
+    }
 
     @GetMapping("/callPageProjectBoardDetail/{id}")
     public ModelAndView callPageProjectBoardDetail(@PathVariable Long id) {
         ModelAndView mav = new ModelAndView();
-
         Optional<ProjectEntity> object = projectRepository.findById(id);
-
         if (object.isPresent()) {
             log.info("call Detail Page and target Object detected");
             mav.addObject("projectDTO", object.get());
@@ -81,17 +84,16 @@ public class WebController {
         return mav;
     }
 
-
-    @GetMapping("/api/signup")
-    public String callSingUpPage() {
-        log.info("call SingUpPage");
-        return "forward:/static/PageSignUp/index.html";
-    }
-
     @GetMapping("/callDmProcess")
     public String callDmProcess() {
         log.info("call DmProcess ");
         return "forward:/static/DMProcess/index.html";
+    }
+
+    @GetMapping("/callMyPage")
+    public String callMyPage(){
+        log.info("call MyPage");
+        return "forward:/static/MyPage/index.html";
     }
 
 }
