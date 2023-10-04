@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { CheckSide } from "../components/Sidebar/SidebarComponent";
 import { MainHeader, SubmitButton } from "../components/Sidebar/SidebarStyle";
 import MemberPage from "../components/MemberPage";
-import { Place, Recruit, Status } from "../Filter.json";
+import { Place, Recruit } from "../Filter.json";
 import { BoardListGet } from "../functional/BoardList";
 import { GetFilterList } from "../functional/FilterGet";
 /** 프로젝트 페이지의 컴포넌트를 담고있는 콘테이너 태그 */
@@ -55,7 +55,6 @@ function ProjectPage() {
   /** 프로젝트 리스트 state */
   // 필터 선택 상태를 관리할 useState 훅
   const [boardList, setBoardList] = useState([]); // boardList를 초기화하고 데이터를 저장할 상태
-
   const [placeSelect, setPlaceSelect] = useState("");
   const [RecruitSelect, setRecruitSelect] = useState([]);
   const [statusSelect, setStatusSelect] = useState([]);
@@ -77,6 +76,7 @@ function ProjectPage() {
   const PlaceSet = useCallback((e) => {
     setPlaceSelect(e);
   }, []);
+
   /** 프로젝트 아이템 생성 */
   const handleBoardItemGen = useCallback(() => {
     let contents = [];
@@ -88,7 +88,6 @@ function ProjectPage() {
       );
       let bufRoleValue = [];
       if (Array.isArray(bufRole)) {
-        // Check if bufRole is an array
         for (let j = 0; j < bufRole.length; j++) {
           bufRoleValue.push(bufRole[j].role);
         }
@@ -98,12 +97,12 @@ function ProjectPage() {
           key={`board item ${i}`}
           memberRole={boardList[i]?.memberRole}
           icon={boardList[i]?.memberFilePath}
+          postId={boardList[i]?.memberId}
           nick={boardList[i]?.memberNickname}
           academy={boardList[i]?.memberAcademy}
           filter={boardList[i]?.memberRole}
           introduce={boardList[i]?.memberIntroduce}
           stack={JSON.parse(boardList[i]?.memberStack)}
-          postId={boardList[i]?.memberId}
         />
       );
     }
@@ -111,7 +110,7 @@ function ProjectPage() {
   }, [boardList]);
   useEffect(() => {
     BoardListGet().then((res) => {
-      console.log("boardList:", res); // Log boardList to inspect its structure
+      console.log("boardList:", res);
       setBoardList(res);
     });
   }, []);

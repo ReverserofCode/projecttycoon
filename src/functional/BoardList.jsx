@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const BoardListGet = async () => {
   const data = await axios
-    .get("/api/callAllMemberRequest")
+    .get("/api/memberList")
     .then((res) => {
       return res.data;
     })

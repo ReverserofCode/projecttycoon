@@ -11,14 +11,10 @@
     "Recruit":[
         {"content":"백엔드","value":"back"},
         {"content":"프론트엔드","value":"front"},
-        {"content":"빅데이터","value":"bigdata"},
-        {"content":"AI","value":"ai"},
-        {"content":"서버관리자","value":"serveradmin"},
+        {"content":"빅데이터","value":"bigData"},
+        {"content":"AI","value":"AI"},
+        {"content":"서버관리자","value":"server"},
         {"content":"정보보안","value":"security"},
         {"content":"네트워크 관리자","value":"network"}
-    ],
-    "Status":[
-        {"content":"모집중","value":"true"},
-        {"content":"모집마감","value":"false"}
     ]
 }

@@ -88,8 +88,9 @@ const PosterContainer = styled.div`
 `;
 /** 멤버프로필 */
 const MyProfile = styled.img`
-  height: 100px;
+  /* height: 100px; */
   margin: 0 auto;
+  width: 100%;
   box-sizing: border-box;
 `;
 const ProfileArea = styled.div`
@@ -185,7 +186,7 @@ const CustomHeartIcon = ({ isHeartClicked }) => {
   );
 };
 function MemberPage({
-  memberRole = [], // Rename the prop for clarity
+  memberRole,
   icon,
   nick,
   academy,
@@ -196,55 +197,15 @@ function MemberPage({
 }) {
   // 스택 이미지 정보를 상태로 관리
   const [stackImages, setStackImages] = useState([]);
+  // 직무 value
   const generateRoleIcons = useCallback(() => {
-    let contents = [];
-    for (let i = 0; i < memberRole?.length; i++) {
-      // 모집분야에 따라 아이콘과 텍스트를 생성
-      switch (memberRole[i]) {
-        case "back":
-          contents.push(
-            <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
-          );
-          break;
-        case "Front":
-          contents.push(
-            <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
-          );
-          break;
-        case "bigData":
-          contents.push(
-            <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
-          );
-          break;
-        case "AI":
-          contents.push(
-            <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
-          );
-          break;
-        case "server":
-          contents.push(
-            <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
-          );
-          break;
-        case "security":
-          contents.push(
-            <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
-          );
-          break;
-        case "network":
-          contents.push(
-            <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
-          );
-          break;
-        default:
-          // 기타 모집분야 처리
-          contents.push(
-            <FilterIcon key={`Filter Icon ${i}`}>{memberRole[i]}</FilterIcon>
-          );
-          break;
-      }
-    }
-    return contents;
+    if (memberRole === "front") return "프론트엔드";
+    if (memberRole === "back") return "백엔드";
+    if (memberRole === "AI") return "AI";
+    if (memberRole === "server") return "서버관리자";
+    if (memberRole === "network") return "네트워크관리자";
+    if (memberRole === "security") return "정보보안";
+    if (memberRole === "bigData") return "빅데이터";
   }, [memberRole]);
 
   const generateStackIcons = useCallback(() => {
@@ -448,19 +409,19 @@ function MemberPage({
     <Container>
       <BoardBase
         onClick={() => {
-          window.location.href = `http://projecttycoon.com//api/memberPage/${memberId}`;
+          window.location.href = `http://projecttycoon.com/api/memberPage/${postId}`;
         }}
       >
         <ProfileArea>
           <PosterContainer>
             <MyProfile
-              src={`http://projecttycoon.com/static/icons/21_racoon.png`}
+              src={`http://projecttycoon.com/static/icons/12_alpaca.png`}
             ></MyProfile>
           </PosterContainer>
           <MemberNick>{nick}</MemberNick>
         </ProfileArea>
         <TagContainer>
-          <TextRole>[ 직무 ]{`\n` + memberRole}</TextRole>
+          <TextRole>[ 직무 ]{`\n` + generateRoleIcons()}</TextRole>
         </TagContainer>
         <TagContainer>
           <TextPlace>[ 지점 ] {`\n` + academy}</TextPlace>
