@@ -453,7 +453,9 @@ function MemberPage({
       >
         <ProfileArea>
           <PosterContainer>
-            <MyProfile></MyProfile>
+            <MyProfile
+              src={`http://projecttycoon.com/static/icons/21_racoon.png`}
+            ></MyProfile>
           </PosterContainer>
           <MemberNick>{nick}</MemberNick>
         </ProfileArea>
