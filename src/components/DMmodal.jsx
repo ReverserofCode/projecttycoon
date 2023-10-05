@@ -448,8 +448,8 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
     return contents;
   }, [DMList, handleSetMod, myId]);
   useEffect(() => {
-    if (ChatRef.current) {
-      ChatRef.current.scrollIntoView({
+    if (ScrollTo.current) {
+      ScrollTo.current.scrollIntoView({
         behavior: "smooth",
         block: "start",
         inline: "center",
