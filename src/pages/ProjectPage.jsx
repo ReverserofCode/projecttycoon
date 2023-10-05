@@ -94,7 +94,7 @@ function ProjectPage() {
   // 로딩 시점 확인용 ref
   const loader = useRef(null);
   //프로젝트 로딩 길이 제한 state
-  const [loadingLength, setLoadingLength] = useState(11);
+  const [loadingLength, setLoadingLength] = useState(12);
   // 필터 선택 상태를 관리할 useState 훅
   const [boardList, setBoardList] = useState([]); // boardList를 초기화하고 데이터를 저장할 상태
   const [placeSelect, setPlaceSelect] = useState("");
@@ -117,7 +117,7 @@ function ProjectPage() {
   /** 프로젝트 아이템 생성 */
   const handleBoardItemGen = useCallback(() => {
     let contents = [];
-    for (let i = 0; i <= loadingLength; i++) {
+    for (let i = 0; i < loadingLength; i++) {
       contents.push(
         <MemberPage
           key={`board item ${i}`}
@@ -128,11 +128,11 @@ function ProjectPage() {
           academy={boardList[i]?.memberAcademy}
           filter={boardList[i]?.memberRole}
           introduce={boardList[i]?.memberIntroduce}
-          // stack={JSON.parse(boardList[i]?.memberStack)}
+          stack={JSON.parse(boardList[i]?.memberStack)}
         />
       );
     }
-    if (loadingLength !== 0)
+    if (loadingLength !== boardList?.length)
       contents.push(
         <Loader key="loader" ref={loader}>
           <Loading />
@@ -146,7 +146,6 @@ function ProjectPage() {
   useEffect(() => {
     BoardListGet().then((res) => {
       setBoardList(res);
-      // setLoadingLength(res.length - 12);
     });
   }, []);
 
@@ -157,15 +156,16 @@ function ProjectPage() {
       observer = new IntersectionObserver(([e]) => {
         if (e.isIntersecting) {
           let buf = loadingLength + 12;
-          if (buf <= boardList.length) {
-            setLoadingLength(boardList.length);
+          if (buf >= boardList?.length) {
+            buf = boardList?.length;
+            setLoadingLength(buf);
           } else setLoadingLength(buf);
         }
       }, {});
       observer.observe(loader.current);
     }
     return () => observer && observer.disconnect();
-  }, [loader, loadingLength]);
+  }, [boardList?.length, loader, loadingLength]);
   return (
     <PageContainer>
       <SideContents>
