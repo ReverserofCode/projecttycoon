@@ -186,6 +186,7 @@ function ProjectPage() {
           onClick={() => {
             FilterCall(RecruitSelect, placeSelect).then((res) => {
               setBoardList(res);
+              setLoadingLength(0);
             });
           }}
         >
