@@ -151,7 +151,8 @@ function ProjectPage() {
   useEffect(() => {
     BoardListGet().then((res) => {
       setBoardList(res);
-      setLoadingLength(res.length - 12);
+      if (res.length >= 12) setLoadingLength(res.length - 12);
+      else setLoadingLength(0);
     });
   }, []);
   /** 로딩 감시자를 할당 및 업데이트하는 useEffect */
