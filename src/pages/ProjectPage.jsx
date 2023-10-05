@@ -94,7 +94,7 @@ function ProjectPage() {
   // 로딩 시점 확인용 ref
   const loader = useRef(null);
   //프로젝트 로딩 길이 제한 state
-  const [loadingLength, setLoadingLength] = useState(12);
+  const [loadingLength, setLoadingLength] = useState(0);
   // 필터 선택 상태를 관리할 useState 훅
   const [boardList, setBoardList] = useState([]); // boardList를 초기화하고 데이터를 저장할 상태
   const [placeSelect, setPlaceSelect] = useState("");
