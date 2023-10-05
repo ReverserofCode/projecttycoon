@@ -2,7 +2,6 @@ package com.projecttycoon.demo.controller;
 
 import com.projecttycoon.demo.domain.Entity.MemberEntity;
 import com.projecttycoon.demo.domain.Entity.ProjectEntity;
-import com.projecttycoon.demo.domain.dto.MemberRequestDTO;
 import com.projecttycoon.demo.domain.repository.MemberRepository;
 import com.projecttycoon.demo.domain.repository.ProjectRepository;
 import lombok.extern.log4j.Log4j2;
@@ -79,17 +78,15 @@ public class WebController {
 
         return mav;
     }
-
-    @GetMapping("/callDmProcess")
-    public String callDmProcess() {
-        log.info("call DmProcess ");
-        return "forward:/static/DMProcess/index.html";
-    }
-
     @GetMapping("/callMyPage")
     public String callMyPage(){
         log.info("call MyPage");
         return "forward:/static/MyPage/index.html";
     }
 
+    @GetMapping("/callDmProcess")
+    public String callDmProcess() {
+        log.info("call DmProcess ");
+        return "forward:/static/DMProcess/index.html";
+    }
 }
