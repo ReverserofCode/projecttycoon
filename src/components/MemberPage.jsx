@@ -6,7 +6,6 @@ import "../components/MemberPage.css";
 import React, { useEffect, useState, useCallback } from "react";
 import { BsCircleFill } from "react-icons/bs";
 import { BiStopwatch } from "react-icons/bi";
-import { GoHeartFill } from "react-icons/go";
 import { TbSchool } from "react-icons/tb";
 import { AiFillMail } from "react-icons/ai";
 import { BoardListGet } from "../functional/BoardList";
@@ -171,21 +170,7 @@ const StackContainer = styled.div`
   gap: 10px;
   width: 100%;
 `;
-// 찜하기 - 하트아이콘
-const CustomHeartIcon = ({ isHeartClicked }) => {
-  return (
-    <GoHeartFill
-      style={{
-        fontSize: "22px",
-        position: "absolute",
-        top: "7px",
-        left: "6px",
-        color: isHeartClicked ? "#C70C0C" : "#212b2c35",
-        cursor: "pointer",
-      }}
-    />
-  );
-};
+
 function MemberPage({
   memberRole,
   icon,
@@ -381,31 +366,6 @@ function MemberPage({
     return contents;
   }, [stack]);
 
-  // 하트이미지 color변경
-  const [isHeartClicked, setIsHeartClicked] = useState(false);
-
-  const toggleHeartColor = (event) => {
-    // console.log("Heart icon clicked");
-    // 이벤트 전파를 막음
-    event.stopPropagation();
-    setIsHeartClicked((prevIsHeartClicked) => !prevIsHeartClicked);
-  };
-
-  useEffect(() => {
-    // 게시글의 하트 아이콘 클릭 이벤트 핸들러를 게시글마다 등록
-    const heartIcon = document.querySelector(`.heart-icon-${postId}`);
-
-    if (heartIcon) {
-      heartIcon.addEventListener("click", toggleHeartColor);
-    }
-    return () => {
-      // 컴포넌트가 언마운트되면 이벤트 리스너 제거
-      if (heartIcon) {
-        heartIcon.removeEventListener("click", toggleHeartColor);
-      }
-    };
-  }, [postId, stack]);
-
   return (
     <Container>
       <BoardBase
@@ -452,26 +412,6 @@ function MemberPage({
               ></AiFillMail>
               DM
             </TagItem>
-            {/* <div
-              style={{
-                position: "relative",
-                marginLeft: "7px",
-                cursor: "pointer",
-              }}
-              onClick={(event) => toggleHeartColor(event)}
-            >
-              <BsCircleFill
-                className={`heart-icon heart-icon-${postId}`}
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                }}
-                fontSize={"34px"}
-                color={"#F5F5F5"}
-              ></BsCircleFill>
-              <CustomHeartIcon isHeartClicked={isHeartClicked} />
-            </div> */}
           </div>
         </TagContainer>
         <TagContainer></TagContainer>
