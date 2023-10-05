@@ -328,7 +328,7 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
   /** 채팅의 리스트 state */
   const [chatData, setChatData] = useState([]);
   /** 채팅의 높이 조절을 위한 ref */
-  const ChatRef = useRef(null);
+  const ScrollTo = useRef(null);
   /** 채팅 내용입력 state */
   const [chatInput, setChatInput] = useState("");
   /** 채팅 내용을 보내는 function */
