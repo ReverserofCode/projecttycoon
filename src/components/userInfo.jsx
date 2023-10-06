@@ -287,8 +287,9 @@ function UserInfo(){
     }
     useEffect(()=>{
         handleGet()
+        console.log()
         console.log(memberInfo.memberFilePath+memberInfo.memberFileName)
-    })
+    },[])
     const handleGet=async()=>{
         await axios
         .get("/api/mypage")
@@ -453,6 +454,7 @@ const [selectedLanguages, setSelectedLanguages] = useState(JSON.parse(memberInfo
 const [selectFile,setSelectFile]=useState(memberInfo.memberFilePath+memberInfo.memberFileName)
     return(
         <Wrap>
+            <></>
         <Content>
             <NavWrap>
                 <Nav>
