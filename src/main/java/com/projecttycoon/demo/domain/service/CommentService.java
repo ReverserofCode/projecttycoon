@@ -36,8 +36,8 @@ public class CommentService {
 
             if (commentWriter.isPresent()) {
                 CommentEntity commentEntity = CommentEntity.builder()
-                        .projectId(project)
-                        .commentWriterId(commentWriter.get())
+                        .commentProject(project)
+                        .commentWriter(commentWriter.get())
                         .commentContent(commentRequestDTO.getCommentContent())
                         .build();
 

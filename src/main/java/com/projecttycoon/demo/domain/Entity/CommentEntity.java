@@ -27,15 +27,16 @@ public class CommentEntity extends TimeStamp {
     private Long commentId;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "projectId")
+    @JoinColumn(name = "commentProject")
     @OnDelete(action = OnDeleteAction.CASCADE) // 프로젝트 삭제되면 같이 삭제됨.
-    private ProjectEntity projectId;
+    private ProjectEntity commentProject;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "commentWriterId")
+    @JoinColumn(name = "commentWriter")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
-    private MemberEntity commentWriterId;
+    private MemberEntity commentWriter;
 
     @Column
     private String commentContent;
+
 }
