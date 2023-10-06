@@ -63,11 +63,11 @@ public class CommentService {
     }
 
 
-    //댓글수정
-//    @Transactional
-//    public CommentEntity updateComment(Long id, CommentRequestDTO commentRequestDTO) {
-//
-//    }
+//    댓글수정
+    @Transactional
+    public void updateComment(Long id, String commentContent) {
+        commentRepository.updateComment(id, commentContent);
+    }
 
     //댓글삭제
     @Transactional

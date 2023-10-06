@@ -38,10 +38,12 @@ public class CommentController {
     }
 
     //댓글수정
-//    @PutMapping("/projects/{projectId}/comments/{id}")
-//    public CommentEntity updateComment(@PathVariable Long id, @RequestBody CommentRequestDTO commentRequestDTO) {
-//
-//    }
+    @PutMapping("/projects/{projectId}/comments/{id}")
+    public void updateComment(@PathVariable Long id, @RequestBody CommentRequestDTO commentRequestDTO) {
+        String commentContent = commentRequestDTO.getCommentContent();
+        commentService.updateComment(id, commentContent);
+        log.info("Comment update : " + id);
+    }
 
     //댓글삭제
     @DeleteMapping("/projects/{projectId}/comments/{id}")
