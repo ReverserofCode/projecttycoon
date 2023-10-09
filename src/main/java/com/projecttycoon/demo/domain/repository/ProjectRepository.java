@@ -12,6 +12,7 @@ import java.util.List;
 @EnableJpaRepositories
 public interface ProjectRepository extends JpaRepository<ProjectEntity, Long>, JpaSpecificationExecutor<ProjectEntity> {
     List<ProjectEntity> findAllByProjectWriterId(String projectWriterId);
+
 }
 
 
