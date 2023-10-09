@@ -14,17 +14,19 @@ padding:4px;
     width:100%;
     border-bottom:1px solid gray;
     display: flex;
-    height: 50px;
+    height: 100%;
     align-items: center;
 `
 const SmallBox=styled.div`
  width: ${(props) => props.width || "130px"};
-
     height: 100%;
     border-right:1px gray solid;
     display: flex;
     justify-content: center;
     align-items: center;
+    @media screen and (max-width: 370px ){
+    width: 100px;
+}
 `
 const XsmallBox=styled.div`
     padding: 8px;
@@ -34,17 +36,26 @@ const XsmallBox=styled.div`
     height: 100%;
     align-items: center;
     justify-content: space-between;
-`
-const But=styled.button`
+    display: flex;
+    
 `
 const Top=styled.div`
     width: 100%;
     display: flex;
-    /* border: 1px green solid; */
     padding: 20px;
     box-sizing: border-box;
+    @media screen and (max-width: 370px ){
+    /* width: 250px; */
+    display: flex;
+    flex-direction: column;
+}
 `
 const Right=styled.div`
+@media screen and (max-width: 720px ){
+        width: 280px;
+    }
+@media screen and (max-width: 370px ){
+}
 `
 const Left=styled.div`
 width: 100%;
@@ -53,30 +64,36 @@ width: 100%;
     justify-content: space-between;
 `
 const Wrap=styled.div`
+
 font-size: 13px;
     margin: 0 auto;
     max-width: 1200px;
     width: 100%;
-    /* border: 1px red solid; */
+    @media screen and (max-width: 720px ){
+        width: 700px;
+    }
+    @media screen and (max-width: 370px ){
+    width: 360px;
+}
 `
 const Content=styled.div`
     padding: 8px;
     max-width: 1000px;
     width: 100%;
-    /* border: 1px blue solid; */
     margin: 0 auto;
     display: flex;
     /* align-items: center; */
     flex-direction: column;
-`
-const LinkButBox=styled.div`
     
+`
+const PwBox2=styled.div`
+    width: 100%;
+
 `
 const Bot =styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* border: 1px green solid; */
     padding: 20px;
     box-sizing: border-box;
     justify-content: space-between;
@@ -87,6 +104,14 @@ const ImgBox=styled.img`
     border-radius: 50%;
     border: 1px gray solid;
     margin-bottom: 8px;
+    @media screen and (max-width: 720px ){
+        width: 180px;
+        height: 180px;
+    }
+    @media screen and (max-width: 370px ){
+        width: 200px;
+        height: 200px;
+    }
 `
 const ImgWrap=styled.div`
     margin-right: 8px;
@@ -98,11 +123,24 @@ const ImgWrap=styled.div`
     border-right: 1px gray solid;
     padding: 4px;
     flex-direction: column;
+    @media screen and (max-width: 720px ){
+        width: 270px;
+    }
+    @media screen and (max-width: 370px ){
+        width: 370px;
+        border-bottom: 1px gray solid;
+        border-right: none;
+    }
 `
 const ButWrap=styled.div`
+margin-top: 12px;
     width: 300px;
     display: flex;
     justify-content: space-around;
+    @media screen and (max-width: 720px ){
+        margin-top: 12px;
+        width: 240px;
+    }
 `
 const But1=styled.button`
     width: 90px;
@@ -115,44 +153,56 @@ const IntroduceBox=styled.div`
     flex-direction: column;
 `
 const IntroBox=styled.div`
-    width: 130px;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-bottom: 4px;
 `
 const IntroSubBox=styled.div`
+    color:gray;
     box-sizing: border-box;
     width: 100%;
-    background-color: #e0dede;
     font-size: 12px;
     height: 20px;
-    padding-left: 20px;
-    margin-bottom: 8px;
 `
 const InputIntro=styled.input`
     width:100%;
     height: 100px;
     &:focus {
-    border-color: blue;
     outline: none; /* 포커스 아웃라인 제거 */
   }
+  margin-bottom: 20px;
 `
 const StackSelect=styled.select`
     width: 200px;
     height: 28px;
+    
 `
 const NavWrap=styled.div`
     display: flex;
+    margin-bottom: 40px;
+    
+`
+const LocationSelect=styled.select`
+    width: 100%;
+    height: 30px;
+     @media screen and (max-width: 720px ){
+        max-width: 257px;
+        height: 30px;
+        width: 100%;
+    }
 `
 const But2=styled.button`
 border: none;
   outline: none;
-    width: ${(props) => props.width || "420px"};
+  width: ${(props) => props.width || "450px"};
   height: ${(props) => props.width || "30px"};
   background-color: ${(props) => props.background_color || "#0B666A"};
   color: white;
+  @media screen and (max-width: 720px ){
+        width: 330px;
+    }
+     @media screen and (max-width: 370px ){
+        width: 150px;
+    }
 `
 const LinkBox=styled.div`
 padding:4px;
@@ -189,11 +239,34 @@ overflow: auto;
 overflow-y: hidden;
 /* overflow-x: scroll; */
     display: flex;
-    /* justify-content: space-around; */
+    justify-content: center;
     align-items: center;
-    max-width: 500px;
+    max-width: 700px;
     width: 100%;
     height: 100%;
+    /* border: 1px red solid; */
+    @media screen and (max-width: 720px ){
+        width: 500px;
+        display: flex;
+        overflow: auto;
+        overflow-y: hidden;
+        justify-content: start;
+        align-items: center;
+        padding-left: 4px;
+        padding-right: 4px;
+        box-sizing: border-box;
+    }
+    @media screen and (max-width: 370px ){
+        width: 220px;
+        display: flex;
+        overflow: auto;
+        overflow-y: hidden;
+        justify-content: center;
+        align-items: center;
+        padding-left: 4px;
+        padding-right: 4px;
+        box-sizing: border-box;
+    }
 `
 const Nav=styled.div`
 font-size: 13px;
@@ -201,9 +274,10 @@ font-size: 13px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left:4px;
+    margin-left:20px;
     width: 160px;
     border-bottom: 2px gray solid;
+    
 `
 const Span=styled.div`
 padding: 4px;
@@ -214,14 +288,15 @@ padding: 4px;
 const LinkWrap=styled.div`
 padding: 4px;
  margin-left: 4px;
-    max-width: 500px;
+    max-width: 800px;
     width: 100%;
   display: flex;
   flex-direction: column;
-  /* border: 1px red solid; */
 `
 const LinkButWrap=styled.div`
+width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
 `
 const LinkSelect=styled.select`
@@ -231,8 +306,14 @@ const LinkSelect=styled.select`
     margin-bottom: 4px;
 `
 const LinkInput=styled.input`
-    width: 350px;
-    height: 23px;
+    width: ${(props) => props.width || "130px"};
+    height: 30px;
+    margin-bottom: 8px;
+    @media screen and (max-width: 720px ){
+        max-width: 350px;
+        height: 23px;
+        width: 100%;
+    }
 `
 const PwBox=styled.div`
     display: flex;
@@ -242,10 +323,48 @@ const PwBox=styled.div`
     width: 100%;
     justify-content: space-between;
 `
+const IntroWrap=styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 12px;
+`
 const PwInput=styled.input`
-    max-width: 500px;
+    max-width: 400px;
     width: 100%;
     padding: 4px 12px;
+    @media screen and (max-width: 720px ){
+        width: 280px;
+    }
+    
+`
+const FileInput=styled.input`
+    overflow: hidden;
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+`
+const NickInput=styled.input`
+width: ${(props) => props.width || "130px"};
+    height: 30px;
+    margin-bottom: 8px;
+    @media screen and (max-width: 720px ){
+        max-width: 250px;
+        height: 23px;
+        width: 100%;
+    }
+    
+`
+const LinkWrap2=styled.div`
+    width: 100%;
+    display: flex;
+`
+const Wrap360=styled.div`
+@media screen and (max-width: 370px ){
+    display: flex;
+    flex-direction: column;
+    }
 `
 function UserInfo(){
     function list(){
@@ -254,7 +373,7 @@ function UserInfo(){
             {
              selectLink.map((list,index)=>(
                 <LinkButWrap>
-                    <div>
+                    <LinkWrap2>
                      <LinkSelect defaultValue={list.option} onChange={(event)=>handleNewLinkChange(event,index)}>
                         {
                         links.map((link, linkIndex)=>(
@@ -266,25 +385,56 @@ function UserInfo(){
                             </>
                         ))
                         }
+                        
                      </LinkSelect>
+                     {
+                        index ===0 &&(
+                            <button onClick={handleAddButton}>
+                            +
+                        </button>
+                        )
+                     }
+                        {
+                            index> 0 &&(
+                                <button onClick={() => handleDeleteButton(index)}>
+                                -
+                                </button>
+                                )
+                        }
+                    </LinkWrap2>
                      <LinkInput 
+                     width={'100%'}
                      type="text" value={list.value} onChange={(event)=>handleNewLinkValueChange(event,index)}>
                         {/* onChange={(event)=>handleInputChange(event, 'memberNickname')} */}
                      </LinkInput>
-                    </div>
-                    {
+                    
+                    {/* {
                         index> 0 &&(
                             <button onClick={() => handleDeleteButton(index)}>
                             -
                             </button>
                             )
-                    }
+                    } */}
                     </LinkButWrap>
                 ))
             }
             </>
         )
     }
+    //   useEffect(()=>{
+    //     handleGet().then((res)=>{setMemberInfo(res)});
+    // },[])
+    // const handleGet=async()=>{
+    //     let data = await axios
+    //     .get("/api/mypage")
+    //     .then((response)=>{
+    //         return response.data;
+    //     })  
+    //     .catch((err)=>{
+    //     console.log(err)
+    //     })
+    //     return await data;
+    // }
     useEffect(()=>{
         handleGet()
         console.log()
@@ -300,6 +450,13 @@ function UserInfo(){
         .catch((err)=>{
         console.log(err)
         })
+    }
+    const handlePost=async()=>{
+        let data= new FormData();
+        data.append("file",)
+        axios
+        .put(`/api/memberUpdate/${memberId}`)
+
     }
     //비밀번호
     const passwordRegex =
@@ -369,6 +526,9 @@ function UserInfo(){
             alert('비밀번호를 다시입력해 주세요')
         }
         //비밀번호 바꿔야함
+    }
+    const ImageUpload=()=>{
+        imageInput.current.click();
     }
     const locations=[
         {label:'강남',value:'강남'},
@@ -452,9 +612,10 @@ function UserInfo(){
 const [selectedLanguages, setSelectedLanguages] = useState(JSON.parse(memberInfo.memberStack));
 //유저-파일선택
 const [selectFile,setSelectFile]=useState(memberInfo.memberFilePath+memberInfo.memberFileName)
+//
+const imageInput=useRef();
     return(
         <Wrap>
-            <></>
         <Content>
             <NavWrap>
                 <Nav>
@@ -464,105 +625,110 @@ const [selectFile,setSelectFile]=useState(memberInfo.memberFilePath+memberInfo.m
                     활동관리
                 </Nav>
             </NavWrap>
-        <Top>
-            <Right>
-                <ImgWrap>
-                    <ImgBox src={selectFile}>
-                    </ImgBox>
-                    <ButWrap>
-                        <input
-                        type="file"
-                        id="file"
-                        onChange={()=>{}}
-                        />
-                        <But1>삭제</But1>
-                    </ButWrap>
-                </ImgWrap>
-            </Right>
-            <Left>
-                <Box>
-                    <SmallBox>아이디</SmallBox>
-                    <XsmallBox>
-                        <div>{memberInfo.memberId}</div>
-                    </XsmallBox>
-                </Box>
-                <Box>
-                    <SmallBox>닉네임</SmallBox>
-                    {/* isEditing===ture  */}
-                    <XsmallBox>
-                    <input
-                            type="text"
-                            value={memberInfo.memberNickname}
-                            onChange={(event)=>handleInputChange(event, 'memberNickname')}/>
-                    </XsmallBox>
-                </Box>
-                <Box>
-                    <SmallBox>위치</SmallBox>
-                    <XsmallBox>
-                        <select value={memberInfo.memberAcademy} onChange={(event)=>handleInputChange(event, 'memberAcademy')}>
-                                {locations.map((location, locationIndex) => (
-                                    <option key={locationIndex} value={location.value}>
-                                        {location.label}
-                                    </option>
-                                ))} 
-                        </select>
-                    </XsmallBox>
-                </Box>
-                <Box>
-                    <PwBox>
-                        <div>
-                            <PwInput 
-                            placeholder="새로운 비밀번호"
-                            type="password"
-                            value={pw}
-                            onChange={(e)=>{
-                                const newPassWord=e.target.value
-                                setPw(newPassWord);
-                                if(!passwordRegex.test(newPassWord)){
-                                    setPwError(
-                                        "영문, 숫자, 특수문자 포함 8자리 이상 입력해 주세요."
-                                    )
+            <Top>
+                <Right>
+                    <ImgWrap>
+                        <ImgBox src={selectFile}>
+                        </ImgBox>
+                        <ButWrap>
+                            <FileInput
+                            type="file"
+                            id="file"
+                            ref={imageInput}
+                            onChange={()=>{}}
+                            />
+                            <But1 onClick={ImageUpload}>수정</But1>
+                            <But1>삭제</But1>
+                        </ButWrap>
+                    </ImgWrap>
+                </Right>
+                <Left>
+                    <Box>
+                        <SmallBox>아이디</SmallBox>
+                        <XsmallBox>
+                            <div>{memberInfo.memberId}</div>
+                        </XsmallBox>
+                    </Box>
+                    <Box>
+                        <SmallBox>닉네임</SmallBox>
+                        {/* isEditing===ture  */}
+                        <XsmallBox>
+                        <NickInput
+                                width={'100%'}
+                                type="text"
+                                value={memberInfo.memberNickname}
+                                onChange={(event)=>handleInputChange(event, 'memberNickname')}/>
+                        </XsmallBox>
+                    </Box>
+                    <Box>
+                        <SmallBox>위치</SmallBox>
+                        <XsmallBox>
+                            <LocationSelect value={memberInfo.memberAcademy} onChange={(event)=>handleInputChange(event, 'memberAcademy')}>
+                                    {locations.map((location, locationIndex) => (
+                                        <option key={locationIndex} value={location.value}>
+                                            {location.label}
+                                        </option>
+                                    ))} 
+                            </LocationSelect>
+                        </XsmallBox>
+                    </Box>
+                    <Box>
+                        <PwBox>
+                            <PwBox2>
+                                <PwInput 
+                                placeholder="새로운 비밀번호"
+                                type="password"
+                                value={pw}
+                                onChange={(e)=>{
+                                    const newPassWord=e.target.value
+                                    setPw(newPassWord);
+                                    if(!passwordRegex.test(newPassWord)){
+                                        setPwError(
+                                            "영문, 숫자, 특수문자 포함 8자리 이상 입력해 주세요."
+                                        )
+                                    }
+                                }}/>
+                                { passwordRegex.test(pw) === true ?  <Span></Span> :
+                                <Span>영문, 숫자, 특수문자 포함 8자리 이상 입력해 주세요.</Span>
                                 }
-                            }}/>
-                             { passwordRegex.test(pw) === true ?  <Span></Span> :
-                             <Span>영문, 숫자, 특수문자 포함 8자리 이상 입력해 주세요.</Span>
-                             }
-                        </div>
-                    </PwBox>
-                </Box>
-                <Box>
-                    <PwBox>
-                        <div>
-                            <PwInput 
-                            placeholder="새로운 비밀번호 재입력"
-                            type="password"
-                            value={pwConfirm}
-                            onChange={(e) => {
-                                e.preventDefault();
-                                const newPasswordConfirm = e.target.value;
-                                setPwConfirm(newPasswordConfirm);
-                      
-                                if (newPasswordConfirm !== pw) {
-                                  setPwConfirmError("비밀번호가 일치하지 않습니다.");
-                                } else {
-                                  setPwConfirmError(""); // 일치하면 에러 메시지 제거
-                                }
-                              }}/>
-                              { pwConfirm  !== pw ?  <Span>비밀번호가 일치하지 않습니다.</Span> : 
-                              <Span></Span>}
-                        </div>
-                    </PwBox>
-                </Box>
-            </Left>
-        </Top>
+                            </PwBox2>
+                        </PwBox>
+                    </Box>
+                    <Box>
+                        <PwBox>
+                            <PwBox2>
+                                <PwInput 
+                                placeholder="새로운 비밀번호 재입력"
+                                type="password"
+                                value={pwConfirm}
+                                onChange={(e) => {
+                                    e.preventDefault();
+                                    const newPasswordConfirm = e.target.value;
+                                    setPwConfirm(newPasswordConfirm);
+                        
+                                    if (newPasswordConfirm !== pw) {
+                                    setPwConfirmError("비밀번호가 일치하지 않습니다.");
+                                    } else {
+                                    setPwConfirmError(""); // 일치하면 에러 메시지 제거
+                                    }
+                                }}/>
+                                { pwConfirm  !== pw ?  <Span>비밀번호가 일치하지 않습니다.</Span> : 
+                                <Span></Span>}
+                            </PwBox2>
+                        </PwBox>
+                    </Box>
+                </Left>
+            </Top>
         <Bot>
             <IntroduceBox>
-                <IntroBox>
-                    한줄소개
-                </IntroBox>
-                <IntroSubBox>
-                    본인의 업무 경험을 기반으로 핵심역량을 간단하게 작성해주세요!
-                </IntroSubBox>
+                <IntroWrap>
+                    <IntroBox>
+                        한줄소개
+                    </IntroBox>
+                    <IntroSubBox>
+                        본인의 업무 경험을 기반으로 핵심역량을 간단하게 작성해주세요!
+                    </IntroSubBox>
+                </IntroWrap>
                 <XsmallBox>
                     <InputIntro
                         type="text"
@@ -587,10 +753,10 @@ const [selectFile,setSelectFile]=useState(memberInfo.memberFilePath+memberInfo.m
             </XsmallBox>
         </Box>
         <Box>
-            <SmallBox width="140px">언어</SmallBox>
+            <SmallBox width={"140px"}>언어</SmallBox>
             <XsmallBox>
                 {selectedLanguages.length > 0 ? (
-                <>
+                <Wrap360>
                 <div>
                 <StackSelect value={selectedLanguages[selectedLanguages.length-1]} onChange={handleLanguageChange} >
                     {stacks.map((stack, stackIndex) => (
@@ -608,7 +774,7 @@ const [selectFile,setSelectFile]=useState(memberInfo.memberFilePath+memberInfo.m
                         </StackBut>
                     ))}
                 </StackButWrap>
-                </>
+                </Wrap360>
                 ) : (
                     <>
                     <StackSelect value={selectedLanguages[selectedLanguages.length-1]} onChange={handleLanguageChange} >
@@ -628,9 +794,9 @@ const [selectFile,setSelectFile]=useState(memberInfo.memberFilePath+memberInfo.m
             <LinkWrap>
                 {list()}
             </LinkWrap>
-            <button onClick={handleAddButton}>
+            {/* <button onClick={handleAddButton}>
                 +
-            </button>
+            </button> */}
         </LinkBox>
         </Bot>
         <But2Wrap>
