@@ -82,6 +82,7 @@ function DMRoom({ userData }) {
       <HoverIcon
         onClick={() => {
           setDMOpen(!DMOpen);
+          setSendMod("chatlist");
           if (!DMOpen) {
             handleGetList();
           }
