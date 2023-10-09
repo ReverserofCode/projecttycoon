@@ -17,6 +17,7 @@ public interface DMRepository extends JpaRepository<DMEntity, Long> {
     List<DMEntity> findAllByDMFromAndDMTo(MemberEntity DMFrom, MemberEntity DMTo);
     List<DMEntity> findAllByDMroom(DMroomEntity DMroom);
 
+
     // 메시지 읽음표시
     @Transactional
     @Modifying

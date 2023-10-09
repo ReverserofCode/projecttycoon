@@ -71,8 +71,9 @@ public class DMService {
 
         MemberEntity user = memberRepository.findByMemberId(memberId).get();
 
-
         System.out.println(user);
+
+
         List<DMroomEntity> response_roomList = dmroomRepository.findDMroomList(user);
         List<DMEntity> response_lastDMList = new ArrayList<DMEntity>() ;
         for (DMroomEntity dmroom : response_roomList) {
@@ -81,6 +82,10 @@ public class DMService {
                 response_lastDMList.add(DMList.get(DMList.size()-1));
             }
         }
+
+//        List<DMEntity> response_lastDMList = dmRepository.findLastDMList(response_roomList);
+
+
         return response_lastDMList;
     }
 

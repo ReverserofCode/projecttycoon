@@ -53,7 +53,15 @@ public class CommentService {
     //해당 프로젝트게시물 전체 댓글
     @Transactional(readOnly = true)
     public List<CommentEntity> getAllCommentsByProjectId(Long projectId) {
-        return commentRepository.findByProjectId(projectId);
+        Optional<ProjectEntity> projectOptional = projectRepository.findById(projectId);
+        if (projectOptional.isPresent()) {
+            ProjectEntity project = projectOptional.get();
+
+            return commentRepository.findBycommentProject(project);
+
+        } else {
+            throw new IllegalArgumentException("프로젝트 불러오기실패: " + projectId);
+        }
     }
 
     //특정댓글 조회<마이페이지에서 확인할때 쓰일까??>
