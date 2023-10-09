@@ -95,7 +95,7 @@ function ProjectPage() {
   /** 프로젝트 리스트 state */
   const [boardList, setBoardList] = useState([]);
   /** 사이드바의 지역 state */
-  const [placeSelect, setPlaceSelect] = useState("");
+  const [placeSelect, setPlaceSelect] = useState("전체");
   /** 사이드바의 모집분야 state */
   const [RecruitSelect, setRecruitSelect] = useState([]);
   /** 사이드바의 모집분야 state */
@@ -188,9 +188,15 @@ function ProjectPage() {
         />
         <SubmitButton
           onClick={() => {
-            GetFilterList(statusSelect, RecruitSelect).then((res) => {
-              setBoardList(res);
-            });
+            GetFilterList(statusSelect, RecruitSelect, placeSelect).then(
+              (res) => {
+                window.scrollTo({ top: 0 });
+                setBoardList(res);
+                let buf = boardList?.length - 12;
+                if (buf >= 12) setLoadingLength(res.length - 12);
+                else setLoadingLength(0);
+              }
+            );
           }}
         >
           검색
