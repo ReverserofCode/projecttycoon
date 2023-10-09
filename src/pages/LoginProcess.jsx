@@ -46,7 +46,13 @@ function LoginProcess() {
         <Devider />
         <SocialLogin />
       </LoginBase>
-      <SubmitButton>SignUp</SubmitButton>
+      <SubmitButton
+        onClick={() => {
+          window.location.href = "http://projecttycoon.com/api/signup";
+        }}
+      >
+        SignUp
+      </SubmitButton>
     </LoginPage>
   );
 }
