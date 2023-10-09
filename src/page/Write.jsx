@@ -249,7 +249,7 @@ function Write({ userData }) {
     setAcademy(e.target.value);
   };
   const handleNewcontents = useCallback((data) => {
-    if (data?.length >= 100) {
+    if (data?.length >= 3000) {
       alert("제한 글자수를 초과했습니다.");
     } else {
       setContents(data);
