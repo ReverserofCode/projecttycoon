@@ -22,11 +22,25 @@ const But=styled.button`
     height: ${(props)=>props.width|| "30px"};
     background-color: ${(props)=>props.background_color|| "#0B666A"};
     color: white;
+    @media screen and (max-width: 720px ){
+        width: 330px;
+    }
+    @media screen and (max-width: 370px ){
+        width: 170px;
+    }
 `
 const WriteWrap=styled.div`
     margin: 0 auto;
     max-width: 1000px;
     /* border: 1px red solid; */
+    @media screen and (max-width: 720px ){
+        width: 700px;
+        padding: 4px;
+    }
+    @media screen and (max-width: 370px ){
+        width: 360px;
+        padding: 4px;
+    }
 `
 const Wrap=styled.div`
     display: flex;
@@ -34,11 +48,21 @@ const Wrap=styled.div`
     align-items: center;
     /* border: 1px gray solid; */
     padding: 4px;
+    @media screen and (max-width: 720px ){
+        width: 100%;
+    }
+    @media screen and (max-width: 370px ){
+        width: 100%;
+    }
+    
 `
 const Title=styled.h2`
     width: 100%;
     border-bottom:3px gray solid;
     padding: 12px;
+    @media screen and (max-width: 370px ){
+        font-size: 18px;
+    }
 `
 const Subtitle=styled.h4`
     max-width: 910px;
@@ -78,6 +102,10 @@ align-items: center;
     width: 620px;
     height: 400px;
     position: relative;
+    @media screen and (max-width: 370px ){
+        width: 360px;
+        height: 250px;
+    }
 `
 const MainImg=styled.img`
     width:95%;
@@ -107,6 +135,10 @@ const SubImgBox=styled.div`
 position: relative;
     width: 230px;
     height: 120px;
+    @media screen and (max-width: 370px ){
+        width: 50px;
+        height: 30px;
+    }
 `
 const Bot=styled.div`
     width: 100%;
@@ -124,12 +156,26 @@ const Right=styled.div`
     justify-content: space-around;
     cursor: pointer;
     /* margin-left: 8px; */
+    @media screen and (max-width: 370px ){
+        display: flex;
+        flex-direction: row;
+    }
 `
 const ImgWrap=styled.div`
 max-width: 950px;
     display: flex;
     /* border: 1px green solid; */
     justify-content: space-between;
+    @media screen and (max-width: 720px ){
+        padding: 4px;
+        width: 700px;
+    }
+    @media screen and (max-width: 370px ){
+        display: flex;
+        flex-direction:column;
+        padding: 4px;
+        width: 360px;
+    }
 `
 const Ty =styled.div`
     display: flex;
@@ -143,6 +189,12 @@ const Top=styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
+    @media screen and (max-width: 720px ){
+        width: 330px;
+    }
+    @media screen and (max-width: 370px ){
+        width: 172px;
+    }
 `
 const DateInput=styled.input`
     width: 100%;
