@@ -41,7 +41,6 @@ public class MemberEntity extends TimeStamp {
     @Column(name = "memberStack", nullable = true)
     private String memberStack;
 
-
     @Column(name = "authority")
     @ElementCollection(fetch = FetchType.LAZY)
     @Builder.Default
@@ -50,6 +49,23 @@ public class MemberEntity extends TimeStamp {
     public void addMemberRole(MemberRoleEntity memberRoleEntity) {
         this.memberAuthority.add(memberRoleEntity);
     }
+
+    //양방향 매핑
+    @ManyToMany(mappedBy = "scrappedBy")
+    // 멤버가 어떤 프로젝트를 스크랩했는지
+    private Set<ProjectEntity> scrappedProjects = new HashSet<>();
+
+    //스크랩 추가
+    public void addScrappedProject(ProjectEntity project) {
+        project.getScrappedBy().add(this);
+    }
+
+    //스크랩 삭제
+    public void removeScrappedProject(ProjectEntity project) {
+        project.getScrappedBy().remove(this);
+    }
+
+
 
     public MemberEntity(MemberRequestDTO requestDTO) {
         this.memberId = requestDTO.getMemberId();
