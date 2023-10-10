@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import { AiOutlinePlus } from "react-icons/ai";
-import DMmodal from "../components/DMmodal";
-import { DMListCall } from "../functional/DM";
+import DMmodal from "../DMSet/DMmodal";
+import { DMListCall } from "../DMSet/DM";
 /** DM room을 담고있는 콘테이너 태그 */
 const Container = styled.div`
   transition: 200ms;
