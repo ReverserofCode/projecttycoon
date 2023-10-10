@@ -16,8 +16,10 @@ input {
     margin-top: 10px;
     margin-bottom: 27px;
     outline: none;
-
+    
 }
+
+
 
 select {
     display: block;
@@ -36,7 +38,57 @@ option{
 .LinkForm {
     position: relative;
     margin: 0 auto;
+    
 }
+@media (min-width: 320px) {
+    select{ width: 50%;
+    transition: 0.5s;}
+    option{
+        font-size: 0.7em;
+    }
+  }
+  @media (min-width: 360px)  {
+    select{ width: 60%;
+        transition: 0.5s;}
+        option{
+            font-size: 0.8em;
+        }
+  }
+  @media (min-width: 420px)  {
+    select{ width: 60%;
+        transition: 0.5s;}
+        option{
+            font-size: 0.9em;
+        }
+  }
+  @media (min-width: 520px) {
+    select{ width: 70%;
+        transition: 0.5s;}
+        option{
+            font-size: 1em;
+        }
+  }
+  @media (min-width: 720px) {
+    select{ width: 80%;
+        transition: 0.5s;}
+        option{
+            font-size: 1.1em;
+        }
+  }
+  @media (min-width: 960px)  {
+    select{ width: 90%;
+        transition: 0.5s;}
+    option{
+            font-size: 1.2em;
+        }
+  }
+  @media (min-width: 1200px)  {
+    select{ width: 100%;
+        transition: 0.5s;}
+        option{
+            font-size: 1.3em;
+        }
+  }
 .deleteBtn {
     color:#aaaaaa;
     cursor: pointer;
@@ -67,3 +119,4 @@ option{
     font-size: 0.7em;
     margin-left: 20px;
 }
+

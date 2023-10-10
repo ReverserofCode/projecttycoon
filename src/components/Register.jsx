@@ -23,25 +23,245 @@ const Title = styled.h2`
     margin-left: 10px;
     color: #efa1ae;
   }
+  @media (min-width: 320px) {
+    padding-top: 50px;
+    padding-bottom: 30px;
+    font-size: 1em;
+    transition: 0.3s;
+  }
+  @media (min-width: 360px) {
+    padding-top: 50px;
+    padding-bottom: 30px;
+    font-size: 1.1em;
+    transition: 0.3s;
+  }
+  @media (min-width: 420px) {
+    padding-top: 50px;
+    padding-bottom: 30px;
+    font-size: 1.2em;
+    transition: 0.3s;
+  }
+  @media (min-width: 540px) {
+    padding-top: 50px;
+    padding-bottom: 30px;
+    font-size: 1.5em;
+    transition: 0.3s;
+  }
+  @media (min-width: 720px) {
+    padding-top: 50px;
+    padding-bottom: 30px;
+    font-size: 1.7em;
+    transition: 0.3s;
+  }
+  @media (min-width: 960px) {
+    padding-top: 50px;
+    padding-bottom: 30px;
+    font-size: 2em;
+    transition: 0.3s;
+  }
+  @media (min-width: 1200px) {
+    padding-top: 50px;
+    padding-bottom: 30px;
+    font-size: 2em;
+    transition: 0.3s;
+  }
 `;
 const ContentsTitle = styled.h3`
   margin: 0 auto;
   margin-left: 10px;
   padding-bottom: 10px;
+  @media screen and (min-width: 1200px) {
+    margin-left: 10px;
+    padding-bottom: 10px;
+    transition: 0.5s;
+  }
+  @media (max-width: 1200px) {
+    margin-left: 40px;
+    padding-bottom: 10px;
+    transition: 0.5s;
+  }
+
+  @media (max-width: 960px) {
+    margin-left: 40px;
+    padding-bottom: 10px;
+    transition: 0.5s;
+  }
+  @media (max-width: 720px) {
+    margin-left: 70px;
+    padding-bottom: 10px;
+    transition: 0.5s;
+  }
+  @media (max-width: 540px) {
+    margin-left: 90px;
+    padding-bottom: 10px;
+    transition: 0.5s;
+  }
+  @media (max-width: 360px) {
+    margin-left: 110px;
+    padding-bottom: 10px;
+    transition: 0.5s;
+  }
+  @media (max-width: 320px) {
+    margin-left: 120px;
+    padding-bottom: 10px;
+    transition: 0.5s;
+  }
 `;
 const InputForm = styled.input`
-  width: 100%;
+  width: 410px;
   padding-left: 15px;
   font-family: "맑은고딕";
   font-size: 1em;
   font-weight: 500;
   color: #2d2a2a;
+  @media screen and (min-width: 1200px) {
+    width: 100%;
+    transition: 0.5s;
+  }
+  @media (max-width: 1200px) {
+    width: 90%;
+    transition: 0.5s;
+  }
+  @media (max-width: 960px) {
+    width: 80%;
+    transition: 0.5s;
+  }
+  @media (max-width: 720px) {
+    width: 70%;
+    transition: 0.5s;
+  }
+  @media (max-width: 540px) {
+    width: 60%;
+    transition: 0.5s;
+  }
+  @media (max-width: 360px) {
+    width: 50%;
+    transition: 0.5s;
+  }
 `;
+const IdForm = styled.input`
+  margin: 0 auto;
+  margin-bottom: 25px;
+  margin-top: 8px;
+  width: 350px;
+  float: left;
+  padding-left: 15px;
+  font-family: "맑은고딕";
+  font-size: 1em;
+  font-weight: 500;
+  color: #2d2a2a;
+  @media screen and (min-width: 1201px) {
+    width: 68%;
+    /* transition: 0.1s; */
+  }
+  @media (max-width: 1200px) {
+    width: 60%;
+    /* transition: 0.1s; */
+    margin-left: 30px;
+  }
+  @media (max-width: 960px) {
+    width: 50%;
+    transition: 0.5s;
+    margin-left: 45px;
+  }
+  @media (max-width: 720px) {
+    width: 50%;
+    transition: 0.5s;
+    margin-left: 70px;
+  }
+  @media (max-width: 540px) {
+    width: 40%;
+    transition: 0.5s;
+    margin-left: 100px;
+  }
+  @media (max-width: 360px) {
+    width: 30%;
+    transition: 0.5s;
+    margin-left: 120px;
+  }
+  @media (max-width: 320px) {
+    width: 30%;
+    transition: 0.5s;
+  }
+`;
+const NickForm = styled.input`
+  margin: 0 auto;
+  margin-bottom: 25px;
+  margin-top: 8px;
+  width: 350px;
+  float: left;
+  padding-left: 15px;
+  font-family: "맑은고딕";
+  font-size: 1em;
+  font-weight: 500;
+  color: #2d2a2a;
 
+  @media screen and (min-width: 1201px) {
+    width: 68%;
+    /* transition: 0.1s; */
+  }
+  @media (max-width: 1200px) {
+    width: 60%;
+    /* transition: 0.1s; */
+    margin-left: 30px;
+  }
+  @media (max-width: 960px) {
+    width: 50%;
+    transition: 0.5s;
+    margin-left: 45px;
+  }
+  @media (max-width: 720px) {
+    width: 50%;
+    transition: 0.5s;
+    margin-left: 70px;
+  }
+  @media (max-width: 540px) {
+    width: 40%;
+    transition: 0.5s;
+    margin-left: 100px;
+  }
+  @media (max-width: 360px) {
+    width: 30%;
+    transition: 0.5s;
+    margin-left: 120px;
+  }
+  @media (max-width: 320px) {
+    width: 30%;
+    transition: 0.5s;
+  }
+`;
 // 링크
 const LinkArea = styled.div`
   margin-bottom: 10px;
   margin-left: 60px;
+  @media (min-width: 320px) {
+    margin-left: 35px;
+    transition: 0.5s;
+  }
+  @media (min-width: 360px) {
+    margin-left: 30px;
+    transition: 0.5s;
+  }
+  @media (min-width: 420px) {
+    margin-left: 35px;
+    transition: 0.5s;
+  }
+  @media (min-width: 520px) {
+    margin-left: 40px;
+    transition: 0.5s;
+  }
+  @media (min-width: 720px) {
+    margin-left: 45px;
+    transition: 0.5s;
+  }
+  @media (min-width: 960px) {
+    margin-left: 50px;
+    transition: 0.5s;
+  }
+  @media (min-width: 1200px) {
+    margin-left: 60px;
+    transition: 0.5s;
+  }
 `;
 const CustomOption = styled.div`
   display: flex;
@@ -90,13 +310,51 @@ const CustomSelect = styled.div`
   width: 140px;
   height: 53px;
   position: relative;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   margin-bottom: 22px;
   font-family: "맑은고딕";
   font-size: 1em;
   font-weight: 600;
   background-color: #ffffff;
   color: #141212b9;
+  @media (min-width: 320px) {
+    width: 50px;
+    transition: 0.5s;
+    gap: 2px;
+    font-size: 0.8em;
+  }
+  @media (min-width: 360px) {
+    width: 40px;
+    transition: 0.5s;
+    gap: 4px;
+    font-size: 0.8em;
+  }
+  @media (min-width: 420px) {
+    width: 70px;
+    transition: 0.5s;
+    gap: 7px;
+    font-size: 0.8em;
+  }
+  @media (min-width: 520px) {
+    width: 80px;
+    transition: 0.5s;
+    font-size: 0.8em;
+  }
+  @media (min-width: 720px) {
+    width: 100px;
+    transition: 0.5s;
+    font-size: 0.8em;
+  }
+  @media (min-width: 960px) {
+    width: 120px;
+    transition: 0.5s;
+    font-size: 1em;
+  }
+  @media (min-width: 1200px) {
+    width: 140px;
+    transition: 0.5s;
+    font-size: 1em;
+  }
 `;
 
 const LinkForm = styled.input`
@@ -113,7 +371,46 @@ const LinkForm = styled.input`
   font-size: 1em;
   font-weight: 600;
   color: #2d2a2a;
-  padding-left: 20px;
+  @media screen and (min-width: 1200px) {
+    width: 370px;
+    transition: 0.3s;
+    padding-left: 20px;
+  }
+  @media (max-width: 1200px) {
+    width: 370px;
+    transition: 0.3s;
+    padding-left: 20px;
+  }
+  @media (max-width: 960px) {
+    width: 330px;
+    transition: 0.3s;
+    padding-left: 20px;
+  }
+  @media (max-width: 720px) and (min-width: 539px) {
+    width: 300px;
+    transition: 0.3s;
+    padding-left: 20px;
+  }
+  @media (max-width: 540px) and (min-width: 419px) {
+    width: 220px;
+    transition: 0.3s;
+    padding-left: 20px;
+  }
+  @media (max-width: 420px) and (min-width: 359px) {
+    width: 205px;
+    transition: 0.3s;
+    padding-left: 10px;
+  }
+  @media (max-width: 360px) and (min-width: 319px) {
+    width: 150px;
+    transition: 0.3s;
+    padding-left: 10px;
+  }
+  @media (max-width: 320px) {
+    width: 120px;
+    transition: 0.3s;
+    padding-left: 0px;
+  }
 `;
 
 // 제출 버튼
@@ -138,6 +435,41 @@ const Button = styled.div`
     font-weight: 700;
     cursor: pointer;
   }
+  @media (min-width: 320px) {
+    padding: 13px 32px;
+    font-size: 1em;
+    transition: 0.3s;
+  }
+  @media (min-width: 360px) {
+    padding: 13px 32px;
+    font-size: 1em;
+    transition: 0.3s;
+  }
+  @media (min-width: 420px) {
+    padding: 15px 35px;
+    font-size: 1em;
+    transition: 0.3s;
+  }
+  @media (min-width: 540px) {
+    padding: 17px 37px;
+    font-size: 1em;
+    transition: 0.3s;
+  }
+  @media (min-width: 720px) {
+    padding: 17px 37px;
+    font-size: 1.1em;
+    transition: 0.3s;
+  }
+  @media (min-width: 960px) {
+    padding: 20px 40px;
+    font-size: 1.2em;
+    transition: 0.3s;
+  }
+  @media (min-width: 1200px) {
+    padding: 20px 40px;
+    font-size: 1.2em;
+    transition: 0.3s;
+  }
 `;
 
 // 기술스택
@@ -158,6 +490,35 @@ const Stacks = styled.div`
   height: fit-content;
   min-height: 60px;
   /* overflow-y: scroll; */
+
+  @media (min-width: 320px) {
+    width: 50%;
+    transition: 0.5s;
+  }
+  @media (min-width: 360px) {
+    width: 60%;
+    transition: 0.5s;
+  }
+  @media (min-width: 420px) {
+    width: 60%;
+    transition: 0.5s;
+  }
+  @media (min-width: 540px) {
+    width: 70%;
+    transition: 0.5s;
+  }
+  @media (min-width: 720px) {
+    width: 80%;
+    transition: 0.5s;
+  }
+  @media (min-width: 960px) {
+    width: 90%;
+    transition: 0.5s;
+  }
+  @media (min-width: 1200px) {
+    width: 100%;
+    transition: 0.5s;
+  }
 `;
 const Select = styled.select`
   width: 100%;
@@ -204,27 +565,98 @@ const TextMany = styled.textarea`
   font-size: 1em;
   color: #2d2a2a;
   font-family: "맑은고딕";
+  @media screen and (min-width: 1200px) {
+    width: 100%;
+    transition: 0.5s;
+  }
+  @media (max-width: 1200px) {
+    width: 90%;
+    transition: 0.5s;
+  }
+  @media (max-width: 960px) {
+    width: 80%;
+    transition: 0.5s;
+  }
+  @media (max-width: 720px) {
+    width: 70%;
+    transition: 0.5s;
+  }
+  @media (max-width: 540px) {
+    width: 60%;
+    transition: 0.5s;
+  }
+  @media (max-width: 360px) {
+    width: 50%;
+    transition: 0.5s;
+  }
 `;
 
 // 중복체크
 const CheckId = styled.button`
   float: left;
-  margin-top: 16px;
+  margin-top: 10px;
   margin-left: 15px;
-  padding: 10px 12px;
-  font-size: 0.7em;
+  padding: 13px 12px;
+  font-size: 0.9em;
   font-weight: 500;
   border: 1px solid #ffffff;
   background-color: #71717145;
-  border-radius: 3px;
+  width: 120px;
+
   &:hover {
     border-color: #fbeeac;
     background-color: #fbeeac;
     transition: 0.3s;
     color: #4743439c;
-    font-size: 0.7em;
+    font-size: 1em;
     font-weight: 500;
     cursor: pointer;
+  }
+  @media screen and (min-width: 1201px) {
+    width: 140px;
+    transition: 0.2s;
+    border-radius: 7%;
+  }
+  @media (max-width: 1200px) {
+    width: 140px;
+    transition: 0.2s;
+    border-radius: 7%;
+  }
+
+  @media (max-width: 960px) {
+    width: 120px;
+    transition: 0.2s;
+    padding: 14px 10px;
+    font-size: 0.8em;
+    border-radius: 5%;
+  }
+  @media (max-width: 720px) {
+    width: 100px;
+    transition: 0.2s;
+    padding: 14px 10px;
+    font-size: 0.7em;
+    border-radius: 10%;
+  }
+  @media (max-width: 540px) {
+    width: 80px;
+    transition: 0.2s;
+    padding: 14px 10px;
+    font-size: 0.7em;
+    border-radius: 10%;
+  }
+  @media (max-width: 360px) {
+    width: 60px;
+    transition: 0.2s;
+    padding: 6px 10px;
+    font-size: 0.8em;
+    border-radius: 10%;
+  }
+  @media (max-width: 320px) {
+    width: 60px;
+    transition: 0.2s;
+    padding: 6px 10px;
+    border-radius: 10%;
+    font-size: 12px;
   }
 `;
 // 에러메세지
@@ -242,18 +674,19 @@ function Register() {
   const [linkInputs, setLinkInputs] = useState([
     { option: "Git", value: "", isOpen: false },
   ]);
-  // 추가
+  // 링크추가
   const handleAddLinkInput = () => {
-    const newLinkInput = { option: "Git", value: "", isOpen: false };
-    setLinkInputs([...linkInputs, newLinkInput]);
+    if (linkInputs.length < 5) {
+      const newLinkInput = { option: "Git", value: "", isOpen: false };
+      setLinkInputs([...linkInputs, newLinkInput]);
+    } else {
+      alert("링크는 최대 5개까지 추가 가능합니다.");
+    }
   };
 
-  // 삭제
+  // 링크삭제
   const handleDeleteLinkInput = (indexToDelete) => {
-    if (linkInputs.length === 1) {
-      const newLinkInputs = [{ option: "Git", value: "", isOpen: false }];
-      setLinkInputs(newLinkInputs);
-    } else {
+    if (linkInputs.length > 1) {
       const newLinkInputs = linkInputs.filter(
         (_, index) => index !== indexToDelete
       );
@@ -506,8 +939,7 @@ function Register() {
         <ContentsTitle>
           <span>*</span>닉네임
         </ContentsTitle>
-        <InputForm
-          style={{ width: "350px", float: "left" }}
+        <NickForm
           placeholder="사용하실 닉네임을 작성해주세요"
           value={nick}
           onChange={(e) => {
@@ -526,11 +958,9 @@ function Register() {
           }}
         />
         <CheckId onClick={handleCheckNick} disabled={isCheckingNick}>
-          {isCheckingNick ? "중복 체크 중..." : "닉네임 중복 체크"}
+          {isCheckingNick ? "중복 체크 중..." : "중복 체크"}
         </CheckId>
-        {isNickModalOpen && (
-          <Modal onClose={closeNickModal}>닉네임 중복 체크</Modal>
-        )}
+        {isNickModalOpen && <Modal onClose={closeNickModal}>중복 체크</Modal>}
       </div>
       {nickError && <ErrorMessage>{nickError}</ErrorMessage>}
 
@@ -543,8 +973,7 @@ function Register() {
         <ContentsTitle>
           <span>*</span>아이디
         </ContentsTitle>
-        <InputForm
-          style={{ width: "350px", float: "left" }}
+        <IdForm
           placeholder="사용하실 아이디를 작성해 주세요"
           value={id}
           onChange={(e) => {
@@ -561,10 +990,10 @@ function Register() {
           }}
         />
         <CheckId onClick={handleCheckId} disabled={isCheckingId}>
-          {isCheckingId ? "중복 체크 중..." : "아이디 중복 체크"}
+          {isCheckingId ? "중복 체크 중..." : "중복 체크"}
         </CheckId>
         {isIdModalOpen && (
-          <Modal onClose={closeIdModal}>{idCheckMessage}아이디 중복 체크</Modal>
+          <Modal onClose={closeIdModal}>{idCheckMessage}중복 체크</Modal>
         )}
       </div>
       {idError && <ErrorMessage>{idError}</ErrorMessage>}
