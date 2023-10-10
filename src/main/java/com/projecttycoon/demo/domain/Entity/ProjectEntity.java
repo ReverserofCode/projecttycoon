@@ -1,5 +1,6 @@
 package com.projecttycoon.demo.domain.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,7 +11,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 //사용자에게 노출되는 프로젝트들의 상세 내역의 데이터를 담을 DB 설계
@@ -52,6 +55,25 @@ public class ProjectEntity extends TimeStamp {
     @Column
     private int projectScrapNum;
 
+    @JsonIgnore      //무한루프 방지
+    @ManyToMany      //다대다 관계
+    @JoinTable(
+            name = "ProjectScrap",
+            joinColumns = @JoinColumn(name = "projectId"),
+            inverseJoinColumns = @JoinColumn(name = "memberId")
+    )
+    //이 프로젝트를 스크랩한 회원
+    private Set<MemberEntity> scrappedBy = new HashSet<>();
+
+    // 스크랩 수 증가
+    public void increaseScrapCount() {
+        this.projectScrapNum++;
+    }
+
+    // 스크랩 수 감소
+    public void decreaseScrapCount() {
+        this.projectScrapNum--;
+    }
 
 
     public ProjectEntity(ProjectRequestDTO projectDto) {
