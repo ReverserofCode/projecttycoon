@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import { AiOutlineArrowLeft, AiOutlinePlus } from "react-icons/ai";
 import Sidebar from "../components/Sidebar";
 import purify from "dompurify";
 import { GetProjectFromID } from "../functional/GetProject";
@@ -9,6 +9,9 @@ import Modify from "../components/Modify";
 import Comment from "../components/Comment";
 import Like from "../components/Like";
 import { GetWriterData } from "../functional/GetWriterData";
+import { HoverIcon } from "../DMSet/Components";
+import DMmodal from "../DMSet/DMmodal";
+import { DMListCall } from "../DMSet/DM";
 
 const Container = styled.div`
   display: flex;
@@ -17,6 +20,7 @@ const Container = styled.div`
   width: 100%;
   height: fit-content;
   margin-top: 20px;
+  position: relative;
 `;
 /** DetailPage의 사이드바를 담는 콘테이너 태그 */
 const SideContents = styled.div`
@@ -188,6 +192,22 @@ function DetailPage({ userData }) {
     projectFileName: "projectImage",
     projectScrapNum: 10,
   });
+  /** 자신의 DM 리스트 state */
+  const [DMList, setDMList] = useState([]);
+  /** DM 창이 열려있는지 확인하는 state */
+  const [DMOpen, setDMOpen] = useState(false);
+  /** DM창의 모드를 확인하는 state */
+  const [sendMod, setSendMod] = useState("chatlist");
+  /** DM창의 모드를 변경하는 function */
+  const handleSetMod = useCallback((value) => {
+    setSendMod(value);
+  }, []);
+  /** 자신의 ID를 통해 자신의 DM 리스트를 가져오는 funtion */
+  const handleGetList = useCallback(() => {
+    DMListCall(userData?.memberId).then((res) => {
+      setDMList(res);
+    });
+  }, [userData?.memberId]);
   /** 모집분야를 상세 설명란에 Icon으로 표기해주는 function */
   const handleRoleIcon = useCallback((role) => {
     let contents = "";
@@ -368,6 +388,26 @@ function DetailPage({ userData }) {
             />
             <Comment userData={userData}></Comment>
           </MainContents>
+          <DMmodal
+            status={DMOpen}
+            DMList={DMList}
+            Mod={sendMod}
+            myId={userData?.memberId}
+            handleSetMod={handleSetMod}
+            handleGetList={handleGetList}
+          />
+          <HoverIcon
+            onClick={() => {
+              setDMOpen(!DMOpen);
+              setSendMod("chatlist");
+              if (!DMOpen) {
+                handleGetList();
+              }
+            }}
+            status={DMOpen}
+          >
+            <AiOutlinePlus />
+          </HoverIcon>
         </Container>
       ) : (
         <Modify userData={userData} originData={value}></Modify>
