@@ -32,7 +32,7 @@ public class CommentController {
 
     //특정댓글 조회<마이페이지에서 확인할때 쓰일까??>
     @GetMapping("/projects/{projectId}/comments/{id}")
-    public CommentEntity getCommentById(@PathVariable Long id) {
+    public CommentEntity getCommentById(@PathVariable Long id ) {
         Optional<CommentEntity> optionalComment = commentService.getCommentById(id);
         return optionalComment.orElse(null);
     }
