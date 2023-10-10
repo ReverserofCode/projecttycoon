@@ -15,7 +15,9 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Member;
 import java.util.List;
+import java.util.Optional;
 
 @Log4j2
 @RestController
@@ -24,6 +26,7 @@ public class MemberController {
     final MemberRepository memberRepository;
     final ProjectRepository projectRepository;
     MemberService memberService;
+    boolean checkResult = false;
 
 
     @Autowired
@@ -48,7 +51,7 @@ public class MemberController {
     @PostMapping("/api/memberRegister")
     public void registerDB(@RequestBody MemberRequestDTO memberRequestDTO) {
         memberRequestDTO.setMemberFilePath("http://projecttycoon.com/static/icons/");
-        memberRequestDTO.setMemberFileName("http://projecttycoon.com/static/icons/"+memberService.createIcon());
+        memberRequestDTO.setMemberFileName("http://projecttycoon.com/static/icons/" + memberService.createIcon());
         log.info(memberRequestDTO.getMemberId());
         memberService.registerMember(memberRequestDTO);
         log.info(memberRequestDTO);
@@ -87,7 +90,7 @@ public class MemberController {
     }
 
     @GetMapping("/api/memberList")
-    public List<MemberRequestDTO> memberList(){
+    public List<MemberRequestDTO> memberList() {
         return memberService.memberList();
     }
 
@@ -127,9 +130,27 @@ public class MemberController {
     @GetMapping("/api/memberIcon/{memberId}")
     public String memberIcon(@PathVariable String memberId) {
         MemberRequestDTO memberRequestDTO = new MemberRequestDTO(memberRepository.findByMemberId(memberId).orElseThrow());
-        String icon = memberRequestDTO.getMemberFilePath()+memberRequestDTO.getMemberFileName();
+        String icon = memberRequestDTO.getMemberFilePath() + memberRequestDTO.getMemberFileName();
         return icon;
     }
 
+//   ID의 중복을 검사하는 코드
+    @GetMapping("/api/checkDuplicateMemberId/{checkId}")
+    public boolean duplicateMemberCheck(@PathVariable String checkId) {
+        Optional<MemberEntity> memberCheckOption = memberRepository.findById(checkId);
+        if (memberCheckOption.isPresent()) {
+            checkResult = true;
+        }
+        return checkResult;
+    }
 
+// 닉네임의 중복을 검사하는 코드
+    @GetMapping("/api/checkDuplicateNickName/{checkNickName}")
+    public boolean duplicateNickName(@PathVariable String checkNickName) {
+        Optional<MemberEntity> memberNickNameCheck = memberRepository.findByMemberNickname(checkNickName);
+        if (memberNickNameCheck.isPresent()) {
+            checkResult = true;
+        }
+        return checkResult;
+    }
 }
