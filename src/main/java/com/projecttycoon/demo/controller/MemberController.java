@@ -26,7 +26,7 @@ public class MemberController {
     final MemberRepository memberRepository;
     final ProjectRepository projectRepository;
     MemberService memberService;
-    boolean checkResult = false;
+    boolean checkResult;
 
 
     @Autowired
@@ -34,6 +34,7 @@ public class MemberController {
         this.memberService = memberService;
         this.memberRepository = memberRepository;
         this.projectRepository = projectRepository;
+        this.checkResult = false;
     }
 
     @GetMapping("/api/callTest")
@@ -137,7 +138,10 @@ public class MemberController {
 //   ID의 중복을 검사하는 코드
     @GetMapping("/api/checkDuplicateMemberId/{checkId}")
     public boolean duplicateMemberCheck(@PathVariable String checkId) {
+        checkResult = false;
         Optional<MemberEntity> memberCheckOption = memberRepository.findById(checkId);
+        log.info(memberCheckOption);
+
         if (memberCheckOption.isPresent()) {
             checkResult = true;
         }
@@ -147,7 +151,9 @@ public class MemberController {
 // 닉네임의 중복을 검사하는 코드
     @GetMapping("/api/checkDuplicateNickName/{checkNickName}")
     public boolean duplicateNickName(@PathVariable String checkNickName) {
+        checkResult = false;
         Optional<MemberEntity> memberNickNameCheck = memberRepository.findByMemberNickname(checkNickName);
+        log.info(memberNickNameCheck);
         if (memberNickNameCheck.isPresent()) {
             checkResult = true;
         }
