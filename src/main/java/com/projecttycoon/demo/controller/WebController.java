@@ -52,6 +52,11 @@ public class WebController {
     public String callPageNewProject() {
         return "forward:/static/PageNewProject/index.html";
     }
+    @GetMapping("/api/signup")
+    public String callSingUpPage() {
+        log.info("call SingUpPage");
+        return "forward:/static/PageSignUp/index.html";
+    }
 
     @GetMapping("/api/signup")
     public String callPageSinUp() { return "forward:/static/PageSignUp/index.html";}
