@@ -1,6 +1,6 @@
 package com.projecttycoon.demo.domain.Entity;
 
-public class RoleInfo2 {
+public class ProjectRoleInfo {
     private String role;
     private int complete;
     private int personnel;
