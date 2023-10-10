@@ -19,26 +19,26 @@ public class CommentController {
     private final CommentService commentService;
 
     //댓글 생성
-    @PostMapping("/projects/{projectId}/comments")
+    @PostMapping("/projects/{projectId}/commentsPost")
     public CommentEntity createComment(@PathVariable Long projectId, @RequestBody CommentRequestDTO commentRequestDTO) {
         return commentService.createComment(projectId, commentRequestDTO);
     }
 
     //해당 프로젝트게시물 전체 댓글
-    @GetMapping("/projects/{projectId}/comments")
+    @GetMapping("/projects/{projectId}/commentsGet")
     public List<CommentEntity> getAllCommentsByProjectId(@PathVariable Long projectId) {
         return commentService.getAllCommentsByProjectId(projectId);
     }
 
     //특정댓글 조회<마이페이지에서 확인할때 쓰일까??>
-    @GetMapping("/projects/{projectId}/comments/{id}")
+    @GetMapping("/projects/{projectId}/commentsGet/{id}")
     public CommentEntity getCommentById(@PathVariable Long id) {
         Optional<CommentEntity> optionalComment = commentService.getCommentById(id);
         return optionalComment.orElse(null);
     }
 
     //댓글수정
-    @PutMapping("/projects/{projectId}/comments/{id}")
+    @PutMapping("/projects/{projectId}/commentsUpdate/{id}")
     public void updateComment(@PathVariable Long id, @RequestBody CommentRequestDTO commentRequestDTO) {
         String commentContent = commentRequestDTO.getCommentContent();
         commentService.updateComment(id, commentContent);
@@ -46,7 +46,7 @@ public class CommentController {
     }
 
     //댓글삭제
-    @DeleteMapping("/projects/{projectId}/comments/{id}")
+    @DeleteMapping("/projects/{projectId}/commentsDelete/{id}")
     public void deleteComment(@PathVariable Long id) {
         commentService.deleteComment(id);
     }
