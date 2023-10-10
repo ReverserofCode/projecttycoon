@@ -32,7 +32,8 @@ public class CommentService {
             ProjectEntity project = projectOptional.get();
 
             // CommentWriterId를 MemberEntity로 변환
-            Optional<MemberEntity> commentWriter = memberRepository.findByMemberId(commentRequestDTO.getCommentWriterId());
+            String commentWriterId = commentRequestDTO.getCommentWriterId();
+            Optional<MemberEntity> commentWriter = memberRepository.findByMemberId(commentWriterId);
 
             if (commentWriter.isPresent()) {
                 CommentEntity commentEntity = CommentEntity.builder()
@@ -43,12 +44,13 @@ public class CommentService {
 
                 return commentRepository.save(commentEntity);
             } else {
-                throw new IllegalArgumentException("댓글작성자 불러오기실패: " + commentRequestDTO.getCommentWriterId());
+                throw new IllegalArgumentException("댓글작성자 불러오기실패: " + commentWriterId);
             }
         } else {
             throw new IllegalArgumentException("프로젝트 불러오기실패: " + projectId);
         }
     }
+
 
     //해당 프로젝트게시물 전체 댓글
     @Transactional(readOnly = true)
