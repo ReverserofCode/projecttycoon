@@ -61,11 +61,12 @@ public class MemberService {
         if (result.isPresent()) {
             MemberEntity memberEntity;
             memberEntity = result.get();
-            requestDTO.setMemberPw(bCryptPasswordEncoder.encode(requestDTO.getMemberPw()));
-
 
             memberEntity.memberUpdate(requestDTO);
             memberRepository.save(memberEntity);
+        }
+        else{
+            log.info("can not found ID");
         }
     }
 

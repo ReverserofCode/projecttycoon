@@ -102,6 +102,11 @@ public class MemberEntity extends TimeStamp {
         this.memberRole = requestDTO.getMemberRole();
         this.memberIntroduce = requestDTO.getMemberIntroduce();
         this.memberLink = requestDTO.getMemberLink();
+        this.memberStack = requestDTO.getMemberStack();
+        this.memberFilePath = requestDTO.getMemberFilePath();
+        this.memberFileName = requestDTO.getMemberFileName();
+
+
         this.memberAuthority = new HashSet<>();
     }
 
