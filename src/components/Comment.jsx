@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { CommentGet, CommentPost } from "../functional/Comment";
 let CommentList = [
   {
     memberId: "sift",
@@ -84,18 +85,27 @@ const CommentInputButton = styled.div`
 `;
 
 function Comment({ userData }) {
+  const [commentList, setCommentList] = useState([]);
   const [comment, setComment] = useState("");
   const handleCommentGen = useCallback(() => {
     let contents = [];
-    for (let i = 0; i < CommentList?.length; i++) {
+    for (let i = 0; i < commentList?.length; i++) {
       contents.push(
         <CommentWrap key={`comment ${i}`}>
-          <CommentNick>{CommentList[i].memberNickName}</CommentNick>
-          <CommentContents>{CommentList[i].contents}</CommentContents>
+          <CommentNick>
+            {commentList[i].commentWriter.memberNickname}
+          </CommentNick>
+          <CommentContents>{commentList[i].commentContent}</CommentContents>
         </CommentWrap>
       );
     }
     return contents;
+  }, [commentList]);
+  useEffect(() => {
+    const path = window.location.href.split("/");
+    CommentGet(path[4]).then((res) => {
+      setCommentList(res);
+    });
   }, []);
   return (
     <Container>
@@ -115,7 +125,15 @@ function Comment({ userData }) {
         ></CommentInputText>
         <CommentInputButton
           onClick={() => {
-            setComment("");
+            const path = window.location.href.split("/");
+            CommentPost(path[4], userData?.memberId, comment).then((res) => {
+              res === "success"
+                ? CommentGet(path[4]).then((res) => {
+                    setCommentList(res);
+                    setComment("");
+                  })
+                : "";
+            });
           }}
         >
           등록
