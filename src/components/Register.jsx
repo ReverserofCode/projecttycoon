@@ -351,10 +351,10 @@ function Register() {
     await axios
       .get(`/api/checkDuplicateMemberId/${id}`)
       .then((res) => {
-        const resMessage = res.data.message;
+        const resMessage = res.data;
         setIdCheckMessage(resMessage);
 
-        if (resMessage === "사용 가능한 아이디입니다.") {
+        if (!resMessage) {
           setIsIdAvailable(true);
         } else {
           setIsIdAvailable(false);
@@ -369,12 +369,12 @@ function Register() {
   // 닉네임중복 체크 로직
   const handleCheckNick = async (nick) => {
     await axios
-      .get(`/api/checkDuplicateMemberId/${nick}`)
+      .get(`/api/checkDuplicateNickName/${nick}`)
       .then((res) => {
-        const resMessage = res.data.message;
-        setIdCheckMessage(resMessage);
+        const resMessage = res.data;
+        setIsCheckingNick(resMessage);
 
-        if (resMessage === "사용 가능한 닉네임입니다.") {
+        if (!resMessage) {
           setIsNickAvailable(true);
         } else {
           setIsNickAvailable(false);
@@ -534,7 +534,10 @@ function Register() {
           {isCheckingNick ? "중복 체크 중..." : "닉네임 중복 체크"}
         </CheckId>
         {isNickModalOpen && (
-          <Modal onClose={closeNickModal}>닉네임 중복 체크</Modal>
+          <Modal onClose={closeNickModal}>
+            닉네임 중복 체크<br></br>
+            {isNickModalOpen}
+          </Modal>
         )}
       </div>
       {nickError && <ErrorMessage>{nickError}</ErrorMessage>}
@@ -574,7 +577,10 @@ function Register() {
           {isCheckingId ? "중복 체크 중..." : "아이디 중복 체크"}
         </CheckId>
         {isIdModalOpen && (
-          <Modal onClose={closeIdModal}>{idCheckMessage}아이디 중복 체크</Modal>
+          <Modal onClose={closeIdModal}>
+            아이디 중복 체크<br></br>
+            {idCheckMessage}
+          </Modal>
         )}
       </div>
       {idError && <ErrorMessage>{idError}</ErrorMessage>}
