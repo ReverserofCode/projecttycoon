@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { AiOutlinePlus } from "react-icons/ai";
 import DMmodal from "../DMSet/DMmodal";
 import { DMListCall } from "../DMSet/DM";
+import { HoverIcon } from "../DMSet/Components";
 /** DM room을 담고있는 콘테이너 태그 */
 const Container = styled.div`
   transition: 200ms;
@@ -12,45 +13,6 @@ const Container = styled.div`
   height: 100vh;
   width: 100%;
   position: relative;
-`;
-/** 하단에 fix되어 항상 보이는 버튼 태그 */
-const HoverIcon = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  color: white;
-  border-radius: 50%;
-  background-color: black;
-  user-select: none;
-  font-size: 25px;
-  :active {
-    background-color: #3b3b3b;
-  }
-  position: fixed;
-  bottom: 10px;
-  right: 20px;
-  animation: ${(props) => {
-      return props.status ? "trueRotate" : "falseRotate";
-    }}
-    300ms ease-in-out both;
-  @keyframes trueRotate {
-    from {
-      rotate: 0deg;
-    }
-    to {
-      rotate: 45deg;
-      background-color: #3b3b3b;
-    }
-  }
-  @keyframes falseRotate {
-    from {
-      rotate: 45deg;
-    }
-    to {
-      rotate: 0deg;
-    }
-  }
 `;
 function DMRoom({ userData }) {
   /** 자신의 DM 리스트 state */
