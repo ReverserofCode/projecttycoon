@@ -18,14 +18,38 @@ import java.util.Optional;
 @Log4j2
 @Service
 @RequiredArgsConstructor
-public class MemberService  {
+public class MemberService {
 
     private final MemberRepository memberRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    String[] icons = {
+            "1_shark.png",
+            "2_shark.png",
+            "3_shark.png",
+            "4_shark.png",
+            "5_cat.png",
+            "6_cat.png",
+            "7_dog.png",
+            "8_dog.png",
+            "9_alpaca.png",
+            "10_alpaca.png",
+            "11_alpaca.png",
+            "12_alpaca.png",
+            "13_axolotl.png",
+            "14_axolotl.png",
+            "15_tuttle.png",
+            "16_tuttle.png",
+            "17_penguin.png",
+            "18_penguin.png",
+            "19_penguin.png",
+            "20_raccoon.png",
+            "21_raccoon.png",
+    };
+
 
     public void registerMember(MemberRequestDTO requestDTO) {
-        log.info("requestDTO check MemberPw : "+requestDTO.getMemberPw());
+        log.info("requestDTO check MemberPw : " + requestDTO.getMemberPw());
         requestDTO.setMemberPw(bCryptPasswordEncoder.encode(requestDTO.getMemberPw()));
         MemberEntity memberEntity = new MemberEntity(requestDTO);
         memberEntity.addMemberRole(MemberRoleEntity.USER);
@@ -37,51 +61,30 @@ public class MemberService  {
         if (result.isPresent()) {
             MemberEntity memberEntity;
             memberEntity = result.get();
-
             requestDTO.setMemberPw(bCryptPasswordEncoder.encode(requestDTO.getMemberPw()));
+
 
             memberEntity.memberUpdate(requestDTO);
             memberRepository.save(memberEntity);
         }
     }
-    public List<MemberRequestDTO> memberList(){
+
+    public List<MemberRequestDTO> memberList() {
         List<MemberEntity> entityList = memberRepository.findAllByOrderByCreatedAtDesc();
         List<MemberRequestDTO> list = new ArrayList<>();
-        for(int i = 0; i < entityList.size(); i++){
+        for (int i = 0; i < entityList.size(); i++) {
             MemberRequestDTO dto = new MemberRequestDTO(entityList.get(i));
             list.add(dto);
         }
         return list;
     }
+
     public void memberDelete(String memberId) {
         memberRepository.deleteById(memberId);
     }
-    public String createIcon(){
-        String[] icons = new String[21];
-        icons[0] = "1_shark.png";
-        icons[1] = "2_shark.png";
-        icons[2] = "3_shark.png";
-        icons[3] = "4_shark.png";
-        icons[4] = "5_cat.png";
-        icons[5] = "6_cat.png";
-        icons[6] = "7_dog.png";
-        icons[7] = "8_dog.png";
-        icons[8] = "9_alpaca.png";
-        icons[9] = "10_alpaca.png";
-        icons[10] = "11_alpaca.png";
-        icons[11] = "12_alpaca.png";
-        icons[12] = "13_axolotl.png";
-        icons[13] = "14_axolotl.png";
-        icons[14] = "15_tuttle.png";
-        icons[15] = "16_tuttle.png";
-        icons[16] = "17_penguin.png";
-        icons[17] = "18_penguin.png";
-        icons[18] = "19_penguin.png";
-        icons[19] = "20_raccoon.png";
-        icons[20] = "21_raccoon.png";
-        int randomNum = (int)(Math.random()*21);
-        String icon =icons[randomNum];
-        return icon;
-    }
 
+    public String createIcon() {
+        int randomNum = (int) (Math.random() * 21);
+        return icons[randomNum];
+    }
 }
