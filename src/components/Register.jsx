@@ -346,7 +346,7 @@ function Register() {
 
   // 아이디중복
   // 중복 체크 로직
-  const handleCheckId = async () => {
+  const handleCheckId = async (id) => {
     // 중복 체크 요청을 서버로 보냄
     await axios
       .get(`/api/checkDuplicateMemberId/${id}`)
@@ -367,7 +367,7 @@ function Register() {
   };
 
   // 닉네임중복 체크 로직
-  const handleCheckNick = async () => {
+  const handleCheckNick = async (nick) => {
     await axios
       .get(`/api/checkDuplicateMemberId/${nick}`)
       .then((res) => {
@@ -525,7 +525,12 @@ function Register() {
             }
           }}
         />
-        <CheckId onClick={handleCheckNick} disabled={isCheckingNick}>
+        <CheckId
+          onClick={() => {
+            handleCheckNick(nick);
+          }}
+          disabled={isCheckingNick}
+        >
           {isCheckingNick ? "중복 체크 중..." : "닉네임 중복 체크"}
         </CheckId>
         {isNickModalOpen && (
@@ -560,7 +565,12 @@ function Register() {
             }
           }}
         />
-        <CheckId onClick={handleCheckId} disabled={isCheckingId}>
+        <CheckId
+          onClick={() => {
+            handleCheckId(id);
+          }}
+          disabled={isCheckingId}
+        >
           {isCheckingId ? "중복 체크 중..." : "아이디 중복 체크"}
         </CheckId>
         {isIdModalOpen && (
