@@ -53,6 +53,9 @@ public class WebController {
         return "forward:/static/PageNewProject/index.html";
     }
 
+    @GetMapping("/api/signup")
+    public String callPageSinUp() { return "forward:/static/PageSignUp/index.html";}
+
     @GetMapping("/callPageProjectBoardDetail/{id}")
     public ModelAndView callPageProjectBoardDetail(@PathVariable Long id) {
         ModelAndView mav = new ModelAndView();
@@ -78,8 +81,9 @@ public class WebController {
 
         return mav;
     }
+
     @GetMapping("/callMyPage")
-    public String callMyPage(){
+    public String callMyPage() {
         log.info("call MyPage");
         return "forward:/static/MyPage/index.html";
     }
