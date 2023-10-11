@@ -229,7 +229,7 @@ function DetailPage({ userData }) {
         );
         break;
       case "bigData":
-        contents.push(
+        contents = (
           <InfoRole
             src="http://projecttycoon.com/static/images/BigData.png"
             key={`Filter Icon `}
