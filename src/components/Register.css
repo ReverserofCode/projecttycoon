@@ -4,6 +4,7 @@ span{
     font-weight:bold;
     font-size:1.2em;
     padding-right: 6px;
+    font-family: "맑은고딕";
 }
 input {
     display: block;
@@ -16,6 +17,7 @@ input {
     margin-top: 10px;
     margin-bottom: 27px;
     outline: none;
+    font-family: "맑은고딕";
     
 }
 
@@ -31,6 +33,7 @@ select {
     background-color: #ffffff;
     margin-top: 10px;
     margin-bottom: 27px;
+    font-family: "맑은고딕";
 }
 option{
     font-size: 1.3em;

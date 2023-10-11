@@ -19,6 +19,7 @@ const Container = styled.div`
 const Title = styled.h2`
   padding-top: 50px;
   padding-bottom: 30px;
+  font-family: "맑은고딕";
   .rabbit {
     margin-left: 10px;
     color: #efa1ae;
@@ -85,26 +86,31 @@ const ContentsTitle = styled.h3`
     margin-left: 40px;
     padding-bottom: 10px;
     transition: 0.5s;
+    font-size: 1.2em;
   }
   @media (max-width: 720px) {
     margin-left: 70px;
     padding-bottom: 10px;
     transition: 0.5s;
+    font-size: 1.1em;
   }
   @media (max-width: 540px) {
     margin-left: 90px;
     padding-bottom: 10px;
     transition: 0.5s;
+    font-size: 1.1em;
   }
   @media (max-width: 360px) {
     margin-left: 110px;
     padding-bottom: 10px;
     transition: 0.5s;
+    font-size: 1em;
   }
   @media (max-width: 320px) {
     margin-left: 120px;
     padding-bottom: 10px;
     transition: 0.5s;
+    font-size: 1em;
   }
 `;
 const InputForm = styled.input`
@@ -117,26 +123,42 @@ const InputForm = styled.input`
   @media screen and (min-width: 1200px) {
     width: 100%;
     transition: 0.5s;
+    font-size: 1em;
   }
   @media (max-width: 1200px) {
     width: 90%;
     transition: 0.5s;
+    font-size: 1em;
   }
   @media (max-width: 960px) {
     width: 80%;
     transition: 0.5s;
+    font-size: 1em;
   }
   @media (max-width: 720px) {
     width: 70%;
     transition: 0.5s;
+    font-size: 0.9em;
   }
   @media (max-width: 540px) {
     width: 60%;
     transition: 0.5s;
+    font-size: 0.8em;
+  }
+  @media (max-width: 420px) {
+    width: 60%;
+    transition: 0.5s;
+    font-size: 0.8em;
   }
   @media (max-width: 360px) {
+    width: 55%;
+    transition: 0.5s;
+    font-size: 0.7em;
+  }
+  @media (max-width: 320px) {
     width: 50%;
     transition: 0.5s;
+    font-size: 0.6em;
   }
 `;
 const IdForm = styled.input`
@@ -150,38 +172,51 @@ const IdForm = styled.input`
   font-size: 1em;
   font-weight: 500;
   color: #2d2a2a;
-  @media screen and (min-width: 1201px) {
+  @media screen and (min-width: 1200px) {
     width: 68%;
     /* transition: 0.1s; */
+    font-size: 1em;
   }
   @media (max-width: 1200px) {
     width: 60%;
     /* transition: 0.1s; */
     margin-left: 30px;
+    font-size: 1em;
   }
   @media (max-width: 960px) {
     width: 50%;
     transition: 0.5s;
     margin-left: 45px;
+    font-size: 0.9em;
   }
   @media (max-width: 720px) {
     width: 50%;
     transition: 0.5s;
     margin-left: 70px;
+    font-size: 0.9em;
   }
   @media (max-width: 540px) {
     width: 40%;
     transition: 0.5s;
     margin-left: 100px;
+    font-size: 0.8em;
+  }
+  @media (max-width: 420px) {
+    width: 40%;
+    transition: 0.5s;
+    margin-left: 100px;
+    font-size: 0.8em;
   }
   @media (max-width: 360px) {
-    width: 30%;
+    width: 35%;
     transition: 0.5s;
     margin-left: 120px;
+    font-size: 0.7em;
   }
   @media (max-width: 320px) {
     width: 30%;
     transition: 0.5s;
+    font-size: 0.6em;
   }
 `;
 const NickForm = styled.input`
@@ -196,54 +231,68 @@ const NickForm = styled.input`
   font-weight: 500;
   color: #2d2a2a;
 
-  @media screen and (min-width: 1201px) {
+  @media screen and (min-width: 1200px) {
     width: 68%;
+    font-size: 1em;
     /* transition: 0.1s; */
   }
   @media (max-width: 1200px) {
     width: 60%;
     /* transition: 0.1s; */
     margin-left: 30px;
+    font-size: 1em;
   }
   @media (max-width: 960px) {
     width: 50%;
     transition: 0.5s;
     margin-left: 45px;
+    font-size: 1em;
   }
   @media (max-width: 720px) {
     width: 50%;
     transition: 0.5s;
     margin-left: 70px;
+    font-size: 0.9em;
   }
   @media (max-width: 540px) {
     width: 40%;
     transition: 0.5s;
     margin-left: 100px;
+    font-size: 0.8em;
+  }
+  @media (max-width: 420px) {
+    width: 40%;
+    transition: 0.5s;
+    margin-left: 100px;
+    font-size: 0.8em;
   }
   @media (max-width: 360px) {
-    width: 30%;
+    width: 35%;
     transition: 0.5s;
     margin-left: 120px;
+    font-size: 0.7em;
   }
   @media (max-width: 320px) {
     width: 30%;
     transition: 0.5s;
+    font-size: 0.6em;
   }
 `;
 // 링크
 const LinkArea = styled.div`
   margin-bottom: 10px;
   margin-left: 60px;
+
   @media (min-width: 320px) {
-    margin-left: 35px;
-    transition: 0.5s;
-  }
-  @media (min-width: 360px) {
     margin-left: 30px;
     transition: 0.5s;
   }
-  @media (min-width: 420px) {
+  @media (min-width: 360px) {
     margin-left: 35px;
+    transition: 0.5s;
+  }
+  @media (min-width: 420px) {
+    margin-left: 40px;
     transition: 0.5s;
   }
   @media (min-width: 520px) {
@@ -279,8 +328,10 @@ const CustomOption = styled.div`
   background-color: #ffffff;
   border-color: #d0d0d0;
   top: 55px;
+  font-family: "맑은고딕";
 `;
 const Options = styled.div`
+  font-family: "맑은고딕";
   display: flex;
   justify-content: center;
   align-items: center;
@@ -317,14 +368,20 @@ const CustomSelect = styled.div`
   font-weight: 600;
   background-color: #ffffff;
   color: #141212b9;
+  @media (max-width: 320px) {
+    width: 60px;
+    transition: 0.5s;
+    gap: 2px;
+    font-size: 0.8em;
+  }
   @media (min-width: 320px) {
-    width: 50px;
+    width: 60px;
     transition: 0.5s;
     gap: 2px;
     font-size: 0.8em;
   }
   @media (min-width: 360px) {
-    width: 40px;
+    width: 60px;
     transition: 0.5s;
     gap: 4px;
     font-size: 0.8em;
@@ -332,7 +389,6 @@ const CustomSelect = styled.div`
   @media (min-width: 420px) {
     width: 70px;
     transition: 0.5s;
-    gap: 7px;
     font-size: 0.8em;
   }
   @media (min-width: 520px) {
@@ -375,41 +431,49 @@ const LinkForm = styled.input`
     width: 370px;
     transition: 0.3s;
     padding-left: 20px;
+    font-size: 1em;
   }
   @media (max-width: 1200px) {
     width: 370px;
     transition: 0.3s;
     padding-left: 20px;
+    font-size: 1em;
   }
   @media (max-width: 960px) {
     width: 330px;
     transition: 0.3s;
     padding-left: 20px;
+    font-size: 1em;
   }
   @media (max-width: 720px) and (min-width: 539px) {
     width: 300px;
     transition: 0.3s;
     padding-left: 20px;
+    font-size: 0.9em;
   }
   @media (max-width: 540px) and (min-width: 419px) {
     width: 220px;
     transition: 0.3s;
     padding-left: 20px;
+    font-size: 0.8em;
   }
   @media (max-width: 420px) and (min-width: 359px) {
     width: 205px;
     transition: 0.3s;
     padding-left: 10px;
+    font-size: 0.7em;
   }
   @media (max-width: 360px) and (min-width: 319px) {
     width: 150px;
     transition: 0.3s;
     padding-left: 10px;
+    font-size: 0.7em;
   }
   @media (max-width: 320px) {
     width: 120px;
     transition: 0.3s;
     padding-left: 0px;
+    font-size: 0.6em;
   }
 `;
 
@@ -421,6 +485,7 @@ const Button = styled.div`
   padding: 20px 40px;
   font-size: 1.2em;
   font-weight: 700;
+  font-family: "맑은고딕";
   background-color: #71717145;
   border-radius: 5px;
   margin: 0 auto;
@@ -434,6 +499,11 @@ const Button = styled.div`
     font-size: 1.1em;
     font-weight: 700;
     cursor: pointer;
+  }
+  @media (max-width: 320px) {
+    padding: 13px 32px;
+    font-size: 1em;
+    transition: 0.3s;
   }
   @media (min-width: 320px) {
     padding: 13px 32px;
@@ -489,6 +559,7 @@ const Stacks = styled.div`
   background-color: #ffffff;
   height: fit-content;
   min-height: 60px;
+
   /* overflow-y: scroll; */
 
   @media (min-width: 320px) {
@@ -546,6 +617,41 @@ const StackItem = styled.div`
   font-size: 1em;
   color: #2d2a2a;
   font-family: "맑은고딕";
+  @media screen and (min-width: 1200px) {
+    padding: 10px 10px;
+    transition: 0.5s;
+    font-size: 1em;
+  }
+  @media (max-width: 1200px) {
+    padding: 10px 10px;
+    transition: 0.5s;
+    font-size: 1em;
+  }
+  @media (max-width: 960px) {
+    padding: 10px 10px;
+    transition: 0.5s;
+    font-size: 1em;
+  }
+  @media (max-width: 720px) {
+    padding: 7px 10px;
+    transition: 0.5s;
+    font-size: 1em;
+  }
+  @media (max-width: 540px) {
+    padding: 7px 10px;
+    transition: 0.5s;
+    font-size: 0.8em;
+  }
+  @media (max-width: 360px) {
+    padding: 6px 8px;
+    transition: 0.5s;
+    font-size: 0.8em;
+  }
+  @media (max-width: 320px) {
+    padding: 6px 8px;
+    transition: 0.5s;
+    font-size: 0.8em;
+  }
 `;
 
 // 한 줄 소개
@@ -568,26 +674,37 @@ const TextMany = styled.textarea`
   @media screen and (min-width: 1200px) {
     width: 100%;
     transition: 0.5s;
+    font-size: 1em;
   }
   @media (max-width: 1200px) {
     width: 90%;
     transition: 0.5s;
+    font-size: 1em;
   }
   @media (max-width: 960px) {
     width: 80%;
     transition: 0.5s;
+    font-size: 1em;
   }
   @media (max-width: 720px) {
     width: 70%;
     transition: 0.5s;
+    font-size: 1em;
   }
   @media (max-width: 540px) {
     width: 60%;
     transition: 0.5s;
+    font-size: 0.8em;
   }
   @media (max-width: 360px) {
-    width: 50%;
+    width: 48%;
     transition: 0.5s;
+    font-size: 0.8em;
+  }
+  @media (max-width: 320px) {
+    width: 47%;
+    transition: 0.5s;
+    font-size: 0.8em;
   }
 `;
 
@@ -602,6 +719,7 @@ const CheckId = styled.button`
   border: 1px solid #ffffff;
   background-color: #71717145;
   width: 120px;
+  font-family: "맑은고딕";
 
   &:hover {
     border-color: #fbeeac;
@@ -615,12 +733,12 @@ const CheckId = styled.button`
   @media screen and (min-width: 1201px) {
     width: 140px;
     transition: 0.2s;
-    border-radius: 7%;
+    border-radius: 5%;
   }
   @media (max-width: 1200px) {
     width: 140px;
     transition: 0.2s;
-    border-radius: 7%;
+    border-radius: 5%;
   }
 
   @media (max-width: 960px) {
@@ -628,21 +746,21 @@ const CheckId = styled.button`
     transition: 0.2s;
     padding: 14px 10px;
     font-size: 0.8em;
-    border-radius: 5%;
+    border-radius: 4%;
   }
   @media (max-width: 720px) {
     width: 100px;
     transition: 0.2s;
     padding: 14px 10px;
     font-size: 0.7em;
-    border-radius: 10%;
+    border-radius: 4%;
   }
   @media (max-width: 540px) {
     width: 80px;
     transition: 0.2s;
     padding: 14px 10px;
     font-size: 0.7em;
-    border-radius: 10%;
+    border-radius: 4%;
   }
   @media (max-width: 360px) {
     width: 60px;
@@ -779,15 +897,15 @@ function Register() {
 
   // 아이디중복
   // 중복 체크 로직
-  const handleCheckId = async (id) => {
+  const handleCheckId = async () => {
     // 중복 체크 요청을 서버로 보냄
     await axios
       .get(`/api/checkDuplicateMemberId/${id}`)
       .then((res) => {
-        const resMessage = res.data;
+        const resMessage = res.data.message;
         setIdCheckMessage(resMessage);
 
-        if (!resMessage) {
+        if (resMessage === "사용 가능한 아이디입니다.") {
           setIsIdAvailable(true);
         } else {
           setIsIdAvailable(false);
@@ -800,14 +918,14 @@ function Register() {
   };
 
   // 닉네임중복 체크 로직
-  const handleCheckNick = async (nick) => {
+  const handleCheckNick = async () => {
     await axios
-      .get(`/api/checkDuplicateNickName/${nick}`)
+      .get(`/api/checkDuplicateMemberId/${nick}`)
       .then((res) => {
-        const resMessage = res.data;
-        setIsCheckingNick(resMessage);
+        const resMessage = res.data.message;
+        setIdCheckMessage(resMessage);
 
-        if (!resMessage) {
+        if (resMessage === "사용 가능한 닉네임입니다.") {
           setIsNickAvailable(true);
         } else {
           setIsNickAvailable(false);
@@ -940,7 +1058,7 @@ function Register() {
           <span>*</span>닉네임
         </ContentsTitle>
         <NickForm
-          placeholder="사용하실 닉네임을 작성해주세요"
+          placeholder="사용하실 닉네임을 작성해 주세요"
           value={nick}
           onChange={(e) => {
             e.preventDefault();
@@ -957,27 +1075,10 @@ function Register() {
             }
           }}
         />
-<<<<<<< HEAD
         <CheckId onClick={handleCheckNick} disabled={isCheckingNick}>
           {isCheckingNick ? "중복 체크 중..." : "중복 체크"}
         </CheckId>
         {isNickModalOpen && <Modal onClose={closeNickModal}>중복 체크</Modal>}
-=======
-        <CheckId
-          onClick={() => {
-            handleCheckNick(nick);
-          }}
-          disabled={isCheckingNick}
-        >
-          {isCheckingNick ? "중복 체크 중..." : "닉네임 중복 체크"}
-        </CheckId>
-        {isNickModalOpen && (
-          <Modal onClose={closeNickModal}>
-            닉네임 중복 체크<br></br>
-            {isNickModalOpen}
-          </Modal>
-        )}
->>>>>>> e847cc57f37cb013da5642bc9b1198f12e9e2930
       </div>
       {nickError && <ErrorMessage>{nickError}</ErrorMessage>}
 
@@ -1006,27 +1107,11 @@ function Register() {
             }
           }}
         />
-<<<<<<< HEAD
         <CheckId onClick={handleCheckId} disabled={isCheckingId}>
           {isCheckingId ? "중복 체크 중..." : "중복 체크"}
         </CheckId>
         {isIdModalOpen && (
           <Modal onClose={closeIdModal}>{idCheckMessage}중복 체크</Modal>
-=======
-        <CheckId
-          onClick={() => {
-            handleCheckId(id);
-          }}
-          disabled={isCheckingId}
-        >
-          {isCheckingId ? "중복 체크 중..." : "아이디 중복 체크"}
-        </CheckId>
-        {isIdModalOpen && (
-          <Modal onClose={closeIdModal}>
-            아이디 중복 체크<br></br>
-            {idCheckMessage}
-          </Modal>
->>>>>>> e847cc57f37cb013da5642bc9b1198f12e9e2930
         )}
       </div>
       {idError && <ErrorMessage>{idError}</ErrorMessage>}
@@ -1194,7 +1279,7 @@ function Register() {
             )}
           </div>
           <LinkForm
-            placeholder={linkInput.option + " 주소를 모두 입력해주세요."}
+            placeholder={" 주소를 모두 입력해주세요."}
             value={linkInput.value}
             onChange={(e) => handleLinkInputChange(index, e.target.value)}
           />
