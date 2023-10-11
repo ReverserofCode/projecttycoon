@@ -9,12 +9,12 @@ import com.projecttycoon.demo.domain.repository.DMRepository;
 import com.projecttycoon.demo.domain.repository.DMroomRepository;
 import com.projecttycoon.demo.domain.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +34,6 @@ public class DMService {
         MemberEntity DMTo = memberRepository.findByMemberId(DMToId).get();
         if (dmroomRepository.findDMroomIdByUserId(DMFrom, DMTo) == null) {
             System.out.println("DMroom 생성");
-//            dmroomRepository.createDMroom(DMFrom, DMTo);
             DMroompostRequestDTO dmroompostDTO = new DMroompostRequestDTO(DMFrom, DMTo);
             DMroomEntity dmroomEntity = new DMroomEntity(dmroompostDTO);
             dmroomRepository.save(dmroomEntity);
@@ -57,24 +56,26 @@ public class DMService {
             dmRepository.save(dmEntity);
             return dmEntity.getDMId();
 
-            // Your logic here with DMFrom and DMTo
         } else {
             System.out.println("DMFrom: " + optionalDMFrom.isPresent());
             System.out.println("DMTo: " + optionalDMTo.isPresent());
             System.out.println("멤버 불러오기 실패");
             return null;
         }
-//        MemberEntity DMFrom = memberRepository.findByMemberId(dmRequestDTO.getDMFromId()).get();
-//        MemberEntity DMTo = memberRepository.findByMemberId(dmRequestDTO.getDMToId()).get();
 
     }
 
-    // 현재 사용자의 모든 DM방 불러오기
+    // 현재 사용자의 모든 DM방의 마지막 DM 불러오기
     @Transactional(readOnly = true)
-    public List<DMroomEntity> readDMroomList(String memberId) {
+    public List<DMEntity> readDMroomList(String memberId) {
+
         MemberEntity user = memberRepository.findByMemberId(memberId).get();
-        System.out.println(user);
-        return dmroomRepository.findDMroomList(user);
+
+        List<DMroomEntity> response_roomList = dmroomRepository.findDMroomList(user);
+        List<Long> lastDMIdList = dmRepository.findLastDMidList(response_roomList);
+        List<DMEntity> response_lastDMList= dmRepository.findAllById(lastDMIdList);
+
+        return response_lastDMList;
     }
 
     // DM 대화창 가져오기

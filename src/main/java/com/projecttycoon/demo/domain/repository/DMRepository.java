@@ -12,10 +12,17 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
-
 public interface DMRepository extends JpaRepository<DMEntity, Long> {
-    List<DMEntity> findAllByDMFromAndDMTo(MemberEntity DMFrom, MemberEntity DMTo);
     List<DMEntity> findAllByDMroom(DMroomEntity DMroom);
+
+    // DMId 리스트로 DM 리스트 리턴
+    @Override
+    List<DMEntity> findAllById(Iterable<Long> longs);
+
+    // DMroom의 마지막 DM의 ID를 List로 리턴
+    @Transactional
+    @Query("SELECT MAX(dm.DMId) FROM DMEntity dm WHERE dm.DMroom IN :dmroomList GROUP BY dm.DMroom")
+    List<Long> findLastDMidList(@Param("dmroomList") List<DMroomEntity> dmroomList);
 
     // 메시지 읽음표시
     @Transactional

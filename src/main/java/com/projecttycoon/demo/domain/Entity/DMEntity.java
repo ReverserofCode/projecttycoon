@@ -30,13 +30,11 @@ public class DMEntity extends TimeStamp {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "DMFrom")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
-    @JsonIgnore
     private MemberEntity DMFrom;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "DMTo")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
-    @JsonIgnore
     private MemberEntity DMTo;
 
     @Column

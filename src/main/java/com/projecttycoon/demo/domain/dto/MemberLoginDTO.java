@@ -24,6 +24,7 @@ public class MemberLoginDTO extends User {
     private String memberFileName;
     private String memberId;
     private String memberPw;
+    private String memberStack;
     private Collection<? extends GrantedAuthority> memberAuthority;
 
     public MemberLoginDTO(String memberNickName,
@@ -34,6 +35,7 @@ public class MemberLoginDTO extends User {
                           String memberFilePath,
                           String memberFileName,
                           String username,String password,
+                          String memberStack,
                           Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
 
@@ -47,6 +49,7 @@ public class MemberLoginDTO extends User {
         this.memberFilePath = memberFilePath;
         this.memberFileName = memberFileName;
         this.memberAuthority = authorities;
+        this.memberStack = memberStack;
     }
 
 }
