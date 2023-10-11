@@ -93,4 +93,10 @@ public class WebController {
         log.info("call DmProcess ");
         return "forward:/static/DMProcess/index.html";
     }
+
+    @GetMapping("/members")
+    public String callMemberBoard(){
+        log.info("Call MemberBoard");
+        return "forward:/static/memberBoard/index.html";
+    }
 }
