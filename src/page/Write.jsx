@@ -172,6 +172,7 @@ max-width: 950px;
         flex-direction:column;
         padding: 4px;
         width: 360px;
+        height: 200px;
     }
 `
 const Ty =styled.div`
