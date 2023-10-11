@@ -5,7 +5,7 @@ import React, { useCallback, useState } from "react";
 import { BiLogoReact, BiDownArrow, BiLogoGithub } from "react-icons/bi";
 import { FaMicroblog } from "react-icons/fa";
 import { SiRabbitmq } from "react-icons/si";
-import { BsPlusSquareDotted } from "react-icons/bs";
+import { BsPlusSquareDotted, BsDashSquareDotted } from "react-icons/bs";
 import { TiMessageTyping, TiDelete } from "react-icons/ti";
 import Modal from "../functional/Modal";
 // 전체틀 , 공통
@@ -381,7 +381,7 @@ const CustomSelect = styled.div`
     font-size: 0.8em;
   }
   @media (min-width: 360px) {
-    width: 60px;
+    width: 70px;
     transition: 0.5s;
     gap: 4px;
     font-size: 0.8em;
@@ -458,7 +458,7 @@ const LinkForm = styled.input`
     font-size: 0.8em;
   }
   @media (max-width: 420px) and (min-width: 359px) {
-    width: 205px;
+    width: 190px;
     transition: 0.3s;
     padding-left: 10px;
     font-size: 0.7em;
@@ -847,8 +847,8 @@ function Register() {
   const [isIdModalOpen, setIsIdModalOpen] = useState(false);
   // 닉네임 중복 체크 모달 상태 변수
   const [isNickModalOpen, setIsNickModalOpen] = useState(false);
-  const [isNickAvailable, setIsNickAvailable] = useState(false);
-  const [isIdAvailable, setIsIdAvailable] = useState(false);
+  const [isNickAvailable, setIsNickAvailable] = useState();
+  const [isIdAvailable, setIsIdAvailable] = useState();
   // 아이디 중복 체크 모달 열기
   const openIdModal = () => {
     setIsIdModalOpen(true);
@@ -859,20 +859,20 @@ function Register() {
     color: #ff0000;
     margin-bottom: 10px;
   `;
-  // 닉네임 중복 체크 모달 열기
-  const openNickModal = () => {
-    setIsNickModalOpen(true);
-  };
+  // // 닉네임 중복 체크 모달 열기
+  // const openNickModal = () => {
+  //   setIsNickModalOpen(true);
+  // };
 
-  // 아이디 중복 체크 모달 닫기
-  const closeIdModal = () => {
-    setIsIdModalOpen(false);
-  };
+  // // 아이디 중복 체크 모달 닫기
+  // const closeIdModal = () => {
+  //   setIsIdModalOpen(false);
+  // };
 
-  // 닉네임 중복 체크 모달 닫기
-  const closeNickModal = () => {
-    setIsNickModalOpen(false);
-  };
+  // // 닉네임 중복 체크 모달 닫기
+  // const closeNickModal = () => {
+  //   setIsNickModalOpen(false);
+  // };
 
   // 중복에러 메세지
   const [isCheckingId, setIsCheckingId] = useState(false);
@@ -897,15 +897,15 @@ function Register() {
 
   // 아이디중복
   // 중복 체크 로직
-  const handleCheckId = async () => {
+  const handleCheckId = async (id) => {
     // 중복 체크 요청을 서버로 보냄
     await axios
       .get(`/api/checkDuplicateMemberId/${id}`)
       .then((res) => {
-        const resMessage = res.data.message;
+        const resMessage = res.data;
         setIdCheckMessage(resMessage);
 
-        if (resMessage === "사용 가능한 아이디입니다.") {
+        if (!resMessage) {
           setIsIdAvailable(true);
         } else {
           setIsIdAvailable(false);
@@ -914,18 +914,23 @@ function Register() {
       .catch((error) => {
         console.error("아이디 중복 체크 에러:", error);
       });
-    openIdModal();
+    // openIdModal();
   };
 
+  // const handleOpenModal = useCallback(() => {
+  //   if (isIdAvailable) {
+  //     openIdModal();
+  //   }
+  // }, [isIdAvailable]);
   // 닉네임중복 체크 로직
-  const handleCheckNick = async () => {
+  const handleCheckNick = async (nick) => {
     await axios
-      .get(`/api/checkDuplicateMemberId/${nick}`)
+      .get(`/api/checkDuplicateNickName/${nick}`)
       .then((res) => {
-        const resMessage = res.data.message;
-        setIdCheckMessage(resMessage);
+        const resMessage = res.data;
+        setIsCheckingNick(resMessage);
 
-        if (resMessage === "사용 가능한 닉네임입니다.") {
+        if (!resMessage) {
           setIsNickAvailable(true);
         } else {
           setIsNickAvailable(false);
@@ -934,8 +939,13 @@ function Register() {
       .catch((error) => {
         console.error("닉네임 중복 체크 에러:", error);
       });
-    openNickModal(); // 닉네임 중복 체크 모달 열기
+    // openNickModal(); // 닉네임 중복 체크 모달 열기
   };
+  // const handleNickOpenModal = useCallback(() => {
+  //   if (isNickAvailable) {
+  //     openIdModal();
+  //   }
+  // }, [isNickAvailable]);
   // 한 줄 소개
   const [introduce, setIntroduce] = useState("");
 
@@ -1070,21 +1080,31 @@ function Register() {
                 "2~12글자의 한글, 영문, 숫자, '_', '-'만 사용할 수 있습니다."
               );
             } else {
-              // Use setNickError instead of setIdErrMsg
               setNickError("");
             }
           }}
         />
-        <CheckId onClick={handleCheckNick} disabled={isCheckingNick}>
-          {isCheckingNick ? "중복 체크 중..." : "중복 체크"}
+        <CheckId
+          onClick={() => {
+            handleCheckNick(nick);
+          }}
+        >
+          중복 체크
         </CheckId>
         {isNickModalOpen && <Modal onClose={closeNickModal}>중복 체크</Modal>}
       </div>
       {nickError && <ErrorMessage>{nickError}</ErrorMessage>}
-
-      {isCheckingNick && <CheckMessage>중복 체크 중입니다...</CheckMessage>}
-      {isNickAvailable && (
-        <CheckMessage>사용 가능한 닉네임입니다.</CheckMessage>
+      {isNickAvailable !== undefined ? (
+        isNickAvailable ? (
+          // true일 때
+          <CheckMessage>사용 가능한 닉네임입니다.</CheckMessage>
+        ) : (
+          // false일 때
+          <CheckMessage>이미 사용중인 닉네임입니다.</CheckMessage>
+        )
+      ) : (
+        // undefined일 때 빈값
+        ""
       )}
 
       <div className="IdArea">
@@ -1107,14 +1127,25 @@ function Register() {
             }
           }}
         />
-        <CheckId onClick={handleCheckId} disabled={isCheckingId}>
-          {isCheckingId ? "중복 체크 중..." : "중복 체크"}
+        <CheckId
+          onClick={() => {
+            handleCheckId(id);
+          }}
+        >
+          중복 체크
         </CheckId>
-        {isIdModalOpen && (
-          <Modal onClose={closeIdModal}>{idCheckMessage}중복 체크</Modal>
-        )}
+        {isIdModalOpen && <Modal onClose={closeIdModal}>중복 체크</Modal>}
       </div>
       {idError && <ErrorMessage>{idError}</ErrorMessage>}
+      {isIdAvailable !== undefined ? (
+        isIdAvailable ? (
+          <CheckMessage>사용 가능한 아이디입니다.</CheckMessage>
+        ) : (
+          <CheckMessage>이미 사용중인 아이디입니다.</CheckMessage>
+        )
+      ) : (
+        ""
+      )}
 
       <ContentsTitle>
         <span>*</span>비밀번호
@@ -1264,17 +1295,17 @@ function Register() {
             </CustomSelect>
             {linkInput.isOpen && (
               <CustomOption>
-                <div className="LinkInput">
-                  <Options onClick={() => handleOptionSelect(index, "Git")}>
-                    Git <BiLogoGithub />
-                  </Options>
-                  <Options onClick={() => handleOptionSelect(index, "Blog")}>
-                    Blog <FaMicroblog />
-                  </Options>
-                  <Options onClick={() => handleOptionSelect(index, "Other")}>
-                    그 외 <TiMessageTyping />
-                  </Options>
-                </div>
+                {/* <div className="LinkInput"> */}
+                <Options onClick={() => handleOptionSelect(index, "Git")}>
+                  Git <BiLogoGithub />
+                </Options>
+                <Options onClick={() => handleOptionSelect(index, "Blog")}>
+                  Blog <FaMicroblog />
+                </Options>
+                <Options onClick={() => handleOptionSelect(index, "Other")}>
+                  그 외 <TiMessageTyping />
+                </Options>
+                {/* </div> */}
               </CustomOption>
             )}
           </div>
@@ -1288,7 +1319,10 @@ function Register() {
               className="delete-button"
               onClick={() => handleDeleteLinkInput(index)}
             >
-              <TiDelete size="45" className="deleteBtn"></TiDelete>
+              <BsDashSquareDotted
+                // size="35"
+                className="deleteBtn"
+              ></BsDashSquareDotted>
             </div>
           )}
         </LinkArea>

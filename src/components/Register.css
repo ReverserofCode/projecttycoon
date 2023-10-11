@@ -40,7 +40,7 @@ option{
 }
 .LinkForm {
     position: relative;
-    margin: 0 auto;
+    margin: 0;
     
 }
 @media (min-width: 320px) {
@@ -49,6 +49,9 @@ option{
     option{
         font-size: 0.7em;
     }
+    .delete-button{
+        font-size: 40px;
+    }
   }
   @media (min-width: 360px)  {
     select{ width: 60%;
@@ -56,12 +59,19 @@ option{
         option{
             font-size: 0.8em;
         }
+        .delete-button{
+            font-size: 40px;
+        }
+  
   }
   @media (min-width: 420px)  {
     select{ width: 60%;
         transition: 0.5s;}
         option{
             font-size: 0.9em;
+        }
+        .delete-button{
+            font-size: 45px;
         }
   }
   @media (min-width: 520px) {
@@ -70,12 +80,18 @@ option{
         option{
             font-size: 1em;
         }
+        .delete-button{
+            font-size: 45px;
+        }
   }
   @media (min-width: 720px) {
     select{ width: 80%;
         transition: 0.5s;}
         option{
             font-size: 1.1em;
+        }
+        .delete-button{
+            font-size: 45px;
         }
   }
   @media (min-width: 960px)  {
@@ -84,12 +100,18 @@ option{
     option{
             font-size: 1.2em;
         }
+        .delete-button{
+            font-size: 45px;
+        }
   }
   @media (min-width: 1200px)  {
     select{ width: 100%;
         transition: 0.5s;}
         option{
             font-size: 1.3em;
+        }  
+        .delete-button{
+            font-size: 45px;
         }
   }
 .deleteBtn {
