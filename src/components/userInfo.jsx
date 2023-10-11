@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import styled from "@emotion/styled";
 import axios from "axios";
+import {BsPlusSquareDotted} from'react-icons/bs'
+import {BsDashSquareDotted} from 'react-icons/bs'
+import {PostAxios} from '../functional/PostAxios'
 // import {alpaca,dog}from "../Img/images"
 
 //데이터 받고
@@ -90,7 +93,6 @@ const Content=styled.div`
 `
 const PwBox2=styled.div`
     width: 100%;
-
 `
 const Bot =styled.div`
     width: 100%;
@@ -317,6 +319,11 @@ const LinkInput=styled.input`
         width: 100%;
     }
 `
+const Profile=styled.select`
+    width: 100px;
+    padding: 4px;
+    /* height: 20px; */
+`
 const PwBox=styled.div`
     display: flex;
     padding: 8px;
@@ -391,7 +398,6 @@ const handlePost=async()=>{
                                 <option value={link.value}>
                                     {link.value}
                                 </option>
-                                
                             </>
                         ))
                         }
@@ -399,16 +405,16 @@ const handlePost=async()=>{
                      </LinkSelect>
                      {
                         index ===0 &&(
-                            <button onClick={handleAddButton}>
-                            +
-                        </button>
+                            <div onClick={handleAddButton}>
+                                <BsPlusSquareDotted size={"30px"}/>
+                            </div>
                         )
                      }
                         {
                             index> 0 &&(
-                                <button onClick={() => handleDeleteButton(index)}>
-                                -
-                                </button>
+                                <div onClick={() => handleDeleteButton(index)}>
+                                 <BsDashSquareDotted size={"30px"}/>
+                                </div>
                                 )
                         }
                     </LinkWrap2>
@@ -568,22 +574,29 @@ const handleGet=async()=>{
       ];
       const defaultImgName=[
         {label:"강아지",value:"dog"},
-        {label:"거북이",value:"거북이"},
-        {label:"고양이",value:"고양이"},
+        {label:"거북이",value:"tuttle"},
+        {label:"고양이",value:"cat"},
         {label:"기린",value:"기린"},
-        {label:"라쿤",value:"라쿤"},
+        {label:"라쿤",value:"raccoon"},
         {label:"돼지",value:"돼지"},
         {label:"알파카",value:"alpaka"},
-        {label:"우파루파",value:"우파루파"},
+        {label:"우파루파",value:"axolotl"},
         {label:"판다",value:"판다"},
-        {label:"펭귄",value:"펭귄"},
-        {label:"상어",value:"상어"},
+        {label:"펭귄",value:"penguin"},
+        {label:"상어",value:"shark"},
     ]
     //유저-프로필선택
 const [profile,setProfile]=useState('')
     const defaultImg={
-        dog: "/static/icons/8_dog.png",
-        alpaka: "/static/icons/12_alpaca.png",
+        dog: "8_dog.png",
+        cat:"6_cat.png",
+        alpaka: "12_alpaca.png",
+        tuttle:"16_tuttle.png",
+        axolotl:"14_axolotl.png",
+        penguin:"18_penguin.png",
+        raccoon:"21_raccoon.png",
+        shark:"2_shark.png"
+        
     }
 
     // 가져온 유저정보
@@ -630,8 +643,8 @@ const [pwConfirmError, setPwConfirmError] = useState(""); // Separate error stat
     // const [isEditing, setIsEditing] = useState(false);
 //유저-선택한언어
 const [selectedLanguages, setSelectedLanguages] = useState(JSON.parse(memberInfo.memberStack));
-//유저-선택한 프로필사진 url static/icons/7_dog.png
-const [selectFile,setSelectFile]=useState(memberInfo.memberFilePath+memberInfo.memberFileName)
+//유저-선택한 프로필사진 7_dog.png
+const [selectFile,setSelectFile]=useState("/"+memberInfo.memberFileName)
 
 const handleProfileImg=(e)=>{
  setProfile(e.target.value)
@@ -640,14 +653,14 @@ const imageInput=useRef();
     return(
         <Wrap>
         <Content>
-            <NavWrap>
+            {/* <NavWrap>
                 <Nav>
                     내프로필
                 </Nav>
                 <Nav>
                     활동관리
                 </Nav>
-            </NavWrap>
+            </NavWrap> */}
             <Top>
                 <Right>
                     <ImgWrap>
@@ -664,17 +677,17 @@ const imageInput=useRef();
                       } */}
                       {
                         profile===''?(
-                            <ImgBox src={"http://projecttycoon.com/"+selectFile}></ImgBox>
-                                 ):(<ImgBox src={"http://projecttycoon.com"+defaultImg[profile]}></ImgBox>)
+                            <ImgBox src={"http://projecttycoon.com/static/icons"+selectFile}></ImgBox>
+                                 ):(<ImgBox src={"http://projecttycoon.com/static/icons/"+defaultImg[profile]}></ImgBox>)
                       }
                         <ButWrap>
-                            <select value={profile} onChange={handleProfileImg}>
+                            <Profile value={profile} onChange={handleProfileImg}>
                                 {defaultImgName.map((image, imageIndex) => (
                                     <option key={imageIndex} value={image.value}>
                                         {image.label}
                                     </option>
                              ))}
-                            </select>
+                            </Profile>
                             {/* <FileInput
                             type="file"
                             id="file"
@@ -847,7 +860,36 @@ const imageInput=useRef();
         </Bot>
         <But2Wrap>
             <But2 background_color="gray">취소</But2>
-            <But2>완료</But2>
+            <But2 onClick={()=>{
+                if(defaultImg[profile]==="/"){
+                    PostAxios(
+                        //비밀번호넣어야함
+                        memberInfo.memberId,
+                        memberInfo.memberNickname,
+                        memberInfo.memberAcademy,
+                        memberInfo.memberRole,
+                        memberInfo.memberIntroduce,
+                        selectFile,
+                        selectedLanguages,
+                        selectLink,
+                    )
+                }
+                else{
+                    PostAxios(
+                        //비밀번호넣어야함
+                        memberInfo.memberId,
+                        memberInfo.memberNickname,
+                        memberInfo.memberAcademy,
+                        memberInfo.memberRole,
+                        memberInfo.memberIntroduce,
+                        defaultImg[profile],
+                        selectedLanguages,
+                        selectLink,
+                    )
+
+                }
+            console.log( memberInfo.memberId)
+            }}>완료</But2>
         </But2Wrap>
         </Content>
         </Wrap>
