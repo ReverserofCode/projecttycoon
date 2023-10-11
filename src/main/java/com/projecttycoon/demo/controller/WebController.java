@@ -82,7 +82,7 @@ public class WebController {
         return mav;
     }
 
-    @GetMapping("/callMyPage")
+    @GetMapping("/myPage")
     public String callMyPage() {
         log.info("call MyPage");
         return "forward:/static/MyPage/index.html";
