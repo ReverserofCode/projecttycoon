@@ -52,10 +52,7 @@ const TagItem = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  /* width: 160px; */
   padding: 6px 16px;
-  /* margin-left: 20px;
-  margin-right: 10px; */
   font-size: 0.9em;
   white-space: nowrap;
   background-color: #fbeeac;
