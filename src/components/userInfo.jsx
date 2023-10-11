@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import styled from "@emotion/styled";
 import axios from "axios";
+// import {alpaca,dog}from "../Img/images"
 
 //데이터 받고
 //file수정 ,삭제
 //http://projecttycoon.com/api/mypage
 //memberFilePath + memberFileName = 프로필이미지
 //post까지
+//http://projecttycoon.com/static/icons/8_dog.png
 
 const Box=styled.div`
 padding:4px;
@@ -336,7 +338,6 @@ const PwInput=styled.input`
     @media screen and (max-width: 720px ){
         width: 280px;
     }
-    
 `
 const FileInput=styled.input`
     overflow: hidden;
@@ -354,7 +355,6 @@ width: ${(props) => props.width || "130px"};
         height: 23px;
         width: 100%;
     }
-    
 `
 const LinkWrap2=styled.div`
     width: 100%;
@@ -367,6 +367,16 @@ const Wrap360=styled.div`
     }
 `
 function UserInfo(){
+
+
+const handlePost=async()=>{
+    let data= new FormData();
+    data.append("file",)
+    axios
+    .put(`/api/memberUpdate/${memberId}`)
+}
+
+// function
     function list(){
         return(
             <>
@@ -407,14 +417,6 @@ function UserInfo(){
                      type="text" value={list.value} onChange={(event)=>handleNewLinkValueChange(event,index)}>
                         {/* onChange={(event)=>handleInputChange(event, 'memberNickname')} */}
                      </LinkInput>
-                    
-                    {/* {
-                        index> 0 &&(
-                            <button onClick={() => handleDeleteButton(index)}>
-                            -
-                            </button>
-                            )
-                    } */}
                     </LinkButWrap>
                 ))
             }
@@ -440,32 +442,20 @@ function UserInfo(){
         console.log()
         console.log(memberInfo.memberFilePath+memberInfo.memberFileName)
     },[])
-    const handleGet=async()=>{
-        await axios
-        .get("/api/mypage")
-        .then((response)=>{
-        console.log(response.data)
-        setMemberInfo(response.data)
-        })  
-        .catch((err)=>{
-        console.log(err)
-        })
-    }
-    const handlePost=async()=>{
-        let data= new FormData();
-        data.append("file",)
-        axios
-        .put(`/api/memberUpdate/${memberId}`)
-
-    }
-    //비밀번호
-    const passwordRegex =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,30}$/;
-    const [pw, setPw] = useState("");
-    const [pwError, setPwError] = useState("");
-    const [pwConfirm, setPwConfirm] = useState(""); // Separate state for password confirmation
-    const [pwConfirmError, setPwConfirmError] = useState(""); // Separate error state for password confirmation
-    //유저-수정 시 /input 관리
+//Axios Post & Get
+const handleGet=async()=>{
+    await axios
+    .get("/api/mypage")
+    .then((response)=>{
+    console.log(response.data)
+    setMemberInfo(response.data)
+    })  
+    .catch((err)=>{
+    console.log(err)
+    })
+}
+    //핸들 함수
+    //유저-input수정  /input 관리
     const handleInputChange = (event, info) => {
         const updatedMemberInfo = { ...memberInfo, [info]: event.target.value };
         setMemberInfo(updatedMemberInfo);
@@ -476,6 +466,7 @@ function UserInfo(){
     const handleSaveClick = () => {
         setIsEditing(false);
       };
+    //개인링크-링크 삭제
     const handleDeleteButton = (indexDelete) => {
         if (indexDelete === 0) {
           // 첫 번째 요소는 삭제하지 않도록 예외 처리
@@ -486,19 +477,7 @@ function UserInfo(){
         );
         setSelectLink(update);
       };
-     // 언어 버튼을 클릭했을 때 실행되는 핸들러 함수
-    const handleLanguageButtonClick = (selectedLanguage) => {
-        setSelectedLanguages((prevSelectedLanguages) =>
-        prevSelectedLanguages.filter((language) => language !== selectedLanguage)
-        );
-    };
-    // 언어를 선택했을 때 실행되는 핸들러 함수
-    const handleLanguageChange = (e) => {
-        const ar=[e.target.value]
-        setSelectedLanguages([...selectedLanguages,...ar])
-        console.log(selectedLanguages)
-    };
-    // 링크의 옵션 
+    // 개인링크-옵션 변경
     const handleNewLinkChange =(event, index) =>{
         const updatedSelectLink = [...selectLink];
         updatedSelectLink[index].option=event.target.value;
@@ -509,6 +488,7 @@ function UserInfo(){
         updatedSelectLink[index].value=event.target.value;
         setSelectLink(updatedSelectLink)
     }
+    //개인링크-링크 추가
     const handleAddButton = () => {
         if (selectLink.length < 5) {
             setSelectLink([
@@ -517,6 +497,18 @@ function UserInfo(){
           ]); // 추가 시 초기 선택 항목을 'Git'으로 설정
         }
       };
+    //언어-삭제
+    const handleLanguageButtonClick = (selectedLanguage) => {
+        setSelectedLanguages((prevSelectedLanguages) =>
+        prevSelectedLanguages.filter((language) => language !== selectedLanguage)
+        );
+    };
+    //언어-추가
+    const handleLanguageChange = (e) => {
+        const ar=[e.target.value]
+        setSelectedLanguages([...selectedLanguages,...ar])
+        console.log(selectedLanguages)
+    };
     //비밀번호 수정 핸들
     const handleNewPassWord = ()=>{
         if(pw.length===0 || pwConfirm.length===0){
@@ -527,9 +519,11 @@ function UserInfo(){
         }
         //비밀번호 바꿔야함
     }
-    const ImageUpload=()=>{
-        imageInput.current.click();
-    }
+    // const ImageUpload=()=>{
+    //     imageInput.current.click();
+    // }
+
+    //select-option-value 관리
     const locations=[
         {label:'강남',value:'강남'},
         {label:'신촌/홍대',value:'신촌/홍대'},
@@ -572,6 +566,26 @@ function UserInfo(){
         { label: "정보보안", value: "security" },
         { label: "네트워크관리자", value: "netWork" },
       ];
+      const defaultImgName=[
+        {label:"강아지",value:"dog"},
+        {label:"거북이",value:"거북이"},
+        {label:"고양이",value:"고양이"},
+        {label:"기린",value:"기린"},
+        {label:"라쿤",value:"라쿤"},
+        {label:"돼지",value:"돼지"},
+        {label:"알파카",value:"alpaka"},
+        {label:"우파루파",value:"우파루파"},
+        {label:"판다",value:"판다"},
+        {label:"펭귄",value:"펭귄"},
+        {label:"상어",value:"상어"},
+    ]
+    //유저-프로필선택
+const [profile,setProfile]=useState('')
+    const defaultImg={
+        dog: "/static/icons/8_dog.png",
+        alpaka: "/static/icons/12_alpaca.png",
+    }
+
     // 가져온 유저정보
     const info = {
         memberId: "kkk123",
@@ -579,13 +593,11 @@ function UserInfo(){
         memberRole: "front",
         memberIntroduce: "안녕",
         memberLink: "[{\"option\":\"Git\",\"value\":\"www.naver.com\"},{\"option\":\"Blog\",\"value\":\"www.google.kr\"}]",
-
         memberAcademy: "부산",
         memberNickname: "haha",
         memberStack: "[\"HTML\",\"CSS\",\"JavaScript\",\"TypeScript\"]",
         memberFilePath:"static/icons/",
         memberFileName:"7_dog.png"
-
       };
     //   const Params ={
     //     memberId:memberInfo.memberId,
@@ -597,6 +609,14 @@ function UserInfo(){
     //     memberNickname:memberInfo.memberNickname,
     //     memberStack:memberInfo.memberStack
     //   }
+
+//비밀번호
+const passwordRegex =
+/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,30}$/;
+const [pw, setPw] = useState("");
+const [pwError, setPwError] = useState("");
+const [pwConfirm, setPwConfirm] = useState(""); // Separate state for password confirmation
+const [pwConfirmError, setPwConfirmError] = useState(""); // Separate error state for password confirmation
 //유저-처음 가져온 정보
     const [memberInfo, setMemberInfo] = useState(info);
 //유저-수정된 정보
@@ -607,12 +627,15 @@ function UserInfo(){
     const [selectField,setSelectField]=useState(memberInfo.memberRole)
 //유저-개인링크
     const [selectLink,setSelectLink]=useState(JSON.parse(memberInfo.memberLink))
-    const [isEditing, setIsEditing] = useState(false);
+    // const [isEditing, setIsEditing] = useState(false);
 //유저-선택한언어
 const [selectedLanguages, setSelectedLanguages] = useState(JSON.parse(memberInfo.memberStack));
-//유저-파일선택
+//유저-선택한 프로필사진 url static/icons/7_dog.png
 const [selectFile,setSelectFile]=useState(memberInfo.memberFilePath+memberInfo.memberFileName)
-//
+
+const handleProfileImg=(e)=>{
+ setProfile(e.target.value)
+}
 const imageInput=useRef();
     return(
         <Wrap>
@@ -628,17 +651,38 @@ const imageInput=useRef();
             <Top>
                 <Right>
                     <ImgWrap>
-                        <ImgBox src={selectFile}>
-                        </ImgBox>
+                    {/* 프로필 사진 바뀌는 코드 */}
+                      {/* {
+                        selectFile&&(
+                            <ImgBox src={"http://projecttycoon.com"+defaultImg[profile]}></ImgBox>
+                                 )
+                      } */}
+                      {/* {
+                        selectFile?(
+                            <ImgBox src={"http://projecttycoon.com/"+selectFile}></ImgBox>
+                                 ):(<ImgBox src={"http://projecttycoon.com"+defaultImg[profile]}></ImgBox>)
+                      } */}
+                      {
+                        profile===''?(
+                            <ImgBox src={"http://projecttycoon.com/"+selectFile}></ImgBox>
+                                 ):(<ImgBox src={"http://projecttycoon.com"+defaultImg[profile]}></ImgBox>)
+                      }
                         <ButWrap>
-                            <FileInput
+                            <select value={profile} onChange={handleProfileImg}>
+                                {defaultImgName.map((image, imageIndex) => (
+                                    <option key={imageIndex} value={image.value}>
+                                        {image.label}
+                                    </option>
+                             ))}
+                            </select>
+                            {/* <FileInput
                             type="file"
                             id="file"
                             ref={imageInput}
                             onChange={()=>{}}
                             />
                             <But1 onClick={ImageUpload}>수정</But1>
-                            <But1>삭제</But1>
+                            <But1>삭제</But1> */}
                         </ButWrap>
                     </ImgWrap>
                 </Right>
@@ -682,6 +726,9 @@ const imageInput=useRef();
                                 onChange={(e)=>{
                                     const newPassWord=e.target.value
                                     setPw(newPassWord);
+                                    if(newPassWord.length>15){
+                                        alert('15자 이하로 작성해주세요.')
+                                    }
                                     if(!passwordRegex.test(newPassWord)){
                                         setPwError(
                                             "영문, 숫자, 특수문자 포함 8자리 이상 입력해 주세요."
@@ -705,7 +752,6 @@ const imageInput=useRef();
                                     e.preventDefault();
                                     const newPasswordConfirm = e.target.value;
                                     setPwConfirm(newPasswordConfirm);
-                        
                                     if (newPasswordConfirm !== pw) {
                                     setPwConfirmError("비밀번호가 일치하지 않습니다.");
                                     } else {
