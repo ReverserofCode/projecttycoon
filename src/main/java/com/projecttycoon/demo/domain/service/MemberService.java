@@ -37,9 +37,9 @@ public class MemberService {
     public void memberUpdate(String memberId, MemberRequestDTO requestDTO) {
         Optional<MemberEntity> result = memberRepository.findById(memberId);
         if (result.isPresent()) {
+            requestDTO.setMemberPw(bCryptPasswordEncoder.encode(requestDTO.getMemberPw()));
             MemberEntity memberEntity;
             memberEntity = result.get();
-
             memberEntity.memberUpdate(requestDTO);
             memberRepository.save(memberEntity);
         }
