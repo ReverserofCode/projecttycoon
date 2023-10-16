@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { BsSend } from "react-icons/bs";
-import { DMGetMessage } from "../functional/DM";
+import { DMGetMessage } from "./DM";
 /** 자신의 DM 아이템 프로필 사진 태그 */
 const DMProfileIcon = styled.img`
   width: 46px;
