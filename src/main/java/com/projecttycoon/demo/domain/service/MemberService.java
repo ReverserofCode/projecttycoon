@@ -47,6 +47,19 @@ public class MemberService {
             log.info("can not found ID");
         }
     }
+    public void memberUpdateEcPw(String memberId, MemberRequestDTO requestDTO) {
+        Optional<MemberEntity> result = memberRepository.findById(memberId);
+        if (result.isPresent()) {
+            MemberEntity memberEntity;
+            memberEntity = result.get();
+            requestDTO.setMemberPw(memberEntity.getMemberPw());
+            memberEntity.memberUpdate(requestDTO);
+            memberRepository.save(memberEntity);
+        }
+        else{
+            log.info("can not found ID");
+        }
+    }
 
     public List<MemberRequestDTO> memberList() {
         List<MemberEntity> entityList = memberRepository.findAllByOrderByCreatedAtDesc();

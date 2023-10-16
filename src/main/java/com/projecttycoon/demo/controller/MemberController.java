@@ -72,6 +72,13 @@ public class MemberController {
         memberService.memberUpdate(memberId, memberRequestDTO);
     }
 
+    @PutMapping("/api/memberUpdateEcPw/{memberId}")
+    public void updateDbEcPw(@PathVariable String memberId, @RequestBody MemberRequestDTO memberRequestDTO) {
+        log.info("call updateDb");
+        log.info(memberId);
+        memberService.memberUpdateEcPw(memberId, memberRequestDTO);
+    }
+
     @DeleteMapping("/api/memberDelete/{memberId}")
     public void deleteDb(@PathVariable String memberId) {
         memberService.memberDelete(memberId);
