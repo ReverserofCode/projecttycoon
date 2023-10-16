@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { BsSend } from "react-icons/bs";
-import { DMGetMessage } from "./DM";
+import { DMGetMessage, DMSend } from "./DM";
 /** 자신의 DM 아이템 프로필 사진 태그 */
 const DMProfileIcon = styled.img`
   width: 46px;
@@ -194,11 +194,9 @@ function ChatRoom({ chatData, chatTarget, myId, targetId, handleSetData }) {
   const handleSend = useCallback(() => {
     DMSend(chatInput, targetId, myId, chatTarget.dmroom.dmroomId).then(() => {
       setChatInput("");
-      handleSetData(
-        DMGetMessage(chatTarget.dmroom.dmroomId).then((res) => {
-          return res;
-        })
-      );
+      DMGetMessage(chatTarget.dmroom.dmroomId).then((res) => {
+        handleSetData(res);
+      });
     });
   }, [chatInput, chatTarget.dmroom.dmroomId, handleSetData, myId, targetId]);
   /** 채팅내용 리스트로부터 채팅 아이템을 생성 하는 function */
@@ -263,11 +261,9 @@ function ChatRoom({ chatData, chatTarget, myId, targetId, handleSetData }) {
   /** 채팅내용 3초마다 업데이트 하기 */
   useEffect(() => {
     const dataSet = setInterval(() => {
-      handleSetData(
-        DMGetMessage(chatTarget.dmroom.dmroomId).then((res) => {
-          return res;
-        })
-      );
+      DMGetMessage(chatTarget.dmroom.dmroomId).then((res) => {
+        handleSetData(res);
+      });
     }, 3000);
     return () => {
       clearInterval(dataSet);
