@@ -194,9 +194,11 @@ function ChatRoom({ chatData, chatTarget, myId, targetId, handleSetData }) {
   const handleSend = useCallback(() => {
     DMSend(chatInput, targetId, myId, chatTarget.dmroom.dmroomId).then(() => {
       setChatInput("");
-      DMGetMessage(chatTarget.dmroom.dmroomId).then((res) => {
-        handleSetData(res);
-      });
+      handleSetData(
+        DMGetMessage(chatTarget.dmroom.dmroomId).then((res) => {
+          return res;
+        })
+      );
     });
   }, [chatInput, chatTarget.dmroom.dmroomId, handleSetData, myId, targetId]);
   /** 채팅내용 리스트로부터 채팅 아이템을 생성 하는 function */
@@ -262,7 +264,7 @@ function ChatRoom({ chatData, chatTarget, myId, targetId, handleSetData }) {
   useEffect(() => {
     const dataSet = setInterval(() => {
       handleSetData(
-        DMGetMessage().then((res) => {
+        DMGetMessage(chatTarget.dmroom.dmroomId).then((res) => {
           return res;
         })
       );
@@ -270,7 +272,7 @@ function ChatRoom({ chatData, chatTarget, myId, targetId, handleSetData }) {
     return () => {
       clearInterval(dataSet);
     };
-  }, [handleSetData]);
+  }, [chatTarget.dmroom.dmroomId, handleSetData]);
   return (
     <ChatBase>
       <ChatHeaderZone>
