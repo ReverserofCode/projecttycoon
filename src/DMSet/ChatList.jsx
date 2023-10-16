@@ -145,7 +145,14 @@ function ChatList({
       );
     }
     return contents;
-  }, [DMList, handleSetMod, handleSetTargetId, handlesetChatTarget, myId]);
+  }, [
+    DMList,
+    handleSetData,
+    handleSetMod,
+    handleSetTargetId,
+    handlesetChatTarget,
+    myId,
+  ]);
   return <DMLists>{handleDMListGen()}</DMLists>;
 }
 
