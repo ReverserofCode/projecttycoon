@@ -14,6 +14,9 @@ const PageContainer = styled.div`
   width: 100%;
   height: fit-content;
   margin-top: 20px;
+  @media screen and (max-width: 600px) {
+    align-items: center;
+  }
 `;
 /** 프로젝트 페이지의 사이드바 콘테이너 태그 */
 const SideContents = styled.div`
@@ -25,6 +28,9 @@ const SideContents = styled.div`
   top: 10px;
   left: 10px;
   gap: 15px;
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
 `;
 /** 프로젝트 페이지의 메인 내용을 담고 있는 콘테이너 태그 */
 const MainContents = styled.div`
@@ -35,6 +41,10 @@ const MainContents = styled.div`
   align-items: center;
   margin-left: 50px;
   width: 100%;
+  @media screen and (max-width: 600px) {
+    justify-content: center;
+    margin-left: 0;
+  }
 `;
 /** 프로젝트 페이지의 메인 내용중 프로젝트 리스트를 담고있는 콘테이너 태그 */
 const Board = styled.div`
@@ -47,6 +57,9 @@ const Board = styled.div`
   width: 100%;
   margin-top: 20px;
   max-width: 1200px;
+  @media screen and (max-width: 560px) {
+    justify-content: center;
+  }
 `;
 /** 프로젝트 페이지 업데이트를 위한 loading 콘테이너 태그 */
 const Loader = styled.div`
