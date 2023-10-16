@@ -44,26 +44,19 @@ public class MemberController {
 
     @GetMapping("/sessionObject")
     public MemberLoginDTO loginProcess(@AuthenticationPrincipal MemberLoginDTO memberLoginDTO) {
-
         log.info(memberLoginDTO);
         return memberLoginDTO;
     }
 
     @PostMapping("/api/memberRegister")
     public void registerDB(@RequestBody MemberRequestDTO memberRequestDTO) {
-        memberRequestDTO.setMemberFilePath("http://projecttycoon.com/static/icons/");
-        memberRequestDTO.setMemberFileName("http://projecttycoon.com/static/icons/" + memberService.createIcon());
+        memberRequestDTO.setMemberFilePath("/static/icons/");
+        memberRequestDTO.setMemberFileName(memberService.createIcon());
         log.info(memberRequestDTO.getMemberId());
         memberService.registerMember(memberRequestDTO);
         log.info(memberRequestDTO);
         log.info("call registerDB");
     }
-
-    @PostMapping("/api/loginProcess")
-    public void loginProcess() {
-
-    }
-
 
     @PutMapping("/api/memberUpdate/{memberId}")
     public void updateDb(@PathVariable String memberId, @RequestBody MemberRequestDTO memberRequestDTO) {

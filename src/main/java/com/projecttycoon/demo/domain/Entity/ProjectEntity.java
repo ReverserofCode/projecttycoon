@@ -63,6 +63,7 @@ public class ProjectEntity extends TimeStamp {
             inverseJoinColumns = @JoinColumn(name = "memberId")
     )
     //이 프로젝트를 스크랩한 회원
+    @Builder.Default
     private Set<MemberEntity> scrappedBy = new HashSet<>();
 
     // 스크랩 수 증가

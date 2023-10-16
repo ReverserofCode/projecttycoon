@@ -4,7 +4,9 @@ import com.projecttycoon.demo.domain.TimeStamp;
 import com.projecttycoon.demo.domain.dto.MemberLoginDTO;
 import com.projecttycoon.demo.domain.dto.MemberRequestDTO;
 import lombok.*;
+import org.hibernate.Hibernate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -13,6 +15,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Builder
+@Transactional
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "MemberData")
@@ -52,9 +55,14 @@ public class MemberEntity extends TimeStamp {
     }
 
     //양방향 매핑
-    @ManyToMany(mappedBy = "scrappedBy")
+    @Builder.Default
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "scrappedBy")
     // 멤버가 어떤 프로젝트를 스크랩했는지
     private Set<ProjectEntity> scrappedProjects = new HashSet<>();
+
+    public void initializeScrapedProjects(){
+        Hibernate.initialize(this.scrappedProjects);
+    }
 
     //스크랩 추가
     public void addScrappedProject(ProjectEntity project) {
@@ -65,8 +73,6 @@ public class MemberEntity extends TimeStamp {
     public void removeScrappedProject(ProjectEntity project) {
         project.getScrappedBy().remove(this);
     }
-
-
 
     public MemberEntity(MemberRequestDTO requestDTO) {
         this.memberId = requestDTO.getMemberId();

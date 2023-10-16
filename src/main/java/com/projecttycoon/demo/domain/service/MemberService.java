@@ -23,7 +23,29 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-
+    String[] icons = {
+            "1_shark.png",
+            "2_shark.png",
+            "3_shark.png",
+            "4_shark.png",
+            "5_cat.png",
+            "6_cat.png",
+            "7_dog.png",
+            "8_dog.png",
+            "9_alpaca.png",
+            "10_alpaca.png",
+            "11_alpaca.png",
+            "12_alpaca.png",
+            "13_axolotl.png",
+            "14_axolotl.png",
+            "15_turtle.png",
+            "16_turtle.png",
+            "17_penguin.png",
+            "18_penguin.png",
+            "19_penguin.png",
+            "20_raccoon.png",
+            "21_raccoon.png",
+    };
 
 
     public void registerMember(MemberRequestDTO requestDTO) {
@@ -76,29 +98,7 @@ public class MemberService {
     }
 
     public String createIcon() {
-        String[] icons = {
-                "1_shark.png",
-                "2_shark.png",
-                "3_shark.png",
-                "4_shark.png",
-                "5_cat.png",
-                "6_cat.png",
-                "7_dog.png",
-                "8_dog.png",
-                "9_alpaca.png",
-                "10_alpaca.png",
-                "11_alpaca.png",
-                "12_alpaca.png",
-                "13_axolotl.png",
-                "14_axolotl.png",
-                "15_turtle.png",
-                "16_turtle.png",
-                "17_penguin.png",
-                "18_penguin.png",
-                "19_penguin.png",
-                "20_raccoon.png",
-                "21_raccoon.png",
-        };
+
 
         int randomNum = (int) (Math.random() * 21);
         return icons[randomNum];
