@@ -220,6 +220,10 @@ function ChatRoom({ chatData, chatTarget, myId, targetId, handleSetData }) {
           </Loader>
         );
       }
+      if (loader === false && i === chatData.length - 1) {
+        loader = true;
+        contents.push(<Loader ref={ScrollTo} key={`loading`} />);
+      }
       if (chatData[i].dmfrom.memberId !== targetId) {
         contents.push(
           <ChatGet key={`Chat ${i}`}>
