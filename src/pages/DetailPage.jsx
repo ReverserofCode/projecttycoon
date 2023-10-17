@@ -33,6 +33,9 @@ const SideContents = styled.div`
   top: 80px;
   left: 10px;
   gap: 15px;
+  @media screen and (max-width: 690px) {
+    display: none;
+  }
 `;
 /** DetailPage의 내용이 담기는 핵심 콘테이너 태그 */
 const MainContents = styled.div`
@@ -42,6 +45,10 @@ const MainContents = styled.div`
   justify-content: flex-start;
   align-items: center;
   margin-left: 50px;
+  @media screen and (max-width: 690px) {
+    margin: 10px;
+    margin-top: 0;
+  }
   width: 100%;
   max-width: 1000px;
   position: relative;
@@ -66,20 +73,26 @@ const PosterContain = styled.div`
 `;
 /** 메인 이미지 태그 */
 const Poster = styled.img`
-  height: 500px;
+  width: 90%;
+  max-height: 500px;
 `;
 /** 상세설명창 태그 */
 const ProjectInfos = styled.div`
   display: flex;
   box-sizing: border-box;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 20px 15px;
+  padding: 20px 120px;
   border-top: 5px solid #d9d9d9;
   border-bottom: 5px solid #d9d9d9;
   margin-top: 20px;
-  gap: 200px;
+  @media screen and (max-width: 1050px) {
+    padding: 20px 80px;
+  }
+  @media screen and (max-width: 840px) {
+    padding: 20px 20px;
+  }
 `;
 /** 상세설명 창 세로 정렬 */
 const InfoColumn = styled.div`
@@ -99,6 +112,13 @@ const InfoRow = styled.div`
   width: 100%;
   font-size: 20px;
   gap: 15px;
+  @media screen and (max-width: 1000px) {
+    font-size: 15px;
+  }
+  @media screen and (max-width: 430px) {
+    font-size: 12px;
+  }
+  white-space: nowrap;
 `;
 /** 상세설명 창 모집분야 및 모집인원 콘테이너 태그 */
 const InfoCell = styled.div`
