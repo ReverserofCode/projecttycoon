@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { ScrapDelete, ScrapPost } from "../functional/Scrap";
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -17,6 +18,15 @@ const Container = styled.div`
 
 function Like({ userData }) {
   const [like, setLike] = useState(false);
+  useEffect(() => {
+    let buf = userData?.scrappedProjects;
+    let path = window.location.href.split("/");
+    for (let i = 0; i < buf.length; i++) {
+      if (path[4] === buf[i].projectId) {
+        setLike(true);
+      }
+    }
+  }, [userData?.scrappedProjects]);
   return (
     <Container
       onClick={() => {
@@ -24,9 +34,25 @@ function Like({ userData }) {
       }}
     >
       {like ? (
-        <AiOutlineHeart color="#000000" />
+        <AiFillHeart
+          color="#ff3434"
+          onClick={() => {
+            if (userData !== undefined) {
+              let path = window.location.href.split("/");
+              ScrapDelete(path[4], userData?.memberId);
+            }
+          }}
+        />
       ) : (
-        <AiFillHeart color="#ff3434" />
+        <AiOutlineHeart
+          color="#000000"
+          onClick={() => {
+            if (userData !== undefined) {
+              let path = window.location.href.split("/");
+              ScrapPost(path[4], userData?.memberId);
+            }
+          }}
+        />
       )}
     </Container>
   );
