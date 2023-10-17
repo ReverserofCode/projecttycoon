@@ -189,11 +189,11 @@ const MenuList = styled.div`
 function Navbar({ userData, handleSetUserData }) {
   const [minimizeMenu, setMinimizeMenu] = useState(true);
   const MenuItem = useRef(null);
-  // useEffect(() => {
-  //   LoginCheck().then((res) => {
-  //     handleSetUserData(res);
-  //   });
-  // }, [handleSetUserData]);
+  useEffect(() => {
+    LoginCheck().then((res) => {
+      handleSetUserData(res);
+    });
+  }, [handleSetUserData]);
   return (
     <Container>
       <Wrap>
