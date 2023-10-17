@@ -10,6 +10,13 @@ const MainContainer = styled.div`
   height: 200vh;
   min-height: 100%;
   position: relative;
+  margin-top: 64px;
+  @media screen and (max-width: 715px) {
+    margin-top: 45px;
+  }
+  @media screen and (max-width: 360px) {
+    margin-top: 40px;
+  }
 `;
 /** 메인 콘텐츠가 담기는 사이즈 제한 콘테이너 태그 */
 const Wrap = styled.div`
