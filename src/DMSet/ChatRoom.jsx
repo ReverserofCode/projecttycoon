@@ -277,8 +277,10 @@ function ChatRoom({ chatData, chatTarget, myId, targetId, handleSetData }) {
         <DMProfileIcon
           src={
             chatTarget.dmroom.dmto.memberId === targetId
-              ? chatTarget.dmroom.dmto.memberFilePath
-              : chatTarget.dmroom.dmfrom.memberFilePath
+              ? "http://projecttycoon.com/static/icons/" +
+                chatTarget.dmroom.dmto.memberFileName
+              : "http://projecttycoon.com/static/icons/" +
+                chatTarget.dmroom.dmfrom.memberFileName
           }
         />
         <DMInfoName>

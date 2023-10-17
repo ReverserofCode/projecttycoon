@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useCallback } from "react";
+import { DMGetMessage } from "./DM";
 /** 자신의 DM리스트를 담고있는 콘테이너 태그 */
 const DMLists = styled.ul`
   display: flex;
@@ -90,7 +91,7 @@ function ChatList({
   /** DM 리스트를 DM 아이템으로 바꾸는 function */
   const handleDMListGen = useCallback(() => {
     let contents = [];
-    for (let i = 0; i < DMList.length; i++) {
+    for (let i = DMList?.length - 1; i >= 0; i--) {
       const date = new Date(DMList[i]?.modifiedAt);
       let hour = date.getHours();
       let min = date.getMinutes();
@@ -116,8 +117,10 @@ function ChatList({
           <DMProfileIcon
             src={
               DMList[i]?.dmroom.dmto.memberId === myId
-                ? DMList[i]?.dmroom.dmfrom.memberFilePath
-                : DMList[i]?.dmroom.dmto.memberFilePath
+                ? "http://projecttycoon.com/static/icons/" +
+                  DMList[i]?.dmroom.dmfrom.memberFileName
+                : "http://projecttycoon.com/static/icons/" +
+                  DMList[i]?.dmroom.dmto.memberFileName
             }
           />
           <DMInfo>

@@ -19,7 +19,12 @@ export const DMRoomGen = async (myId, targetId) => {
       JSON.stringify({
         DMFromId: myId,
         DMToId: targetId,
-      })
+      }),
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     )
     .then((res) => {
       alert("DM 방이 개설 되었습니다.");
