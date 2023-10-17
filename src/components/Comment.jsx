@@ -1,23 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useState } from "react";
 import { CommentGet, CommentPost } from "../functional/Comment";
-let CommentList = [
-  {
-    memberId: "sift",
-    memberNickName: "정성민",
-    contents: "댓글 테스트용",
-  },
-  {
-    memberId: "sift0419",
-    memberNickName: "시프트",
-    contents: "댓글 테스트용",
-  },
-  {
-    memberId: "test11",
-    memberNickName: "test11",
-    contents: "댓글 테스트용",
-  },
-];
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -112,7 +95,7 @@ function Comment({ userData }) {
       <CommentInputZone>
         <CommentInputText
           placeholder={
-            userData === undefined
+            userData === ""
               ? "댓글을 입력하시려면 로그인을 해주세요"
               : "댓글을 입력해 주세요"
           }
@@ -121,18 +104,16 @@ function Comment({ userData }) {
             e.preventDefault();
             setComment(e.target.value);
           }}
-          readOnly={userData === undefined}
+          readOnly={userData === ""}
         ></CommentInputText>
         <CommentInputButton
           onClick={() => {
             const path = window.location.href.split("/");
             CommentPost(path[4], userData?.memberId, comment).then((res) => {
-              res === "success"
-                ? CommentGet(path[4]).then((res) => {
-                    setCommentList(res);
-                    setComment("");
-                  })
-                : "";
+              CommentGet(path[4]).then((res) => {
+                setCommentList(res);
+                setComment("");
+              });
             });
           }}
         >

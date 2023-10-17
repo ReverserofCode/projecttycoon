@@ -13,26 +13,23 @@ export const CommentGet = async (id) => {
 };
 
 export const CommentPost = async (projectId, writerId, contents) => {
-  let data = await axios
+  await axios
     .post(
       `/api/projects/${projectId}/commentsPost`,
-      JSON.stringify(
-        {
-          commentContent: contents,
-          commentWriterId: writerId,
+      JSON.stringify({
+        commentContent: contents,
+        commentWriterId: writerId,
+      }),
+      {
+        headers: {
+          "Content-Type": `application/json`,
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+      }
     )
-    .then(() => {
-      return "success";
+    .then((res) => {
+      return res;
     })
     .catch((err) => {
       console.log(err);
     });
-  return await data;
 };
