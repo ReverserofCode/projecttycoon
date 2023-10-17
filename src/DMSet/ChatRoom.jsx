@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { BsSend } from "react-icons/bs";
-import { DMGetMessage, DMSend } from "./DM";
+import { DMGetMessage } from "./DM";
 /** 자신의 DM 아이템 프로필 사진 태그 */
 const DMProfileIcon = styled.img`
   width: 46px;
@@ -277,8 +277,10 @@ function ChatRoom({ chatData, chatTarget, myId, targetId, handleSetData }) {
         <DMProfileIcon
           src={
             chatTarget.dmroom.dmto.memberId === targetId
-              ? chatTarget.dmroom.dmto.memberFilePath
-              : chatTarget.dmroom.dmfrom.memberFilePath
+              ? "http://projecttycoon.com/static/icons/" +
+                chatTarget.dmroom.dmto.memberFileName
+              : "http://projecttycoon.com/static/icons/" +
+                chatTarget.dmroom.dmfrom.memberFileName
           }
         />
         <DMInfoName>

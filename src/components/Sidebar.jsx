@@ -4,6 +4,7 @@ import { AiOutlinePlusSquare, AiOutlineMinusCircle } from "react-icons/ai";
 import { BsChatDots } from "react-icons/bs";
 import { RoleUpdate } from "../functional/PostProjectUpdate";
 import { GetProjectFromID } from "../functional/GetProject";
+import { DMRoomGen, DMSend } from "../DMSet/DM";
 /** 배경이 되는 콘테이너 태그 */
 const Base = styled.div`
   display: flex;
@@ -176,7 +177,7 @@ const WriterDMButton = styled.div`
   }
 `;
 
-function Sidebar({ value, userData, writer }) {
+function Sidebar({ value, userData, writer, handleSetOpen }) {
   /** 모집인원 수정 모드 */
   const [modifyMod, setModifyMod] = useState(false);
   /** 수정하기 위한 복제 projectWantedRole */
@@ -288,7 +289,21 @@ function Sidebar({ value, userData, writer }) {
         </Writer>
       </Contents>
       <Contents>
-        <WriterDMButton>
+        <WriterDMButton
+          onClick={() => {
+            if (userData !== undefined) {
+              DMRoomGen(userData?.memberId, writer?.memberId).then((res) => {
+                DMSend(
+                  `프로젝트 [${value?.projectTitle}]에 대한 문의사항이 있어 쪽지방이 생성 되었습니다.`,
+                  writer?.memberId,
+                  userData?.memberId,
+                  res?.dmroomId
+                );
+              });
+              handleSetOpen();
+            } else alert("DM 생성을 위해서는 로그인 해주세요");
+          }}
+        >
           <BsChatDots
             color="#35A29F"
             fontSize={"20px"}

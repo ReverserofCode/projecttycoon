@@ -218,6 +218,13 @@ function DetailPage({ userData }) {
   const [DMOpen, setDMOpen] = useState(false);
   /** DM창의 모드를 확인하는 state */
   const [sendMod, setSendMod] = useState("chatlist");
+  /** DM 창 오픈 */
+  const handleSetOpen = useCallback(() => {
+    setDMOpen(true);
+    DMListCall(userData?.memberId).then((res) => {
+      setDMList(res);
+    });
+  }, [userData?.memberId]);
   /** DM창의 모드를 변경하는 function */
   const handleSetMod = useCallback((value) => {
     setSendMod(value);
@@ -352,7 +359,12 @@ function DetailPage({ userData }) {
                 window.history.back();
               }}
             />
-            <Sidebar value={value} userData={userData} writer={writer} />
+            <Sidebar
+              value={value}
+              userData={userData}
+              writer={writer}
+              handleSetOpen={handleSetOpen}
+            />
           </SideContents>
           <MainContents>
             {value.projectWriterId === userData?.memberId ? (
