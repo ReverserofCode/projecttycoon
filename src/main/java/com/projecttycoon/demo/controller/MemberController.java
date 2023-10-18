@@ -93,6 +93,8 @@ public class MemberController {
         MemberRequestDTO memberRequestDTO = new MemberRequestDTO(memberRepository.findByMemberId(memberLoginDTO.getMemberId()).orElseThrow());
         memberRequestDTO.setMyProjectlist(projectRepository.findAllByProjectWriterId(memberRequestDTO.getMemberId()));
         memberRequestDTO.setMyCommentlist(commentService.getCommentByUserId(memberRequestDTO.getMemberId()));
+        MemberEntity member = memberRepository.findByMemberId(memberLoginDTO.getMemberId()).get();
+        memberRequestDTO.setScrappedProjects(member.getScrappedProjects());
         return memberRequestDTO;
     }
 

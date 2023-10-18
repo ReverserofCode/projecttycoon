@@ -6,6 +6,7 @@ import com.projecttycoon.demo.domain.Entity.ProjectEntity;
 import com.projecttycoon.demo.domain.repository.ProjectRepository;
 import lombok.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @Getter
@@ -26,6 +27,7 @@ public class MemberRequestDTO  {
     private String memberStack;
     private List<ProjectEntity> myProjectlist;
     private List<CommentEntity> myCommentlist;
+    private Collection<? extends ProjectEntity> scrappedProjects;
 
     public MemberRequestDTO(MemberEntity memberEntity){
         this.memberId = memberEntity.getMemberId();
