@@ -10,8 +10,8 @@ export default defineConfig({
   server:{
     port:3000,
     proxy:{
-      '/api':'http://projecttycoon.com/'
-      
+      '/api':'http://projecttycoon.com/',
+      '/sessionObject':"http://projecttycoon.com/"
     }
   }
 })
