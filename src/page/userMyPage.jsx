@@ -127,7 +127,7 @@ function UserMypage(){
     }
     const HandleModal2=(e)=>{
         setoff(false);
-        // handleGet
+        handleGet
     }
     const cont=()=>{
         console.log(memberInfo)
