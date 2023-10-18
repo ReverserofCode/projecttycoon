@@ -11,10 +11,8 @@ export const PostAxios = async (
   SelectedLanguages,
   SelectLink,
 ) => {
-///api/memberUpdate/ 비밀번호가 있을때
 if(MemberPw.length===0){
   const Params = {
-    //memberPw:MemberPw,
     memberNickname: MemberNickname, //닉네임 
     memberAcademy: MemberAcademy, //지점
     memberRole: MemberRole, //역할

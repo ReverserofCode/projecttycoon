@@ -642,6 +642,10 @@ const [pwConfirmError, setPwConfirmError] = useState(""); // Separate error stat
 const [selectedLanguages, setSelectedLanguages] = useState(JSON.parse(memberInfo.memberStack));
 //유저-선택한 프로필사진 7_dog.png
 const [selectFile,setSelectFile]=useState("/"+memberInfo.memberFileName)
+//유저-프로젝트개설-이미지
+const [projectMainImg,setProjectMainImg]=useState("http://projecttycoon.com"+memberInfo.mylist?.projectFilePath)
+//유저-프로젝트개설-제목
+const [projectMainTitle,setProjectMainTitle]=useState(memberInfo.mylist?.projectTitle)
 
 const handleProfileImg=(e)=>{
  setProfile(e.target.value)

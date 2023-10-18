@@ -20,7 +20,7 @@ const WriteProjectWrap=styled.div`
     flex-wrap: wrap;
     gap: 12px;
 `
-const WirteProject=styled.div`
+const WirteProject=styled.a`
     max-width: 240px;
     height: 170px;
     width: 100%;
@@ -37,6 +37,7 @@ const WirteProject=styled.div`
 }
 `
 const Font=styled.div`
+
     font-size: 14px;
     font-weight: 800;
 `
@@ -50,7 +51,16 @@ const CommentWrap=styled.div`
 const Box=styled.div`
     margin-bottom: 50px;
 `
-function UserWrite(){
+const ImgBox=styled.img`
+    width: 210px;
+    height: 110px;
+    margin-bottom: 4px;
+`
+function UserWrite({memberInfo}){
+
+    // console.log(props)
+    // const projectMainImg=''
+    // const projectMainTitle='dfsdfs'
     return(
         <Wrap>
             <Box>
@@ -58,26 +68,24 @@ function UserWrite(){
                     <Title>개설한 프로젝트</Title>
                 </TitleWrap>
                 <WriteProjectWrap>
-                    <WirteProject>
-                        <img></img>
-                        <Font>프로젝트 제목</Font>
-                    </WirteProject>
-                    <WirteProject>
-                        <img></img>
-                        <Font>프로젝트 제목</Font>
-                    </WirteProject>
-                    <WirteProject>
-                        <img></img>
-                        <Font>프로젝트 제목</Font>
-                    </WirteProject>
-                    <WirteProject>
-                        <img></img>
-                        <Font>프로젝트 제목</Font>
-                    </WirteProject>
-                    <WirteProject>
-                        <img></img>
-                        <Font>프로젝트 제목</Font>
-                    </WirteProject>
+                { 
+                memberInfo?.myProjectlist.length===0?
+                    <>
+                        <WirteProject>
+                            <ImgBox></ImgBox>
+                            <Font>개설한 프로젝트가 없습니다.</Font>
+                        </WirteProject>
+                        </>
+                    :
+                memberInfo?.myProjectlist?.map((list)=>{
+                        return (
+                            <WirteProject>
+                                <ImgBox src={"http://projecttycoon.com"+list.projectFilePath}></ImgBox>
+                                <Font>{list.projectTitle}</Font>
+                            </WirteProject>
+                        )
+                })
+                }
                 </WriteProjectWrap>
             </Box>
             <Box>
@@ -85,6 +93,28 @@ function UserWrite(){
                     <Title>게시한 댓글</Title>
                 </TitleWrap>
                 <WriteProjectWrap>
+                { 
+                memberInfo?.myProjectlist.length===0?
+                    <>
+                        <WirteProject>
+                            <ImgBox></ImgBox>
+                            <Font>개설한 프로젝트가 없습니다.</Font>
+                        </WirteProject>
+                        </>
+                    :
+                memberInfo?.myProjectlist?.map((list)=>{
+                        return (
+                            <WirteProject>
+                                <ImgBox src={"http://projecttycoon.com"+list.projectFilePath}></ImgBox>
+                                <Font>{list.projectTitle}</Font>
+                            </WirteProject>
+                        )
+                })
+                }
+
+
+
+
                     <CommentWrap>
                         안녕
                     </CommentWrap>
