@@ -8,6 +8,7 @@ import { SiRabbitmq } from "react-icons/si";
 import { BsPlusSquareDotted, BsDashSquareDotted } from "react-icons/bs";
 import { TiMessageTyping, TiDelete } from "react-icons/ti";
 import Modal from "../functional/Modal";
+import Scroll from "../functional/ScrollButton";
 // 전체틀 , 공통
 const Container = styled.div`
   display: flex;
@@ -15,6 +16,30 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   width: 500px;
+  position: relative;
+`;
+const ScrollButton = styled.div`
+  display: flex;
+  position: fixed;
+  bottom: 90px;
+  right: 120px;
+  width: 100px;
+  @media (min-width: 320px) {
+    bottom: 20px;
+    right: -30px;
+  }
+  @media (min-width: 360px) {
+    bottom: 20px;
+    right: -30px;
+  }
+  @media (min-width: 420px) {
+    bottom: 20px;
+    right: -30px;
+  }
+  @media (min-width: 520px) {
+    bottom: 20px;
+    right: -30px;
+  }
 `;
 const Title = styled.h2`
   padding-top: 50px;
@@ -559,6 +584,7 @@ const Stacks = styled.div`
   background-color: #ffffff;
   height: fit-content;
   min-height: 60px;
+  font-family: "맑은고딕";
 
   /* overflow-y: scroll; */
 
@@ -747,6 +773,15 @@ const CheckId = styled.button`
     padding: 14px 10px;
     font-size: 0.8em;
     border-radius: 4%;
+    &:hover {
+      border-color: #fbeeac;
+      background-color: #fbeeac;
+      transition: 0.3s;
+      color: #4743439c;
+      font-size: 1em;
+      font-weight: 500;
+      cursor: pointer;
+    }
   }
   @media (max-width: 720px) {
     width: 100px;
@@ -754,13 +789,31 @@ const CheckId = styled.button`
     padding: 14px 10px;
     font-size: 0.7em;
     border-radius: 4%;
+    &:hover {
+      border-color: #fbeeac;
+      background-color: #fbeeac;
+      transition: 0.3s;
+      color: #4743439c;
+      font-size: 0.8em;
+      font-weight: 500;
+      cursor: pointer;
+    }
   }
   @media (max-width: 540px) {
     width: 80px;
     transition: 0.2s;
     padding: 14px 10px;
-    font-size: 0.7em;
+    font-size: 0.8em;
     border-radius: 4%;
+    &:hover {
+      border-color: #fbeeac;
+      background-color: #fbeeac;
+      transition: 0.3s;
+      color: #4743439c;
+      font-size: 0.8em;
+      font-weight: 500;
+      cursor: pointer;
+    }
   }
   @media (max-width: 360px) {
     width: 60px;
@@ -768,6 +821,15 @@ const CheckId = styled.button`
     padding: 6px 10px;
     font-size: 0.8em;
     border-radius: 10%;
+    &:hover {
+      border-color: #fbeeac;
+      background-color: #fbeeac;
+      transition: 0.3s;
+      color: #4743439c;
+      font-size: 0.8em;
+      font-weight: 500;
+      cursor: pointer;
+    }
   }
   @media (max-width: 320px) {
     width: 60px;
@@ -775,6 +837,15 @@ const CheckId = styled.button`
     padding: 6px 10px;
     border-radius: 10%;
     font-size: 12px;
+    &:hover {
+      border-color: #fbeeac;
+      background-color: #fbeeac;
+      transition: 0.3s;
+      color: #4743439c;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+    }
   }
 `;
 // 에러메세지
@@ -782,6 +853,32 @@ const ErrorMessage = styled.span`
   font-size: 1em;
   color: #b3b3b3;
   margin-bottom: 20px;
+  @media screen and (min-width: 1200px) {
+    font-size: 1em;
+  }
+  @media (max-width: 1200px) {
+    font-size: 1em;
+  }
+  @media (max-width: 960px) {
+    font-size: 0.9em;
+    margin-bottom: 18px;
+  }
+  @media (max-width: 720px) {
+    font-size: 0.9em;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 540px) {
+    font-size: 0.7em;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 360px) {
+    font-size: 0.7em;
+    margin-bottom: 15px;
+  }
+  @media (max-width: 320px) {
+    font-size: 12px;
+    margin-bottom: 15px;
+  }
 `;
 
 function Register() {
@@ -1077,7 +1174,7 @@ function Register() {
 
             if (!nickRegex.test(newNick)) {
               setNickError(
-                "2~12글자의 한글, 영문, 숫자, '_', '-'만 사용할 수 있습니다."
+                "2~12자의 한글, 영문, 숫자, '_', '-'만 사용할 수 있습니다."
               );
             } else {
               setNickError("");
@@ -1119,9 +1216,7 @@ function Register() {
             const newId = e.target.value;
             setId(newId);
             if (!idRegex.test(newId)) {
-              setIdError(
-                "4~15글자의 영문, 숫자, '_', '-'만 사용할 수 있습니다."
-              );
+              setIdError("4~15자의 영문, 숫자, '_', '-'만 사용할 수 있습니다.");
             } else {
               setIdError("");
             }
@@ -1160,9 +1255,7 @@ function Register() {
 
           if (!passwordRegex.test(newPassword)) {
             console.log("Password does not meet criteria");
-            setPwError(
-              "비밀번호는 8자 이상, 영문 대소문자, 숫자, 특수문자를 포함해야 합니다."
-            );
+            setPwError("영문, 숫자, 특수문자 포함 8자리 이상 입력해 주세요");
           } else {
             console.log("Password meets criteria");
             setPwError(""); // Clear error message if conditions are met.
@@ -1332,6 +1425,9 @@ function Register() {
         <BsPlusSquareDotted size="45" className="PlusBtn"></BsPlusSquareDotted>
       </div>
       <Button onClick={handleSubmit}>SignUp</Button>
+      <ScrollButton>
+        <Scroll></Scroll>
+      </ScrollButton>
     </Container>
   );
 }

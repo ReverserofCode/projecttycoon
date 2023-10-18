@@ -1,0 +1,41 @@
+.scroll{
+    color: #d3d3d3;
+    background-color: #ffffff;
+    border: none;
+    background: none;
+}
+.scroll:hover{
+    color: #d3d3d3;
+    background-color: #ffffff;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+.scroll-to-top-button{
+    border: none;
+    background: none;
+    display: none;  
+}
+@media (min-width: 320px) {
+    .scroll-to-top-button{
+        display: block;
+        font-size: 30px;
+    }
+  }
+  @media (min-width: 360px)  {
+    .scroll-to-top-button{
+        display: block;
+        font-size: 30px;
+    }
+  }
+  @media (min-width: 420px)  {
+    .scroll-to-top-button{
+        display: block;
+        font-size: 30px;
+    }
+  }
+  @media (min-width: 520px) {
+    .scroll-to-top-button{
+        display: block;
+        font-size: 30px;
+    }
+  }
