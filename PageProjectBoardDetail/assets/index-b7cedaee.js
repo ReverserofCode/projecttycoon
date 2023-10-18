@@ -555,7 +555,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),A=F,x=B),P===void 0&&(
   border: 1px solid #dddddd;
   padding: 5px;
   border-radius: 50%;
-`;function lG({userData:e}){const[t,n]=ue.useState(!1);return ue.useEffect(()=>{let r=e==null?void 0:e.scrappedProjects,i=window.location.href.split("/");for(let a=0;a<r.length;a++)i[4]===r[a].projectId&&n(!0)},[e==null?void 0:e.scrappedProjects]),Y.jsx(sG,{onClick:()=>{e!==void 0&&n(!t)},children:t?Y.jsx(xI,{color:"#ff3434",onClick:()=>{if(e!==void 0){let r=window.location.href.split("/");oG(r[4],e==null?void 0:e.memberId)}}}):Y.jsx(LI,{color:"#000000",onClick:()=>{if(e!==void 0){let r=window.location.href.split("/");aG(r[4],e==null?void 0:e.memberId)}}})})}const cG=async e=>await await vt.get(`/api/memberPage/${e}`).then(n=>n.data).catch(n=>{console.log(n)}),uG=ee.div`
+`;function lG({userData:e}){const[t,n]=ue.useState(!1);return ue.useEffect(()=>{var a;let r=e==null?void 0:e.scrappedProjects,i=window.location.href.split("/");for(let o=0;o<(r==null?void 0:r.length);o++)i[4]===((a=r[o])==null?void 0:a.projectId)&&n(!0)},[e==null?void 0:e.scrappedProjects]),Y.jsx(sG,{onClick:()=>{e!==void 0&&n(!t)},children:t?Y.jsx(xI,{color:"#ff3434",onClick:()=>{if(e!==void 0){let r=window.location.href.split("/");oG(r[4],e==null?void 0:e.memberId)}}}):Y.jsx(LI,{color:"#000000",onClick:()=>{if(e!==void 0){let r=window.location.href.split("/");aG(r[4],e==null?void 0:e.memberId)}}})})}const cG=async e=>await await vt.get(`/api/memberPage/${e}`).then(n=>n.data).catch(n=>{console.log(n)}),uG=ee.div`
   display: flex;
   justify-content: center;
   align-items: center;
