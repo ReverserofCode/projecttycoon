@@ -159,4 +159,10 @@ public class MemberController {
         }
         return checkResult;
     }
+
+    @GetMapping("/api/callAllMemberRequest")
+    public List<MemberEntity> requestAllMember() {
+        log.info("requestAllMember");
+        return memberRepository.findAll();
+    }
 }
