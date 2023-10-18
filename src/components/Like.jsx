@@ -21,8 +21,8 @@ function Like({ userData }) {
   useEffect(() => {
     let buf = userData?.scrappedProjects;
     let path = window.location.href.split("/");
-    for (let i = 0; i < buf.length; i++) {
-      if (path[4] === buf[i].projectId) {
+    for (let i = 0; i < buf?.length; i++) {
+      if (path[4] === buf[i]?.projectId) {
         setLike(true);
       }
     }
