@@ -16,208 +16,208 @@ import { FiFilePlus } from "react-icons/fi";
 
 // import {FiFilePlus} from "react-icons/fi"
 
-const But=styled.button`
- border: none;
- outline: none;
-    width: ${(props)=>props.width|| "420px"};
-    height: ${(props)=>props.width|| "30px"};
-    background-color: ${(props)=>props.background_color|| "#0B666A"};
-    color: white;
-    @media screen and (max-width: 720px ){
-        width: 330px;
-    }
-    @media screen and (max-width: 370px ){
-        width: 170px;
-    }
-`
-const WriteWrap=styled.div`
-    margin: 0 auto;
-    max-width: 1000px;
-    @media screen and (max-width: 720px ){
-        width: 700px;
-        padding: 4px;
-    }
-    @media screen and (max-width: 370px ){
-        width: 360px;
-        padding: 4px;
-    }
-`
-const Wrap=styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+const But = styled.button`
+  border: none;
+  outline: none;
+  width: ${(props) => props.width || "420px"};
+  height: ${(props) => props.width || "30px"};
+  background-color: ${(props) => props.background_color || "#0B666A"};
+  color: white;
+  @media screen and (max-width: 720px) {
+    width: 330px;
+  }
+  @media screen and (max-width: 370px) {
+    width: 170px;
+  }
+`;
+const WriteWrap = styled.div`
+  margin: 0 auto;
+  max-width: 1000px;
+  @media screen and (max-width: 720px) {
+    width: 700px;
     padding: 4px;
-    @media screen and (max-width: 720px ){
-        width: 100%;
-    }
-    @media screen and (max-width: 370px ){
-        width: 100%;
-    }
-`
-const Title=styled.h2`
+  }
+  @media screen and (max-width: 370px) {
+    width: 360px;
+    padding: 4px;
+  }
+`;
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px;
+  @media screen and (max-width: 720px) {
     width: 100%;
-    border-bottom:3px gray solid;
-    padding: 12px;
-    @media screen and (max-width: 370px ){
-        font-size: 18px;
-    }
-`
-const Subtitle=styled.h4`
-    max-width: 910px;
+  }
+  @media screen and (max-width: 370px) {
     width: 100%;
-    margin: 0;
-    padding: 8px 0;
-`
-const Select=styled.select`
-   max-width: ${(props)=>props.width|| "319px"};
-   width: 100%;
-   padding :12px 4px;
-   font-size: 14px;
-   color: gray;
-   font-weight: 600;
-`
-const SubSelect=styled.select`
-    width: 80px;
-    padding :12px 4px;
-    font-size: 14px;
-    color: gray;
-    font-weight: 600;
-    margin-right: 20px;
-    margin-left: 4px;
-`
-const InputTitle=styled.input`
-    max-width: 843px;
-    width: 100%;
-    padding :12px 4px;
-    font-size: 14px;
-    color: gray;
-    font-weight: 600;
-    margin-bottom:20px;
-`
-const MainImgWrap=styled.div`
-display: flex;
-align-items: center;
-    width: 620px;
-    height: 400px;
-    position: relative;
-    @media screen and (max-width: 370px ){
-        width: 360px;
-        height: 250px;
-    }
-`
-const MainImg=styled.img`
-    width:95%;
-    height: 90%;
-`
-const Ji=styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: space-evenly;
-    width: 100%;
-    height: 100%;
-    position: absolute;
+  }
+`;
+const Title = styled.h2`
+  width: 100%;
+  border-bottom: 3px gray solid;
+  padding: 12px;
+  @media screen and (max-width: 370px) {
+    font-size: 18px;
+  }
+`;
+const Subtitle = styled.h4`
+  max-width: 910px;
+  width: 100%;
+  margin: 0;
+  padding: 8px 0;
+`;
+const Select = styled.select`
+  max-width: ${(props) => props.width || "319px"};
+  width: 100%;
+  padding: 12px 4px;
+  font-size: 14px;
+  color: gray;
+  font-weight: 600;
+`;
+const SubSelect = styled.select`
+  width: 80px;
+  padding: 12px 4px;
+  font-size: 14px;
+  color: gray;
+  font-weight: 600;
+  margin-right: 20px;
+  margin-left: 4px;
+`;
+const InputTitle = styled.input`
+  max-width: 843px;
+  width: 100%;
+  padding: 12px 4px;
+  font-size: 14px;
+  color: gray;
+  font-weight: 600;
+  margin-bottom: 20px;
+`;
+const MainImgWrap = styled.div`
+  display: flex;
+  align-items: center;
+  width: 620px;
+  height: 400px;
+  position: relative;
+  @media screen and (max-width: 370px) {
+    width: 360px;
+    height: 250px;
+  }
+`;
+const MainImg = styled.img`
+  width: 95%;
+  height: 90%;
+`;
+const Ji = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+  position: absolute;
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.65);
   opacity: 0;
-  &:hover{
+  &:hover {
     opacity: 0.8;
   }
-`
-const SubImg=styled.img`
-    width: 100%;
-    height: 100%;
-`
-const SubImgBox=styled.div`
-position: relative;
-    width: 230px;
-    height: 120px;
-    @media screen and (max-width: 370px ){
-        width: 50px;
-        height: 30px;
-    }
-`
-const Bot=styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    /* border: 1px gray solid; */
-`
-const DeleteBtn=styled.button`
+`;
+const SubImg = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+const SubImgBox = styled.div`
+  position: relative;
+  width: 230px;
+  height: 120px;
+  @media screen and (max-width: 370px) {
+    width: 50px;
+    height: 30px;
+  }
+`;
+const Bot = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  /* border: 1px gray solid; */
+`;
+const DeleteBtn = styled.button`
   width: 35px;
-`
-const Right=styled.div`
-    /* width: 100%; */
+`;
+const Right = styled.div`
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+  @media screen and (max-width: 370px) {
     display: flex;
-    flex-direction:column;
-    justify-content: space-around;
-    cursor: pointer;
-    @media screen and (max-width: 370px ){
-        display: flex;
-        flex-direction: row;
-    }
-`
-const ImgWrap=styled.div`
-max-width: 950px;
-    display: flex;
-    /* border: 1px green solid; */
-    justify-content: space-between;
-    @media screen and (max-width: 720px ){
-        padding: 4px;
-        width: 700px;
-    }
-    @media screen and (max-width: 370px ){
-        display: flex;
-        flex-direction:column;
-        padding: 4px;
-        width: 360px;
-        height: 200px;
-    }
-`
-const Ty =styled.div`
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 4px;
-`
-const Top=styled.div`
-    /* border: 1px solid blue; */
-    max-width: 400px;
-    width: 100%;
+    flex-direction: row;
+  }
+`;
+const ImgWrap = styled.div`
+  max-width: 950px;
+  display: flex;
+  /* border: 1px green solid; */
+  justify-content: space-between;
+  @media screen and (max-width: 720px) {
+    padding: 4px;
+    width: 700px;
+  }
+  @media screen and (max-width: 370px) {
     display: flex;
     flex-direction: column;
-    @media screen and (max-width: 720px ){
-        width: 330px;
-    }
-    @media screen and (max-width: 370px ){
-        width: 172px;
-    }
-`
-const DateInput=styled.input`
-    width: 100%;
-    max-width: 385px;
-    height: 40px;
-`
-const ImgInput=styled.input`
-position: absolute;
+    padding: 4px;
+    width: 360px;
+    height: 200px;
+  }
+`;
+const Ty = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 4px;
+`;
+const Top = styled.div`
+  /* border: 1px solid blue; */
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  @media screen and (max-width: 720px) {
+    width: 330px;
+  }
+  @media screen and (max-width: 370px) {
+    width: 172px;
+  }
+`;
+const DateInput = styled.input`
+  width: 100%;
+  max-width: 385px;
+  height: 40px;
+`;
+const ImgInput = styled.input`
+  position: absolute;
   width: 1px;
   height: 1px;
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip:rect(0,0,0,0);
+  clip: rect(0, 0, 0, 0);
   border: 0;
-    /* left: 50%;  */
-    /* width: 70px;
+  /* left: 50%;  */
+  /* width: 70px;
     height: 50px;
     border-radius: 50%;*/
-`
+`;
 const Txt = styled.div`
   font-size: 20px;
   font-weight: 800;
   color: white;
-`
+`;
 const FileLabel = styled.label`
   display: flex;
   align-items: center;
@@ -230,12 +230,12 @@ const FileLabel = styled.label`
   background-color: #0b666a;
   cursor: pointer;
   border-radius: 50%;
-`
+`;
 const ButBox = styled.div`
   margin-top: 20px;
   display: flex;
   justify-content: space-around;
-`
+`;
 const PlusBtn = styled.button`
   width: 44px;
   font-size: 12px;
@@ -260,7 +260,7 @@ function Write({ userData }) {
   //이미지 디폴트 = false이미지 input = true
   const [imageMod, setImageMod] = useState(false);
   //모집지역
-  const [academy, setAcademy] = useState("");
+  const [academy, setAcademy] = useState("강남");
   //모집분야-초기값
   const [selectFields, setSelectFields] = useState([
     { role: "back", complete: 0, personnel: 1 },
