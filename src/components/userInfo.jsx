@@ -274,7 +274,6 @@ overflow-y: hidden;
 `
 const Nav=styled.div`
 font-size: 13px;
-/* font-weight: 800; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -322,7 +321,6 @@ const LinkInput=styled.input`
 const Profile=styled.select`
     width: 100px;
     padding: 4px;
-    /* height: 20px; */
 `
 const PwBox=styled.div`
     display: flex;
@@ -373,15 +371,14 @@ const Wrap360=styled.div`
     flex-direction: column;
     }
 `
+
 function UserInfo(){
-
-
-const handlePost=async()=>{
+    const handlePost=async()=>{
     let data= new FormData();
     data.append("file",)
     axios
     .put(`/api/memberUpdate/${memberId}`)
-}
+    }
 
 // function
     function list(){
@@ -653,14 +650,6 @@ const imageInput=useRef();
     return(
         <Wrap>
         <Content>
-            {/* <NavWrap>
-                <Nav>
-                    내프로필
-                </Nav>
-                <Nav>
-                    활동관리
-                </Nav>
-            </NavWrap> */}
             <Top>
                 <Right>
                     <ImgWrap>
@@ -863,7 +852,7 @@ const imageInput=useRef();
             <But2 onClick={()=>{
                 if(defaultImg[profile]==="/"){
                     PostAxios(
-                        //비밀번호넣어야함
+                        pw,
                         memberInfo.memberId,
                         memberInfo.memberNickname,
                         memberInfo.memberAcademy,
@@ -876,7 +865,7 @@ const imageInput=useRef();
                 }
                 else{
                     PostAxios(
-                        //비밀번호넣어야함
+                        pw,
                         memberInfo.memberId,
                         memberInfo.memberNickname,
                         memberInfo.memberAcademy,

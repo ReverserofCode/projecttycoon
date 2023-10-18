@@ -3,7 +3,7 @@ import UserInfo from "../components/userInfo"
 import UserWrite from "../components/userWrite"
 import styled from "@emotion/styled";
 import {useState} from "react";
-import {  PostAxios } from "../functional/PostAxios";
+import { PostAxios } from "../functional/PostAxios";
 
 const NavWrap=styled.div`
     display: flex;
@@ -40,10 +40,9 @@ function UserMypage(){
         setoff(false);
         
     }
-    axios.get
     return(
         <Wrap>
-            <button onClick={PostAxios()}>ddddddddddddd</button>
+            {/* <button onClick={PostAxios()}>ddddddddddddd</button> */}
             <NavWrap>
                 <Nav onClick={HandleModal1}>
                     내프로필
