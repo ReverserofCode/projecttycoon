@@ -87,6 +87,7 @@ function ChatList({
   myId,
   handleSetTargetId,
   handlesetChatTarget,
+  handleSetData,
 }) {
   /** DM 리스트를 DM 아이템으로 바꾸는 function */
   const handleDMListGen = useCallback(() => {
@@ -110,7 +111,7 @@ function ChatList({
                 : DMList[i]?.dmroom.dmto.memberId
             );
             DMGetMessage(DMList[i]?.dmroom.dmroomId).then((res) => {
-              setChatData(res);
+              handleSetData(res);
             });
           }}
         >
@@ -147,7 +148,14 @@ function ChatList({
       );
     }
     return contents;
-  }, [DMList, handleSetMod, handleSetTargetId, handlesetChatTarget, myId]);
+  }, [
+    DMList,
+    handleSetData,
+    handleSetMod,
+    handleSetTargetId,
+    handlesetChatTarget,
+    myId,
+  ]);
   return <DMLists>{handleDMListGen()}</DMLists>;
 }
 

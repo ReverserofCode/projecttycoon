@@ -113,6 +113,7 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
           myId={myId}
           handleSetTargetId={handleSetTargetId}
           handlesetChatTarget={handlesetChatTarget}
+          handleSetData={handleSetData}
           key={`chat list ${myId}`}
         />
       ) : Mod === "chat" ? (
