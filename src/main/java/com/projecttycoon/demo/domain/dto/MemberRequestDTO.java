@@ -1,5 +1,6 @@
 package com.projecttycoon.demo.domain.dto;
 
+import com.projecttycoon.demo.domain.Entity.CommentEntity;
 import com.projecttycoon.demo.domain.Entity.MemberEntity;
 import com.projecttycoon.demo.domain.Entity.ProjectEntity;
 import com.projecttycoon.demo.domain.repository.ProjectRepository;
@@ -23,7 +24,8 @@ public class MemberRequestDTO  {
     private String memberFilePath;
     private String memberFileName;
     private String memberStack;
-    private List<ProjectEntity> mylist;
+    private List<ProjectEntity> myProjectlist;
+    private List<CommentEntity> myCommentlist;
 
     public MemberRequestDTO(MemberEntity memberEntity){
         this.memberId = memberEntity.getMemberId();
