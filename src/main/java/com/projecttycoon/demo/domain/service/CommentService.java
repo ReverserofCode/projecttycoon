@@ -72,6 +72,20 @@ public class CommentService {
         return commentRepository.findById(id);
     }
 
+    //특정댓글 조회<마이페이지에서 확인할때 쓰일까??>
+    @Transactional(readOnly = true)
+    public List<CommentEntity> getCommentByUserId(String userId) {
+        Optional<MemberEntity> userOptional = memberRepository.findByMemberId(userId);
+        if (userOptional.isPresent()) {
+            MemberEntity member = userOptional.get();
+
+            return commentRepository.findBycommentWriter(member);
+
+        } else {
+            throw new IllegalArgumentException("멤버 불러오기실패: " + userId);
+        }
+    }
+
 
 //    댓글수정
     @Transactional

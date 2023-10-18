@@ -5,6 +5,7 @@ import com.projecttycoon.demo.domain.dto.CommentRequestDTO;
 import com.projecttycoon.demo.domain.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,6 +37,13 @@ public class CommentController {
         Optional<CommentEntity> optionalComment = commentService.getCommentById(id);
         return optionalComment.orElse(null);
     }
+
+    //마이페이지 댓글 조회
+//    @GetMapping("/mypage/commentsGetList")
+//    public List<CommentEntity> getCommentByUserId(Authentication authentication) {
+//        List<CommentEntity> optionalComment = commentService.getCommentByUserId(id);
+//        return optionalComment.orElse(null);
+//    }
 
     //댓글수정
     @PutMapping("/projects/{projectId}/commentsUpdate/{id}")

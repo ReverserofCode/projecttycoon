@@ -5,8 +5,10 @@ import com.projecttycoon.demo.domain.Entity.MemberSpecifications;
 import com.projecttycoon.demo.domain.Entity.ProjectEntity;
 import com.projecttycoon.demo.domain.dto.MemberLoginDTO;
 import com.projecttycoon.demo.domain.dto.MemberRequestDTO;
+import com.projecttycoon.demo.domain.repository.CommentRepository;
 import com.projecttycoon.demo.domain.repository.MemberRepository;
 import com.projecttycoon.demo.domain.repository.ProjectRepository;
+import com.projecttycoon.demo.domain.service.CommentService;
 import com.projecttycoon.demo.domain.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -25,15 +27,18 @@ import java.util.Optional;
 public class MemberController {
     final MemberRepository memberRepository;
     final ProjectRepository projectRepository;
+
     MemberService memberService;
+    CommentService commentService;
     boolean checkResult;
 
 
     @Autowired
-    MemberController(MemberService memberService, MemberRepository memberRepository, ProjectRepository projectRepository) {
+    MemberController(MemberService memberService, MemberRepository memberRepository, ProjectRepository projectRepository, CommentService commentService) {
         this.memberService = memberService;
         this.memberRepository = memberRepository;
         this.projectRepository = projectRepository;
+        this.commentService = commentService;
         this.checkResult = false;
     }
 
@@ -86,7 +91,8 @@ public class MemberController {
     @GetMapping("/api/mypage")
     public MemberRequestDTO mypage(@AuthenticationPrincipal MemberLoginDTO memberLoginDTO) {
         MemberRequestDTO memberRequestDTO = new MemberRequestDTO(memberRepository.findByMemberId(memberLoginDTO.getMemberId()).orElseThrow());
-        memberRequestDTO.setMylist(projectRepository.findAllByProjectWriterId(memberRequestDTO.getMemberId()));
+        memberRequestDTO.setMyProjectlist(projectRepository.findAllByProjectWriterId(memberRequestDTO.getMemberId()));
+        memberRequestDTO.setMyCommentlist(commentService.getCommentByUserId(memberRequestDTO.getMemberId()));
         return memberRequestDTO;
     }
 
