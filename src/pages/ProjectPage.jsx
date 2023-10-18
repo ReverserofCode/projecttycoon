@@ -6,8 +6,10 @@ import MemberPage from "../components/MemberPage";
 import { Place, Recruit } from "../Filter.json";
 import { BoardListGet } from "../functional/BoardList";
 import { FilterCall } from "../functional/FilterGet";
+import Scroll from "../functional/ScrollButton";
 /** 프로젝트 페이지의 컴포넌트를 담고있는 콘테이너 태그 */
 const PageContainer = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -101,6 +103,13 @@ const Loading = styled.span`
       transform: rotate(360deg);
     }
   }
+`;
+/** 스크롤 up 버튼 생성*/
+const ScrollButton = styled.div`
+  display: flex;
+  position: fixed;
+  bottom: 40px;
+  right: 8px;
 `;
 /** 프로젝트 페이지 */
 function ProjectPage() {
@@ -209,6 +218,9 @@ function ProjectPage() {
       <MainContents>
         <Board key="board">{handleBoardItemGen()}</Board>
       </MainContents>
+      <ScrollButton>
+        <Scroll></Scroll>
+      </ScrollButton>
     </PageContainer>
   );
 }

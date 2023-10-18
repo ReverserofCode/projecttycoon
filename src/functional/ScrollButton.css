@@ -1,0 +1,19 @@
+.scroll{
+    color: #d3d3d3;
+    background-color: #ffffff;
+    border: none;
+    background: none;
+}
+.scroll:hover{
+    color: #d3d3d3;
+    background-color: #ffffff;
+    cursor: pointer;
+    transform: scale(1.1);
+    border: none;
+    background: none;
+}
+.scroll-to-top-button{
+    border: none;
+    background: none;
+    /* display: none;   */
+}
