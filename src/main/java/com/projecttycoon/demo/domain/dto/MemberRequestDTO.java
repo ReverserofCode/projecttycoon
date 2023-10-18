@@ -27,7 +27,7 @@ public class MemberRequestDTO  {
     private String memberStack;
     private List<ProjectEntity> myProjectlist;
     private List<CommentEntity> myCommentlist;
-    private Collection<? extends ProjectEntity> scrappedProjects;
+    private Collection<? extends ProjectEntity> myScraplist;
 
     public MemberRequestDTO(MemberEntity memberEntity){
         this.memberId = memberEntity.getMemberId();
