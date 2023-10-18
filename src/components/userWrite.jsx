@@ -41,7 +41,7 @@ const Font=styled.div`
     font-size: 14px;
     font-weight: 800;
 `
-const CommentWrap=styled.div`
+const CommentWrap=styled.a`
     width: 100%;
     border:1px #0B666A solid;
     padding: 12px 12px;
@@ -71,15 +71,14 @@ function UserWrite({memberInfo}){
                 { 
                 memberInfo?.myProjectlist.length===0?
                     <>
-                        <WirteProject>
-                            <ImgBox></ImgBox>
+                        <CommentWrap>
                             <Font>개설한 프로젝트가 없습니다.</Font>
-                        </WirteProject>
+                        </CommentWrap>
                         </>
                     :
                 memberInfo?.myProjectlist?.map((list)=>{
                         return (
-                            <WirteProject>
+                            <WirteProject href=''>
                                 <ImgBox src={"http://projecttycoon.com"+list.projectFilePath}></ImgBox>
                                 <Font>{list.projectTitle}</Font>
                             </WirteProject>
@@ -94,39 +93,24 @@ function UserWrite({memberInfo}){
                 </TitleWrap>
                 <WriteProjectWrap>
                 { 
-                memberInfo?.myProjectlist.length===0?
+                memberInfo?.myCommentlist.length===0?
                     <>
-                        <WirteProject>
-                            <ImgBox></ImgBox>
-                            <Font>개설한 프로젝트가 없습니다.</Font>
-                        </WirteProject>
-                        </>
+                        <CommentWrap>
+                            <Font>게시한 댓글이 없습니다.</Font>
+                        </CommentWrap>
+                    </>
                     :
-                memberInfo?.myProjectlist?.map((list)=>{
+                memberInfo?.myCommentlist?.map((list)=>{
                         return (
-                            <WirteProject>
-                                <ImgBox src={"http://projecttycoon.com"+list.projectFilePath}></ImgBox>
-                                <Font>{list.projectTitle}</Font>
-                            </WirteProject>
+                            <>
+                            <CommentWrap href={`http://projecttycoon.com/callPageProjectBoardDetail/${list?.commentProject?.projectId}`}>
+                                <Font>{list.commentContent}</Font>
+                            </CommentWrap>
+                            </>
+                            
                         )
                 })
                 }
-
-
-
-
-                    <CommentWrap>
-                        안녕
-                    </CommentWrap>
-                    <CommentWrap>
-                        안녕
-                    </CommentWrap>
-                    <CommentWrap>
-                        안녕
-                    </CommentWrap>
-                    <CommentWrap>
-                        안녕
-                    </CommentWrap>
                 </WriteProjectWrap>
             </Box>
         </Wrap>

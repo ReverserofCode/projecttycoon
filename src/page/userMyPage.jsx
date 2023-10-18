@@ -35,241 +35,73 @@ function UserMypage(){
     //     console.log(memberInfo)
     // }
     const info={
-        "memberId": "test1",
-        "memberPw": "$2a$10$YST8WdBgYpGAQdR/PDTT4ugDgDDv2he8ItykiNbPrfOVNUTQDLsl.",
-        "memberRole": "back",
-        "memberIntroduce": "하하",
-        "memberLink": "[{\"option\":\"Git\",\"value\":\"\"},{\"option\":\"Git\",\"value\":\"\"}]",
+        "memberId": "kny1",
+        "memberPw": "$2a$10$x2fNQfWUuXMAf/bOYb0Q3O2ypMXwdhfFUvJiArh7R9H9ln7ToLBH6",
+        "memberRole": "front",
+        "memberIntroduce": "gd",
+        "memberLink": "[{\"option\":\"Git\",\"value\":\"kkk@naver.com\"}]",
         "memberAcademy": "노원",
-        "memberNickname": "test1",
+        "memberNickname": "nayoung",
         "memberFilePath": "/static/icons/",
-        "memberFileName": "16_turtle.png",
-        "memberStack": "[\"Python\",\"C\",\"C++\",\"C#\",\"PHP\",\"SQL\",\"Kotlin\",\"Go\"]",
-        "myProjectlist": [
-        {
-        "createdAt": "2023-10-18T06:21:39.210+00:00",
-        "modifiedAt": "2023-10-18T06:21:39.210+00:00",
-        "projectId": 2,
-        "projectTitle": "디폴트 이미지 지정을 위한 프로젝트 3",
-        "projectContent": "<h1>프로젝트 3</h1>",
-        "projectWantedRole": "[{\"role\": \"bigData\", \"complete\": 0, \"personnel\": \"4\"}, {\"role\": \"network\", \"complete\": 0, \"personnel\": \"3\"}]",
-        "projectDue": "2023-09-20T00:00:00.000+00:00",
-        "projectAcademy": "노원",
-        "projectStatus": true,
-        "projectWriterId": "test1",
-        "projectWriterNick": "test1",
-        "projectFilePath": "/webapp/34dd8a56-3910-4f3a-89e3-ab24352bb6c1_",
-        "projectFileName": "projectImage",
-        "projectScrapNum": 1,
-        "parsedProjectWantedRole": [
-        {
-        "role": "bigData",
-        "complete": 0,
-        "personnel": 4
-        },
-        {
-        "role": "network",
-        "complete": 0,
-        "personnel": 3
-        }
-        ]
-        }
-        ],
+        "memberFileName": "5_cat.png",
+        "memberStack": "[\"JavaScript\",\"CSS\",\"HTML\"]",
+        "myProjectlist": [],
         "myCommentlist": [
-        {
-        "createdAt": "2023-10-18T06:22:09.809+00:00",
-        "modifiedAt": "2023-10-18T06:22:09.809+00:00",
-        "commentId": 3,
-        "commentProject": {
-        "createdAt": "2023-10-18T06:19:57.442+00:00",
-        "modifiedAt": "2023-10-18T06:43:13.420+00:00",
-        "projectId": 1,
-        "projectTitle": "디폴트 이미지 지정을 위한 프로젝트 3",
-        "projectContent": "<h1>프로젝트 3</h1>",
-        "projectWantedRole": "[{\"role\": \"bigData\", \"complete\": 0, \"personnel\": \"4\"}, {\"role\": \"network\", \"complete\": 0, \"personnel\": \"3\"}]",
-        "projectDue": "2023-09-20T00:00:00.000+00:00",
-        "projectAcademy": "노원",
-        "projectStatus": true,
-        "projectWriterId": "Tester",
-        "projectWriterNick": "I`m Tester",
-        "projectFilePath": "/webapp/65a6808d-1cf6-45a3-aecc-4a18f11d959e_",
-        "projectFileName": "projectImage",
-        "projectScrapNum": 2,
-        "parsedProjectWantedRole": [
-        {
-        "role": "bigData",
-        "complete": 0,
-        "personnel": 4
-        },
-        {
-        "role": "network",
-        "complete": 0,
-        "personnel": 3
-        }
-        ]
-        },
-        "commentWriter": {
-        "createdAt": "2023-10-18T06:18:49.866+00:00",
-        "modifiedAt": "2023-10-18T06:18:49.911+00:00",
-        "memberId": "test1",
-        "memberPw": "$2a$10$YST8WdBgYpGAQdR/PDTT4ugDgDDv2he8ItykiNbPrfOVNUTQDLsl.",
-        "memberNickname": "test1",
-        "memberAcademy": "노원",
-        "memberRole": "back",
-        "memberIntroduce": "하하",
-        "memberLink": "[{\"option\":\"Git\",\"value\":\"\"},{\"option\":\"Git\",\"value\":\"\"}]",
-        "memberFilePath": "/static/icons/",
-        "memberFileName": "16_turtle.png",
-        "memberStack": "[\"Python\",\"C\",\"C++\",\"C#\",\"PHP\",\"SQL\",\"Kotlin\",\"Go\"]",
-        "memberAuthority": [
-        "USER"
+            {
+                "createdAt": "2023-10-18T07:36:59.005+00:00",
+                "modifiedAt": "2023-10-18T07:36:59.005+00:00",
+                "commentId": 25,
+                "commentProject": {
+                    "createdAt": "2023-10-18T07:27:26.261+00:00",
+                    "modifiedAt": "2023-10-18T07:32:59.815+00:00",
+                    "projectId": 12,
+                    "projectTitle": "디폴트 이미지 지정을 위한 프로젝트 3",
+                    "projectContent": "<h1>프로젝트 3</h1>",
+                    "projectWantedRole": "[{\"role\": \"bigData\", \"complete\": 0, \"personnel\": \"4\"}, {\"role\": \"network\", \"complete\": 0, \"personnel\": \"3\"}]",
+                    "projectDue": "2023-09-20T00:00:00.000+00:00",
+                    "projectAcademy": "노원",
+                    "projectStatus": true,
+                    "projectWriterId": "parksangin",
+                    "projectWriterNick": "parksangin",
+                    "projectFilePath": "/webapp/dc1010ee-2ece-4905-b5bf-51fe4c3f2cbd_하리그림.jpg",
+                    "projectFileName": "projectImage",
+                    "projectScrapNum": 2,
+                    "parsedProjectWantedRole": [
+                        {
+                            "role": "bigData",
+                            "complete": 0,
+                            "personnel": 4
+                        },
+                        {
+                            "role": "network",
+                            "complete": 0,
+                            "personnel": 3
+                        }
+                    ]
+                },
+                "commentWriter": {
+                    "createdAt": "2023-10-18T07:36:41.422+00:00",
+                    "modifiedAt": "2023-10-18T07:36:41.423+00:00",
+                    "memberId": "kny1",
+                    "memberPw": "$2a$10$x2fNQfWUuXMAf/bOYb0Q3O2ypMXwdhfFUvJiArh7R9H9ln7ToLBH6",
+                    "memberNickname": "nayoung",
+                    "memberAcademy": "노원",
+                    "memberRole": "front",
+                    "memberIntroduce": "gd",
+                    "memberLink": "[{\"option\":\"Git\",\"value\":\"kkk@naver.com\"}]",
+                    "memberFilePath": "/static/icons/",
+                    "memberFileName": "5_cat.png",
+                    "memberStack": "[\"JavaScript\",\"CSS\",\"HTML\"]",
+                    "memberAuthority": [
+                        "USER"
+                    ],
+                    "scrappedProjects": []
+                },
+                "commentContent": "댓글이에요"
+            }
         ],
-        "scrappedProjects": [
-        {
-        "createdAt": "2023-10-18T06:19:57.442+00:00",
-        "modifiedAt": "2023-10-18T06:43:13.420+00:00",
-        "projectId": 1,
-        "projectTitle": "디폴트 이미지 지정을 위한 프로젝트 3",
-        "projectContent": "<h1>프로젝트 3</h1>",
-        "projectWantedRole": "[{\"role\": \"bigData\", \"complete\": 0, \"personnel\": \"4\"}, {\"role\": \"network\", \"complete\": 0, \"personnel\": \"3\"}]",
-        "projectDue": "2023-09-20T00:00:00.000+00:00",
-        "projectAcademy": "노원",
-        "projectStatus": true,
-        "projectWriterId": "Tester",
-        "projectWriterNick": "I`m Tester",
-        "projectFilePath": "/webapp/65a6808d-1cf6-45a3-aecc-4a18f11d959e_",
-        "projectFileName": "projectImage",
-        "projectScrapNum": 2,
-        "parsedProjectWantedRole": [
-        {
-        "role": "bigData",
-        "complete": 0,
-        "personnel": 4
-        },
-        {
-        "role": "network",
-        "complete": 0,
-        "personnel": 3
-        }
-        ]
-        }
-        ]
-        },
-        "commentContent": "테스트"
-        },
-        {
-        "createdAt": "2023-10-18T06:25:30.914+00:00",
-        "modifiedAt": "2023-10-18T06:25:30.914+00:00",
-        "commentId": 4,
-        "commentProject": {
-        "createdAt": "2023-10-18T06:19:57.442+00:00",
-        "modifiedAt": "2023-10-18T06:43:13.420+00:00",
-        "projectId": 1,
-        "projectTitle": "디폴트 이미지 지정을 위한 프로젝트 3",
-        "projectContent": "<h1>프로젝트 3</h1>",
-        "projectWantedRole": "[{\"role\": \"bigData\", \"complete\": 0, \"personnel\": \"4\"}, {\"role\": \"network\", \"complete\": 0, \"personnel\": \"3\"}]",
-        "projectDue": "2023-09-20T00:00:00.000+00:00",
-        "projectAcademy": "노원",
-        "projectStatus": true,
-        "projectWriterId": "Tester",
-        "projectWriterNick": "I`m Tester",
-        "projectFilePath": "/webapp/65a6808d-1cf6-45a3-aecc-4a18f11d959e_",
-        "projectFileName": "projectImage",
-        "projectScrapNum": 2,
-        "parsedProjectWantedRole": [
-        {
-        "role": "bigData",
-        "complete": 0,
-        "personnel": 4
-        },
-        {
-        "role": "network",
-        "complete": 0,
-        "personnel": 3
-        }
-        ]
-        },
-        "commentWriter": {
-        "createdAt": "2023-10-18T06:18:49.866+00:00",
-        "modifiedAt": "2023-10-18T06:18:49.911+00:00",
-        "memberId": "test1",
-        "memberPw": "$2a$10$YST8WdBgYpGAQdR/PDTT4ugDgDDv2he8ItykiNbPrfOVNUTQDLsl.",
-        "memberNickname": "test1",
-        "memberAcademy": "노원",
-        "memberRole": "back",
-        "memberIntroduce": "하하",
-        "memberLink": "[{\"option\":\"Git\",\"value\":\"\"},{\"option\":\"Git\",\"value\":\"\"}]",
-        "memberFilePath": "/static/icons/",
-        "memberFileName": "16_turtle.png",
-        "memberStack": "[\"Python\",\"C\",\"C++\",\"C#\",\"PHP\",\"SQL\",\"Kotlin\",\"Go\"]",
-        "memberAuthority": [
-        "USER"
-        ],
-        "scrappedProjects": [
-        {
-        "createdAt": "2023-10-18T06:19:57.442+00:00",
-        "modifiedAt": "2023-10-18T06:43:13.420+00:00",
-        "projectId": 1,
-        "projectTitle": "디폴트 이미지 지정을 위한 프로젝트 3",
-        "projectContent": "<h1>프로젝트 3</h1>",
-        "projectWantedRole": "[{\"role\": \"bigData\", \"complete\": 0, \"personnel\": \"4\"}, {\"role\": \"network\", \"complete\": 0, \"personnel\": \"3\"}]",
-        "projectDue": "2023-09-20T00:00:00.000+00:00",
-        "projectAcademy": "노원",
-        "projectStatus": true,
-        "projectWriterId": "Tester",
-        "projectWriterNick": "I`m Tester",
-        "projectFilePath": "/webapp/65a6808d-1cf6-45a3-aecc-4a18f11d959e_",
-        "projectFileName": "projectImage",
-        "projectScrapNum": 2,
-        "parsedProjectWantedRole": [
-        {
-        "role": "bigData",
-        "complete": 0,
-        "personnel": 4
-        },
-        {
-        "role": "network",
-        "complete": 0,
-        "personnel": 3
-        }
-        ]
-        }
-        ]
-        },
-        "commentContent": "테스트2"
-        }
-        ],
-        "scrappedProjects": [
-        {
-        "createdAt": "2023-10-18T06:19:57.442+00:00",
-        "modifiedAt": "2023-10-18T06:43:13.420+00:00",
-        "projectId": 1,
-        "projectTitle": "디폴트 이미지 지정을 위한 프로젝트 3",
-        "projectContent": "<h1>프로젝트 3</h1>",
-        "projectWantedRole": "[{\"role\": \"bigData\", \"complete\": 0, \"personnel\": \"4\"}, {\"role\": \"network\", \"complete\": 0, \"personnel\": \"3\"}]",
-        "projectDue": "2023-09-20T00:00:00.000+00:00",
-        "projectAcademy": "노원",
-        "projectStatus": true,
-        "projectWriterId": "Tester",
-        "projectWriterNick": "I`m Tester",
-        "projectFilePath": "/webapp/65a6808d-1cf6-45a3-aecc-4a18f11d959e_",
-        "projectFileName": "projectImage",
-        "projectScrapNum": 2,
-        "parsedProjectWantedRole": [
-        {
-        "role": "bigData",
-        "complete": 0,
-        "personnel": 4
-        },
-        {
-        "role": "network",
-        "complete": 0,
-        "personnel": 3
-        }
-        ]
-        }
-        ]
-        }
+        "myScraplist": []
+    }
     const [memberInfo, setMemberInfo] = useState(info);
     //유저-프로젝트개설-이미지
     // const [projectMainImg,setProjectMainImg]=useState("http://projecttycoon.com"+memberInfo?.mylist?.projectFilePath)
