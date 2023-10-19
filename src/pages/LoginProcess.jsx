@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import { Header30 } from "../components/TextFormat";
 import LoginForm from "../components/LoginForm";
 import SocialLogin from "../components/SocialLogin";
 import { SubmitButton } from "../components/Buttons";
+import { DMListCall } from "../DMSet/DM";
+import DMmodal from "../DMSet/DMmodal";
+import { AiOutlinePlus } from "react-icons/ai";
+import { HoverIcon } from "../DMSet/Components";
 /** 로그인 페이지의 컴포넌트를 담고있는 콘테이너 태그 */
 const LoginPage = styled.div`
   display: flex;
@@ -37,7 +41,34 @@ const Devider = styled.div`
   background-color: #d9d9d9;
 `;
 
-function LoginProcess() {
+function LoginProcess({ userData }) {
+  /** 자신의 DM 리스트 state */
+  const [DMList, setDMList] = useState();
+  /** DM 창이 열려있는지 확인하는 state */
+  const [DMOpen, setDMOpen] = useState(false);
+  /** DM창의 모드를 확인하는 state */
+  const [sendMod, setSendMod] = useState("chatlist");
+  /** DM 창 오픈 */
+  const handleSetOpen = useCallback(() => {
+    setDMOpen(true);
+    if (userData !== "" && userData !== undefined) {
+      DMListCall(userData?.memberId).then((res) => {
+        setDMList(res);
+      });
+    }
+  }, [userData]);
+  /** DM창의 모드를 변경하는 function */
+  const handleSetMod = useCallback((value) => {
+    setSendMod(value);
+  }, []);
+  /** 자신의 ID를 통해 자신의 DM 리스트를 가져오는 funtion */
+  const handleGetList = useCallback(() => {
+    if (userData !== "" && userData !== undefined) {
+      DMListCall(userData?.memberId).then((res) => {
+        setDMList(res);
+      });
+    }
+  }, [userData]);
   return (
     <LoginPage>
       <LoginBase>
@@ -53,6 +84,26 @@ function LoginProcess() {
       >
         SignUp
       </SubmitButton>
+      <DMmodal
+        status={DMOpen}
+        DMList={DMList}
+        Mod={sendMod}
+        myId={userData?.memberId}
+        handleSetMod={handleSetMod}
+        handleGetList={handleGetList}
+      />
+      <HoverIcon
+        onClick={() => {
+          setDMOpen(!DMOpen);
+          setSendMod("chatlist");
+          if (!DMOpen) {
+            handleGetList();
+          }
+        }}
+        status={DMOpen}
+      >
+        <AiOutlinePlus />
+      </HoverIcon>
     </LoginPage>
   );
 }

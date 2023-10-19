@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import Navbar from "./components/Navbar";
 import LoginProcess from "./pages/LoginProcess";
@@ -34,7 +34,7 @@ function App() {
     <MainContainer>
       <Navbar userData={userData} handleSetUserData={handleSetUserData} />
       <Wrap>
-        <LoginProcess />
+        <LoginProcess userData={userData} />
       </Wrap>
     </MainContainer>
   );
