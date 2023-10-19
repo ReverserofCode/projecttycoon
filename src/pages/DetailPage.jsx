@@ -191,12 +191,16 @@ const ModifyButton = styled.div`
   }
 `;
 function DetailPage({ userData }) {
+  /** 상세 페이지 수정모드 전환 정보를 담는 state */
   const [mod, setMod] = useState("main");
+  /** 작성자 정보를 담는 state */
   const [writer, setWriter] = useState({});
+  /** 프로젝트 정보를 담는 state */
   const [value, setValue] = useState();
+  /** api/mypage의 내용을 담는 state */
   const [myData, setMyData] = useState();
   /** 자신의 DM 리스트 state */
-  const [DMList, setDMList] = useState([]);
+  const [DMList, setDMList] = useState();
   /** DM 창이 열려있는지 확인하는 state */
   const [DMOpen, setDMOpen] = useState(false);
   /** DM창의 모드를 확인하는 state */
@@ -204,20 +208,24 @@ function DetailPage({ userData }) {
   /** DM 창 오픈 */
   const handleSetOpen = useCallback(() => {
     setDMOpen(true);
-    DMListCall(userData?.memberId).then((res) => {
-      setDMList(res);
-    });
-  }, [userData?.memberId]);
+    if (userData !== "" && userData !== undefined) {
+      DMListCall(userData?.memberId).then((res) => {
+        setDMList(res);
+      });
+    }
+  }, [userData]);
   /** DM창의 모드를 변경하는 function */
   const handleSetMod = useCallback((value) => {
     setSendMod(value);
   }, []);
   /** 자신의 ID를 통해 자신의 DM 리스트를 가져오는 funtion */
   const handleGetList = useCallback(() => {
-    DMListCall(userData?.memberId).then((res) => {
-      setDMList(res);
-    });
-  }, [userData?.memberId]);
+    if (userData !== "" && userData !== undefined) {
+      DMListCall(userData?.memberId).then((res) => {
+        setDMList(res);
+      });
+    }
+  }, [userData]);
   /** 모집분야를 상세 설명란에 Icon으로 표기해주는 function */
   const handleRoleIcon = useCallback((role) => {
     let contents = "";

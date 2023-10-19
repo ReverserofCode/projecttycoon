@@ -44,6 +44,9 @@ const Container = styled.div`
     );
   }
   background-color: white;
+  @media screen and (max-width: 370px) {
+    right: 50px;
+  }
 `;
 /** DM 모달의 메인 제목과 창이동 icon을 담고있는 콘테이너 태그 */
 const HeaderZone = styled.div`

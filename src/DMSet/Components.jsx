@@ -16,7 +16,7 @@ export const HoverIcon = styled.div`
   }
   position: fixed;
   bottom: 10px;
-  right: 20px;
+  right: 10px;
   animation: ${(props) => {
       return props.status ? "trueRotate" : "falseRotate";
     }}
@@ -37,5 +37,9 @@ export const HoverIcon = styled.div`
     to {
       rotate: 0deg;
     }
+  }
+  @media screen and (max-width: 370px) {
+    font-size: 20px;
+    padding: 5px;
   }
 `;

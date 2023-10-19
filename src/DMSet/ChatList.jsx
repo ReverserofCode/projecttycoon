@@ -92,60 +92,64 @@ function ChatList({
   /** DM 리스트를 DM 아이템으로 바꾸는 function */
   const handleDMListGen = useCallback(() => {
     let contents = [];
-    for (let i = DMList?.length - 1; i >= 0; i--) {
-      const date = new Date(DMList[i]?.modifiedAt);
-      let hour = date.getHours();
-      let min = date.getMinutes();
-      hour = hour < 10 ? "0" + hour : hour;
-      min = min < 10 ? "0" + min : min;
-      const time = hour + ":" + min;
-      contents.push(
-        <DMItem
-          key={`DM List Item ${i}`}
-          onClick={() => {
-            handleSetMod("chat");
-            handlesetChatTarget(DMList[i]);
-            handleSetTargetId(
-              DMList[i]?.dmroom.dmto.memberId === myId
-                ? DMList[i]?.dmroom.dmfrom.memberId
-                : DMList[i]?.dmroom.dmto.memberId
-            );
-            DMGetMessage(DMList[i]?.dmroom.dmroomId).then((res) => {
-              handleSetData(res);
-            });
-          }}
-        >
-          <DMProfileIcon
-            src={
-              DMList[i]?.dmroom.dmto.memberId === myId
-                ? "http://projecttycoon.com/static/icons/" +
-                  DMList[i]?.dmroom.dmfrom.memberFileName
-                : "http://projecttycoon.com/static/icons/" +
-                  DMList[i]?.dmroom.dmto.memberFileName
-            }
-          />
-          <DMInfo>
-            <DMInfoName>
-              {DMList[i]?.dmroom.dmto.memberId === myId
-                ? DMList[i]?.dmroom.dmfrom.memberNickname
-                : DMList[i]?.dmroom.dmto.memberNickname}
-            </DMInfoName>
-            <DMInfoContents>{DMList[i]?.dmcontent}</DMInfoContents>
-          </DMInfo>
-          <DMStatus>
-            <DMStatusTime>{time}</DMStatusTime>
-            {DMList[i]?.dmto?.memberId === myId ? (
-              DMList[i]?.dmread ? (
-                <DMStatusTime />
+    if (DMList !== undefined) {
+      for (let i = DMList?.length - 1; i >= 0; i--) {
+        const date = new Date(DMList[i]?.modifiedAt);
+        let hour = date.getHours();
+        let min = date.getMinutes();
+        hour = hour < 10 ? "0" + hour : hour;
+        min = min < 10 ? "0" + min : min;
+        const time = hour + ":" + min;
+        contents.push(
+          <DMItem
+            key={`DM List Item ${i}`}
+            onClick={() => {
+              handleSetMod("chat");
+              handlesetChatTarget(DMList[i]);
+              handleSetTargetId(
+                DMList[i]?.dmroom.dmto.memberId === myId
+                  ? DMList[i]?.dmroom.dmfrom.memberId
+                  : DMList[i]?.dmroom.dmto.memberId
+              );
+              DMGetMessage(DMList[i]?.dmroom.dmroomId).then((res) => {
+                handleSetData(res);
+              });
+            }}
+          >
+            <DMProfileIcon
+              src={
+                DMList[i]?.dmroom.dmto.memberId === myId
+                  ? "http://projecttycoon.com/static/icons/" +
+                    DMList[i]?.dmroom.dmfrom.memberFileName
+                  : "http://projecttycoon.com/static/icons/" +
+                    DMList[i]?.dmroom.dmto.memberFileName
+              }
+            />
+            <DMInfo>
+              <DMInfoName>
+                {DMList[i]?.dmroom.dmto.memberId === myId
+                  ? DMList[i]?.dmroom.dmfrom.memberNickname
+                  : DMList[i]?.dmroom.dmto.memberNickname}
+              </DMInfoName>
+              <DMInfoContents>{DMList[i]?.dmcontent}</DMInfoContents>
+            </DMInfo>
+            <DMStatus>
+              <DMStatusTime>{time}</DMStatusTime>
+              {DMList[i]?.dmto?.memberId === myId ? (
+                DMList[i]?.dmread ? (
+                  <DMStatusTime />
+                ) : (
+                  <DMStatusNow>N</DMStatusNow>
+                )
               ) : (
-                <DMStatusNow>N</DMStatusNow>
-              )
-            ) : (
-              <DMStatusTime />
-            )}
-          </DMStatus>
-        </DMItem>
-      );
+                <DMStatusTime />
+              )}
+            </DMStatus>
+          </DMItem>
+        );
+      }
+    } else {
+      contents.push(<p>로그인 후 확인하세요</p>);
     }
     return contents;
   }, [
