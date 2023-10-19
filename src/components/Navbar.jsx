@@ -91,10 +91,18 @@ const Wrap = styled.div`
   align-items: center;
   z-index: 2;
 `;
-const UserIcon = styled.image`
-  height: 50px;
-  z-index: 7;
+/** 사용자 프로필 이미지 태그 */
+const UserIcon = styled.img`
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+  border-radius: 50%;
+  @media screen and (max-width: 950px) {
+    width: 35px;
+    height: 35px;
+  }
 `;
+/** 715px 이하에서 나타나는 메뉴 최소화 컨테이너 태그 */
 const MenuMinimize = styled.div`
   display: none;
   justify-content: center;
@@ -104,6 +112,7 @@ const MenuMinimize = styled.div`
     display: flex;
   }
 `;
+/** 715px 이하에서 나타나는 메뉴 최소화 버튼 태그 */
 const MenuButton = styled.div`
   display: flex;
   flex-direction: column;
@@ -148,18 +157,20 @@ const MenuButton = styled.div`
     height: 16px;
   }
 `;
+/** 715px 이하에서 나타나는 메뉴 리스트 콘테이너 태그 */
 const MenuList = styled.div`
   transform: 1000ms;
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
   box-sizing: border-box;
   padding: 50px;
-  width: 200px;
-  height: 110vh;
   gap: 10px;
+  font-weight: 600;
+  width: 200px;
+  height: 100vh;
   background-color: #c0c0c0;
   top: -13px;
   right: -10;
@@ -210,12 +221,23 @@ function Navbar({ userData, handleSetUserData }) {
           <Link className="menu" href="http://projecttycoon.com/members">
             <Items>멤버리스트</Items>
           </Link>
-          <Link className="menu" href="http://projecttycoon.com/myPage">
+          <Link
+            className="menu"
+            href={
+              userData === "" || userData === undefined
+                ? "http://projecttycoon.com/api/login"
+                : "http://projecttycoon.com/myPage"
+            }
+          >
             <Items>내 페이지</Items>
           </Link>
           <Link
             className="menu"
-            href="http://projecttycoon.com/callPageNewProject"
+            href={
+              userData === "" || userData === undefined
+                ? "http://projecttycoon.com/api/login"
+                : "http://projecttycoon.com/callPageNewProject"
+            }
           >
             <Items>새로운 글쓰기</Items>
           </Link>
@@ -235,26 +257,17 @@ function Navbar({ userData, handleSetUserData }) {
           </MenuButton>
           <MenuList opened={minimizeMenu}>
             <Link className="menu" href="http://projecttycoon.com">
-              <p>홈</p>
+              <p>Home</p>
             </Link>
             <Link className="menu" href="http://projecttycoon.com/projects">
-              <p>프로젝트 팀</p>
+              <p>Project</p>
             </Link>
             <Link className="menu" href="http://projecttycoon.com/members">
-              <p>멤버리스트</p>
-            </Link>
-            <Link className="menu" href="http://projecttycoon.com/myPage">
-              <p>내 페이지</p>
-            </Link>
-            <Link
-              className="menu"
-              href="http://www.projecttycoon.com/callPageNewProject"
-            >
-              <p>새로운 글쓰기</p>
+              <p>Members</p>
             </Link>
           </MenuList>
         </MenuMinimize>
-        {userData === "" ? (
+        {userData === "" || userData === undefined ? (
           <Lists gap={"47px"} color="#35A29F">
             <Link className="user" href="http://projecttycoon.com/api/login">
               <Items>로그인</Items>
@@ -272,7 +285,13 @@ function Navbar({ userData, handleSetUserData }) {
               handleSetUserData("");
             }}
           >
-            <UserIcon src={userData?.memberFilePath} />
+            <UserIcon
+              src={
+                "http://projecttycoon.com/static/icons/" +
+                userData?.memberFileName
+              }
+              alt="usericon"
+            />
             <Items>로그아웃</Items>
           </Lists>
         )}
