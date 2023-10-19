@@ -271,10 +271,10 @@ function Write({ userData }) {
     { label: "백엔드", value: "back" },
     { label: "프론트엔드", value: "front" },
     { label: "AI", value: "ai" },
-    { label: "빅데이터", value: "bigData" },
+    { label: "빅데이터", value: "bigdata" },
     { label: "서버관리자", value: "server" },
     { label: "정보보안", value: "security" },
-    { label: "네트워크관리자", value: "netWork" },
+    { label: "네트워크관리자", value: "network" },
   ];
   const peopleLabels = ["1명", "2명", "3명", "4명", "5명이상"];
   //role
