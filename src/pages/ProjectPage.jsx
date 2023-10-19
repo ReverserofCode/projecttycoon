@@ -7,6 +7,10 @@ import { Place, Recruit } from "../Filter.json";
 import { BoardListGet } from "../functional/BoardList";
 import { FilterCall } from "../functional/FilterGet";
 import Scroll from "../functional/ScrollButton";
+import { DMListCall } from "../DMSet/DM";
+import DMmodal from "../DMSet/DMmodal";
+import { AiOutlinePlus } from "react-icons/ai";
+import { HoverIcon } from "../DMSet/Components";
 /** 프로젝트 페이지의 컴포넌트를 담고있는 콘테이너 태그 */
 const PageContainer = styled.div`
   position: relative;
@@ -108,11 +112,22 @@ const Loading = styled.span`
 const ScrollButton = styled.div`
   display: flex;
   position: fixed;
-  bottom: 40px;
-  right: 8px;
+  bottom: 60px;
+  right: 120px;
+  width: 45px;
+  @media (max-width: 360px) {
+    right: 5px;
+    bottom: 40px;
+  }
+  @media (max-width: 420px) {
+    right: 5px;
+  }
+  @media (max-width: 520px) {
+    right: 5px;
+  }
 `;
 /** 프로젝트 페이지 */
-function ProjectPage() {
+function ProjectPage({ userData }) {
   // 로딩 시점 확인용 ref
   const loader = useRef(null);
   //프로젝트 로딩 길이 제한 state
@@ -121,6 +136,33 @@ function ProjectPage() {
   const [boardList, setBoardList] = useState([]); // boardList를 초기화하고 데이터를 저장할 상태
   const [placeSelect, setPlaceSelect] = useState("");
   const [RecruitSelect, setRecruitSelect] = useState("");
+  /** 자신의 DM 리스트 state */
+  const [DMList, setDMList] = useState();
+  /** DM 창이 열려있는지 확인하는 state */
+  const [DMOpen, setDMOpen] = useState(false);
+  /** DM창의 모드를 확인하는 state */
+  const [sendMod, setSendMod] = useState("chatlist");
+  /** DM 창 오픈 */
+  const handleSetOpen = useCallback(() => {
+    setDMOpen(true);
+    if (userData !== "" && userData !== undefined) {
+      DMListCall(userData?.memberId).then((res) => {
+        setDMList(res);
+      });
+    }
+  }, [userData]);
+  /** DM창의 모드를 변경하는 function */
+  const handleSetMod = useCallback((value) => {
+    setSendMod(value);
+  }, []);
+  /** 자신의 ID를 통해 자신의 DM 리스트를 가져오는 funtion */
+  const handleGetList = useCallback(() => {
+    if (userData !== "" && userData !== undefined) {
+      DMListCall(userData?.memberId).then((res) => {
+        setDMList(res);
+      });
+    }
+  }, [userData]);
 
   // 필터 선택 시 호출되는 함수
   const handleSetPlace = useCallback((e) => {
@@ -221,6 +263,26 @@ function ProjectPage() {
       <ScrollButton>
         <Scroll></Scroll>
       </ScrollButton>
+      <DMmodal
+        status={DMOpen}
+        DMList={DMList}
+        Mod={sendMod}
+        myId={userData?.memberId}
+        handleSetMod={handleSetMod}
+        handleGetList={handleGetList}
+      />
+      <HoverIcon
+        onClick={() => {
+          setDMOpen(!DMOpen);
+          setSendMod("chatlist");
+          if (!DMOpen) {
+            handleGetList();
+          }
+        }}
+        status={DMOpen}
+      >
+        <AiOutlinePlus />
+      </HoverIcon>
     </PageContainer>
   );
 }
