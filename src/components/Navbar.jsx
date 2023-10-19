@@ -91,10 +91,18 @@ const Wrap = styled.div`
   align-items: center;
   z-index: 2;
 `;
-const UserIcon = styled.image`
-  height: 50px;
-  z-index: 7;
+/** 사용자 프로필 이미지 태그 */
+const UserIcon = styled.img`
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+  border-radius: 50%;
+  @media screen and (max-width: 950px) {
+    width: 35px;
+    height: 35px;
+  }
 `;
+/** 715px 이하에서 나타나는 메뉴 최소화 컨테이너 태그 */
 const MenuMinimize = styled.div`
   display: none;
   justify-content: center;
@@ -104,6 +112,7 @@ const MenuMinimize = styled.div`
     display: flex;
   }
 `;
+/** 715px 이하에서 나타나는 메뉴 최소화 버튼 태그 */
 const MenuButton = styled.div`
   display: flex;
   flex-direction: column;
@@ -148,6 +157,7 @@ const MenuButton = styled.div`
     height: 16px;
   }
 `;
+/** 715px 이하에서 나타나는 메뉴 리스트 콘테이너 태그 */
 const MenuList = styled.div`
   transform: 1000ms;
   position: absolute;
@@ -275,7 +285,13 @@ function Navbar({ userData, handleSetUserData }) {
               handleSetUserData("");
             }}
           >
-            <UserIcon src={userData?.memberFilePath} />
+            <UserIcon
+              src={
+                "http://projecttycoon.com/static/icons/" +
+                userData?.memberFileName
+              }
+              alt="usericon"
+            />
             <Items>로그아웃</Items>
           </Lists>
         )}
