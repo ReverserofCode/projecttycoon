@@ -157,6 +157,8 @@ const MenuList = styled.div`
   align-items: flex-start;
   box-sizing: border-box;
   padding: 50px;
+  gap: 10px;
+  font-weight: 600;
   width: 200px;
   height: 100vh;
   background-color: #c0c0c0;
@@ -209,12 +211,23 @@ function Navbar({ userData, handleSetUserData }) {
           <Link className="menu" href="http://projecttycoon.com/members">
             <Items>멤버리스트</Items>
           </Link>
-          <Link className="menu" href="http://projecttycoon.com/myPage">
+          <Link
+            className="menu"
+            href={
+              userData === ""
+                ? "http://projecttycoon.com/api/login"
+                : "http://projecttycoon.com/myPage"
+            }
+          >
             <Items>내 페이지</Items>
           </Link>
           <Link
             className="menu"
-            href="http://www.projecttycoon.com/callPageNewProject"
+            href={
+              userData === ""
+                ? "http://projecttycoon.com/api/login"
+                : "http://projecttycoon.com/callPageNewProject"
+            }
           >
             <Items>새로운 글쓰기</Items>
           </Link>
@@ -234,22 +247,13 @@ function Navbar({ userData, handleSetUserData }) {
           </MenuButton>
           <MenuList opened={minimizeMenu}>
             <Link className="menu" href="http://projecttycoon.com">
-              <p>홈</p>
+              <p>Home</p>
             </Link>
             <Link className="menu" href="http://projecttycoon.com/projects">
-              <p>프로젝트 팀</p>
+              <p>Project</p>
             </Link>
             <Link className="menu" href="http://projecttycoon.com/members">
-              <p>멤버리스트</p>
-            </Link>
-            <Link className="menu" href="http://projecttycoon.com/myPage">
-              <p>내 페이지</p>
-            </Link>
-            <Link
-              className="menu"
-              href="http://www.projecttycoon.com/callPageNewProject"
-            >
-              <p>새로운 글쓰기</p>
+              <p>Members</p>
             </Link>
           </MenuList>
         </MenuMinimize>
