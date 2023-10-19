@@ -18,7 +18,7 @@ export const Base = styled.div`
   flex-direction: column;
   padding: 20px 0 20px 40px;
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  border: 1px solid var(--main-color-main-color-2, #0b666a);
+  border: 1px solid var(--main-color-main-color-2, #071952);
   min-width: 250px;
   width: 100%;
   gap: 15px;
@@ -28,7 +28,8 @@ export const Base = styled.div`
 export const FilterHeader = styled.div`
   font-size: 25px;
   user-select: none;
-  color: #0b666a;
+  font-weight: 600;
+  color: rgb(7, 25, 82);
 `;
 /** 사이드바의 필터적용후 사용되는 submit 태그 */
 export const SubmitButton = styled.div`
@@ -40,14 +41,18 @@ export const SubmitButton = styled.div`
   box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.25);
   background-color: white;
   border-radius: 5px;
-  border: 1px solid var(--main-color-main-color-2, #0b666a);
+  border: 1px solid var(--main-color-main-color-2, #071952);
   width: 100%;
+  height: 50px;
   font-size: 25px;
-  color: #0b666a;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #07305e;
   user-select: none;
   cursor: pointer;
   :hover {
-    background: var(--main-color-main-color-2, #0b656a26);
+    background: var(--main-color-main-color-2, #082d56c4);
+    color: #ffffff;
   }
   :active {
     background-color: white;

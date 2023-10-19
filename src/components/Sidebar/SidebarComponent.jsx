@@ -7,14 +7,15 @@ const CheckContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 600;
   gap: 5px;
   font-size: 20px;
   user-select: none;
   :hover {
-    color: #4fb8ff;
+    color: #6474db;
   }
   &.select {
-    color: #4fb8ff;
+    color: #6474db;
   }
 `;
 /** 셀렉트 형태의 아이템을 담고있는 컨테이너 태그 */
