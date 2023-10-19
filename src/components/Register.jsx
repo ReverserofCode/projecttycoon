@@ -9,6 +9,10 @@ import { BsPlusSquareDotted, BsDashSquareDotted } from "react-icons/bs";
 import { TiMessageTyping, TiDelete } from "react-icons/ti";
 import Modal from "../functional/Modal";
 import Scroll from "../functional/ScrollButton";
+import { DMListCall } from "../DMSet/DM";
+import DMmodal from "../DMSet/DMmodal";
+import { AiOutlinePlus } from "react-icons/ai";
+import { HoverIcon } from "../DMSet/Components";
 // 전체틀 , 공통
 const Container = styled.div`
   display: flex;
@@ -21,24 +25,18 @@ const Container = styled.div`
 const ScrollButton = styled.div`
   display: flex;
   position: fixed;
-  bottom: 90px;
+  bottom: 60px;
   right: 120px;
-  width: 100px;
-  @media (min-width: 320px) {
-    bottom: 20px;
-    right: -30px;
-  }
+  width: 45px;
   @media (min-width: 360px) {
-    bottom: 20px;
-    right: -30px;
+    right: 3px;
+    bottom: 40px;
   }
   @media (min-width: 420px) {
-    bottom: 20px;
-    right: -30px;
+    right: 20px;
   }
   @media (min-width: 520px) {
-    bottom: 20px;
-    right: -30px;
+    right: 20px;
   }
 `;
 const Title = styled.h2`
@@ -881,7 +879,7 @@ const ErrorMessage = styled.span`
   }
 `;
 
-function Register() {
+function Register({ userData }) {
   // 링크
   const [selected, setSelected] = useState("Git");
   const [click, setClick] = useState(false);
@@ -889,6 +887,33 @@ function Register() {
   const [linkInputs, setLinkInputs] = useState([
     { option: "Git", value: "", isOpen: false },
   ]);
+  /** 자신의 DM 리스트 state */
+  const [DMList, setDMList] = useState();
+  /** DM 창이 열려있는지 확인하는 state */
+  const [DMOpen, setDMOpen] = useState(false);
+  /** DM창의 모드를 확인하는 state */
+  const [sendMod, setSendMod] = useState("chatlist");
+  /** DM 창 오픈 */
+  const handleSetOpen = useCallback(() => {
+    setDMOpen(true);
+    if (userData !== "" && userData !== undefined) {
+      DMListCall(userData?.memberId).then((res) => {
+        setDMList(res);
+      });
+    }
+  }, [userData]);
+  /** DM창의 모드를 변경하는 function */
+  const handleSetMod = useCallback((value) => {
+    setSendMod(value);
+  }, []);
+  /** 자신의 ID를 통해 자신의 DM 리스트를 가져오는 funtion */
+  const handleGetList = useCallback(() => {
+    if (userData !== "" && userData !== undefined) {
+      DMListCall(userData?.memberId).then((res) => {
+        setDMList(res);
+      });
+    }
+  }, [userData]);
   // 링크추가
   const handleAddLinkInput = () => {
     if (linkInputs.length < 5) {
@@ -1428,6 +1453,26 @@ function Register() {
       <ScrollButton>
         <Scroll></Scroll>
       </ScrollButton>
+      <DMmodal
+        status={DMOpen}
+        DMList={DMList}
+        Mod={sendMod}
+        myId={userData?.memberId}
+        handleSetMod={handleSetMod}
+        handleGetList={handleGetList}
+      />
+      <HoverIcon
+        onClick={() => {
+          setDMOpen(!DMOpen);
+          setSendMod("chatlist");
+          if (!DMOpen) {
+            handleGetList();
+          }
+        }}
+        status={DMOpen}
+      >
+        <AiOutlinePlus />
+      </HoverIcon>
     </Container>
   );
 }

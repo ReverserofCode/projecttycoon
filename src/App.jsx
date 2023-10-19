@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import Navbar from "./components/Navbar";
 import Register from "./components/Register";
@@ -22,7 +22,6 @@ const MainContainer = styled.div`
 /** 메인 콘텐츠가 담기는 사이즈 제한 콘테이너 태그 */
 const Wrap = styled.div`
   max-width: 1440px;
-  width: 100%;
 `;
 
 function App() {
@@ -34,7 +33,7 @@ function App() {
     <MainContainer>
       <Navbar userData={userData} handleSetUserData={handleSetUserData} />
       <Wrap>
-        <Register />
+        <Register userData={userData} />
       </Wrap>
     </MainContainer>
   );

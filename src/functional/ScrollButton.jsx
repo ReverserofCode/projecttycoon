@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { PiArrowCircleUpBold } from "react-icons/pi";
 import "./ScrollButton.css";
+import styled from "@emotion/styled";
+const Button = styled.button`
+  font-size: 55px;
+  @media screen and (max-width: 370px) {
+    font-size: 35px;
+  }
+`;
 function Scroll() {
   const [showScrollButton, setShowScrollButton] = useState(false);
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -24,12 +30,12 @@ function Scroll() {
   return (
     <div>
       {showScrollButton && (
-        <button className="scroll-to-top-button" onClick={scrollToTop}>
+        <Button className="scroll-to-top-button" onClick={scrollToTop}>
           <PiArrowCircleUpBold
-            size="45"
+            // size="55"
             className="scroll"
           ></PiArrowCircleUpBold>
-        </button>
+        </Button>
       )}
     </div>
   );
