@@ -10,6 +10,7 @@ const Container = styled.div`
   align-items: center;
   padding: 0 30px;
   width: 100%;
+  height: 64px;
   background-color: white;
   border-bottom: 1px solid #071952;
   position: fixed;
@@ -17,7 +18,7 @@ const Container = styled.div`
   @media screen and (max-width: 700px) {
     height: 64px;
   }
-  @media screen and (max-width: 715px) {
+  @media screen and (max-width: 615px) {
     height: 45px;
     padding: 5px 10px;
   }
