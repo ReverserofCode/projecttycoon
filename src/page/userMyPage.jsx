@@ -26,6 +26,9 @@ const Wrap = styled.div`
   width: 100%;
   margin: 0 auto;
   margin-top: 80px;
+  @media screen and (max-width: 370px) {
+    width: 360px;
+  }
 `;
 const Point = styled.div`
   border-bottom: 2px red solid;
