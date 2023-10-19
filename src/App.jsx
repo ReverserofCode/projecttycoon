@@ -33,7 +33,7 @@ function App() {
     <MainContainer>
       <Navbar userData={userData} handleSetUserData={handleSetUserData} />
       <ContentsWrap>
-        <ProjectPage />
+        <ProjectPage userData={userData} />
       </ContentsWrap>
     </MainContainer>
   );
