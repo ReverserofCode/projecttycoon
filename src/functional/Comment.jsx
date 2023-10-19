@@ -33,3 +33,14 @@ export const CommentPost = async (projectId, writerId, contents) => {
       console.log(err);
     });
 };
+
+export const CommentDelete = async (projectId, commentId) => {
+  await axios
+    .post(`/api/projects/${projectId}/commentsDelete/${commentId}`)
+    .then(() => {
+      console.log("댓글이 삭제 되었습니다.");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

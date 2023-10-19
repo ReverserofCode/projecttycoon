@@ -16,30 +16,30 @@ const Container = styled.div`
   border-radius: 50%;
 `;
 
-function Like({ userData }) {
+function Like({ myData }) {
   const [like, setLike] = useState(false);
   useEffect(() => {
-    let buf = userData?.scrappedProjects;
+    let buf = myData?.myScraplist;
     let path = window.location.href.split("/");
     for (let i = 0; i < buf?.length; i++) {
       if (path[4] === buf[i]?.projectId) {
         setLike(true);
       }
     }
-  }, [userData?.scrappedProjects]);
+  }, [myData?.myScraplist]);
   return (
     <Container
       onClick={() => {
-        if (userData !== undefined) setLike(!like);
+        if (myData !== undefined) setLike(!like);
       }}
     >
       {like ? (
         <AiFillHeart
           color="#ff3434"
           onClick={() => {
-            if (userData !== undefined) {
+            if (myData !== undefined) {
               let path = window.location.href.split("/");
-              ScrapDelete(path[4], userData?.memberId);
+              ScrapDelete(path[4], myData?.memberId);
             }
           }}
         />
@@ -47,9 +47,9 @@ function Like({ userData }) {
         <AiOutlineHeart
           color="#000000"
           onClick={() => {
-            if (userData !== undefined) {
+            if (myData !== undefined) {
               let path = window.location.href.split("/");
-              ScrapPost(path[4], userData?.memberId);
+              ScrapPost(path[4], myData?.memberId);
             }
           }}
         />

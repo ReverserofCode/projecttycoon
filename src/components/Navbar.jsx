@@ -189,11 +189,11 @@ const MenuList = styled.div`
 function Navbar({ userData, handleSetUserData }) {
   const [minimizeMenu, setMinimizeMenu] = useState(true);
   const MenuItem = useRef(null);
-  useEffect(() => {
-    LoginCheck().then((res) => {
-      handleSetUserData(res);
-    });
-  }, [handleSetUserData]);
+  // useEffect(() => {
+  //   LoginCheck().then((res) => {
+  //     handleSetUserData(res);
+  //   });
+  // }, [handleSetUserData]);
   return (
     <Container>
       <Wrap>
@@ -252,7 +252,7 @@ function Navbar({ userData, handleSetUserData }) {
             </Link>
           </MenuList>
         </MenuMinimize>
-        {userData === "" ? (
+        {userData === undefined ? (
           <Lists gap={"47px"} color="#35A29F">
             <Link className="user" href="http://projecttycoon.com/api/login">
               <Items>로그인</Items>

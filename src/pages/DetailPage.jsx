@@ -12,6 +12,8 @@ import { GetWriterData } from "../functional/GetWriterData";
 import { HoverIcon } from "../DMSet/Components";
 import DMmodal from "../DMSet/DMmodal";
 import { DMListCall } from "../DMSet/DM";
+import ErrorPage from "./ErrorPage";
+import { GetMyData } from "../functional/GetMyData";
 
 const Container = styled.div`
   display: flex;
@@ -73,8 +75,9 @@ const PosterContain = styled.div`
 `;
 /** 메인 이미지 태그 */
 const Poster = styled.img`
-  width: 90%;
+  width: 80%;
   max-height: 500px;
+  object-fit: cover;
 `;
 /** 상세설명창 태그 */
 const ProjectInfos = styled.div`
@@ -190,28 +193,8 @@ const ModifyButton = styled.div`
 function DetailPage({ userData }) {
   const [mod, setMod] = useState("main");
   const [writer, setWriter] = useState({});
-  const [value, setValue] = useState({
-    createdAt: "2023-08-19T06:54:37.741+00:00",
-    modifiedAt: "2023-08-19T06:54:37.741+00:00",
-    projectId: 26,
-    projectTitle: "Test title item length test. how long text viewing",
-    projectContent: "testContents",
-    projectWantedRole: [
-      { role: "back", complete: 1, personnel: 3 },
-      { role: "front", complete: 0, personnel: 2 },
-      { role: "back", complete: 1, personnel: 3 },
-      { role: "front", complete: 0, personnel: 2 },
-    ],
-    projectDue: "2023-08-16T00:00:00.000+00:00",
-    projectAcademy: "강남",
-    projectStatus: true,
-    projectWriterId: "testWriterId",
-    projectWriterNick: "testNickname",
-    projectFilePath:
-      "/webapp/c40ba566-0f72-4bf1-90ef-904e6d9f3a92_Project image.png",
-    projectFileName: "projectImage",
-    projectScrapNum: 10,
-  });
+  const [value, setValue] = useState();
+  const [myData, setMyData] = useState();
   /** 자신의 DM 리스트 state */
   const [DMList, setDMList] = useState([]);
   /** DM 창이 열려있는지 확인하는 state */
@@ -255,7 +238,7 @@ function DetailPage({ userData }) {
           />
         );
         break;
-      case "bigData":
+      case "bigdata":
         contents = (
           <InfoRole
             src="http://projecttycoon.com/static/images/BigData.png"
@@ -346,11 +329,25 @@ function DetailPage({ userData }) {
         setWriter(res);
       });
       handleSetValue(buf);
+      if (userData !== undefined)
+        GetMyData().then((res) => {
+          setMyData(res);
+        });
     });
-  }, [handleSetValue]);
+  }, [handleSetValue, userData]);
   return (
     <>
-      {mod === "main" ? (
+      {value === undefined ? (
+        <Container>
+          <ErrorPage
+            message={
+              "현재 링크는 유효하지 않은 프로젝트 입니다. 프로젝트의 주소를 다시 확인해 주세요."
+            }
+            goTo={"http://projecttycoon.com/"}
+            goToMessage={"메인페이지로"}
+          />
+        </Container>
+      ) : mod === "main" ? (
         <Container>
           <SideContents>
             <AiOutlineArrowLeft
@@ -383,7 +380,7 @@ function DetailPage({ userData }) {
               {userData?.memberId === value?.projectWriterId ? (
                 ""
               ) : (
-                <Like userData={userData} />
+                <Like myData={myData} />
               )}
             </MainTitle>
             <PosterContain>
