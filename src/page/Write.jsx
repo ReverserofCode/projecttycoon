@@ -33,6 +33,7 @@ const But = styled.button`
 const WriteWrap = styled.div`
   margin: 0 auto;
   max-width: 1000px;
+  margin-bottom: 50px;
   @media screen and (max-width: 720px) {
     width: 700px;
     padding: 4px;
@@ -104,10 +105,12 @@ const MainImgWrap = styled.div`
     width: 360px;
     height: 250px;
   }
+  overflow: hidden;
 `;
 const MainImg = styled.img`
   width: 95%;
   height: 90%;
+  object-fit: contain;
 `;
 const Ji = styled.div`
   display: flex;

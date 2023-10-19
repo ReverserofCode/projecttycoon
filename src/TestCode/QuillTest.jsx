@@ -7,6 +7,7 @@ const Container = styled.div`
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
+  width: 100%;
   max-width: 900px;
   max-height: 400px;
   border: 2px solid #c4c4c4;
@@ -21,7 +22,7 @@ function QuillTestPage({ value, handleChange }) {
   return (
     <Container>
       <ReactQuill
-        style={{ width: "850px", height: "500px", padding: 0 }}
+        style={{ width: "100%", height: "500px", padding: 0 }}
         theme="snow"
         value={value}
         onChange={handleChange}
