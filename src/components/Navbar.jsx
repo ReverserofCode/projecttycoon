@@ -224,7 +224,7 @@ function Navbar({ userData, handleSetUserData }) {
           <Link
             className="menu"
             href={
-              userData === ""
+              userData === "" || userData === undefined
                 ? "http://projecttycoon.com/api/login"
                 : "http://projecttycoon.com/myPage"
             }
@@ -234,7 +234,7 @@ function Navbar({ userData, handleSetUserData }) {
           <Link
             className="menu"
             href={
-              userData === ""
+              userData === "" || userData === undefined
                 ? "http://projecttycoon.com/api/login"
                 : "http://projecttycoon.com/callPageNewProject"
             }
@@ -267,7 +267,7 @@ function Navbar({ userData, handleSetUserData }) {
             </Link>
           </MenuList>
         </MenuMinimize>
-        {userData === "" ? (
+        {userData === "" || userData === undefined ? (
           <Lists gap={"47px"} color="#35A29F">
             <Link className="user" href="http://projecttycoon.com/api/login">
               <Items>로그인</Items>
