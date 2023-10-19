@@ -129,7 +129,7 @@ function BoardItem({
             />
           );
           break;
-        case "bigData":
+        case "bigdata":
           contents.push(
             <FilterIcon
               src="http://projecttycoon.com/static/images/BigData.png"
