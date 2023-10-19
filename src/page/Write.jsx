@@ -8,13 +8,13 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "@emotion/styled";
-
 import QuillTestPage from "../TestCode/QuillTest";
 import { default1, default2, default3 } from "../img/images";
-
 import { FiFilePlus } from "react-icons/fi";
-
-// import {FiFilePlus} from "react-icons/fi"
+import { DMListCall } from "../DMSet/DM";
+import DMmodal from "../DMSet/DMmodal";
+import { AiOutlinePlus } from "react-icons/ai";
+import { HoverIcon } from "../DMSet/Components";
 
 const But = styled.button`
   border: none;
@@ -275,6 +275,33 @@ function Write({ userData }) {
   const [selectFields, setSelectFields] = useState([
     { role: "back", complete: 0, personnel: 1 },
   ]);
+  /** 자신의 DM 리스트 state */
+  const [DMList, setDMList] = useState();
+  /** DM 창이 열려있는지 확인하는 state */
+  const [DMOpen, setDMOpen] = useState(false);
+  /** DM창의 모드를 확인하는 state */
+  const [sendMod, setSendMod] = useState("chatlist");
+  /** DM 창 오픈 */
+  const handleSetOpen = useCallback(() => {
+    setDMOpen(true);
+    if (userData !== "" && userData !== undefined) {
+      DMListCall(userData?.memberId).then((res) => {
+        setDMList(res);
+      });
+    }
+  }, [userData]);
+  /** DM창의 모드를 변경하는 function */
+  const handleSetMod = useCallback((value) => {
+    setSendMod(value);
+  }, []);
+  /** 자신의 ID를 통해 자신의 DM 리스트를 가져오는 funtion */
+  const handleGetList = useCallback(() => {
+    if (userData !== "" && userData !== undefined) {
+      DMListCall(userData?.memberId).then((res) => {
+        setDMList(res);
+      });
+    }
+  }, [userData]);
   //현재날짜
   const currentDate = new Date().toISOString().split("T")[0];
   const fields = [
@@ -539,6 +566,26 @@ function Write({ userData }) {
           작성
         </But>
       </ButBox>
+      <DMmodal
+        status={DMOpen}
+        DMList={DMList}
+        Mod={sendMod}
+        myId={userData?.memberId}
+        handleSetMod={handleSetMod}
+        handleGetList={handleGetList}
+      />
+      <HoverIcon
+        onClick={() => {
+          setDMOpen(!DMOpen);
+          setSendMod("chatlist");
+          if (!DMOpen) {
+            handleGetList();
+          }
+        }}
+        status={DMOpen}
+      >
+        <AiOutlinePlus />
+      </HoverIcon>
     </WriteWrap>
   );
 }
