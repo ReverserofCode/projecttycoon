@@ -1,14 +1,14 @@
 import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import Navbar from "./components/Navbar";
-import UserMyPage from "../src/page/userMyPage";
+import UserInfo from "./page/userInfo";
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 200vh;
+  height: 100%;
   min-height: 100%;
   position: relative;
   margin-top: 64px;
@@ -21,7 +21,7 @@ const MainContainer = styled.div`
 `;
 /** 메인 콘텐츠가 담기는 사이즈 제한 콘테이너 태그 */
 const Wrap = styled.div`
-  max-width: 1440px;
+  max-width: 1200px;
   width: 100%;
 `;
 function App() {
@@ -33,7 +33,7 @@ function App() {
     <MainContainer>
       <Navbar userData={userData} handleSetUserData={handleSetUserData} />
       <Wrap>
-        <UserMyPage />
+        <UserInfo />
       </Wrap>
     </MainContainer>
   );
