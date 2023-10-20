@@ -94,7 +94,7 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
   return (
     <Container status={status}>
       <HeaderZone>
-        <span>쪽지</span>
+        <span style={{ color: "black" }}>쪽지</span>
         <IconButtons>
           <IconButton>
             <AiOutlineStar fontSize={"25px"}></AiOutlineStar>
