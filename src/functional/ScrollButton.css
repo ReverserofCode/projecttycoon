@@ -15,27 +15,32 @@
     background: none;
     display: none;  
 }
+@media (max-width: 320px) {
+    .scroll-to-top-button{
+        display: block;
+    
+    }}
 @media (min-width: 320px) {
     .scroll-to-top-button{
         display: block;
-        font-size: 30px;
+  
     }
   }
   @media (min-width: 360px)  {
     .scroll-to-top-button{
         display: block;
-        font-size: 30px;
+     
     }
   }
   @media (min-width: 420px)  {
     .scroll-to-top-button{
         display: block;
-        font-size: 30px;
+       
     }
   }
   @media (min-width: 520px) {
     .scroll-to-top-button{
         display: block;
-        font-size: 30px;
+     
     }
   }

@@ -18,6 +18,27 @@ const MainContainer = styled.div`
   @media screen and (max-width: 360px) {
     margin-top: 40px;
   }
+  @media (min-width: 320px) {
+    width: 100%;
+  }
+  @media (min-width: 360px) {
+    width: 100%;
+  }
+  @media (min-width: 420px) {
+    width: 100%;
+  }
+  @media (min-width: 540px) {
+    width: 100%;
+  }
+  @media (min-width: 720px) {
+    width: 100%;
+  }
+  @media (min-width: 960px) {
+    width: 100%;
+  }
+  @media (min-width: 1200px) {
+    width: 100%;
+  }
 `;
 /** 메인 콘텐츠가 담기는 사이즈 제한 콘테이너 태그 */
 const Wrap = styled.div`

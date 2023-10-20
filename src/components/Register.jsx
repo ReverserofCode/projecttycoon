@@ -19,24 +19,21 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 500px;
+  margin: 0 auto;
+  max-width: 500px;
   position: relative;
+  /* border: 5px solid orange; */
 `;
 const ScrollButton = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
-  bottom: 60px;
-  right: 120px;
-  width: 45px;
-  @media (min-width: 360px) {
-    right: 3px;
-    bottom: 40px;
-  }
-  @media (min-width: 420px) {
-    right: 20px;
-  }
-  @media (min-width: 520px) {
-    right: 20px;
+  bottom: 10px;
+  right: 0px;
+  margin-bottom: 40px;
+  @media screen and (max-width: 370px) {
+    margin-bottom: 30px;
   }
 `;
 const Title = styled.h2`
@@ -47,46 +44,52 @@ const Title = styled.h2`
     margin-left: 10px;
     color: #efa1ae;
   }
-  @media (min-width: 320px) {
-    padding-top: 50px;
+  @media (max-width: 320px) {
+    padding-top: 20px;
     padding-bottom: 30px;
-    font-size: 1em;
+    font-size: 0.7em;
+    transition: 0.3s;
+  }
+  @media (min-width: 320px) {
+    padding-top: 20px;
+    padding-bottom: 30px;
+    font-size: 0.7em;
     transition: 0.3s;
   }
   @media (min-width: 360px) {
-    padding-top: 50px;
+    padding-top: 30px;
     padding-bottom: 30px;
-    font-size: 1.1em;
+    font-size: 0.9em;
     transition: 0.3s;
   }
   @media (min-width: 420px) {
-    padding-top: 50px;
+    padding-top: 40px;
     padding-bottom: 30px;
-    font-size: 1.2em;
+    font-size: 0.9em;
     transition: 0.3s;
   }
   @media (min-width: 540px) {
-    padding-top: 50px;
+    padding-top: 45px;
     padding-bottom: 30px;
-    font-size: 1.5em;
+    font-size: 1.2em;
     transition: 0.3s;
   }
   @media (min-width: 720px) {
     padding-top: 50px;
     padding-bottom: 30px;
-    font-size: 1.7em;
+    font-size: 1.3em;
     transition: 0.3s;
   }
   @media (min-width: 960px) {
     padding-top: 50px;
     padding-bottom: 30px;
-    font-size: 2em;
+    font-size: 1.5em;
     transition: 0.3s;
   }
   @media (min-width: 1200px) {
     padding-top: 50px;
     padding-bottom: 30px;
-    font-size: 2em;
+    font-size: 1.5em;
     transition: 0.3s;
   }
 `;
@@ -95,12 +98,11 @@ const ContentsTitle = styled.h3`
   margin-left: 10px;
   padding-bottom: 10px;
   @media screen and (min-width: 1200px) {
-    margin-left: 10px;
     padding-bottom: 10px;
     transition: 0.5s;
   }
   @media (max-width: 1200px) {
-    margin-left: 40px;
+    margin-left: 10px;
     padding-bottom: 10px;
     transition: 0.5s;
   }
@@ -112,227 +114,240 @@ const ContentsTitle = styled.h3`
     font-size: 1.2em;
   }
   @media (max-width: 720px) {
-    margin-left: 70px;
+    margin-left: 40px;
     padding-bottom: 10px;
     transition: 0.5s;
     font-size: 1.1em;
   }
   @media (max-width: 540px) {
-    margin-left: 90px;
+    margin-left: 30px;
     padding-bottom: 10px;
     transition: 0.5s;
     font-size: 1.1em;
   }
   @media (max-width: 360px) {
-    margin-left: 110px;
+    margin-left: 30px;
     padding-bottom: 10px;
     transition: 0.5s;
     font-size: 1em;
   }
   @media (max-width: 320px) {
-    margin-left: 120px;
+    margin-left: 35px;
     padding-bottom: 10px;
     transition: 0.5s;
     font-size: 1em;
   }
 `;
 const InputForm = styled.input`
-  width: 410px;
+  width: 510px;
   padding-left: 15px;
   font-family: "맑은고딕";
   font-size: 1em;
   font-weight: 500;
+  justify-content: center;
+  align-items: center;
   color: #2d2a2a;
+  /* border: 1px solid blue; */
   @media screen and (min-width: 1200px) {
-    width: 100%;
+    width: 90%;
     transition: 0.5s;
-    font-size: 1em;
+    font-size: 0.9em;
   }
   @media (max-width: 1200px) {
     width: 90%;
     transition: 0.5s;
-    font-size: 1em;
+    font-size: 0.9em;
   }
   @media (max-width: 960px) {
     width: 80%;
     transition: 0.5s;
-    font-size: 1em;
-  }
-  @media (max-width: 720px) {
-    width: 70%;
-    transition: 0.5s;
-    font-size: 0.9em;
-  }
-  @media (max-width: 540px) {
-    width: 60%;
-    transition: 0.5s;
-    font-size: 0.8em;
-  }
-  @media (max-width: 420px) {
-    width: 60%;
-    transition: 0.5s;
-    font-size: 0.8em;
-  }
-  @media (max-width: 360px) {
-    width: 55%;
-    transition: 0.5s;
     font-size: 0.7em;
   }
-  @media (max-width: 320px) {
-    width: 50%;
+  @media (max-width: 720px) {
+    width: 80%;
     transition: 0.5s;
     font-size: 0.6em;
+  }
+  @media (max-width: 520px) {
+    width: 80%;
+    transition: 0.5s;
+    font-size: 0.4em;
+  }
+  @media (max-width: 420px) {
+    width: 80%;
+    transition: 0.5s;
+    font-size: 8px;
+  }
+  @media (max-width: 360px) {
+    width: 70%;
+    transition: 0.5s;
+    font-size: 8px;
+  }
+  @media (max-width: 320px) {
+    width: 70%;
+    transition: 0.5s;
+    font-size: 7px;
   }
 `;
 const IdForm = styled.input`
   margin: 0 auto;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 25px;
   margin-top: 8px;
-  width: 350px;
+  max-width: 370px;
+  width: 100%;
   float: left;
-  padding-left: 15px;
   font-family: "맑은고딕";
   font-size: 1em;
   font-weight: 500;
   color: #2d2a2a;
+  padding-left: 10px;
   @media screen and (min-width: 1200px) {
-    width: 68%;
-    /* transition: 0.1s; */
-    font-size: 1em;
+    width: 55%;
+    transition: 0.5s;
+    font-size: 0.8em;
+    margin-left: 15px;
   }
   @media (max-width: 1200px) {
-    width: 60%;
-    /* transition: 0.1s; */
-    margin-left: 30px;
-    font-size: 1em;
+    width: 55%;
+    transition: 0.5s;
+    font-size: 0.8em;
+    margin-left: 15px;
   }
   @media (max-width: 960px) {
     width: 50%;
     transition: 0.5s;
-    margin-left: 45px;
-    font-size: 0.9em;
+    margin-left: 25px;
+    font-size: 0.7em;
   }
   @media (max-width: 720px) {
     width: 50%;
     transition: 0.5s;
-    margin-left: 70px;
-    font-size: 0.9em;
+    margin-left: 25px;
+    font-size: 0.6em;
   }
   @media (max-width: 540px) {
-    width: 40%;
-    transition: 0.5s;
-    margin-left: 100px;
-    font-size: 0.8em;
-  }
-  @media (max-width: 420px) {
-    width: 40%;
-    transition: 0.5s;
-    margin-left: 100px;
-    font-size: 0.8em;
-  }
-  @media (max-width: 360px) {
-    width: 35%;
-    transition: 0.5s;
-    margin-left: 120px;
-    font-size: 0.7em;
-  }
-  @media (max-width: 320px) {
-    width: 30%;
+    width: 55%;
     transition: 0.5s;
     font-size: 0.6em;
+  }
+  @media (max-width: 420px) {
+    width: 55%;
+    transition: 0.5s;
+    font-size: 10px;
+  }
+  @media (max-width: 360px) {
+    width: 50%;
+    transition: 0.5s;
+    font-size: 8px;
+    margin-left: 35px;
+  }
+  @media (max-width: 320px) {
+    width: 48%;
+    transition: 0.5s;
+    font-size: 8px;
+    padding-left: 10px;
+    margin-left: 35px;
   }
 `;
 const NickForm = styled.input`
   margin: 0 auto;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 25px;
   margin-top: 8px;
-  width: 350px;
+  max-width: 370px;
+  width: 100%;
   float: left;
-  padding-left: 15px;
   font-family: "맑은고딕";
   font-size: 1em;
   font-weight: 500;
   color: #2d2a2a;
-
   @media screen and (min-width: 1200px) {
-    width: 68%;
-    font-size: 1em;
-    /* transition: 0.1s; */
+    width: 57%;
+    transition: 0.5s;
+    font-size: 0.8em;
+    margin-left: 15px;
   }
   @media (max-width: 1200px) {
-    width: 60%;
-    /* transition: 0.1s; */
-    margin-left: 30px;
-    font-size: 1em;
+    width: 57%;
+    transition: 0.5s;
+    font-size: 0.8em;
+    margin-left: 15px;
   }
   @media (max-width: 960px) {
-    width: 50%;
+    width: 52%;
     transition: 0.5s;
-    margin-left: 45px;
-    font-size: 1em;
-  }
-  @media (max-width: 720px) {
-    width: 50%;
-    transition: 0.5s;
-    margin-left: 70px;
-    font-size: 0.9em;
-  }
-  @media (max-width: 540px) {
-    width: 40%;
-    transition: 0.5s;
-    margin-left: 100px;
-    font-size: 0.8em;
-  }
-  @media (max-width: 420px) {
-    width: 40%;
-    transition: 0.5s;
-    margin-left: 100px;
-    font-size: 0.8em;
-  }
-  @media (max-width: 360px) {
-    width: 35%;
-    transition: 0.5s;
-    margin-left: 120px;
+    margin-left: 25px;
     font-size: 0.7em;
   }
-  @media (max-width: 320px) {
-    width: 30%;
+  @media (max-width: 720px) {
+    width: 52%;
+    transition: 0.5s;
+    margin-left: 25px;
+    font-size: 0.6em;
+  }
+  @media (max-width: 540px) {
+    width: 58%;
     transition: 0.5s;
     font-size: 0.6em;
+  }
+  @media (max-width: 420px) {
+    width: 58%;
+    transition: 0.5s;
+    font-size: 10px;
+  }
+  @media (max-width: 360px) {
+    width: 53%;
+    transition: 0.5s;
+    font-size: 8px;
+    margin-left: 35px;
+  }
+  @media (max-width: 320px) {
+    width: 48%;
+    transition: 0.5s;
+    font-size: 8px;
+    padding-left: 10px;
+    margin-left: 35px;
   }
 `;
 // 링크
 const LinkArea = styled.div`
   margin-bottom: 10px;
-  margin-left: 60px;
-
-  @media (min-width: 320px) {
-    margin-left: 30px;
+  max-width: 510px;
+  width: 100%;
+  @media (max-width: 320px) {
     transition: 0.5s;
+    width: 80%;
+  }
+  @media (min-width: 320px) {
+    transition: 0.5s;
+    width: 80%;
   }
   @media (min-width: 360px) {
-    margin-left: 35px;
     transition: 0.5s;
+    width: 85%;
   }
   @media (min-width: 420px) {
-    margin-left: 40px;
     transition: 0.5s;
+    width: 85%;
   }
   @media (min-width: 520px) {
-    margin-left: 40px;
     transition: 0.5s;
+    width: 85%;
   }
   @media (min-width: 720px) {
-    margin-left: 45px;
     transition: 0.5s;
+    width: 85%;
   }
   @media (min-width: 960px) {
-    margin-left: 50px;
     transition: 0.5s;
+    width: 95%;
   }
   @media (min-width: 1200px) {
-    margin-left: 60px;
     transition: 0.5s;
+    width: 95%;
   }
 `;
 const CustomOption = styled.div`
@@ -341,7 +356,8 @@ const CustomOption = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 140px;
+  max-width: 140px;
+  width: 100%;
   border-radius: 10px;
   border: 1px solid black;
   height: 100px;
@@ -369,6 +385,30 @@ const Options = styled.div`
     transform: scale(1.1);
     color: #2d2a2a;
   }
+  @media screen and (min-width: 1200px) {
+    font-size: 1em;
+  }
+  @media (max-width: 1200px) {
+    font-size: 1em;
+  }
+  @media (max-width: 960px) {
+    font-size: 0.8em;
+  }
+  @media (max-width: 720px) {
+    font-size: 0.8em;
+  }
+  @media (max-width: 540px) {
+    font-size: 0.8em;
+  }
+  @media (max-width: 420px) {
+    font-size: 12px;
+  }
+  @media (max-width: 360px) {
+    font-size: 10px;
+  }
+  @media (max-width: 320px) {
+    font-size: 8px;
+  }
 `;
 const CustomSelect = styled.div`
   display: flex;
@@ -384,7 +424,7 @@ const CustomSelect = styled.div`
   width: 140px;
   height: 53px;
   position: relative;
-  /* margin: 0 auto; */
+  margin: 0 auto;
   margin-bottom: 22px;
   font-family: "맑은고딕";
   font-size: 1em;
@@ -438,7 +478,8 @@ const CustomSelect = styled.div`
 
 const LinkForm = styled.input`
   resize: none;
-  width: 370px;
+  max-width: 370px;
+  width: 100%;
   height: 50px;
   margin-top: 5px;
   border-radius: 10px;
@@ -451,52 +492,58 @@ const LinkForm = styled.input`
   font-weight: 600;
   color: #2d2a2a;
   @media screen and (min-width: 1200px) {
-    width: 370px;
+    width: 100%;
+    max-width: 240px;
     transition: 0.3s;
-    padding-left: 20px;
-    font-size: 1em;
-  }
-  @media (max-width: 1200px) {
-    width: 370px;
-    transition: 0.3s;
-    padding-left: 20px;
-    font-size: 1em;
-  }
-  @media (max-width: 960px) {
-    width: 330px;
-    transition: 0.3s;
-    padding-left: 20px;
-    font-size: 1em;
-  }
-  @media (max-width: 720px) and (min-width: 539px) {
-    width: 300px;
-    transition: 0.3s;
-    padding-left: 20px;
+    padding-left: 10px;
     font-size: 0.9em;
   }
-  @media (max-width: 540px) and (min-width: 419px) {
-    width: 220px;
+  @media (max-width: 1200px) {
+    width: 100%;
+    max-width: 240px;
     transition: 0.3s;
-    padding-left: 20px;
+    padding-left: 10px;
+    font-size: 0.9em;
+  }
+  @media (max-width: 960px) {
+    width: 100%;
+    max-width: 175px;
+    transition: 0.3s;
+    padding-left: 5px;
     font-size: 0.8em;
   }
-  @media (max-width: 420px) and (min-width: 359px) {
-    width: 190px;
+  @media (max-width: 720px) {
+    width: 100%;
+    max-width: 160px;
     transition: 0.3s;
-    padding-left: 10px;
-    font-size: 0.7em;
+    padding-left: 5px;
+    font-size: 0.8em;
   }
-  @media (max-width: 360px) and (min-width: 319px) {
-    width: 150px;
+  @media (max-width: 540px) {
+    width: 100%;
+    max-width: 120px;
+    transition: 0.3s;
+    font-size: 0.5em;
+  }
+  @media (max-width: 420px) {
+    width: 100%;
+    max-width: 120px;
+    transition: 0.3s;
+    font-size: 8px;
+  }
+  @media (max-width: 360px) {
+    width: 100%;
+    max-width: 95px;
     transition: 0.3s;
     padding-left: 10px;
-    font-size: 0.7em;
+    font-size: 8px;
   }
   @media (max-width: 320px) {
-    width: 120px;
+    width: 100%;
+    max-width: 110px;
     transition: 0.3s;
     padding-left: 0px;
-    font-size: 0.6em;
+    font-size: 8px;
   }
 `;
 
@@ -572,7 +619,8 @@ const Stacks = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
-  width: 520px;
+  max-width: 510px;
+  width: 100%;
   position: relative;
   padding-top: 10px;
   padding-left: 5px;
@@ -583,35 +631,36 @@ const Stacks = styled.div`
   height: fit-content;
   min-height: 60px;
   font-family: "맑은고딕";
-
-  /* overflow-y: scroll; */
-
+  @media (max-width: 320px) {
+    width: 75%;
+    transition: 0.5s;
+  }
   @media (min-width: 320px) {
-    width: 50%;
+    width: 75%;
     transition: 0.5s;
   }
   @media (min-width: 360px) {
-    width: 60%;
+    width: 85%;
     transition: 0.5s;
   }
   @media (min-width: 420px) {
-    width: 60%;
+    width: 85%;
     transition: 0.5s;
   }
   @media (min-width: 540px) {
-    width: 70%;
+    width: 85%;
     transition: 0.5s;
   }
   @media (min-width: 720px) {
-    width: 80%;
+    width: 85%;
     transition: 0.5s;
   }
   @media (min-width: 960px) {
-    width: 90%;
+    width: 95%;
     transition: 0.5s;
   }
   @media (min-width: 1200px) {
-    width: 100%;
+    width: 95%;
     transition: 0.5s;
   }
 `;
@@ -681,7 +730,8 @@ const StackItem = styled.div`
 // 한 줄 소개
 const TextMany = styled.textarea`
   resize: none;
-  width: 500px;
+  max-width: 510px;
+  width: 100%;
   height: 200px;
   padding: 20px 20px;
   line-height: 30px;
@@ -696,37 +746,37 @@ const TextMany = styled.textarea`
   color: #2d2a2a;
   font-family: "맑은고딕";
   @media screen and (min-width: 1200px) {
-    width: 100%;
+    width: 85%;
     transition: 0.5s;
     font-size: 1em;
   }
   @media (max-width: 1200px) {
-    width: 90%;
+    width: 85%;
     transition: 0.5s;
     font-size: 1em;
   }
   @media (max-width: 960px) {
-    width: 80%;
+    width: 75%;
     transition: 0.5s;
     font-size: 1em;
   }
   @media (max-width: 720px) {
-    width: 70%;
+    width: 75%;
     transition: 0.5s;
     font-size: 1em;
   }
   @media (max-width: 540px) {
-    width: 60%;
+    width: 70%;
     transition: 0.5s;
     font-size: 0.8em;
   }
   @media (max-width: 360px) {
-    width: 48%;
+    width: 60%;
     transition: 0.5s;
     font-size: 0.8em;
   }
   @media (max-width: 320px) {
-    width: 47%;
+    width: 60%;
     transition: 0.5s;
     font-size: 0.8em;
   }
@@ -742,7 +792,7 @@ const CheckId = styled.button`
   font-weight: 500;
   border: 1px solid #ffffff;
   background-color: #71717145;
-  width: 120px;
+  max-width: 120px;
   font-family: "맑은고딕";
 
   &:hover {
@@ -755,18 +805,18 @@ const CheckId = styled.button`
     cursor: pointer;
   }
   @media screen and (min-width: 1201px) {
-    width: 140px;
+    width: 120px;
     transition: 0.2s;
     border-radius: 5%;
   }
   @media (max-width: 1200px) {
-    width: 140px;
+    width: 120px;
     transition: 0.2s;
     border-radius: 5%;
   }
 
   @media (max-width: 960px) {
-    width: 120px;
+    width: 100px;
     transition: 0.2s;
     padding: 14px 10px;
     font-size: 0.8em;
@@ -782,7 +832,7 @@ const CheckId = styled.button`
     }
   }
   @media (max-width: 720px) {
-    width: 100px;
+    width: 80px;
     transition: 0.2s;
     padding: 14px 10px;
     font-size: 0.7em;
@@ -798,26 +848,41 @@ const CheckId = styled.button`
     }
   }
   @media (max-width: 540px) {
-    width: 80px;
-    transition: 0.2s;
-    padding: 14px 10px;
-    font-size: 0.8em;
-    border-radius: 4%;
+    width: 60px;
+    padding: 8px 15px;
+    font-size: 0.6em;
+    border-radius: 7%;
+    font-weight: 500;
+    &:hover,
+    :active {
+      border-color: #fbeeac;
+      background-color: #fbeeac;
+      transition: 0.2s;
+      color: #4743439c;
+      font-size: 0.7em;
+      cursor: pointer;
+    }
+  }
+  @media (max-width: 420px) {
+    width: 60px;
+    padding: 8px 15px;
+    font-size: 0.6em;
+    border-radius: 7%;
+    font-weight: 500;
     &:hover {
       border-color: #fbeeac;
       background-color: #fbeeac;
-      transition: 0.3s;
+      transition: 0.2s;
       color: #4743439c;
-      font-size: 0.8em;
-      font-weight: 500;
+      font-size: 0.7em;
       cursor: pointer;
     }
   }
   @media (max-width: 360px) {
-    width: 60px;
+    width: 50px;
     transition: 0.2s;
     padding: 6px 10px;
-    font-size: 0.8em;
+    font-size: 0.6em;
     border-radius: 10%;
     &:hover {
       border-color: #fbeeac;
@@ -830,17 +895,18 @@ const CheckId = styled.button`
     }
   }
   @media (max-width: 320px) {
-    width: 60px;
+    width: 50px;
     transition: 0.2s;
     padding: 6px 10px;
     border-radius: 10%;
-    font-size: 12px;
+    font-size: 10px;
+    margin-top: 13px;
     &:hover {
       border-color: #fbeeac;
       background-color: #fbeeac;
       transition: 0.3s;
       color: #4743439c;
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 500;
       cursor: pointer;
     }
@@ -981,20 +1047,6 @@ function Register({ userData }) {
     color: #ff0000;
     margin-bottom: 10px;
   `;
-  // // 닉네임 중복 체크 모달 열기
-  // const openNickModal = () => {
-  //   setIsNickModalOpen(true);
-  // };
-
-  // // 아이디 중복 체크 모달 닫기
-  // const closeIdModal = () => {
-  //   setIsIdModalOpen(false);
-  // };
-
-  // // 닉네임 중복 체크 모달 닫기
-  // const closeNickModal = () => {
-  //   setIsNickModalOpen(false);
-  // };
 
   // 중복에러 메세지
   const [isCheckingId, setIsCheckingId] = useState(false);
@@ -1036,14 +1088,8 @@ function Register({ userData }) {
       .catch((error) => {
         console.error("아이디 중복 체크 에러:", error);
       });
-    // openIdModal();
   };
 
-  // const handleOpenModal = useCallback(() => {
-  //   if (isIdAvailable) {
-  //     openIdModal();
-  //   }
-  // }, [isIdAvailable]);
   // 닉네임중복 체크 로직
   const handleCheckNick = async (nick) => {
     await axios
@@ -1061,13 +1107,8 @@ function Register({ userData }) {
       .catch((error) => {
         console.error("닉네임 중복 체크 에러:", error);
       });
-    // openNickModal(); // 닉네임 중복 체크 모달 열기
   };
-  // const handleNickOpenModal = useCallback(() => {
-  //   if (isNickAvailable) {
-  //     openIdModal();
-  //   }
-  // }, [isNickAvailable]);
+
   // 한 줄 소개
   const [introduce, setIntroduce] = useState("");
 
@@ -1155,8 +1196,6 @@ function Register({ userData }) {
         }))
       ),
       memberIntroduce: introduce,
-      // memberFilePath: "http://projecttycoon.com/static/images/Logo%20Test.png",
-      // memberFileName: "test",
     });
     console.log(userData);
 
@@ -1180,300 +1219,309 @@ function Register({ userData }) {
       });
   };
   return (
-    <Container>
-      <Title>
-        Tycoon에 오신 걸 환영합니다 !
-        <SiRabbitmq size="34" className="rabbit" />
-      </Title>
-      <div className="NickArea">
-        <ContentsTitle>
-          <span>*</span>닉네임
-        </ContentsTitle>
-        <NickForm
-          placeholder="사용하실 닉네임을 작성해 주세요"
-          value={nick}
-          onChange={(e) => {
-            e.preventDefault();
-            const newNick = e.target.value;
-            setNick(newNick);
+    <div className="Contents">
+      <Container>
+        <Title>
+          Tycoon에 오신 걸 환영합니다 !
+          <SiRabbitmq size="34" className="rabbit" />
+        </Title>
+        <div className="NickArea">
+          <ContentsTitle>
+            <span>*</span>닉네임
+          </ContentsTitle>
+          <NickForm
+            placeholder="사용하실 닉네임을 작성해 주세요"
+            value={nick}
+            onChange={(e) => {
+              e.preventDefault();
+              const newNick = e.target.value;
+              setNick(newNick);
 
-            if (!nickRegex.test(newNick)) {
-              setNickError(
-                "2~12자의 한글, 영문, 숫자, '_', '-'만 사용할 수 있습니다."
-              );
-            } else {
-              setNickError("");
-            }
-          }}
-        />
-        <CheckId
-          onClick={() => {
-            handleCheckNick(nick);
-          }}
-        >
-          중복 체크
-        </CheckId>
-        {isNickModalOpen && <Modal onClose={closeNickModal}>중복 체크</Modal>}
-      </div>
-      {nickError && <ErrorMessage>{nickError}</ErrorMessage>}
-      {isNickAvailable !== undefined ? (
-        isNickAvailable ? (
-          // true일 때
-          <CheckMessage>사용 가능한 닉네임입니다.</CheckMessage>
-        ) : (
-          // false일 때
-          <CheckMessage>이미 사용중인 닉네임입니다.</CheckMessage>
-        )
-      ) : (
-        // undefined일 때 빈값
-        ""
-      )}
-
-      <div className="IdArea">
-        <ContentsTitle>
-          <span>*</span>아이디
-        </ContentsTitle>
-        <IdForm
-          placeholder="사용하실 아이디를 작성해 주세요"
-          value={id}
-          onChange={(e) => {
-            e.preventDefault();
-            const newId = e.target.value;
-            setId(newId);
-            if (!idRegex.test(newId)) {
-              setIdError("4~15자의 영문, 숫자, '_', '-'만 사용할 수 있습니다.");
-            } else {
-              setIdError("");
-            }
-          }}
-        />
-        <CheckId
-          onClick={() => {
-            handleCheckId(id);
-          }}
-        >
-          중복 체크
-        </CheckId>
-        {isIdModalOpen && <Modal onClose={closeIdModal}>중복 체크</Modal>}
-      </div>
-      {idError && <ErrorMessage>{idError}</ErrorMessage>}
-      {isIdAvailable !== undefined ? (
-        isIdAvailable ? (
-          <CheckMessage>사용 가능한 아이디입니다.</CheckMessage>
-        ) : (
-          <CheckMessage>이미 사용중인 아이디입니다.</CheckMessage>
-        )
-      ) : (
-        ""
-      )}
-
-      <ContentsTitle>
-        <span>*</span>비밀번호
-      </ContentsTitle>
-      <InputForm
-        type="password"
-        placeholder="영문, 숫자, 특수문자 포함 8자리 이상 입력해 주세요"
-        value={pw}
-        onChange={(e) => {
-          const newPassword = e.target.value;
-          setPw(newPassword);
-
-          if (!passwordRegex.test(newPassword)) {
-            console.log("Password does not meet criteria");
-            setPwError("영문, 숫자, 특수문자 포함 8자리 이상 입력해 주세요");
-          } else {
-            console.log("Password meets criteria");
-            setPwError(""); // Clear error message if conditions are met.
-          }
-        }}
-      />
-      {pwError && <ErrorMessage>{pwError}</ErrorMessage>}
-
-      <ContentsTitle>
-        <span>*</span>비밀번호 확인
-      </ContentsTitle>
-      <InputForm
-        type="password"
-        placeholder="비밀번호를 한번 더 입력해 주세요"
-        value={pwConfirm}
-        onChange={(e) => {
-          e.preventDefault();
-          const newPasswordConfirm = e.target.value;
-          setPwConfirm(newPasswordConfirm);
-
-          if (newPasswordConfirm !== pw) {
-            setPwConfirmError("비밀번호가 일치하지 않습니다.");
-          } else {
-            setPwConfirmError(""); // 일치하면 에러 메시지 제거
-          }
-        }}
-      />
-      {pwConfirmError && <ErrorMessage>{pwConfirmError}</ErrorMessage>}
-
-      <ContentsTitle>
-        <span>*</span>직무
-      </ContentsTitle>
-      <select
-        value={selectedJob}
-        onChange={(e) => setSelectedJob(e.target.value)} // Update selectedJob state
-      >
-        <option value="">선택</option>
-        <option value="back">백엔드</option>
-        <option value="front">프론트엔드</option>
-        <option value="bigData">빅데이터</option>
-        <option value="AI">AI</option>
-        <option value="server">서버관리자</option>
-        <option value="security">정보보안</option>
-        <option value="network">네트워크관리자</option>
-      </select>
-      {!selectedJob && <ErrorMessage>직무를 선택해 주세요.</ErrorMessage>}
-
-      <ContentsTitle>
-        <span>*</span>학원지점
-      </ContentsTitle>
-      <select
-        value={selectedPlace}
-        onChange={(e) => setSelectedPlace(e.target.value)} // Update selectedPlace state
-      >
-        <option value="">선택</option>
-        <option value="강남">강남</option>
-        <option value="신촌/홍대">신촌/홍대</option>
-        <option value="노원">노원</option>
-        <option value="대전">대전</option>
-        <option value="대구">대구</option>
-        <option value="인천">인천</option>
-        <option value="부산">부산</option>
-      </select>
-      {!selectedPlace && <ErrorMessage>학원지점을 선택해 주세요.</ErrorMessage>}
-      {/* Display the selected job in an InputForm */}
-
-      <ContentsTitle>
-        <span>*</span>기술스택
-        <span className="MultipleChoice">※ 다수 선택 가능합니다.</span>
-      </ContentsTitle>
-      <Stacks>
-        {stackItemGen()}
-        <Select
-          onChange={(e) => {
-            e.preventDefault();
-            let buf = [...stack, e.target.value];
-            setStack(buf);
-            setStackError("");
-          }}
-        >
-          <option value="Java">Java</option>
-          <option value="Python">Python</option>
-          <option value="C">C</option>
-          <option value="C++">C++</option>
-          <option value="C#">C#</option>
-          <option value="PHP">PHP</option>
-          <option value="SQL">SQL</option>
-          <option value="Kotlin">Kotlin</option>
-          <option value="Go">Go</option>
-          <option value="R">R</option>
-          <option value="HTML">HTML</option>
-          <option value="CSS">CSS</option>
-          <option value="JavaScript">JavaScript</option>
-          <option value="TypeScript">TypeScript</option>
-          <option value="NodeJs">Node.js</option>
-          <option value="JQuery">JQuery</option>
-          <option value="React">React</option>
-          <option value="Vue">Vue</option>
-        </Select>
-      </Stacks>
-      {stackError && <ErrorMessage>{stackError}</ErrorMessage>}
-      <ContentsTitle>한 줄 소개</ContentsTitle>
-
-      <TextMany
-        value={introduce}
-        onChange={(e) => {
-          e.preventDefault();
-          setIntroduce(e.currentTarget.value);
-        }}
-        spellCheck="false"
-        placeholder="본인을 소개해주세요!"
-      ></TextMany>
-
-      <ContentsTitle>Link</ContentsTitle>
-      {linkInputs.map((linkInput, index) => (
-        <LinkArea
-          key={index}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            marginLeft: index > 0 ? "55px" : "0px",
-          }}
-          onClick={() => handleOpenLinkOption(index)} // 클릭하면 링크 옵션 열기
-        >
-          <div className="LinkForm">
-            <CustomSelect onClick={() => handleLinkInputToggle(index)}>
-              {linkInput.option}{" "}
-              <BiDownArrow style={{ position: "absolute", right: "5px" }} />
-            </CustomSelect>
-            {linkInput.isOpen && (
-              <CustomOption>
-                {/* <div className="LinkInput"> */}
-                <Options onClick={() => handleOptionSelect(index, "Git")}>
-                  Git <BiLogoGithub />
-                </Options>
-                <Options onClick={() => handleOptionSelect(index, "Blog")}>
-                  Blog <FaMicroblog />
-                </Options>
-                <Options onClick={() => handleOptionSelect(index, "Other")}>
-                  그 외 <TiMessageTyping />
-                </Options>
-                {/* </div> */}
-              </CustomOption>
-            )}
-          </div>
-          <LinkForm
-            placeholder={" 주소를 모두 입력해주세요."}
-            value={linkInput.value}
-            onChange={(e) => handleLinkInputChange(index, e.target.value)}
+              if (!nickRegex.test(newNick)) {
+                setNickError(
+                  "2~12자의 한글, 영문, 숫자, '_', '-'만 사용할 수 있습니다."
+                );
+              } else {
+                setNickError("");
+              }
+            }}
           />
-          {index !== 0 && (
-            <div
-              className="delete-button"
-              onClick={() => handleDeleteLinkInput(index)}
-            >
-              <BsDashSquareDotted
-                // size="35"
-                className="deleteBtn"
-              ></BsDashSquareDotted>
-            </div>
-          )}
-        </LinkArea>
-      ))}
+          <CheckId
+            onClick={() => {
+              handleCheckNick(nick);
+            }}
+          >
+            중복 체크
+          </CheckId>
+          {isNickModalOpen && <Modal onClose={closeNickModal}>중복 체크</Modal>}
+        </div>
+        {nickError && <ErrorMessage>{nickError}</ErrorMessage>}
+        {isNickAvailable !== undefined ? (
+          isNickAvailable ? (
+            // true일 때
+            <CheckMessage>사용 가능한 닉네임입니다.</CheckMessage>
+          ) : (
+            // false일 때
+            <CheckMessage>이미 사용중인 닉네임입니다.</CheckMessage>
+          )
+        ) : (
+          // undefined일 때 빈값
+          ""
+        )}
 
-      <div className="plus-button" onClick={handleAddLinkInput}>
-        <BsPlusSquareDotted size="45" className="PlusBtn"></BsPlusSquareDotted>
-      </div>
-      <Button onClick={handleSubmit}>SignUp</Button>
-      <ScrollButton>
-        <Scroll></Scroll>
-      </ScrollButton>
-      <DMmodal
-        status={DMOpen}
-        DMList={DMList}
-        Mod={sendMod}
-        myId={userData?.memberId}
-        handleSetMod={handleSetMod}
-        handleGetList={handleGetList}
-      />
-      <HoverIcon
-        onClick={() => {
-          setDMOpen(!DMOpen);
-          setSendMod("chatlist");
-          if (!DMOpen) {
-            handleGetList();
-          }
-        }}
-        status={DMOpen}
-      >
-        <AiOutlinePlus />
-      </HoverIcon>
-    </Container>
+        <div className="IdArea">
+          <ContentsTitle>
+            <span>*</span>아이디
+          </ContentsTitle>
+          <IdForm
+            placeholder="사용하실 아이디를 작성해 주세요"
+            value={id}
+            onChange={(e) => {
+              e.preventDefault();
+              const newId = e.target.value;
+              setId(newId);
+              if (!idRegex.test(newId)) {
+                setIdError(
+                  "4~15자의 영문, 숫자, '_', '-'만 사용할 수 있습니다."
+                );
+              } else {
+                setIdError("");
+              }
+            }}
+          />
+          <CheckId
+            onClick={() => {
+              handleCheckId(id);
+            }}
+          >
+            중복 체크
+          </CheckId>
+          {isIdModalOpen && <Modal onClose={closeIdModal}>중복 체크</Modal>}
+        </div>
+        {idError && <ErrorMessage>{idError}</ErrorMessage>}
+        {isIdAvailable !== undefined ? (
+          isIdAvailable ? (
+            <CheckMessage>사용 가능한 아이디입니다.</CheckMessage>
+          ) : (
+            <CheckMessage>이미 사용중인 아이디입니다.</CheckMessage>
+          )
+        ) : (
+          ""
+        )}
+
+        <ContentsTitle>
+          <span>*</span>비밀번호
+        </ContentsTitle>
+        <InputForm
+          type="password"
+          placeholder="영문, 숫자, 특수문자 포함 8자리 이상 입력해 주세요"
+          value={pw}
+          onChange={(e) => {
+            const newPassword = e.target.value;
+            setPw(newPassword);
+
+            if (!passwordRegex.test(newPassword)) {
+              console.log("Password does not meet criteria");
+              setPwError("영문, 숫자, 특수문자 포함 8자리 이상 입력해 주세요");
+            } else {
+              console.log("Password meets criteria");
+              setPwError(""); // Clear error message if conditions are met.
+            }
+          }}
+        />
+        {pwError && <ErrorMessage>{pwError}</ErrorMessage>}
+
+        <ContentsTitle>
+          <span>*</span>비밀번호 확인
+        </ContentsTitle>
+        <InputForm
+          type="password"
+          placeholder="비밀번호를 한번 더 입력해 주세요"
+          value={pwConfirm}
+          onChange={(e) => {
+            e.preventDefault();
+            const newPasswordConfirm = e.target.value;
+            setPwConfirm(newPasswordConfirm);
+
+            if (newPasswordConfirm !== pw) {
+              setPwConfirmError("비밀번호가 일치하지 않습니다.");
+            } else {
+              setPwConfirmError(""); // 일치하면 에러 메시지 제거
+            }
+          }}
+        />
+        {pwConfirmError && <ErrorMessage>{pwConfirmError}</ErrorMessage>}
+
+        <ContentsTitle>
+          <span>*</span>직무
+        </ContentsTitle>
+        <select
+          value={selectedJob}
+          onChange={(e) => setSelectedJob(e.target.value)} // Update selectedJob state
+        >
+          <option value="">선택</option>
+          <option value="back">백엔드</option>
+          <option value="front">프론트엔드</option>
+          <option value="bigData">빅데이터</option>
+          <option value="AI">AI</option>
+          <option value="server">서버관리자</option>
+          <option value="security">정보보안</option>
+          <option value="network">네트워크관리자</option>
+        </select>
+        {!selectedJob && <ErrorMessage>직무를 선택해 주세요.</ErrorMessage>}
+
+        <ContentsTitle>
+          <span>*</span>학원지점
+        </ContentsTitle>
+        <select
+          value={selectedPlace}
+          onChange={(e) => setSelectedPlace(e.target.value)} // Update selectedPlace state
+        >
+          <option value="">선택</option>
+          <option value="강남">강남</option>
+          <option value="신촌/홍대">신촌/홍대</option>
+          <option value="노원">노원</option>
+          <option value="대전">대전</option>
+          <option value="대구">대구</option>
+          <option value="인천">인천</option>
+          <option value="부산">부산</option>
+        </select>
+        {!selectedPlace && (
+          <ErrorMessage>학원지점을 선택해 주세요.</ErrorMessage>
+        )}
+        {/* Display the selected job in an InputForm */}
+
+        <ContentsTitle>
+          <span>*</span>기술스택
+          <span className="MultipleChoice">※ 다수 선택 가능합니다.</span>
+        </ContentsTitle>
+        <Stacks>
+          {stackItemGen()}
+          <Select
+            onChange={(e) => {
+              e.preventDefault();
+              let buf = [...stack, e.target.value];
+              setStack(buf);
+              setStackError("");
+            }}
+          >
+            <option value="Java">Java</option>
+            <option value="Python">Python</option>
+            <option value="C">C</option>
+            <option value="C++">C++</option>
+            <option value="C#">C#</option>
+            <option value="PHP">PHP</option>
+            <option value="SQL">SQL</option>
+            <option value="Kotlin">Kotlin</option>
+            <option value="Go">Go</option>
+            <option value="R">R</option>
+            <option value="HTML">HTML</option>
+            <option value="CSS">CSS</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="TypeScript">TypeScript</option>
+            <option value="NodeJs">Node.js</option>
+            <option value="JQuery">JQuery</option>
+            <option value="React">React</option>
+            <option value="Vue">Vue</option>
+          </Select>
+        </Stacks>
+        {stackError && <ErrorMessage>{stackError}</ErrorMessage>}
+        <ContentsTitle>한 줄 소개</ContentsTitle>
+
+        <TextMany
+          value={introduce}
+          onChange={(e) => {
+            e.preventDefault();
+            setIntroduce(e.currentTarget.value);
+          }}
+          spellCheck="false"
+          placeholder="본인을 소개해주세요!"
+        ></TextMany>
+
+        <ContentsTitle>Link</ContentsTitle>
+        {linkInputs.map((linkInput, index) => (
+          <LinkArea
+            key={index}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              marginLeft: index > 0 ? "0px" : "0px",
+            }}
+            onClick={() => handleOpenLinkOption(index)} // 클릭하면 링크 옵션 열기
+          >
+            <div className="LinkForm">
+              <CustomSelect onClick={() => handleLinkInputToggle(index)}>
+                {linkInput.option}{" "}
+                <BiDownArrow style={{ position: "absolute", right: "5px" }} />
+              </CustomSelect>
+              {linkInput.isOpen && (
+                <CustomOption>
+                  {/* <div className="LinkInput"> */}
+                  <Options onClick={() => handleOptionSelect(index, "Git")}>
+                    Git <BiLogoGithub />
+                  </Options>
+                  <Options onClick={() => handleOptionSelect(index, "Blog")}>
+                    Blog <FaMicroblog />
+                  </Options>
+                  <Options onClick={() => handleOptionSelect(index, "Other")}>
+                    그 외 <TiMessageTyping />
+                  </Options>
+                  {/* </div> */}
+                </CustomOption>
+              )}
+            </div>
+            <LinkForm
+              placeholder={" 주소를 모두 입력해주세요."}
+              value={linkInput.value}
+              onChange={(e) => handleLinkInputChange(index, e.target.value)}
+            />
+            {index !== 0 && (
+              <div
+                className="delete-button"
+                onClick={() => handleDeleteLinkInput(index)}
+              >
+                <BsDashSquareDotted
+                  // size="35"
+                  className="deleteBtn"
+                ></BsDashSquareDotted>
+              </div>
+            )}
+          </LinkArea>
+        ))}
+
+        <div className="plus-button" onClick={handleAddLinkInput}>
+          <BsPlusSquareDotted
+            size="45"
+            className="PlusBtn"
+          ></BsPlusSquareDotted>
+        </div>
+        <Button onClick={handleSubmit}>SignUp</Button>
+        <ScrollButton>
+          <Scroll></Scroll>
+        </ScrollButton>
+        <DMmodal
+          status={DMOpen}
+          DMList={DMList}
+          Mod={sendMod}
+          myId={userData?.memberId}
+          handleSetMod={handleSetMod}
+          handleGetList={handleGetList}
+        />
+        <HoverIcon
+          onClick={() => {
+            setDMOpen(!DMOpen);
+            setSendMod("chatlist");
+            if (!DMOpen) {
+              handleGetList();
+            }
+          }}
+          status={DMOpen}
+        >
+          <AiOutlinePlus />
+        </HoverIcon>
+      </Container>
+    </div>
   );
 }
 

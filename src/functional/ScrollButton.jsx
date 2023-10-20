@@ -5,7 +5,7 @@ import styled from "@emotion/styled";
 const Button = styled.button`
   font-size: 55px;
   @media screen and (max-width: 370px) {
-    font-size: 35px;
+    font-size: 40px;
   }
 `;
 function Scroll() {
