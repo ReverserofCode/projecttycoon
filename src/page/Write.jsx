@@ -15,6 +15,8 @@ import { DMListCall } from "../DMSet/DM";
 import DMmodal from "../DMSet/DMmodal";
 import { AiOutlinePlus } from "react-icons/ai";
 import { HoverIcon } from "../DMSet/Components";
+import { BsPlusSquareDotted } from "react-icons/bs";
+import { BsDashSquareDotted } from "react-icons/bs";
 
 const But = styled.button`
   border: none;
@@ -57,7 +59,7 @@ const Wrap = styled.div`
   }
 `;
 const Title = styled.h2`
-  width: 90%;
+  width: 100%;
   border-bottom: 3px gray solid;
   padding: 12px;
   @media screen and (max-width: 370px) {
@@ -89,30 +91,40 @@ const SubSelect = styled.select`
 `;
 const InputTitle = styled.input`
   max-width: 843px;
-  width: 90%;
+  width: 100%;
   padding: 12px 4px;
   font-size: 14px;
   color: gray;
   font-weight: 600;
   margin-bottom: 20px;
+  @media screen and (max-width: 720px ){
+        max-width: 650px;
+        width: 100%;
+    }
+    @media screen and (max-width: 370px ){
+        width: 350px;
+    }
 `;
 const MainImgWrap = styled.div`
   display: flex;
   align-items: center;
   width: 620px;
   height: 400px;
-  position: relative;
-  @media screen and (max-width: 370px) {
-    width: 360px;
-    height: 250px;
-  }
-  overflow: hidden;
+    /* height: 100%; */
+    position: relative;
+    /* border: 1px red solid; */
+    @media screen and (max-width: 900px ){
+        height: 100%;
+    }
+    @media screen and (max-width: 370px ){
+        width: 350px;
+        height: 250px;
+    }
 `;
-const MainImg = styled.img`
-  width: 95%;
-  height: 90%;
-  object-fit: contain;
-`;
+const MainImg=styled.img`
+    width:95%;
+    height: 90%;
+`
 const Ji = styled.div`
   display: flex;
   flex-direction: column;
@@ -135,29 +147,28 @@ const SubImg = styled.img`
 `;
 const SubImgBox = styled.div`
   position: relative;
-  width: 100%;
-  max-width: 230px;
-  height: 100%;
-  max-height: 120px;
+  width: 230px;
+  height: 120px;
   @media screen and (max-width: 370px) {
-    width: 50px;
-    height: 30px;
+    width: 118px;
+    height: 70px;
   }
 `;
 const Bot = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
-  /* border: 1px gray solid; */
+  margin-bottom:70px;
 `;
 const DeleteBtn = styled.button`
   width: 35px;
 `;
 const Right = styled.div`
-  width: 100%;
+  /* width: 100%; */
   display: flex;
+  /* border: 1px red solid; */
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   cursor: pointer;
   @media screen and (max-width: 370px) {
     display: flex;
@@ -167,19 +178,22 @@ const Right = styled.div`
 const ImgWrap = styled.div`
   box-sizing: border-box;
   max-width: 950px;
+  /* width: 100%; */
   display: flex;
-  /* border: 1px green solid; */
+  margin-bottom: 40px;
   justify-content: space-between;
+  align-items: center;
   @media screen and (max-width: 720px) {
     padding: 4px;
-    width: 700px;
+    width: 630px;
+    height: 350px;
   }
   @media screen and (max-width: 370px) {
     display: flex;
     flex-direction: column;
     padding: 4px;
     width: 360px;
-    height: 200px;
+    height: 250px;
   }
 `;
 const Ty = styled.div`
@@ -187,10 +201,12 @@ const Ty = styled.div`
   justify-content: space-between;
   width: 100%;
   margin-bottom: 4px;
+  align-items: center;
 `;
 const Top = styled.div`
   /* border: 1px solid blue; */
   max-width: 400px;
+  /* border: 1px red solid; */
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -240,6 +256,10 @@ const FileLabel = styled.label`
   background-color: #0b666a;
   cursor: pointer;
   border-radius: 50%;
+  @media screen and (max-width: 370px) {
+    width: 35px;
+  height: 35px;
+  }
 `;
 const ButBox = styled.div`
   margin-top: 20px;
@@ -511,7 +531,6 @@ function Write({ userData }) {
           <Top>
             <SubTitleWrap>
               <Subtitle>모집 분야</Subtitle>
-              <PlusBtn onClick={handleAddButton}>추가</PlusBtn>
             </SubTitleWrap>
             {selectFields.map((selectField, index) => (
               <div key={index}>
@@ -538,10 +557,17 @@ function Write({ userData }) {
                       </option>
                     ))}
                   </Select>
+                  {
+                    index ===0 &&(
+                      <div onClick={handleAddButton}>
+                        <BsPlusSquareDotted size={"30px"} />
+                      </div>
+                    )
+                  }
                   {index > 0 && (
-                    <DeleteBtn onClick={() => handleDeleteButton(index)}>
-                      -
-                    </DeleteBtn>
+                    <div onClick={() => handleDeleteButton(index)}>
+                      <BsDashSquareDotted size={"30px"} />
+                    </div>
                   )}
                 </Ty>
               </div>

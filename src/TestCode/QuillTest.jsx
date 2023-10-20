@@ -13,6 +13,7 @@ const Container = styled.div`
   border: 2px solid #c4c4c4;
   box-shadow: rgb(0 0 0 / 20%) 0px 1rem 2rem;
   border-radius: 5px;
+  margin-bottom: 40px;
   .ql-container.ql-snow {
     border: none;
   }
