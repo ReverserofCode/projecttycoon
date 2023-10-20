@@ -1,6 +1,8 @@
 import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import Navbar from "./components/Navbar";
+import Page1 from "./page/Page1"
+
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -20,7 +22,8 @@ const MainContainer = styled.div`
 `;
 /** 메인 콘텐츠가 담기는 사이즈 제한 콘테이너 태그 */
 const Wrap = styled.div`
-  max-width: 1440px;
+/* 밖에 background color:초록색이 다깔릴려면 max-width 설정을 지워야 함 */
+  /* max-width: 1440px; */
   width: 100%;
 `;
 
@@ -32,7 +35,9 @@ function App() {
   return (
     <MainContainer>
       <Navbar userData={userData} handleSetUserData={handleSetUserData} />
-      <Wrap></Wrap>
+      <Wrap>
+        <Page1/>
+      </Wrap>
     </MainContainer>
   );
 }
