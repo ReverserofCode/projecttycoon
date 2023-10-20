@@ -1457,7 +1457,6 @@ function Register({ userData }) {
               </CustomSelect>
               {linkInput.isOpen && (
                 <CustomOption>
-                  {/* <div className="LinkInput"> */}
                   <Options onClick={() => handleOptionSelect(index, "Git")}>
                     Git <BiLogoGithub />
                   </Options>
