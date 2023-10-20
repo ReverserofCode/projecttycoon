@@ -20,9 +20,87 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  max-width: 500px;
+  /* max-width: 550px; */
+  width: 600px;
   position: relative;
-  /* border: 5px solid orange; */
+  border: 5px solid orange;
+  box-sizing: border-box;
+  @media (max-width: 320px) and (max-width: 321px) {
+    width: 200px;
+    transition: 0.5s;
+  }
+  @media (min-width: 320px) and (max-width: 361px) {
+    width: 230px;
+    transition: 0.5s;
+  }
+  @media (min-width: 360px) and (max-width: 421px) {
+    width: 280px;
+    transition: 0.5s;
+  }
+  @media (min-width: 420px) and (max-width: 539px) {
+    width: 350px;
+    transition: 0.5s;
+  }
+  @media (min-width: 540px) and (max-width: 719px) {
+    width: 480px;
+    transition: 0.5s;
+  }
+  @media (min-width: 720px) and (max-width: 959px) {
+    width: 600px;
+    transition: 0.5s;
+  }
+  @media (min-width: 960px) and (max-width: 1200px) {
+    width: 600px;
+    transition: 0.5s;
+  }
+  @media (min-width: 1200px) {
+    width: 600px;
+    transition: 0.5s;
+  }
+`;
+const Contents = styled.div`
+  max-width: 600px;
+  width: 100%;
+  border: 3px solid rgb(0, 162, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  position: relative;
+  box-sizing: border-box;
+  @media (max-width: 320px) {
+    width: 75%;
+    transition: 0.5s;
+  }
+  @media (min-width: 320px) {
+    width: 75%;
+    transition: 0.5s;
+  }
+  @media (min-width: 360px) {
+    width: 85%;
+    transition: 0.5s;
+  }
+  @media (min-width: 420px) {
+    width: 90%;
+    transition: 0.5s;
+  }
+  @media (min-width: 540px) {
+    width: 95%;
+    transition: 0.5s;
+  }
+  @media (min-width: 720px) {
+    width: 100%;
+    transition: 0.5s;
+  }
+  @media (min-width: 960px) {
+    width: 100%;
+    transition: 0.5s;
+  }
+  @media (min-width: 1200px) {
+    width: 100%;
+    transition: 0.5s;
+  }
 `;
 const ScrollButton = styled.div`
   display: flex;
@@ -40,6 +118,7 @@ const Title = styled.h2`
   padding-top: 50px;
   padding-bottom: 30px;
   font-family: "맑은고딕";
+  border: 1px solid black;
   .rabbit {
     margin-left: 10px;
     color: #efa1ae;
@@ -47,7 +126,7 @@ const Title = styled.h2`
   @media (max-width: 320px) {
     padding-top: 20px;
     padding-bottom: 30px;
-    font-size: 0.7em;
+    font-size: 0.5em;
     transition: 0.3s;
   }
   @media (min-width: 320px) {
@@ -140,6 +219,7 @@ const ContentsTitle = styled.h3`
 `;
 const InputForm = styled.input`
   width: 510px;
+  height: 50px;
   padding-left: 15px;
   font-family: "맑은고딕";
   font-size: 1em;
@@ -147,7 +227,7 @@ const InputForm = styled.input`
   justify-content: center;
   align-items: center;
   color: #2d2a2a;
-  /* border: 1px solid blue; */
+  border: 3px solid blue;
   @media screen and (min-width: 1200px) {
     width: 90%;
     transition: 0.5s;
@@ -159,44 +239,52 @@ const InputForm = styled.input`
     font-size: 0.9em;
   }
   @media (max-width: 960px) {
-    width: 80%;
+    width: 85%;
     transition: 0.5s;
-    font-size: 0.7em;
+    font-size: 0.8em;
+    padding-left: 10px;
   }
   @media (max-width: 720px) {
-    width: 80%;
+    width: 90%;
     transition: 0.5s;
-    font-size: 0.6em;
+    font-size: 0.8em;
+    padding-left: 10px;
   }
   @media (max-width: 520px) {
-    width: 80%;
+    width: 91%;
     transition: 0.5s;
-    font-size: 0.4em;
+    font-size: 0.8em;
+    padding-left: 10px;
   }
   @media (max-width: 420px) {
-    width: 80%;
+    width: 90%;
     transition: 0.5s;
-    font-size: 8px;
+    font-size: 10px;
+    padding-left: 13px;
   }
   @media (max-width: 360px) {
-    width: 70%;
+    width: 90%;
     transition: 0.5s;
     font-size: 8px;
+    padding-left: 7px;
   }
   @media (max-width: 320px) {
-    width: 70%;
+    width: 90%;
     transition: 0.5s;
     font-size: 7px;
+    padding-left: 5px;
   }
 `;
 const IdForm = styled.input`
   margin: 0 auto;
+  border: 1px solid red;
   justify-content: center;
   align-items: center;
   margin-bottom: 25px;
   margin-top: 8px;
-  max-width: 370px;
+  max-width: 600px;
   width: 100%;
+  height: 50px;
   float: left;
   font-family: "맑은고딕";
   font-size: 1em;
@@ -204,51 +292,53 @@ const IdForm = styled.input`
   color: #2d2a2a;
   padding-left: 10px;
   @media screen and (min-width: 1200px) {
-    width: 55%;
+    width: 68%;
     transition: 0.5s;
-    font-size: 0.8em;
-    margin-left: 15px;
+    font-size: 0.9em;
+    margin-left: 20px;
   }
   @media (max-width: 1200px) {
-    width: 55%;
+    width: 68%;
     transition: 0.5s;
-    font-size: 0.8em;
-    margin-left: 15px;
+    font-size: 0.9em;
+    margin-left: 20px;
   }
   @media (max-width: 960px) {
-    width: 50%;
+    width: 66%;
     transition: 0.5s;
-    margin-left: 25px;
-    font-size: 0.7em;
+    margin-left: 35px;
+    font-size: 0.9em;
   }
   @media (max-width: 720px) {
-    width: 50%;
+    width: 70%;
     transition: 0.5s;
-    margin-left: 25px;
+    margin-left: 15px;
     font-size: 0.6em;
   }
   @media (max-width: 540px) {
-    width: 55%;
+    width: 70%;
     transition: 0.5s;
     font-size: 0.6em;
+    margin-left: 7px;
   }
   @media (max-width: 420px) {
-    width: 55%;
+    width: 65%;
     transition: 0.5s;
     font-size: 10px;
+    margin-left: 5px;
   }
   @media (max-width: 360px) {
-    width: 50%;
+    width: 60%;
     transition: 0.5s;
     font-size: 8px;
-    margin-left: 35px;
+    margin-left: 5px;
   }
   @media (max-width: 320px) {
-    width: 48%;
+    width: 53%;
     transition: 0.5s;
-    font-size: 8px;
+    font-size: 6.5px;
     padding-left: 10px;
-    margin-left: 35px;
+    margin-left: 5px;
   }
 `;
 const NickForm = styled.input`
@@ -257,89 +347,96 @@ const NickForm = styled.input`
   align-items: center;
   margin-bottom: 25px;
   margin-top: 8px;
-  max-width: 370px;
+  max-width: 600px;
   width: 100%;
+  height: 50px;
   float: left;
   font-family: "맑은고딕";
   font-size: 1em;
   font-weight: 500;
   color: #2d2a2a;
+  border: 1px solid yellowgreen;
   @media screen and (min-width: 1200px) {
-    width: 57%;
+    width: 68%;
     transition: 0.5s;
-    font-size: 0.8em;
-    margin-left: 15px;
+    font-size: 0.9em;
+    margin-left: 20px;
+    padding-left: 10px;
   }
   @media (max-width: 1200px) {
-    width: 57%;
+    width: 68%;
     transition: 0.5s;
-    font-size: 0.8em;
-    margin-left: 15px;
+    font-size: 0.9em;
+    margin-left: 20px;
+    padding-left: 10px;
   }
   @media (max-width: 960px) {
-    width: 52%;
+    width: 66%;
     transition: 0.5s;
-    margin-left: 25px;
-    font-size: 0.7em;
+    margin-left: 35px;
+    font-size: 0.9em;
   }
   @media (max-width: 720px) {
-    width: 52%;
+    width: 70%;
     transition: 0.5s;
-    margin-left: 25px;
+    margin-left: 15px;
     font-size: 0.6em;
   }
   @media (max-width: 540px) {
-    width: 58%;
+    width: 70%;
     transition: 0.5s;
     font-size: 0.6em;
+    margin-left: 7px;
   }
   @media (max-width: 420px) {
-    width: 58%;
+    width: 65%;
     transition: 0.5s;
     font-size: 10px;
+    margin-left: 5px;
   }
   @media (max-width: 360px) {
-    width: 53%;
+    width: 60%;
     transition: 0.5s;
     font-size: 8px;
-    margin-left: 35px;
+    margin-left: 5px;
   }
   @media (max-width: 320px) {
-    width: 48%;
+    width: 53%;
     transition: 0.5s;
-    font-size: 8px;
+    font-size: 6.5px;
     padding-left: 10px;
-    margin-left: 35px;
+    margin-left: 5px;
   }
 `;
 // 링크
 const LinkArea = styled.div`
   margin-bottom: 10px;
-  max-width: 510px;
+  max-width: 600x;
   width: 100%;
+
   @media (max-width: 320px) {
     transition: 0.5s;
-    width: 80%;
+    width: 100%;
   }
   @media (min-width: 320px) {
     transition: 0.5s;
-    width: 80%;
+    width: 97%;
   }
   @media (min-width: 360px) {
     transition: 0.5s;
-    width: 85%;
+    width: 97%;
   }
   @media (min-width: 420px) {
     transition: 0.5s;
-    width: 85%;
+    width: 96%;
   }
   @media (min-width: 520px) {
     transition: 0.5s;
-    width: 85%;
+    width: 96%;
   }
   @media (min-width: 720px) {
     transition: 0.5s;
-    width: 85%;
+    width: 90%;
   }
   @media (min-width: 960px) {
     transition: 0.5s;
@@ -368,6 +465,7 @@ const CustomOption = styled.div`
   border-color: #d0d0d0;
   top: 55px;
   font-family: "맑은고딕";
+  /* border: 1px solid darkcyan; */
 `;
 const Options = styled.div`
   font-family: "맑은고딕";
@@ -379,6 +477,7 @@ const Options = styled.div`
   z-index: 100;
   padding-bottom: 5px;
   color: #252423ba;
+  border: 1px solid darkcyan;
   &:hover {
     background-color: #fbeeac;
     border-radius: 7px;
@@ -431,14 +530,15 @@ const CustomSelect = styled.div`
   font-weight: 600;
   background-color: #ffffff;
   color: #141212b9;
+  border: 1px solid sandybrown;
   @media (max-width: 320px) {
-    width: 60px;
+    width: 50px;
     transition: 0.5s;
     gap: 2px;
     font-size: 0.8em;
   }
   @media (min-width: 320px) {
-    width: 60px;
+    width: 50px;
     transition: 0.5s;
     gap: 2px;
     font-size: 0.8em;
@@ -478,7 +578,7 @@ const CustomSelect = styled.div`
 
 const LinkForm = styled.input`
   resize: none;
-  max-width: 370px;
+  max-width: 420px;
   width: 100%;
   height: 50px;
   margin-top: 5px;
@@ -491,56 +591,51 @@ const LinkForm = styled.input`
   font-size: 1em;
   font-weight: 600;
   color: #2d2a2a;
+  border: 4px solid rebeccapurple;
   @media screen and (min-width: 1200px) {
-    width: 100%;
-    max-width: 240px;
+    width: 80%;
     transition: 0.3s;
     padding-left: 10px;
-    font-size: 0.9em;
+    font-size: 1em;
   }
   @media (max-width: 1200px) {
-    width: 100%;
-    max-width: 240px;
+    width: 80%;
     transition: 0.3s;
     padding-left: 10px;
-    font-size: 0.9em;
+    font-size: 1em;
   }
   @media (max-width: 960px) {
     width: 100%;
-    max-width: 175px;
     transition: 0.3s;
     padding-left: 5px;
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
   @media (max-width: 720px) {
     width: 100%;
-    max-width: 160px;
     transition: 0.3s;
     padding-left: 5px;
     font-size: 0.8em;
   }
-  @media (max-width: 540px) {
+  @media (max-width: 520px) {
     width: 100%;
-    max-width: 120px;
     transition: 0.3s;
-    font-size: 0.5em;
+    font-size: 0.7em;
+    padding-left: 10px;
   }
   @media (max-width: 420px) {
     width: 100%;
-    max-width: 120px;
     transition: 0.3s;
-    font-size: 8px;
+    font-size: 10px;
+    padding-left: 7px;
   }
   @media (max-width: 360px) {
     width: 100%;
-    max-width: 95px;
     transition: 0.3s;
     padding-left: 10px;
     font-size: 8px;
   }
   @media (max-width: 320px) {
     width: 100%;
-    max-width: 110px;
     transition: 0.3s;
     padding-left: 0px;
     font-size: 8px;
@@ -619,8 +714,9 @@ const Stacks = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
-  max-width: 510px;
+  max-width: 600px;
   width: 100%;
+  height: 50px;
   position: relative;
   padding-top: 10px;
   padding-left: 5px;
@@ -631,28 +727,29 @@ const Stacks = styled.div`
   height: fit-content;
   min-height: 60px;
   font-family: "맑은고딕";
+  border: 4px solid darkolivegreen;
   @media (max-width: 320px) {
-    width: 75%;
+    width: 96%;
     transition: 0.5s;
   }
   @media (min-width: 320px) {
-    width: 75%;
+    width: 96%;
     transition: 0.5s;
   }
   @media (min-width: 360px) {
-    width: 85%;
+    width: 97%;
     transition: 0.5s;
   }
   @media (min-width: 420px) {
-    width: 85%;
+    width: 96%;
     transition: 0.5s;
   }
   @media (min-width: 540px) {
-    width: 85%;
+    width: 95%;
     transition: 0.5s;
   }
   @media (min-width: 720px) {
-    width: 85%;
+    width: 90%;
     transition: 0.5s;
   }
   @media (min-width: 960px) {
@@ -675,6 +772,7 @@ const Select = styled.select`
   margin-top: 0px;
   margin-bottom: 0px;
   height: fit-content;
+  border: 3px solid salmon;
 `;
 const StackItem = styled.div`
   display: flex;
@@ -690,6 +788,7 @@ const StackItem = styled.div`
   font-size: 1em;
   color: #2d2a2a;
   font-family: "맑은고딕";
+
   @media screen and (min-width: 1200px) {
     padding: 10px 10px;
     transition: 0.5s;
@@ -730,7 +829,7 @@ const StackItem = styled.div`
 // 한 줄 소개
 const TextMany = styled.textarea`
   resize: none;
-  max-width: 510px;
+  max-width: 600px;
   width: 100%;
   height: 200px;
   padding: 20px 20px;
@@ -745,40 +844,55 @@ const TextMany = styled.textarea`
   font-size: 1em;
   color: #2d2a2a;
   font-family: "맑은고딕";
+  border: 3px solid salmon;
   @media screen and (min-width: 1200px) {
-    width: 85%;
+    width: 90%;
     transition: 0.5s;
     font-size: 1em;
+    height: 170px;
+    padding: 10px;
   }
   @media (max-width: 1200px) {
+    width: 90%;
+    transition: 0.5s;
+    font-size: 1em;
+    height: 170px;
+    padding: 10px;
+  }
+  @media (max-width: 960px) {
     width: 85%;
     transition: 0.5s;
     font-size: 1em;
-  }
-  @media (max-width: 960px) {
-    width: 75%;
-    transition: 0.5s;
-    font-size: 1em;
+    height: 150px;
+    padding: 10px;
   }
   @media (max-width: 720px) {
-    width: 75%;
+    width: 90%;
     transition: 0.5s;
     font-size: 1em;
+    height: 120px;
+    padding: 10px;
   }
   @media (max-width: 540px) {
-    width: 70%;
+    width: 88%;
     transition: 0.5s;
-    font-size: 0.8em;
+    font-size: 12px;
+    height: 120px;
+    padding: 10px;
   }
   @media (max-width: 360px) {
-    width: 60%;
+    width: 83%;
     transition: 0.5s;
-    font-size: 0.8em;
+    font-size: 11px;
+    height: 120px;
+    padding: 10px;
   }
   @media (max-width: 320px) {
-    width: 60%;
+    width: 82%;
     transition: 0.5s;
-    font-size: 0.8em;
+    font-size: 10px;
+    height: 120px;
+    padding: 10px;
   }
 `;
 
@@ -794,7 +908,7 @@ const CheckId = styled.button`
   background-color: #71717145;
   max-width: 120px;
   font-family: "맑은고딕";
-
+  border: 3px solid wheat;
   &:hover {
     border-color: #fbeeac;
     background-color: #fbeeac;
@@ -917,6 +1031,7 @@ const ErrorMessage = styled.span`
   font-size: 1em;
   color: #b3b3b3;
   margin-bottom: 20px;
+  border: 3px solid teal;
   @media screen and (min-width: 1200px) {
     font-size: 1em;
   }
@@ -1219,7 +1334,7 @@ function Register({ userData }) {
       });
   };
   return (
-    <div className="Contents">
+    <Contents className="Contents">
       <Container>
         <Title>
           Tycoon에 오신 걸 환영합니다 !
@@ -1457,6 +1572,7 @@ function Register({ userData }) {
               </CustomSelect>
               {linkInput.isOpen && (
                 <CustomOption>
+                  {/* <div className="LinkInput"> */}
                   <Options onClick={() => handleOptionSelect(index, "Git")}>
                     Git <BiLogoGithub />
                   </Options>
@@ -1520,7 +1636,7 @@ function Register({ userData }) {
           <AiOutlinePlus />
         </HoverIcon>
       </Container>
-    </div>
+    </Contents>
   );
 }
 

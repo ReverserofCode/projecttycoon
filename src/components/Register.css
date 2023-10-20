@@ -18,7 +18,7 @@ input {
     margin-bottom: 27px;
     outline: none;
     font-family: "맑은고딕";
-    /* border: 1px solid green; */
+    border: 3px solid green;
 }
 
 
@@ -26,7 +26,7 @@ input {
 select {
     display: block;
     height: 65px;
-    max-width: 510px;
+    max-width: 600px;
     width: 100%;
     padding-left: 15px;
     border-radius: 10px;
@@ -36,18 +36,18 @@ select {
     margin-top: 10px;
     margin-bottom: 27px;
     font-family: "맑은고딕";
-    /* border: 1px solid violet; */
+    border: 3px solid violet;
 }
 option{
     font-size: 1.3em;
 }
 .LinkForm {
     position: relative;
-    margin: 0;
+    margin: 0 auto;
 }
 
 @media (max-width: 320px) {
-    select{ width: 75%;
+    select{ width: 95%;
     transition: 0.5s;}
     option{
         font-size: 0.7em;
@@ -55,10 +55,7 @@ option{
     .delete-button{
         font-size: 30px;
     }
-    .Contents{
-        /* width: 100%; */
-        margin: 0 auto;
-    }  .IdArea {
+     .IdArea {
         width: 70%;
     }
     .NickArea{
@@ -67,19 +64,17 @@ option{
     .rabbit { 
         font-size: 25px;
        }
+     
   }
   @media (min-width: 321px) and (max-width: 360px)  {
-    select{ width:  75%;
+    select{ width:  96%;
         transition: 0.5s;}
         option{
             font-size: 0.8em;
         }
         .delete-button{
             font-size: 30px;
-        }
-        .Contents{
-            margin: 0 auto;
-        }  .IdArea {
+        } .IdArea {
             width: 70%;
         }
         .NickArea{
@@ -88,9 +83,10 @@ option{
         .rabbit {
             font-size: 25px;
            }
+         
   }
   @media(min-width: 361px) and  (max-width: 420px)  {
-    select{ width: 80%;
+    select{ width: 97%;
         transition: 0.5s;}
         option{
         font-size: 0.9em;
@@ -98,9 +94,7 @@ option{
         .delete-button{
         font-size: 30px;
         }
-        .Contents{
-         margin: 0 auto;
-        }  
+
         .IdArea {
         width: 80%;
         }
@@ -110,9 +104,10 @@ option{
         .rabbit {
             font-size: 40px;
            }
+        
   }
   @media (min-width: 421px) and (max-width: 520px) {
-    select{ width: 85%;
+    select{ width: 96%;
         transition: 0.5s;}
         option{
             font-size: 1em;
@@ -128,9 +123,10 @@ option{
         .rabbit {
             font-size: 40px;
            }
+         
   }
   @media (min-width: 521px) and (max-width: 720px) {
-    select{ width: 85%;
+    select{ width: 95%;
         transition: 0.5s;}
         option{
             font-size: 1.1em;
@@ -146,9 +142,10 @@ option{
         .rabbit {
             font-size: 40px;
            }
+        
   }
   @media (min-width: 721px) and (max-width: 960px)  {
-    select{ width: 85%;
+    select{ width: 88%;
         transition: 0.5s;}
     option{
             font-size: 1.2em;
@@ -165,6 +162,7 @@ option{
         .rabbit {
             font-size: 45px;
            }
+         
   }
         @media (min-width: 961px) and (max-width: 1960px){
             select{ width:  95%;
@@ -184,6 +182,7 @@ option{
                 .rabbit {
                    font-size: 45px;
                   }
+                
             }
 
 .deleteBtn {
@@ -202,32 +201,22 @@ option{
     cursor: pointer;
 }
 .IdArea {
-    max-width: 550px;
+    max-width: 600px;
     width: 100%;
     position: relative;
     margin: 0 auto;
-  
+    border: 1px solid red;
 }
 .NickArea{
-    max-width: 550px;
+    max-width: 600px;
     width: 100%;
     position: relative;
     margin-left: 30px;
     margin: 0 auto;
+    border: 1px solid yellowgreen;
 }
 .MultipleChoice{
     color: rgb(212, 36, 36);
     font-size: 0.7em;
     margin-left: 20px;
-}
-.Contents{
-    max-width: 500px;
-    /* border: 1px solid red; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    width: 100%;
-    position: relative;
 }
