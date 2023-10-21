@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import Navbar from "./components/Navbar";
-import Page1 from "./page/Page1"
+import Page1 from "./page/Page1";
 
 const MainContainer = styled.div`
   display: flex;
@@ -22,7 +22,7 @@ const MainContainer = styled.div`
 `;
 /** 메인 콘텐츠가 담기는 사이즈 제한 콘테이너 태그 */
 const Wrap = styled.div`
-/* 밖에 background color:초록색이 다깔릴려면 max-width 설정을 지워야 함 */
+  /* 밖에 background color:초록색이 다깔릴려면 max-width 설정을 지워야 함 */
   /* max-width: 1440px; */
   width: 100%;
 `;
@@ -36,7 +36,7 @@ function App() {
     <MainContainer>
       <Navbar userData={userData} handleSetUserData={handleSetUserData} />
       <Wrap>
-        <Page1/>
+        <Page1 />
       </Wrap>
     </MainContainer>
   );
