@@ -211,7 +211,7 @@ function Navbar({ userData, handleSetUserData }) {
     <Container>
       <Wrap>
         <NavHeader src="http://projecttycoon.com/static/images/Logo Test.png" />
-        <Lists gap={"30px"}>
+        {/* <Lists gap={"30px"}>
           <Link className="menu" href="http://projecttycoon.com">
             <Items>홈</Items>
           </Link>
@@ -241,7 +241,7 @@ function Navbar({ userData, handleSetUserData }) {
           >
             <Items>새로운 글쓰기</Items>
           </Link>
-        </Lists>
+        </Lists> */}
         <MenuMinimize>
           <MenuButton
             ref={MenuItem}

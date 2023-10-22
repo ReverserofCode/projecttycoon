@@ -1,15 +1,29 @@
-import desktop from "../img/monitor.png";
+import { PixelText40 } from "../components/Pixel";
+import Image from "../img/Laptop.png";
+import ButtonIcon from "../img/ButtonNewProject.png";
 import styled from "@emotion/styled";
 const Wrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+`;
+const Container = styled.div`
   background-color: #0b666a;
   display: flex;
   align-items: center;
   justify-content: center;
-`;
-const PageOne = styled.div`
-  max-width: 1300px;
-  height: 500px;
   width: 100%;
+  padding: 0 140px;
+  box-sizing: border-box;
+`;
+const TextZone = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 60%;
 `;
 const ImgBox = styled.div`
   max-width: 600px;
@@ -18,15 +32,30 @@ const ImgBox = styled.div`
 const Img = styled.img`
   width: 100%;
 `;
-function Page1() {
+const Button = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  :active {
+    scale: 0.98;
+  }
+`;
+function Page1({ target }) {
   return (
-    <Wrap>
-      <PageOne>
+    <Wrap ref={target}>
+      <Container>
+        <TextZone>
+          <PixelText40>전국에 있는 코리아IT학원</PixelText40>
+          <PixelText40>사람들과 함께하는</PixelText40>
+          <PixelText40>프로젝트를 개설해보세요.</PixelText40>
+          <Button>
+            <Img src={ButtonIcon} />
+          </Button>
+        </TextZone>
         <ImgBox>
-          <Img src={desktop}></Img>
+          <Img src={Image} />
         </ImgBox>
-        <div>사람들과 DM으로 소통하며 프로젝트를 만들어보세요.</div>
-      </PageOne>
+      </Container>
     </Wrap>
   );
 }

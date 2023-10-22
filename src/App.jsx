@@ -1,7 +1,8 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 import Navbar from "./components/Navbar";
 import Page1 from "./page/Page1";
+import { Throatle } from "./functional/Throatle";
 
 const MainContainer = styled.div`
   display: flex;
@@ -9,7 +10,7 @@ const MainContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 200vh;
+  height: 100vh;
   min-height: 100%;
   position: relative;
   margin-top: 64px;
@@ -28,15 +29,50 @@ const Wrap = styled.div`
 `;
 
 function App() {
+  const Eventer = useRef(null);
+  const Target = useRef([]);
   const [userData, setUserData] = useState("");
+  const [page, setPage] = useState(0);
   const handleSetUserData = useCallback((value) => {
     setUserData(value);
   }, []);
+  const handleSetPage = useCallback(
+    (e) => {
+      let buf = e.wheelDelta < 0 ? page + 1 : page - 1;
+      if (buf > 3) {
+        Target.current[0]?.scrollIntoView({ behavior: "smooth" });
+        setPage(0);
+      } else if (buf < 0) {
+        Target.current[3]?.scrollIntoView({ behavior: "smooth" });
+        setPage(3);
+      } else {
+        Target.current[buf]?.scrollIntoView({ behavior: "smooth" });
+        setPage(buf);
+      }
+    },
+    [page]
+  );
+  /** 스크롤 이벤트 */
+  useEffect(() => {
+    if (Eventer.current) {
+      document.addEventListener("wheel", (e) => {
+        Throatle(handleSetPage(e), 1000);
+      });
+      return () => {
+        document.removeEventListener("wheel", (e) => {
+          Throatle(handleSetPage(e), 1000);
+        });
+      };
+    }
+  }, [handleSetPage]);
   return (
-    <MainContainer>
+    <MainContainer ref={Eventer}>
       <Navbar userData={userData} handleSetUserData={handleSetUserData} />
       <Wrap>
-        <Page1 />
+        <Page1 target={(el) => (Target.current[0] = el)} />
+        <Page1 target={(el) => (Target.current[1] = el)} />
+        <Page1 target={(el) => (Target.current[2] = el)} />
+        <Page1 target={(el) => (Target.current[3] = el)} />
       </Wrap>
     </MainContainer>
   );
