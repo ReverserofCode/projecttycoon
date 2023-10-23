@@ -36,6 +36,7 @@ function App() {
   const Target = useRef([]);
   const [userData, setUserData] = useState("");
   const [page, setPage] = useState(0);
+  const [on,setOff]=useState(false);
   let downUp = 0;
   const handleSetUserData = useCallback((value) => {
     setUserData(value);
@@ -67,6 +68,7 @@ function App() {
           (e) => {
             e.preventDefault();
             downUp = e.wheelDelta;
+            console.log(downUp)
           },
           { passive: false }
         );
