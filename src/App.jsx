@@ -41,38 +41,36 @@ function App() {
     setUserData(value);
   }, []);
   const handleSetPage = useCallback(() => {
-    // let buf = e.wheelDelta < 0 ? page + 1 : page - 1;
     let buf = downUp > 0 ? page - 1 : page + 1;
     if (buf > 3) {
-      // Target.current[0]?.scrollIntoView({ behavior: "smooth" });
-      // setPage(0);
+      Target.current[0]?.scrollIntoView({ behavior: "smooth" });
+      setPage(0);
     } else if (buf < 0) {
       Target.current[3]?.scrollIntoView({ behavior: "smooth" });
       setPage(3);
     } else {
       Target.current[buf]?.scrollIntoView({ behavior: "smooth" });
       setPage(buf);
-    }
-  }, [downUp, page]);
-  /** 스크롤 이벤트 */
-  useEffect(() => {
-    if (Eventer.current) {
-      window.addEventListener(
-        "DOMMouseScroll",
-        (e) => {
-          e.preventDefault();
-        },
-        { passive: false }
-      );
-      window.addEventListener(
-        "wheel",
-        (e) => {
-          e.preventDefault();
-          downUp = e.wheelDelta;
-        },
-        { passive: false }
-      );
-      document.addEventListener("wheel", Throatle(handleSetPage, 400));
+    } }, [downUp, page]);
+
+    useEffect(() => {
+      if (Eventer.current) {
+        window.addEventListener(
+          "DOMMouseScroll",
+          (e) => {
+            e.preventDefault();
+          },
+          { passive: false }
+        );
+        window.addEventListener(
+          "wheel",
+          (e) => {
+            e.preventDefault();
+            downUp = e.wheelDelta;
+          },
+          { passive: false }
+        );
+        document.addEventListener("wheel", Throatle(handleSetPage, 400));
       return () => {
         document.removeEventListener("wheel", Throatle(handleSetPage, 400));
       };
@@ -85,10 +83,9 @@ function App() {
         <Page1 target={(el) => (Target.current[0] = el)} />
         <Page2 target={(el) => (Target.current[1] = el)} />
         <Page3 target={(el) => (Target.current[2] = el)} />
-        <Page1 target={(el) => (Target.current[3] = el)} />
+        {/* <Page2 target={(el) => (Target.current[3] = el)} /> */}
       </Wrap>
     </MainContainer>
   );
 }
-
 export default App;
