@@ -19,11 +19,9 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
-  /* max-width: 550px; */
   width: 600px;
   position: relative;
-  border: 5px solid orange;
+  /* border: 5px solid orange; */
   box-sizing: border-box;
   @media (max-width: 320px) and (max-width: 321px) {
     width: 200px;
@@ -61,7 +59,7 @@ const Container = styled.div`
 const Contents = styled.div`
   max-width: 600px;
   width: 100%;
-  border: 3px solid rgb(0, 162, 255);
+  /* border: 3px solid rgb(0, 162, 255); */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -118,7 +116,7 @@ const Title = styled.h2`
   padding-top: 50px;
   padding-bottom: 30px;
   font-family: "맑은고딕";
-  border: 1px solid black;
+  /* border: 1px solid black; */
   .rabbit {
     margin-left: 10px;
     color: #efa1ae;
@@ -227,7 +225,7 @@ const InputForm = styled.input`
   justify-content: center;
   align-items: center;
   color: #2d2a2a;
-  border: 3px solid blue;
+  /* border: 3px solid blue; */
   @media screen and (min-width: 1200px) {
     width: 90%;
     transition: 0.5s;
@@ -279,7 +277,7 @@ const InputForm = styled.input`
 `;
 const IdForm = styled.input`
   margin: 0 auto;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   justify-content: center;
   align-items: center;
   margin-bottom: 25px;
@@ -360,18 +358,20 @@ const NickForm = styled.input`
   font-size: 1em;
   font-weight: 500;
   color: #2d2a2a;
-  border: 1px solid yellowgreen;
+  /* border: 1px solid yellowgreen; */
   @media screen and (min-width: 1200px) {
     width: 68%;
     transition: 0.5s;
     font-size: 1em;
     margin-left: 20px;
+    padding-left: 10px;
   }
   @media (max-width: 1200px) {
     width: 68%;
     transition: 0.5s;
     font-size: 1em;
     margin-left: 20px;
+    padding-left: 10px;
   }
   @media (max-width: 960px) {
     width: 66%;
@@ -491,7 +491,7 @@ const Options = styled.div`
   z-index: 100;
   padding-bottom: 5px;
   color: #252423ba;
-  border: 1px solid darkcyan;
+  /* border: 1px solid darkcyan; */
   &:hover {
     background-color: #fbeeac;
     border-radius: 7px;
@@ -549,7 +549,7 @@ const CustomSelect = styled.div`
   font-weight: 600;
   background-color: #ffffff;
   color: #141212b9;
-  border: 1px solid sandybrown;
+  /* border: 1px solid sandybrown; */
   @media (max-width: 320px) {
     width: 50px;
     height: 30px;
@@ -613,7 +613,7 @@ const LinkForm = styled.input`
   font-size: 1em;
   font-weight: 600;
   color: #2d2a2a;
-  border: 4px solid rebeccapurple;
+  /* border: 4px solid rebeccapurple; */
   @media screen and (min-width: 1200px) {
     width: 80%;
     transition: 0.3s;
@@ -750,7 +750,7 @@ const Stacks = styled.div`
   height: fit-content;
   min-height: 60px;
   font-family: "맑은고딕";
-  border: 4px solid darkolivegreen;
+  /* border: 4px solid darkolivegreen; */
   @media (max-width: 320px) {
     width: 96%;
     transition: 0.5s;
@@ -798,7 +798,7 @@ const Select = styled.select`
   margin-top: 0px;
   margin-bottom: 0px;
   height: fit-content;
-  border: 3px solid salmon;
+  /* border: 3px solid salmon; */
 `;
 const StackItem = styled.div`
   display: flex;
@@ -870,7 +870,7 @@ const TextMany = styled.textarea`
   font-size: 1em;
   color: #2d2a2a;
   font-family: "맑은고딕";
-  border: 3px solid salmon;
+  /* border: 3px solid salmon; */
   @media screen and (min-width: 1200px) {
     width: 90%;
     transition: 0.5s;
@@ -934,7 +934,7 @@ const CheckId = styled.button`
   background-color: #71717145;
   max-width: 120px;
   font-family: "맑은고딕";
-  border: 3px solid wheat;
+  /* border: 3px solid wheat; */
   &:hover {
     border-color: #fbeeac;
     background-color: #fbeeac;
@@ -1057,7 +1057,7 @@ const ErrorMessage = styled.span`
   font-size: 1em;
   color: #b3b3b3;
   margin-bottom: 20px;
-  border: 3px solid teal;
+  /* border: 3px solid teal; */
   @media screen and (min-width: 1200px) {
     font-size: 1em;
   }

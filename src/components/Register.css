@@ -18,7 +18,7 @@ input {
     margin-bottom: 27px;
     outline: none;
     font-family: "맑은고딕";
-    border: 3px solid green;
+    /* border: 3px solid green; */
 }
 
 
@@ -36,7 +36,7 @@ select {
     margin-top: 10px;
     margin-bottom: 27px;
     font-family: "맑은고딕";
-    border: 3px solid violet;
+    /* border: 3px solid violet; */
 }
 option{
     font-size: 1.3em;
@@ -207,7 +207,7 @@ option{
     width: 100%;
     position: relative;
     margin: 0 auto;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 .NickArea{
     max-width: 600px;
@@ -215,7 +215,7 @@ option{
     position: relative;
     margin-left: 30px;
     margin: 0 auto;
-    border: 1px solid yellowgreen;
+    /* border: 1px solid yellowgreen; */
 }
 .MultipleChoice{
     color: rgb(212, 36, 36);
