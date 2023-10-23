@@ -8,6 +8,7 @@ const Wrap = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
+  overflow: hidden;
 `;
 const Container = styled.div`
   background-color: #0b666a;

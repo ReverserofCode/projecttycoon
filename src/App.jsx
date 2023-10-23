@@ -16,6 +16,7 @@ const MainContainer = styled.div`
   min-height: 100%;
   position: relative;
   margin-top: 64px;
+  overflow: hidden;
   @media screen and (max-width: 715px) {
     margin-top: 45px;
   }
@@ -38,32 +39,40 @@ function App() {
   const handleSetUserData = useCallback((value) => {
     setUserData(value);
   }, []);
-  const handleSetPage = useCallback(
-    (e) => {
-      let buf = e.wheelDelta < 0 ? page + 1 : page - 1;
-      if (buf > 3) {
-        Target.current[0]?.scrollIntoView({ behavior: "smooth" });
-        setPage(0);
-      } else if (buf < 0) {
-        Target.current[3]?.scrollIntoView({ behavior: "smooth" });
-        setPage(3);
-      } else {
-        Target.current[buf]?.scrollIntoView({ behavior: "smooth" });
-        setPage(buf);
-      }
-    },
-    [page]
-  );
+  const handleSetPage = useCallback(() => {
+    // let buf = e.wheelDelta < 0 ? page + 1 : page - 1;
+    let buf = page + 1;
+    if (buf > 3) {
+      Target.current[0]?.scrollIntoView({ behavior: "smooth" });
+      setPage(0);
+    } else if (buf < 0) {
+      Target.current[3]?.scrollIntoView({ behavior: "smooth" });
+      setPage(3);
+    } else {
+      Target.current[buf]?.scrollIntoView({ behavior: "smooth" });
+      setPage(buf);
+    }
+  }, [page]);
   /** 스크롤 이벤트 */
   useEffect(() => {
     if (Eventer.current) {
-      document.addEventListener("wheel", (e) => {
-        Throatle(handleSetPage(e), 1000);
-      });
+      window.addEventListener(
+        "DOMMouseScroll",
+        (e) => {
+          e.preventDefault();
+        },
+        { passive: false }
+      );
+      window.addEventListener(
+        "wheel",
+        (e) => {
+          e.preventDefault();
+        },
+        { passive: false }
+      );
+      document.addEventListener("wheel", Throatle(handleSetPage, 1000));
       return () => {
-        document.removeEventListener("wheel", (e) => {
-          Throatle(handleSetPage(e), 1000);
-        });
+        document.removeEventListener("wheel", Throatle(handleSetPage, 1000));
       };
     }
   }, [handleSetPage]);
@@ -74,7 +83,7 @@ function App() {
         <Page1 target={(el) => (Target.current[0] = el)} />
         <Page2 target={(el) => (Target.current[1] = el)} />
         <Page1 target={(el) => (Target.current[2] = el)} />
-        <Page1 target={(el) => (Target.current[3] = el)} />
+        <Page2 target={(el) => (Target.current[3] = el)} />
       </Wrap>
     </MainContainer>
   );
