@@ -25,7 +25,7 @@ input {
 
 select {
     display: block;
-    height: 65px;
+    height: 55px;
     max-width: 600px;
     width: 100%;
     padding-left: 15px;
@@ -48,7 +48,8 @@ option{
 
 @media (max-width: 320px) {
     select{ width: 95%;
-    transition: 0.5s;}
+    transition: 0.5s;
+    height: 40px;}
     option{
         font-size: 0.7em;
     }
@@ -68,7 +69,8 @@ option{
   }
   @media (min-width: 321px) and (max-width: 360px)  {
     select{ width:  96%;
-        transition: 0.5s;}
+        transition: 0.5s;
+        height: 40px;}
         option{
             font-size: 0.8em;
         }

@@ -85,7 +85,7 @@ const Contents = styled.div`
     width: 90%;
     transition: 0.5s;
   }
-  @media (min-width: 540px) {
+  @media (min-width: 520px) {
     width: 95%;
     transition: 0.5s;
   }
@@ -147,7 +147,7 @@ const Title = styled.h2`
     font-size: 0.9em;
     transition: 0.3s;
   }
-  @media (min-width: 540px) {
+  @media (min-width: 520px) {
     padding-top: 45px;
     padding-bottom: 30px;
     font-size: 1.2em;
@@ -177,11 +177,11 @@ const ContentsTitle = styled.h3`
   margin-left: 10px;
   padding-bottom: 10px;
   @media screen and (min-width: 1200px) {
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     transition: 0.5s;
   }
   @media (max-width: 1200px) {
-    margin-left: 10px;
+    margin-left: 20px;
     padding-bottom: 10px;
     transition: 0.5s;
   }
@@ -193,28 +193,28 @@ const ContentsTitle = styled.h3`
     font-size: 1.2em;
   }
   @media (max-width: 720px) {
-    margin-left: 40px;
-    padding-bottom: 10px;
+    margin-left: 20px;
+    padding-bottom: 7px;
     transition: 0.5s;
     font-size: 1.1em;
   }
-  @media (max-width: 540px) {
-    margin-left: 30px;
-    padding-bottom: 10px;
+  @media (max-width: 520px) {
+    margin-left: 10px;
+    padding-bottom: 6px;
     transition: 0.5s;
     font-size: 1.1em;
   }
   @media (max-width: 360px) {
-    margin-left: 30px;
-    padding-bottom: 10px;
+    margin-left: 10px;
+    padding-bottom: 5px;
     transition: 0.5s;
-    font-size: 1em;
+    font-size: 0.9em;
   }
   @media (max-width: 320px) {
-    margin-left: 35px;
-    padding-bottom: 10px;
+    margin-left: 5px;
+    padding-bottom: 5px;
     transition: 0.5s;
-    font-size: 1em;
+    font-size: 0.9em;
   }
 `;
 const InputForm = styled.input`
@@ -231,47 +231,49 @@ const InputForm = styled.input`
   @media screen and (min-width: 1200px) {
     width: 90%;
     transition: 0.5s;
-    font-size: 0.9em;
+    font-size: 1em;
   }
   @media (max-width: 1200px) {
     width: 90%;
     transition: 0.5s;
-    font-size: 0.9em;
+    font-size: 1em;
   }
   @media (max-width: 960px) {
     width: 85%;
     transition: 0.5s;
-    font-size: 0.8em;
+    font-size: 1em;
     padding-left: 10px;
   }
   @media (max-width: 720px) {
     width: 90%;
     transition: 0.5s;
-    font-size: 0.8em;
+    font-size: 1em;
     padding-left: 10px;
   }
   @media (max-width: 520px) {
     width: 91%;
     transition: 0.5s;
-    font-size: 0.8em;
+    font-size: 0.9em;
     padding-left: 10px;
   }
   @media (max-width: 420px) {
     width: 90%;
     transition: 0.5s;
-    font-size: 10px;
+    font-size: 14px;
     padding-left: 13px;
   }
   @media (max-width: 360px) {
     width: 90%;
     transition: 0.5s;
-    font-size: 8px;
-    padding-left: 7px;
+    font-size: 12px;
+    height: 35px;
+    padding-left: 5px;
   }
   @media (max-width: 320px) {
     width: 90%;
     transition: 0.5s;
-    font-size: 7px;
+    font-size: 12px;
+    height: 35px;
     padding-left: 5px;
   }
 `;
@@ -294,51 +296,54 @@ const IdForm = styled.input`
   @media screen and (min-width: 1200px) {
     width: 68%;
     transition: 0.5s;
-    font-size: 0.9em;
+    font-size: 1em;
     margin-left: 20px;
   }
   @media (max-width: 1200px) {
     width: 68%;
     transition: 0.5s;
-    font-size: 0.9em;
+    font-size: 1em;
     margin-left: 20px;
   }
   @media (max-width: 960px) {
     width: 66%;
     transition: 0.5s;
     margin-left: 35px;
-    font-size: 0.9em;
+    font-size: 1em;
   }
   @media (max-width: 720px) {
     width: 70%;
     transition: 0.5s;
     margin-left: 15px;
-    font-size: 0.6em;
+    font-size: 1em;
   }
-  @media (max-width: 540px) {
+  @media (max-width: 520px) {
     width: 70%;
     transition: 0.5s;
-    font-size: 0.6em;
+    font-size: 0.9em;
     margin-left: 7px;
   }
   @media (max-width: 420px) {
     width: 65%;
     transition: 0.5s;
-    font-size: 10px;
+    font-size: 14px;
     margin-left: 5px;
   }
   @media (max-width: 360px) {
     width: 60%;
     transition: 0.5s;
-    font-size: 8px;
+    font-size: 12px;
     margin-left: 5px;
+    height: 35px;
+    padding-left: 5px;
   }
   @media (max-width: 320px) {
     width: 53%;
     transition: 0.5s;
-    font-size: 6.5px;
-    padding-left: 10px;
+    font-size: 12px;
     margin-left: 5px;
+    height: 35px;
+    padding-left: 5px;
   }
 `;
 const NickForm = styled.input`
@@ -359,53 +364,54 @@ const NickForm = styled.input`
   @media screen and (min-width: 1200px) {
     width: 68%;
     transition: 0.5s;
-    font-size: 0.9em;
+    font-size: 1em;
     margin-left: 20px;
-    padding-left: 10px;
   }
   @media (max-width: 1200px) {
     width: 68%;
     transition: 0.5s;
-    font-size: 0.9em;
+    font-size: 1em;
     margin-left: 20px;
-    padding-left: 10px;
   }
   @media (max-width: 960px) {
     width: 66%;
     transition: 0.5s;
     margin-left: 35px;
-    font-size: 0.9em;
+    font-size: 1em;
   }
   @media (max-width: 720px) {
     width: 70%;
     transition: 0.5s;
     margin-left: 15px;
-    font-size: 0.6em;
+    font-size: 1em;
   }
-  @media (max-width: 540px) {
+  @media (max-width: 520px) {
     width: 70%;
     transition: 0.5s;
-    font-size: 0.6em;
+    font-size: 0.9em;
     margin-left: 7px;
   }
   @media (max-width: 420px) {
     width: 65%;
     transition: 0.5s;
-    font-size: 10px;
+    font-size: 14px;
     margin-left: 5px;
   }
   @media (max-width: 360px) {
     width: 60%;
     transition: 0.5s;
-    font-size: 8px;
+    font-size: 12px;
     margin-left: 5px;
+    height: 35px;
+    padding-left: 5px;
   }
   @media (max-width: 320px) {
     width: 53%;
     transition: 0.5s;
-    font-size: 6.5px;
-    padding-left: 10px;
+    font-size: 12px;
     margin-left: 5px;
+    height: 35px;
+    padding-left: 5px;
   }
 `;
 // 링크
@@ -466,6 +472,14 @@ const CustomOption = styled.div`
   top: 55px;
   font-family: "맑은고딕";
   /* border: 1px solid darkcyan; */
+  @media (max-width: 360px) {
+    height: 70px;
+    font-size: 10px;
+  }
+  @media (max-width: 320px) {
+    height: 70px;
+    font-size: 10px;
+  }
 `;
 const Options = styled.div`
   font-family: "맑은고딕";
@@ -496,7 +510,7 @@ const Options = styled.div`
   @media (max-width: 720px) {
     font-size: 0.8em;
   }
-  @media (max-width: 540px) {
+  @media (max-width: 520px) {
     font-size: 0.8em;
   }
   @media (max-width: 420px) {
@@ -504,9 +518,14 @@ const Options = styled.div`
   }
   @media (max-width: 360px) {
     font-size: 10px;
+    height: 20px;
+    font-size: 10px;
+    gap: 5px;
   }
   @media (max-width: 320px) {
-    font-size: 8px;
+    height: 20px;
+    font-size: 10px;
+    gap: 5px;
   }
 `;
 const CustomSelect = styled.div`
@@ -533,18 +552,21 @@ const CustomSelect = styled.div`
   border: 1px solid sandybrown;
   @media (max-width: 320px) {
     width: 50px;
+    height: 30px;
     transition: 0.5s;
     gap: 2px;
     font-size: 0.8em;
   }
   @media (min-width: 320px) {
     width: 50px;
+    height: 50px;
     transition: 0.5s;
     gap: 2px;
     font-size: 0.8em;
   }
   @media (min-width: 360px) {
     width: 70px;
+    height: 50px;
     transition: 0.5s;
     gap: 4px;
     font-size: 0.8em;
@@ -608,37 +630,39 @@ const LinkForm = styled.input`
     width: 100%;
     transition: 0.3s;
     padding-left: 5px;
-    font-size: 0.9em;
+    font-size: 1em;
   }
   @media (max-width: 720px) {
     width: 100%;
     transition: 0.3s;
     padding-left: 5px;
-    font-size: 0.8em;
+    font-size: 1em;
   }
   @media (max-width: 520px) {
     width: 100%;
     transition: 0.3s;
-    font-size: 0.7em;
+    font-size: 0.9em;
     padding-left: 10px;
   }
   @media (max-width: 420px) {
     width: 100%;
     transition: 0.3s;
-    font-size: 10px;
+    font-size: 14px;
     padding-left: 7px;
   }
   @media (max-width: 360px) {
     width: 100%;
     transition: 0.3s;
-    padding-left: 10px;
-    font-size: 8px;
+    height: 35px;
+    padding-left: 5px;
+    font-size: 12px;
   }
   @media (max-width: 320px) {
     width: 100%;
     transition: 0.3s;
-    padding-left: 0px;
-    font-size: 8px;
+    height: 35px;
+    padding-left: 5px;
+    font-size: 12px;
   }
 `;
 
@@ -685,7 +709,7 @@ const Button = styled.div`
     font-size: 1em;
     transition: 0.3s;
   }
-  @media (min-width: 540px) {
+  @media (min-width: 520px) {
     padding: 17px 37px;
     font-size: 1em;
     transition: 0.3s;
@@ -716,7 +740,6 @@ const Stacks = styled.div`
   align-items: center;
   max-width: 600px;
   width: 100%;
-  height: 50px;
   position: relative;
   padding-top: 10px;
   padding-left: 5px;
@@ -731,20 +754,23 @@ const Stacks = styled.div`
   @media (max-width: 320px) {
     width: 96%;
     transition: 0.5s;
+    min-height: 40px;
   }
   @media (min-width: 320px) {
     width: 96%;
     transition: 0.5s;
+    min-height: 40px;
   }
   @media (min-width: 360px) {
     width: 97%;
     transition: 0.5s;
+    min-height: 40px;
   }
   @media (min-width: 420px) {
     width: 96%;
     transition: 0.5s;
   }
-  @media (min-width: 540px) {
+  @media (min-width: 520px) {
     width: 95%;
     transition: 0.5s;
   }
@@ -809,18 +835,18 @@ const StackItem = styled.div`
     transition: 0.5s;
     font-size: 1em;
   }
-  @media (max-width: 540px) {
+  @media (max-width: 520px) {
     padding: 7px 10px;
     transition: 0.5s;
     font-size: 0.8em;
   }
   @media (max-width: 360px) {
-    padding: 6px 8px;
+    padding: 5px 8px;
     transition: 0.5s;
     font-size: 0.8em;
   }
   @media (max-width: 320px) {
-    padding: 6px 8px;
+    padding: 5px 8px;
     transition: 0.5s;
     font-size: 0.8em;
   }
@@ -873,7 +899,7 @@ const TextMany = styled.textarea`
     height: 120px;
     padding: 10px;
   }
-  @media (max-width: 540px) {
+  @media (max-width: 520px) {
     width: 88%;
     transition: 0.5s;
     font-size: 12px;
@@ -961,7 +987,7 @@ const CheckId = styled.button`
       cursor: pointer;
     }
   }
-  @media (max-width: 540px) {
+  @media (max-width: 520px) {
     width: 60px;
     padding: 8px 15px;
     font-size: 0.6em;
@@ -995,7 +1021,7 @@ const CheckId = styled.button`
   @media (max-width: 360px) {
     width: 50px;
     transition: 0.2s;
-    padding: 6px 10px;
+    padding: 2px 6px;
     font-size: 0.6em;
     border-radius: 10%;
     &:hover {
@@ -1003,7 +1029,7 @@ const CheckId = styled.button`
       background-color: #fbeeac;
       transition: 0.3s;
       color: #4743439c;
-      font-size: 0.8em;
+      font-size: 0.6em;
       font-weight: 500;
       cursor: pointer;
     }
@@ -1011,7 +1037,7 @@ const CheckId = styled.button`
   @media (max-width: 320px) {
     width: 50px;
     transition: 0.2s;
-    padding: 6px 10px;
+    padding: 2px 6px;
     border-radius: 10%;
     font-size: 10px;
     margin-top: 13px;
@@ -1046,7 +1072,7 @@ const ErrorMessage = styled.span`
     font-size: 0.9em;
     margin-bottom: 16px;
   }
-  @media (max-width: 540px) {
+  @media (max-width: 520px) {
     font-size: 0.7em;
     margin-bottom: 16px;
   }
@@ -1055,7 +1081,7 @@ const ErrorMessage = styled.span`
     margin-bottom: 15px;
   }
   @media (max-width: 320px) {
-    font-size: 12px;
+    font-size: 10px;
     margin-bottom: 15px;
   }
 `;
@@ -1161,6 +1187,27 @@ function Register({ userData }) {
     font-size: 1em;
     color: #ff0000;
     margin-bottom: 10px;
+    @media screen and (min-width: 1200px) {
+      font-size: 1em;
+    }
+    @media (max-width: 1200px) {
+      font-size: 1em;
+    }
+    @media (max-width: 960px) {
+      font-size: 0.9em;
+    }
+    @media (max-width: 720px) {
+      font-size: 0.9em;
+    }
+    @media (max-width: 520px) {
+      font-size: 0.7em;
+    }
+    @media (max-width: 360px) {
+      font-size: 0.7em;
+    }
+    @media (max-width: 320px) {
+      font-size: 10px;
+    }
   `;
 
   // 중복에러 메세지
@@ -1508,7 +1555,7 @@ function Register({ userData }) {
 
         <ContentsTitle>
           <span>*</span>기술스택
-          <span className="MultipleChoice">※ 다수 선택 가능합니다.</span>
+          <span className="MultipleChoice">※ 복수 선택 가능</span>
         </ContentsTitle>
         <Stacks>
           {stackItemGen()}
