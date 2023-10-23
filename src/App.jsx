@@ -82,7 +82,7 @@ function App() {
         <Page1 target={(el) => (Target.current[0] = el)} />
         <Page2 target={(el) => (Target.current[1] = el)} />
         <Page1 target={(el) => (Target.current[2] = el)} />
-        <Page1 target={(el) => (Target.current[3] = el)} />
+        <Page2 target={(el) => (Target.current[3] = el)} />
       </Wrap>
     </MainContainer>
   );
