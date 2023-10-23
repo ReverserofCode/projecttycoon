@@ -7,6 +7,7 @@ import { BiStopwatch } from "react-icons/bi";
 import { TbSchool } from "react-icons/tb";
 import { AiFillMail } from "react-icons/ai";
 import { BoardListGet } from "../functional/BoardList";
+import { DMRoomGen, DMSend } from "../DMSet/DM";
 
 /** 보드아이템을 담고있는 컨테이너 태그 */
 const Container = styled.div`
@@ -165,6 +166,12 @@ const StackContainer = styled.div`
   gap: 10px;
   width: 100%;
 `;
+const DMButton = styled.div`
+  z-index: 100;
+  display: "flex";
+  align-items: "flex-start";
+  margin-bottom: "20px";
+`;
 
 function MemberPage({
   memberRole,
@@ -175,6 +182,8 @@ function MemberPage({
   stack,
   postId,
   handleBoardItemGen,
+  handleSetOpen,
+  userData,
 }) {
   // 스택 이미지 정보를 상태로 관리
   const [stackImages, setStackImages] = useState([]);
@@ -365,7 +374,7 @@ function MemberPage({
     <Container>
       <BoardBase
         onClick={() => {
-          window.location.href = `http://projecttycoon.com/api/memberPage/${postId}`;
+          window.location.href = `http://projecttycoon.com/memberPage/${postId}`;
         }}
       >
         <ProfileArea>
@@ -392,11 +401,20 @@ function MemberPage({
           )}
         </TagContainer>
         <TagContainer>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "flex-start",
-              marginBottom: "20px",
+          <DMButton
+            onClick={(e) => {
+              e.stopPropagation();
+              if (userData !== undefined) {
+                DMRoomGen(userData?.memberId, writer?.memberId).then((res) => {
+                  DMSend(
+                    `프로젝트 [${value?.projectTitle}]에 대한 문의사항이 있어 쪽지방이 생성 되었습니다.`,
+                    writer?.memberId,
+                    userData?.memberId,
+                    res?.dmroomId
+                  );
+                });
+                handleSetOpen();
+              } else alert("DM 생성을 위해서는 로그인 해주세요");
             }}
           >
             <TagItem>
@@ -404,10 +422,10 @@ function MemberPage({
                 color={"#0B666A"}
                 fontSize={"20px"}
                 style={{ marginRight: "10px" }}
-              ></AiFillMail>
+              />
               DM
             </TagItem>
-          </div>
+          </DMButton>
         </TagContainer>
         <TagContainer></TagContainer>
       </BoardBase>

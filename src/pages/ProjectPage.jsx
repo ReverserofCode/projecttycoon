@@ -193,6 +193,8 @@ function ProjectPage({ userData }) {
           filter={boardList[i]?.memberRole}
           introduce={boardList[i]?.memberIntroduce}
           stack={JSON.parse(boardList[i]?.memberStack)}
+          handleSetOpen={handleSetOpen}
+          userData={userData}
         />
       );
     }
