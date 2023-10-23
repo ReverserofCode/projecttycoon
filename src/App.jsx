@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import Navbar from "./components/Navbar";
 import Page1 from "./page/Page1";
 import Page2 from "./page/Page2";
+import Page3 from "./page/Page3";
 import { Throatle } from "./functional/Throatle";
 
 const MainContainer = styled.div`
