@@ -25,11 +25,17 @@ const But = styled.button`
   height: ${(props) => props.width || "30px"};
   background-color: ${(props) => props.background_color || "#0B666A"};
   color: white;
+  @media screen and (max-width: 850px) {
+    max-width: 360px;
+    width: 100%;
+  }
   @media screen and (max-width: 720px) {
-    width: 330px;
+    max-width: 330px;
+    width: 100%;
   }
   @media screen and (max-width: 370px) {
-    width: 170px;
+    max-width: 170px;
+    width: 100%;
   }
 `;
 const WriteWrap = styled.div`
@@ -64,6 +70,9 @@ const Title = styled.h2`
   padding: 12px;
   @media screen and (max-width: 370px) {
     font-size: 15px;
+  }
+  @media screen and (max-width: 760px) {
+    font-size: 19px;
   }
 `;
 const Subtitle = styled.h4`
@@ -110,12 +119,16 @@ const MainImgWrap = styled.div`
   align-items: center;
   width: 620px;
   height: 400px;
-    /* height: 100%; */
     position: relative;
-    /* border: 1px red solid; */
+    @media screen and (max-width: 850px) {
+   justify-content: center;
+   width: 500px;
+   height: 260px;
+  }
     @media screen and (max-width: 900px ){
         height: 100%;
     }
+    
     @media screen and (max-width: 370px ){
         width: 350px;
         height: 250px;
@@ -149,6 +162,10 @@ const SubImgBox = styled.div`
   position: relative;
   width: 230px;
   height: 120px;
+  @media screen and (max-width: 680px) {
+    max-width: 200px;
+    width: 100%;
+  }
   @media screen and (max-width: 370px) {
     width: 118px;
     height: 70px;
@@ -164,7 +181,6 @@ const DeleteBtn = styled.button`
   width: 35px;
 `;
 const Right = styled.div`
-  /* width: 100%; */
   display: flex;
   /* border: 1px red solid; */
   flex-direction: column;
@@ -188,6 +204,12 @@ const ImgWrap = styled.div`
     width: 630px;
     height: 350px;
   }
+  @media screen and (max-width: 680px) {
+    padding: 4px;
+    max-width: 600px;
+    width: 100%;
+    height: 300px;
+  }
   @media screen and (max-width: 370px) {
     display: flex;
     flex-direction: column;
@@ -197,6 +219,8 @@ const ImgWrap = styled.div`
   }
 `;
 const Ty = styled.div`
+/* border: 1px red solid; */
+min-width: 170px;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -204,17 +228,21 @@ const Ty = styled.div`
   align-items: center;
 `;
 const Top = styled.div`
-  /* border: 1px solid blue; */
   max-width: 400px;
-  /* border: 1px red solid; */
   width: 100%;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 794px) {
+    max-width: 350px;
+    width: 100%;
+  }
   @media screen and (max-width: 720px) {
-    width: 330px;
+    max-width: 330px;
+    width: 100%;
   }
   @media screen and (max-width: 370px) {
-    width: 172px;
+    max-width: 162px;
+    width: 100%;
   }
 `;
 const DateInput = styled.input`
