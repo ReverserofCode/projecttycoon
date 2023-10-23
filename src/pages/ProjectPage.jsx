@@ -112,18 +112,12 @@ const Loading = styled.span`
 const ScrollButton = styled.div`
   display: flex;
   position: fixed;
-  bottom: 60px;
-  right: 120px;
+  bottom: 50px;
+  right: 21px;
   width: 45px;
   @media (max-width: 360px) {
     right: 5px;
     bottom: 40px;
-  }
-  @media (max-width: 420px) {
-    right: 5px;
-  }
-  @media (max-width: 520px) {
-    right: 5px;
   }
 `;
 /** 프로젝트 페이지 */

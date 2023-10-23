@@ -17,3 +17,9 @@
     background: none;
     /* display: none;   */
 }
+@media (max-width: 360px) {
+    .scroll{
+        font-size: 38px;
+    }
+  }
+
