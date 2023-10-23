@@ -1,6 +1,6 @@
 import { PixelText40 } from "../components/Pixel";
 import Image from "../img/monitor.png";
-import ButtonIcon from "../img/ButtonMember.png";
+import ButtonIcon from "../img/ButtonMember 1.png";
 import styled from "@emotion/styled";
 const Wrap = styled.div`
   display: flex;
@@ -19,10 +19,11 @@ const Container = styled.div`
   box-sizing: border-box;
 `;
 const TextZone = styled.div`
-flex-direction: column;
-justify-content: space-around;
   display: flex;
-  /* border: 1px red solid; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 60%;
 `;
 const ImgBox = styled.div`
   max-width: 600px;
