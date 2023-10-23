@@ -36,12 +36,13 @@ function App() {
   const Target = useRef([]);
   const [userData, setUserData] = useState("");
   const [page, setPage] = useState(0);
+  let downUp = 0;
   const handleSetUserData = useCallback((value) => {
     setUserData(value);
   }, []);
   const handleSetPage = useCallback(() => {
     // let buf = e.wheelDelta < 0 ? page + 1 : page - 1;
-    let buf = page + 1;
+    let buf = downUp > 0 ? page - 1 : page + 1;
     if (buf > 3) {
       // Target.current[0]?.scrollIntoView({ behavior: "smooth" });
       // setPage(0);
@@ -52,7 +53,7 @@ function App() {
       Target.current[buf]?.scrollIntoView({ behavior: "smooth" });
       setPage(buf);
     }
-  }, [page]);
+  }, [downUp, page]);
   /** 스크롤 이벤트 */
   useEffect(() => {
     if (Eventer.current) {
@@ -67,6 +68,7 @@ function App() {
         "wheel",
         (e) => {
           e.preventDefault();
+          downUp = e.wheelDelta;
         },
         { passive: false }
       );
