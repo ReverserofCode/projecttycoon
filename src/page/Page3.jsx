@@ -10,7 +10,7 @@ const Wrap = styled.div`
   height: 100vh;
 `;
 const Container = styled.div`
-  background-color: #0b666a;
+  background-color: #18bbc4;
   display: flex;
   align-items: center;
   justify-content: center;

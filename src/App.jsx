@@ -43,8 +43,8 @@ function App() {
     // let buf = e.wheelDelta < 0 ? page + 1 : page - 1;
     let buf = page + 1;
     if (buf > 3) {
-      Target.current[0]?.scrollIntoView({ behavior: "smooth" });
-      setPage(0);
+      // Target.current[0]?.scrollIntoView({ behavior: "smooth" });
+      // setPage(0);
     } else if (buf < 0) {
       Target.current[3]?.scrollIntoView({ behavior: "smooth" });
       setPage(3);
@@ -70,9 +70,9 @@ function App() {
         },
         { passive: false }
       );
-      document.addEventListener("wheel", Throatle(handleSetPage, 1000));
+      document.addEventListener("wheel", Throatle(handleSetPage, 400));
       return () => {
-        document.removeEventListener("wheel", Throatle(handleSetPage, 1000));
+        document.removeEventListener("wheel", Throatle(handleSetPage, 400));
       };
     }
   }, [handleSetPage]);
@@ -82,8 +82,8 @@ function App() {
       <Wrap>
         <Page1 target={(el) => (Target.current[0] = el)} />
         <Page2 target={(el) => (Target.current[1] = el)} />
-        <Page1 target={(el) => (Target.current[2] = el)} />
-        <Page2 target={(el) => (Target.current[3] = el)} />
+        <Page3 target={(el) => (Target.current[2] = el)} />
+        <Page1 target={(el) => (Target.current[3] = el)} />
       </Wrap>
     </MainContainer>
   );
