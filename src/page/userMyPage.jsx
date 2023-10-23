@@ -20,6 +20,9 @@ const Nav = styled.a`
   width: 160px;
   height: 40px;
   border-bottom: 2px gray solid;
+  @media screen and (max-width: 670px) {
+    width:100px;
+  }
 `;
 const Wrap = styled.div`
   max-width: 1100px;

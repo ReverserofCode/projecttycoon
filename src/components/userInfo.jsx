@@ -21,10 +21,16 @@ const Box = styled.div`
   display: flex;
   height: 100%;
   align-items: center;
+  @media screen and (max-width: 860px) {
+    max-width: 750px;
+    width: 100%;
+  }
+  
 `;
 const SmallBox = styled.div`
   width: ${(props) => props.width || "130px"};
   height: 100%;
+  min-width: ${(props) => props.minwidth};
   border-right: 1px gray solid;
   display: flex;
   justify-content: center;
@@ -42,14 +48,17 @@ const XsmallBox = styled.div`
   align-items: center;
   justify-content: space-between;
   display: flex;
+  @media screen and (max-width: 860px) {
+    max-width:770px;
+    width: 100%;
+  }
 `;
 const Top = styled.div`
   width: 100%;
   display: flex;
   padding: 20px;
   box-sizing: border-box;
-  @media screen and (max-width: 370px) {
-    /* width: 250px; */
+  @media screen and (max-width: 495px) {
     display: flex;
     flex-direction: column;
   }
@@ -66,6 +75,22 @@ const Left = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media screen and (max-width: 860px) {
+    max-width: 400px;
+    width: 100%;
+  }
+  @media screen and (max-width: 714px) {
+    max-width: 320px;
+    width: 100%;
+  }
+  @media screen and (max-width: 577px) {
+    max-width: 300px;
+    width: 100%;
+  }
+  @media screen and (max-width: 495px) {
+    max-width: 500px;
+    width: 100%;
+  }
 `;
 const Wrap = styled.div`
   font-size: 13px;
@@ -98,6 +123,22 @@ const Bot = styled.div`
   padding: 20px;
   box-sizing: border-box;
   justify-content: space-between;
+  @media screen and (max-width: 955px) {
+    max-width: 850px;
+    width: 100%;
+  }
+  @media screen and (max-width: 715px) {
+    max-width: 650px;
+    width: 100%;
+  }
+  @media screen and (max-width: 577px) {
+    max-width: 610px;
+    width: 100%;
+  }
+  @media screen and (max-width: 495px) {
+   max-width: 550px;
+    width: 100%;
+  }
 `;
 const ImgBox = styled.img`
   width: 210px;
@@ -106,8 +147,8 @@ const ImgBox = styled.img`
   border: 1px gray solid;
   margin-bottom: 8px;
   @media screen and (max-width: 720px) {
-    width: 180px;
-    height: 180px;
+    width: 160px;
+    height: 160px;
   }
   @media screen and (max-width: 370px) {
     width: 200px;
@@ -126,6 +167,11 @@ const ImgWrap = styled.div`
   flex-direction: column;
   @media screen and (max-width: 720px) {
     width: 270px;
+  }
+  @media screen and (max-width: 495px) {
+    width: 345px;
+  height: 280px;
+    border-right: none;
   }
   @media screen and (max-width: 370px) {
     width: 370px;
@@ -152,6 +198,10 @@ const IntroduceBox = styled.div`
   border-bottom: 1px solid gray;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 860px) {
+    max-width: 760px;
+    width: 100%;
+  }
 `;
 const IntroBox = styled.div`
   height: 100%;
@@ -190,14 +240,41 @@ const LocationSelect = styled.select`
   }
 `;
 const But2 = styled.button`
+margin-right: 20px;
   border: none;
   outline: none;
   width: ${(props) => props.width || "450px"};
   height: ${(props) => props.width || "30px"};
   background-color: ${(props) => props.background_color || "#0B666A"};
   color: white;
+  @media screen and (max-width: 955px) {
+    max-width: 410px;
+    width: 100%;
+  }
+  @media screen and (max-width: 910px) {
+    max-width: 400px;
+    width: 100%;
+  }
+  @media screen and (max-width: 860px) {
+    max-width: 350px;
+    width: 100%;
+  }
   @media screen and (max-width: 720px) {
-    width: 330px;
+    max-width: 330px;
+    width: 100%;
+  }
+  @media screen and (max-width: 714px) {
+    max-width: 300px;
+    width: 100%;
+  }
+  @media screen and (max-width: 666px) {
+    max-width: 270px;
+    width: 100%;
+  }
+  @media screen and (max-width: 577px) {
+    max-width: 240px;
+    width: 100%;
+    /* justify-content: space-between; */
   }
   @media screen and (max-width: 370px) {
     width: 150px;
@@ -209,6 +286,10 @@ const LinkBox = styled.div`
   border-bottom: 1px solid gray;
   display: flex;
   align-items: center;
+  @media screen and (max-width: 860px) {
+    max-width: 760px;
+    width: 100%;
+  }
 `;
 const LinkSmallBox = styled.div`
   width: 120px;
@@ -217,11 +298,13 @@ const LinkSmallBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width:110px;
 `;
 const But2Wrap = styled.div`
+width: 100%;
   margin-top: 40px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 `;
 const StackBut = styled.button`
   background-color: #0b666a;
@@ -289,6 +372,10 @@ const LinkWrap = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 860px) {
+    max-width: 600px;
+    width: 100%;
+  }
 `;
 const LinkButWrap = styled.div`
   width: 100%;
@@ -334,8 +421,17 @@ const PwInput = styled.input`
   max-width: 400px;
   width: 100%;
   padding: 4px 12px;
-  @media screen and (max-width: 720px) {
-    width: 280px;
+  @media screen and (max-width: 870px) {
+    max-width: 300px;
+    width: 100%;
+  }
+  @media screen and (max-width: 755px) {
+    max-width: 230px;
+    width: 100%;
+  }
+  @media screen and (max-width: 620px) {
+    max-width: 200px;
+    width: 100%;
   }
 `;
 const FileInput = styled.input`
@@ -1350,7 +1446,7 @@ function UserInfo() {
             </XsmallBox>
           </Box>
           <Box>
-            <SmallBox width={"140px"}>언어</SmallBox>
+            <SmallBox width={"140px"} minwidth={'100px'}>언어</SmallBox>
             <XsmallBox>
               {selectedLanguages.length > 0 ? (
                 <Wrap360>
