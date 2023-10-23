@@ -205,7 +205,7 @@ function ProjectPage({ userData }) {
         </Loader>
       );
     return contents;
-  }, [boardList, loadingLength]);
+  }, [boardList, handleSetOpen, loadingLength, userData]);
 
   //기본 길이를 지정하는 부분
 
