@@ -2,6 +2,7 @@ import React, { useCallback, useState, useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 import Navbar from "./components/Navbar";
 import Page1 from "./page/Page1";
+import Page2 from "./page/Page2";
 import { Throatle } from "./functional/Throatle";
 
 const MainContainer = styled.div`
@@ -70,7 +71,7 @@ function App() {
       <Navbar userData={userData} handleSetUserData={handleSetUserData} />
       <Wrap>
         <Page1 target={(el) => (Target.current[0] = el)} />
-        <Page1 target={(el) => (Target.current[1] = el)} />
+        <Page2 target={(el) => (Target.current[1] = el)} />
         <Page1 target={(el) => (Target.current[2] = el)} />
         <Page1 target={(el) => (Target.current[3] = el)} />
       </Wrap>
