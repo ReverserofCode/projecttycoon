@@ -5,6 +5,7 @@ import Page1 from "./page/Page1";
 import Page2 from "./page/Page2";
 import Page3 from "./page/Page3";
 import Page4 from "./page/Page4";
+// import Page5 from "./page/Page5";
 import { Throatle } from "./functional/Throatle";
 
 const MainContainer = styled.div`
@@ -37,7 +38,6 @@ function App() {
   const Target = useRef([]);
   const [userData, setUserData] = useState("");
   const [page, setPage] = useState(0);
-  const [on,setOff]=useState(false);
   let downUp = 0;
   const handleSetUserData = useCallback((value) => {
     setUserData(value);
@@ -56,7 +56,6 @@ function App() {
     }
   }, [downUp, page]);
 
-<<<<<<< HEAD
   useEffect(() => {
     if (Eventer.current) {
       window.addEventListener(
@@ -75,27 +74,6 @@ function App() {
         { passive: false }
       );
       document.addEventListener("wheel", Throatle(handleSetPage, 400));
-=======
-    useEffect(() => {
-      if (Eventer.current) {
-        window.addEventListener(
-          "DOMMouseScroll",
-          (e) => {
-            e.preventDefault();
-          },
-          { passive: false }
-        );
-        window.addEventListener(
-          "wheel",
-          (e) => {
-            e.preventDefault();
-            downUp = e.wheelDelta;
-            console.log(downUp)
-          },
-          { passive: false }
-        );
-        document.addEventListener("wheel", Throatle(handleSetPage, 400));
->>>>>>> bb4dec769720fd842b545b048807029bd7c50713
       return () => {
         document.removeEventListener("wheel", Throatle(handleSetPage, 400));
       };
@@ -109,6 +87,7 @@ function App() {
         <Page1 target={(el) => (Target.current[1] = el)} />
         <Page2 target={(el) => (Target.current[2] = el)} />
         <Page3 target={(el) => (Target.current[3] = el)} />
+        {/* <Page4 target={(el) => (Target.current[3] = el)} /> */}
         {/* <Page2 target={(el) => (Target.current[3] = el)} /> */}
       </Wrap>
     </MainContainer>
