@@ -346,15 +346,7 @@ function DetailPage({ userData }) {
   return (
     <>
       {value === undefined ? (
-        <Container>
-          <ErrorPage
-            message={
-              "현재 링크는 유효하지 않은 프로젝트 입니다. 프로젝트의 주소를 다시 확인해 주세요."
-            }
-            goTo={"http://projecttycoon.com/"}
-            goToMessage={"메인페이지로"}
-          />
-        </Container>
+        <Container></Container>
       ) : mod === "main" ? (
         <Container>
           <SideContents>
