@@ -37,7 +37,7 @@ function App() {
   const Target = useRef([]);
   const [userData, setUserData] = useState("");
   const [page, setPage] = useState(0);
-  const [on,setOff]=useState(false);
+  const [on, setOff] = useState(false);
   let downUp = 0;
   const handleSetUserData = useCallback((value) => {
     setUserData(value);
@@ -56,7 +56,6 @@ function App() {
     }
   }, [downUp, page]);
 
-<<<<<<< HEAD
   useEffect(() => {
     if (Eventer.current) {
       window.addEventListener(
@@ -75,27 +74,6 @@ function App() {
         { passive: false }
       );
       document.addEventListener("wheel", Throatle(handleSetPage, 400));
-=======
-    useEffect(() => {
-      if (Eventer.current) {
-        window.addEventListener(
-          "DOMMouseScroll",
-          (e) => {
-            e.preventDefault();
-          },
-          { passive: false }
-        );
-        window.addEventListener(
-          "wheel",
-          (e) => {
-            e.preventDefault();
-            downUp = e.wheelDelta;
-            console.log(downUp)
-          },
-          { passive: false }
-        );
-        document.addEventListener("wheel", Throatle(handleSetPage, 400));
->>>>>>> bb4dec769720fd842b545b048807029bd7c50713
       return () => {
         document.removeEventListener("wheel", Throatle(handleSetPage, 400));
       };
