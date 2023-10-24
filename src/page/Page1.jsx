@@ -27,13 +27,15 @@ const TextZone = styled.div`
   width: 60%;
 `;
 const ImgBox = styled.div`
-  max-width: 600px;
+  max-width: 500px;
   width: 100%;
 `;
 const Img = styled.img`
   width: 100%;
 `;
 const Button = styled.div`
+max-width: 300px;
+width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
