@@ -99,4 +99,10 @@ public class WebController {
         log.info("Call MemberBoard");
         return "forward:/static/memberBoard/index.html";
     }
+
+    @GetMapping("/projects")
+    public String callProjectList(){
+        log.info("Call Projects List ");
+        return "forward:/static/PageProjectBoard/index.html";
+    }
 }
