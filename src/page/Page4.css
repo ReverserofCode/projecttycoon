@@ -1,0 +1,181 @@
+@import url("https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap");
+/* 배경 */
+.Home2{
+  /* background: radial-gradient(circle,  #071952 5%,#fafaf9 88%); */
+  background: #071952;
+  height: 100%;
+}
+
+.Home2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Luckiest Guy", cursive;
+}
+/* 텍스트 */
+h1 {
+  margin: 0;
+  font-size: 8em;
+  padding: 0;
+  color: white;
+  text-shadow: 0 0.1em 20px rgba(43, 34, 34, 0.671), 0.05em -0.03em 0 rgba(43, 34, 34, 0.438), 0.05em 0.005em 0 #35A29F, 0em 0.08em 0 #35A29F, 0.05em 0.08em 0 #35A29F, 0px -0.03em 0 black, -0.03em -0.03em 0 black, -0.03em 0.08em 0 black, -0.03em 0 0 black;
+}
+/* 텍스트 애니메이션 */
+h1 span {
+  transform: scale(0.9);
+  display: inline-block;
+  
+} 
+.Color {
+    color:#F4D160;
+}
+.Color2 {
+    color:#F4D160;
+}
+h1 span:first-child {
+  animation: bop 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards infinite alternate;
+}
+h1 span:last-child {
+  animation: bopB 1s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards infinite alternate;
+}
+
+
+@keyframes bop {
+  0% {
+    transform: scale(0.9);
+  }
+  50%, 100% {
+    transform: scale(1);
+  }
+}
+@keyframes bopB {
+  0% {
+    transform: scale(0.9);
+  }
+  80%, 100% {
+    transform: scale(1) rotateZ(-3deg);
+  }
+}
+/* 텍스트 아래 이미지 gif */
+.ShootArea{
+    position: relative;
+}
+.Bear {
+    position: absolute;
+    bottom: 50px;
+    right: 250px;
+    animation-name: bear;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 150px;
+	height: 180px;
+	border: 2px solid black;
+	background:none;
+    border: none;
+	animation: bear 2s infinite  cubic-bezier(0.49, 1, 0.33, 4); /* 애니메이션 적용 */
+}
+
+.Fight {
+  position: absolute;
+  bottom: 50px;
+  left: 220px;
+  animation-name: fight;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 150px;
+	height: 180px;
+	border: 2px solid black;
+	background:none;
+    border: none;
+	animation: fight 2s infinite; /* 애니메이션 적용 */
+}
+.Shoot {
+    position: absolute;
+    bottom: 80px;
+    animation-name: shoot;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 50px;
+	height: 50px;
+	border: 2px solid black;
+	background:none;
+    border: none;
+	animation: shoot 4s infinite;; /* 애니메이션 적용 */
+}
+@keyframes shoot  {
+	from {
+		transform: translate(0, 0);
+	}
+	to {
+		transform: translate(550px, 0);
+	}}
+
+
+  /* 화살표 */
+  .arrow {
+    position: absolute;
+    right: 50px;
+    bottom: 0;
+    width: 1vw;
+    height: 1vw;
+    border: 1vw solid;
+    border-color: rgba(237, 236, 236, 0.352)transparent transparent rgba(237, 236, 236, 0.352);
+    transform: rotate(225deg);
+  }
+  
+  
+  .arrowSliding {
+    position: absolute;
+    -webkit-animation: slide 4s linear infinite; 
+            animation: slide 4s linear infinite;
+  }
+  
+  .delay1 {
+    -webkit-animation-delay: 1s; 
+      animation-delay: 1s;
+  }
+  .delay2 {
+    -webkit-animation-delay: 2s; 
+      animation-delay: 2s;
+  }
+  
+  @-webkit-keyframes slide {
+    0% {
+      opacity: 0;
+      transform: translateY(-15vw); /* Change from positive to negative value */
+    }
+    80% {
+      opacity: 1;
+      transform: translateY(9vw);
+    }
+    20% {
+      opacity: 1;
+      transform: translateY(-9vw); /* Change from positive to negative value */
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(15vw); /* Change from negative to positive value */
+    }
+  }
+  
+  @keyframes slide {
+    0% {
+      opacity: 0;
+      transform: translateY(-15vw); /* Change from positive to negative value */
+    }
+    20% {
+      opacity: 1;
+      transform: translateY(-9vw); /* Change from positive to negative value */
+    }
+    80% {
+      opacity: 1;
+      transform: translateY(9vw);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(15vw);
+    }
+  }

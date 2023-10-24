@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Page1 from "./page/Page1";
 import Page2 from "./page/Page2";
 import Page3 from "./page/Page3";
+import Page4 from "./page/Page4";
 import { Throatle } from "./functional/Throatle";
 
 const MainContainer = styled.div`
@@ -51,26 +52,27 @@ function App() {
     } else {
       Target.current[buf]?.scrollIntoView({ behavior: "smooth" });
       setPage(buf);
-    } }, [downUp, page]);
+    }
+  }, [downUp, page]);
 
-    useEffect(() => {
-      if (Eventer.current) {
-        window.addEventListener(
-          "DOMMouseScroll",
-          (e) => {
-            e.preventDefault();
-          },
-          { passive: false }
-        );
-        window.addEventListener(
-          "wheel",
-          (e) => {
-            e.preventDefault();
-            downUp = e.wheelDelta;
-          },
-          { passive: false }
-        );
-        document.addEventListener("wheel", Throatle(handleSetPage, 400));
+  useEffect(() => {
+    if (Eventer.current) {
+      window.addEventListener(
+        "DOMMouseScroll",
+        (e) => {
+          e.preventDefault();
+        },
+        { passive: false }
+      );
+      window.addEventListener(
+        "wheel",
+        (e) => {
+          e.preventDefault();
+          downUp = e.wheelDelta;
+        },
+        { passive: false }
+      );
+      document.addEventListener("wheel", Throatle(handleSetPage, 400));
       return () => {
         document.removeEventListener("wheel", Throatle(handleSetPage, 400));
       };
@@ -80,9 +82,10 @@ function App() {
     <MainContainer ref={Eventer}>
       <Navbar userData={userData} handleSetUserData={handleSetUserData} />
       <Wrap>
-        <Page1 target={(el) => (Target.current[0] = el)} />
-        <Page2 target={(el) => (Target.current[1] = el)} />
-        <Page3 target={(el) => (Target.current[2] = el)} />
+        <Page4 target={(el) => (Target.current[0] = el)} />
+        <Page1 target={(el) => (Target.current[1] = el)} />
+        <Page2 target={(el) => (Target.current[2] = el)} />
+        <Page3 target={(el) => (Target.current[3] = el)} />
         {/* <Page2 target={(el) => (Target.current[3] = el)} /> */}
       </Wrap>
     </MainContainer>

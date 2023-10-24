@@ -19,7 +19,7 @@ const Container = styled.div`
   box-sizing: border-box;
 `;
 const TextZone = styled.div`
-/* border: 1px red solid; */
+  /* border: 1px red solid; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,7 +34,7 @@ const Img = styled.img`
   width: 100%;
 `;
 const Button = styled.div`
-margin-top: 30px;
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
