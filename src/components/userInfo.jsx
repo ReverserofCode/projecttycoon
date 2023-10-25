@@ -750,6 +750,7 @@ console.log(memberInfo.memberStack)
 
   const handleProfileImg = (e) => {
     setProfile(e.target.value);
+    setSelectFile("/"+defaultImg[profile]);
   };
   // const imageInput = useRef();
   return (
@@ -997,8 +998,8 @@ console.log(memberInfo.memberStack)
                   memberInfo.memberRole,
                   memberInfo.memberIntroduce,
                   selectFile,
-                  JSON.stringify(selectedLanguages),
-                  JSON.stringify(selectLink)
+                  selectedLanguages,
+                  selectLink
                 );
               } 
               else {
@@ -1010,8 +1011,8 @@ console.log(memberInfo.memberStack)
                   memberInfo.memberRole,
                   memberInfo.memberIntroduce,
                   defaultImg[profile],
-                  JSON.stringify(selectedLanguages),
-                  JSON.stringify(selectLink)
+                  selectedLanguages,
+                  selectLink
                 );
               }
             }}
