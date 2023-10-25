@@ -578,7 +578,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),A=F,x=B),P===void 0&&(
   border: 1px solid #dddddd;
   padding: 5px;
   border-radius: 50%;
-`;function pG(){const[e,t]=ce.useState(!1);return ce.useEffect(()=>{cR().then(n=>{var a;let r=n==null?void 0:n.myScraplist,i=window.location.href.split("/");for(let o=0;o<(r==null?void 0:r.length);o++)i[4]===((a=r[o])==null?void 0:a.projectId)&&t(!0)})},[]),Y.jsx(_G,{onClick:()=>{myData!==void 0&&t(!e)},children:e?Y.jsx(MI,{color:"#ff3434",onClick:()=>{if(myData!==void 0){let n=window.location.href.split("/");dG(n[4],myData==null?void 0:myData.memberId)}}}):Y.jsx(kI,{color:"#000000",onClick:()=>{if(myData!==void 0){let n=window.location.href.split("/");uG(n[4],myData==null?void 0:myData.memberId)}}})})}const mG=async e=>await await ut.get(`/api/memberPage/${e}`).then(n=>n.data).catch(n=>{console.log(n)}),fG=ee.div`
+`;function pG(){const[e,t]=ce.useState(!1),[n,r]=ce.useState("");return ce.useEffect(()=>{cR().then(i=>{var s;r(i);let a=i==null?void 0:i.myScraplist,o=window.location.href.split("/");for(let l=0;l<(a==null?void 0:a.length);l++)o[4]===((s=a[l])==null?void 0:s.projectId)&&t(!0)})},[]),Y.jsx(_G,{onClick:()=>{n!==void 0&&t(!e)},children:e?Y.jsx(MI,{color:"#ff3434",onClick:()=>{if(n!==void 0){let i=window.location.href.split("/");dG(i[4],n==null?void 0:n.memberId)}}}):Y.jsx(kI,{color:"#000000",onClick:()=>{if(n!==void 0){let i=window.location.href.split("/");uG(i[4],n==null?void 0:n.memberId)}}})})}const mG=async e=>await await ut.get(`/api/memberPage/${e}`).then(n=>n.data).catch(n=>{console.log(n)}),fG=ee.div`
   display: flex;
   justify-content: center;
   align-items: center;
