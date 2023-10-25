@@ -98,7 +98,6 @@ public class MemberEntity extends TimeStamp {
         this.memberLink = loginDTO.getMemberLink();
         this.memberFilePath = loginDTO.getMemberFilePath();
         this.memberFileName = loginDTO.getMemberFileName();
-        this.memberAuthority = new HashSet<>();
     }
 
     public void memberUpdate(MemberRequestDTO requestDTO) {
@@ -111,9 +110,6 @@ public class MemberEntity extends TimeStamp {
         this.memberStack = requestDTO.getMemberStack();
         this.memberFilePath = requestDTO.getMemberFilePath();
         this.memberFileName = requestDTO.getMemberFileName();
-
-
-        this.memberAuthority = new HashSet<>();
     }
 
 }
