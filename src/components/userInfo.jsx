@@ -783,7 +783,7 @@ console.log(memberInfo.memberStack)
                       } */}
               {defaultImg[profile] === undefined ? (
                 <ImgBox
-                  src={"http://projecttycoon.com/static/icons" + profile}
+                  src={"http://projecttycoon.com/static/icons/" + profile}
                 ></ImgBox>
               ) : (
                 <ImgBox

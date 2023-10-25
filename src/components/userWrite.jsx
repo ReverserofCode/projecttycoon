@@ -26,6 +26,7 @@ const WirteProject = styled.a`
   padding: 12px 12px;
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   border: 1px #0b666a solid;
   border-radius: 15px;
   @media screen and (max-width: 500px) {
