@@ -540,6 +540,8 @@ console.log(memberInfo.memberStack)
       .then((response) => {
         console.log(response.data);
         setMemberInfo(response.data);
+        setSelectedLanguages(JSON.parse(response.data.memberStack));
+        setSelectLink(JSON.parse(response.data.memberLink));
       })
       .catch((err) => {
         console.log(err);
@@ -657,7 +659,7 @@ console.log(memberInfo.memberStack)
   ];
   const defaultImgName = [
     { label: "강아지", value: "dog" },
-    // { label: "거북이", value: "tuttle" },
+    { label: "거북이", value: "turtle" },
     { label: "고양이", value: "cat" },
     // { label: "기린", value: "기린" },
     { label: "라쿤", value: "raccoon" },
@@ -674,7 +676,7 @@ console.log(memberInfo.memberStack)
     dog: "8_dog.png",
     cat: "6_cat.png",
     alpaka: "12_alpaca.png",
-    tuttle: "16_tuttle.png",
+    turtle: "16_turtle.png",
     axolotl: "14_axolotl.png",
     penguin: "18_penguin.png",
     raccoon: "21_raccoon.png",
@@ -749,7 +751,7 @@ console.log(memberInfo.memberStack)
   const handleProfileImg = (e) => {
     setProfile(e.target.value);
   };
-  const imageInput = useRef();
+  // const imageInput = useRef();
   return (
     <Wrap>
       <Content>
@@ -995,10 +997,11 @@ console.log(memberInfo.memberStack)
                   memberInfo.memberRole,
                   memberInfo.memberIntroduce,
                   selectFile,
-                  selectedLanguages,
-                  selectLink
+                  JSON.stringify(selectedLanguages),
+                  JSON.stringify(selectLink)
                 );
-              } else {
+              } 
+              else {
                 PostAxios(
                   pw,
                   memberInfo.memberId,
@@ -1007,8 +1010,8 @@ console.log(memberInfo.memberStack)
                   memberInfo.memberRole,
                   memberInfo.memberIntroduce,
                   defaultImg[profile],
-                  selectedLanguages,
-                  selectLink
+                  JSON.stringify(selectedLanguages),
+                  JSON.stringify(selectLink)
                 );
               }
             }}
