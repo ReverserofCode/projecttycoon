@@ -1562,11 +1562,14 @@ function Register({ userData }) {
           <Select
             onChange={(e) => {
               e.preventDefault();
-              let buf = [...stack, e.target.value];
-              setStack(buf);
-              setStackError("");
+              if (e.target.value !== "") {
+                let buf = [...stack, e.target.value];
+                setStack(buf);
+                setStackError("");
+              }
             }}
           >
+            <option value="">선택</option>
             <option value="Java">Java</option>
             <option value="Python">Python</option>
             <option value="C">C</option>
