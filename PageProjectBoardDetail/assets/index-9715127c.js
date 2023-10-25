@@ -578,7 +578,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),A=F,x=B),P===void 0&&(
   border: 1px solid #dddddd;
   padding: 5px;
   border-radius: 50%;
-`;function pG(){const[e,t]=ce.useState(!1),[n,r]=ce.useState("");return ce.useEffect(()=>{cR().then(i=>{var s;r(i);let a=i==null?void 0:i.myScraplist,o=window.location.href.split("/");for(let l=0;l<(a==null?void 0:a.length);l++)o[4]===((s=a[l])==null?void 0:s.projectId)&&t(!0)})},[]),Y.jsx(_G,{children:e?Y.jsx(MI,{color:"#ff3434",onClick:()=>{if(n!==void 0){let i=window.location.href.split("/");dG(i[4],n==null?void 0:n.memberId),t(!e)}}}):Y.jsx(kI,{color:"#000000",onClick:()=>{if(n!==void 0){let i=window.location.href.split("/");uG(i[4],n==null?void 0:n.memberId),t(!e)}}})})}const mG=async e=>await await ut.get(`/api/memberPage/${e}`).then(n=>n.data).catch(n=>{console.log(n)}),fG=ee.div`
+`;function pG(){const[e,t]=ce.useState(!1),[n,r]=ce.useState();return ce.useEffect(()=>{cR().then(i=>{var s;r(i);let a=i==null?void 0:i.myScraplist,o=window.location.href.split("/");for(let l=0;l<(a==null?void 0:a.length);l++)if(console.log(a[l].projectId),o[4]===((s=a[l])==null?void 0:s.projectId)){t(!0);break}})},[]),Y.jsx(_G,{children:e?Y.jsx(MI,{color:"#ff3434",onClick:()=>{if(n!==void 0){let i=window.location.href.split("/");dG(i[4],n==null?void 0:n.memberId),t(!e)}}}):Y.jsx(kI,{color:"#000000",onClick:()=>{if(n!==void 0){let i=window.location.href.split("/");uG(i[4],n==null?void 0:n.memberId),t(!e)}}})})}const mG=async e=>await await ut.get(`/api/memberPage/${e}`).then(n=>n.data).catch(n=>{console.log(n)}),fG=ee.div`
   display: flex;
   justify-content: center;
   align-items: center;
