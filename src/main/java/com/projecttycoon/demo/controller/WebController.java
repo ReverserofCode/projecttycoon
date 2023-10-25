@@ -69,14 +69,14 @@ public class WebController {
         return mav;
     }
 
-    @GetMapping("/callMemberDetailPage/{id}")
+    @GetMapping("/memberPage/{id}")
     public ModelAndView callPageMemberDetail(@PathVariable String id) {
         ModelAndView mav = new ModelAndView();
         Optional<MemberEntity> object = memberRepository.findByMemberId(id);
         if (object.isPresent()) {
             log.info("call MemberPage and send intel");
             mav.addObject("memberDTO", object.get());
-            mav.setViewName("foward:/static/");
+            mav.setViewName("forward:/static/MemberPage/index.html");
         }
 
         return mav;
@@ -105,4 +105,5 @@ public class WebController {
         log.info("Call Projects List ");
         return "forward:/static/PageProjectBoard/index.html";
     }
+
 }
