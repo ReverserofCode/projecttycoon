@@ -19,8 +19,10 @@ const Container = styled.div`
 
 function Like() {
   const [like, setLike] = useState(false);
+  const [myData, setMyData] = useState("");
   useEffect(() => {
     GetMyData().then((res) => {
+      setMyData(res);
       let buf = res?.myScraplist;
       let path = window.location.href.split("/");
       for (let i = 0; i < buf?.length; i++) {
