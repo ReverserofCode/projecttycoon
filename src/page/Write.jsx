@@ -401,17 +401,19 @@ function Write({ userData }) {
       setImg(path.currentTarget.result);
     };
   };
-  const Params = {
-    projectTitle: title,
-    projectContent: contents,
-    projectWantedRole: JSON.stringify(selectFields),
-    projectStatus: true,
-    projectDue: Deadline,
-    projectAcademy: academy,
-    projectWriterId: userData?.memberId,
-    projectWriterNick: userData?.memberNickName,
-    projectScarpNum: 0,
-  };
+  // const Params = {
+  //   projectFilePath,
+  //   projectTitle: title,
+  //   projectContent: contents,
+  //   projectWantedRole: JSON.stringify(selectFields),
+  //   projectStatus: true,
+  //   projectDue: Deadline,
+  //   projectAcademy: academy,
+  //   projectWriterId: userData?.memberId,
+  //   projectWriterNick: userData?.memberNickName,
+  //   projectScarpNum: 0,
+  // };
+  
   //But
   const handleAddButton = () => {
     if (selectFields.length < 7) {
@@ -439,7 +441,48 @@ function Write({ userData }) {
       return false;
     }
     let data = new FormData();
-    if (imageMod) data.append("file", imgFile);
+    if(imageMod){
+        data.append("file", imgFile);
+        const Params = {
+        projectTitle: title,
+        projectContent: contents,
+        projectWantedRole: JSON.stringify(selectFields),
+        projectStatus: true,
+        projectDue: Deadline,
+        projectAcademy: academy,
+        projectWriterId: userData?.memberId,
+        projectWriterNick: userData?.memberNickName,
+        projectScarpNum: 0,
+      };
+      data.append(
+        "projectRequestDTO",
+        new Blob([JSON.stringify(Params)], { type: "application/json" }),
+        {
+          contentType: "application/json",
+        }
+      );
+    }
+    if(!imageMod){
+        const Params = {
+          projectFilePath:Img,
+        projectTitle: title,
+        projectContent: contents,
+        projectWantedRole: JSON.stringify(selectFields),
+        projectStatus: true,
+        projectDue: Deadline,
+        projectAcademy: academy,
+        projectWriterId: userData?.memberId,
+        projectWriterNick: userData?.memberNickName,
+        projectScarpNum: 0,
+      };
+      data.append(
+        "projectRequestDTO",
+        new Blob([JSON.stringify(Params)], { type: "application/json" }),
+        {
+          contentType: "application/json",
+        }
+      );
+    }
     data.append(
       "projectRequestDTO",
       new Blob([JSON.stringify(Params)], { type: "application/json" }),
