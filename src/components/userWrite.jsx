@@ -19,6 +19,7 @@ const WriteProjectWrap = styled.div`
   gap: 12px;
 `;
 const WirteProject = styled.a`
+color: black;
   max-width: 240px;
   height: 170px;
   width: 100%;
@@ -27,6 +28,7 @@ const WirteProject = styled.a`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  align-items: center;
   border: 1px #0b666a solid;
   border-radius: 15px;
   @media screen and (max-width: 500px) {
@@ -36,6 +38,7 @@ const WirteProject = styled.a`
   }
 `;
 const Font = styled.div`
+color: black;
   font-size: 14px;
   font-weight: 800;
 `;
