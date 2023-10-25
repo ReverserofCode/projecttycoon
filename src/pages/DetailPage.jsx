@@ -7,7 +7,7 @@ import { GetProjectFromID } from "../functional/GetProject";
 import "highlight.js/styles/obsidian.css";
 import Modify from "../components/Modify";
 import Comment from "../components/Comment";
-import Like from "../components/Like";
+import Like from "../components/Like.1";
 import { GetWriterData } from "../functional/GetWriterData";
 import { HoverIcon } from "../DMSet/Components";
 import DMmodal from "../DMSet/DMmodal";
@@ -377,11 +377,7 @@ function DetailPage({ userData }) {
             )}
             <MainTitle>
               {value?.projectTitle}
-              {userData?.memberId === value?.projectWriterId ? (
-                ""
-              ) : (
-                <Like myData={myData} />
-              )}
+              {userData?.memberId === value?.projectWriterId ? "" : <Like />}
             </MainTitle>
             <PosterContain>
               <Poster

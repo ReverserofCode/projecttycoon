@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { ScrapDelete, ScrapPost } from "../functional/Scrap";
+import { GetMyData } from "../functional/GetMyData";
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -16,17 +17,19 @@ const Container = styled.div`
   border-radius: 50%;
 `;
 
-function Like({ myData }) {
+function Like() {
   const [like, setLike] = useState(false);
   useEffect(() => {
-    let buf = myData?.myScraplist;
-    let path = window.location.href.split("/");
-    for (let i = 0; i < buf?.length; i++) {
-      if (path[4] === buf[i]?.projectId) {
-        setLike(true);
+    GetMyData().then((res) => {
+      let buf = res?.myScraplist;
+      let path = window.location.href.split("/");
+      for (let i = 0; i < buf?.length; i++) {
+        if (path[4] === buf[i]?.projectId) {
+          setLike(true);
+        }
       }
-    }
-  }, [myData?.myScraplist]);
+    });
+  }, []);
   return (
     <Container
       onClick={() => {
