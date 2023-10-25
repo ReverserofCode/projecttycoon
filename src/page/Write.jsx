@@ -441,9 +441,10 @@ function Write({ userData }) {
       return false;
     }
     let data = new FormData();
+    let Params="";
     if(imageMod){
         data.append("file", imgFile);
-        const Params = {
+       Params = {
         projectTitle: title,
         projectContent: contents,
         projectWantedRole: JSON.stringify(selectFields),
@@ -463,8 +464,8 @@ function Write({ userData }) {
       );
     }
     if(!imageMod){
-        const Params = {
-          projectFilePath:Img,
+       Params = {
+        projectFilePath:Img,
         projectTitle: title,
         projectContent: contents,
         projectWantedRole: JSON.stringify(selectFields),
@@ -483,13 +484,6 @@ function Write({ userData }) {
         }
       );
     }
-    data.append(
-      "projectRequestDTO",
-      new Blob([JSON.stringify(Params)], { type: "application/json" }),
-      {
-        contentType: "application/json",
-      }
-    );
     axios
       .post("/api/projectRegister", data, {
         headers: { "Content-Type": "multipart/form-data" },
