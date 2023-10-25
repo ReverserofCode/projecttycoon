@@ -83,6 +83,10 @@ const Left = styled.div`
     max-width: 320px;
     width: 100%;
   }
+  /* @media screen and (max-width: 660px) {
+    max-width: 300px;
+    width: 100%;
+  } */
   @media screen and (max-width: 577px) {
     max-width: 300px;
     width: 100%;
@@ -783,14 +787,6 @@ console.log(memberInfo.memberStack)
                     </option>
                   ))}
                 </Profile>
-                {/* <FileInput
-                            type="file"
-                            id="file"
-                            ref={imageInput}
-                            onChange={()=>{}}
-                            />
-                            <But1 onClick={ImageUpload}>수정</But1>
-                            <But1>삭제</But1> */}
               </ButWrap>
             </ImgWrap>
           </Right>
@@ -910,7 +906,7 @@ console.log(memberInfo.memberStack)
           </IntroduceBox>
           <div></div>
           <Box>
-            <SmallBox width="140px">역할</SmallBox>
+            <SmallBox width="140px" minwidth="100px">역할</SmallBox>
             <XsmallBox>
               <StackSelect
                 value={memberInfo.memberRole}
