@@ -846,4 +846,4 @@ Error generating stack: `+i.message+`
 `,Yg=P.div`
   max-width: 1440px;
   width: 100%;
-`;function Xg(){const[e,t]=R.useState(""),n=R.useCallback(r=>{t(r)},[]);return y.jsxs(Jg,{children:[y.jsx(R1,{userData:e,handleSetUserData:n}),y.jsx(Yg,{children:y.jsx(Gg,{})})]})}ul.createRoot(document.getElementById("root")).render(y.jsx(dt.StrictMode,{children:y.jsx(Xg,{})}));
+`;function Xg(){const[e,t]=R.useState(""),n=R.useCallback(r=>{t(r)},[]);return y.jsxs(Jg,{children:[y.jsx(R1,{userData:e,handleSetUserData:n}),y.jsx(Yg,{children:y.jsx(Gg,{userData:e})})]})}ul.createRoot(document.getElementById("root")).render(y.jsx(dt.StrictMode,{children:y.jsx(Xg,{})}));
