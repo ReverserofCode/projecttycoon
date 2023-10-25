@@ -4,22 +4,21 @@
   /* background: radial-gradient(circle,  #071952 5%,#fafaf9 88%); */
   background: #071952;
   height: 100%;
-}
-
-.Home2 {
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "Luckiest Guy", cursive;
 }
+
 /* 텍스트 */
 h1 {
   margin: 0;
   font-size: 8em;
-  padding: 0;
+  /* padding: 0; */
   color: white;
   text-shadow: 0 0.1em 20px rgba(43, 34, 34, 0.671), 0.05em -0.03em 0 rgba(43, 34, 34, 0.438), 0.05em 0.005em 0 #35A29F, 0em 0.08em 0 #35A29F, 0.05em 0.08em 0 #35A29F, 0px -0.03em 0 black, -0.03em -0.03em 0 black, -0.03em 0.08em 0 black, -0.03em 0 0 black;
 }
+
 /* 텍스트 애니메이션 */
 h1 span {
   transform: scale(0.9);
@@ -61,10 +60,10 @@ h1 span:last-child {
     position: relative;
 }
 .Bear {
-    position: absolute;
-    bottom: 50px;
-    right: 250px;
-    animation-name: bear;
+  position: absolute;
+  bottom: 50px;
+  right: 250px;
+  animation-name: bear;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -72,13 +71,13 @@ h1 span:last-child {
 	height: 180px;
 	border: 2px solid black;
 	background:none;
-    border: none;
+  border: none;
 	animation: bear 2s infinite  cubic-bezier(0.49, 1, 0.33, 4); /* 애니메이션 적용 */
 }
 
 .Fight {
   position: absolute;
-  bottom: 50px;
+  bottom: 90px;
   left: 220px;
   animation-name: fight;
 	display: flex;
@@ -88,13 +87,13 @@ h1 span:last-child {
 	height: 180px;
 	border: 2px solid black;
 	background:none;
-    border: none;
+  border: none;
 	animation: fight 2s infinite; /* 애니메이션 적용 */
 }
 .Shoot {
-    position: absolute;
-    bottom: 80px;
-    animation-name: shoot;
+  position: absolute;
+  bottom: 80px;
+  animation-name: shoot;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -110,7 +109,7 @@ h1 span:last-child {
 		transform: translate(0, 0);
 	}
 	to {
-		transform: translate(550px, 0);
+		transform: translate(700px, 0);
 	}}
 
 
@@ -177,5 +176,128 @@ h1 span:last-child {
     100% {
       opacity: 0;
       transform: translateY(15vw);
+    }
+  }
+
+  @media (max-width:960px) {
+    h1{
+      font-size: 7em;
+    }
+    .Bear{
+      bottom: 50px;
+      right: 180px;
+    }
+    .Fight{
+      bottom: 90px;
+      left: 180px;
+    }
+  }
+  @media (max-width:820px) {
+    h1{
+      font-size: 6em;
+    }
+    .Bear{
+      bottom: 50px;
+      right: 150px;
+    }
+    .Fight{
+      bottom: 90px;
+      left: 150px;
+    }
+  }
+  @media (max-width:720px) {
+    h1{
+      font-size: 5em;
+    }
+    .Bear{
+      bottom: 50px;
+      right: 110px;
+    }
+    .Fight{
+      bottom: 90px;
+      left: 110px;
+    }
+    
+  }
+  @media (max-width:660px) {
+    h1{
+      font-size: 4em;
+    }
+    .Bear{
+      bottom: 50px;
+      right: 10 0px;
+    }
+    .Fight{
+      bottom: 90px;
+      left: 100px;
+    }
+  }
+  @media (max-width:580px) {
+    h1{
+      font-size: 4em;
+    }
+    .Bear{
+      bottom: 50px;
+      right: 10px;
+    }
+    .Fight{
+      bottom: 90px;
+      left: 10px;
+    }
+  }
+  @media (max-width:510px) {
+    h1{
+      font-size: 4em;
+    }
+    .Bear{
+      bottom: 50px;
+      right: 10px;
+    }
+    .Fight{
+      bottom: 90px;
+      left: 10px;
+    }
+  }
+  @media (max-width:420px) {
+    h1{
+      font-size: 4em;
+    }
+    .Bear{
+      bottom: 50px;
+      right: 8px;
+    }
+    .Fight{
+      bottom: 90px;
+      left: 8px;
+    }
+  }
+  @media (max-width:360px) {
+    h1{
+      font-size: 4em;
+    }
+    .Bear{
+      bottom: 50px;
+      right: 5px;
+    }
+    .Fight{
+      bottom: 90px;
+      left: 5px;
+    }
+  }
+  @media (max-width:320px) {
+    h1{
+      font-size: 3em;
+    }
+    .Bear{
+      bottom: 50px;
+      right: 5px;
+    }
+    .Fight{
+      bottom: 90px;
+      left:5px;
+    }
+    .Shoot{
+      display: none;
+
     }
   }

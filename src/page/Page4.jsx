@@ -2,6 +2,7 @@ import { PixelText40 } from "../components/Pixel";
 import Image from "../img/monitor.png";
 import ButtonIcon from "../img/ButtonMember 1.png";
 import styled from "@emotion/styled";
+import { keyframes } from "@emotion/react";
 import "./Page4.css";
 const Wrap = styled.div`
   display: flex;
@@ -16,7 +17,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0 140px;
+  /* padding: 0 140px; */
   box-sizing: border-box;
 `;
 const TextZone = styled.div`
@@ -46,6 +47,9 @@ const Arrow = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 420px) {
+    display: none;
+  }
 `;
 const Button = styled.div`
   margin-top: 30px;

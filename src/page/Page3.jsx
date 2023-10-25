@@ -4,18 +4,9 @@ import Image2 from "../img/heart.png";
 import Image3 from "../img/letter.png";
 import ButtonIcon from "../img/ButtonNewProject.png";
 import React from "react";
-// import styled from "styled-components";
-<<<<<<< HEAD
-import styled, {
-  keyframes,
-} from "styled-components"; /* 1.keyframes를 import하고 */
-const rotate = keyframes` /* 2. css코드를 씀. */
-=======
-import styled, { keyframes } from "styled-components"; /* 1.keyframes를 import하고 */
-
-
+import styled from "@emotion/styled";
+import { keyframes } from "@emotion/react";
 const rotate = keyframes`
->>>>>>> bb4dec769720fd842b545b048807029bd7c50713
 0% {
     transform: scale(1)
   }
@@ -32,9 +23,6 @@ const rotate = keyframes`
     transform: scale(1)
   }
 `;
-<<<<<<< HEAD
-
-=======
 const loadEffect1 = keyframes`
     0%{
         opacity: 0;
@@ -48,8 +36,7 @@ const loadEffect1 = keyframes`
   to {
     transform: translateX(0);
   }
-`
->>>>>>> bb4dec769720fd842b545b048807029bd7c50713
+`;
 const Wrap = styled.div`
   display: flex;
   justify-content: center;
@@ -79,69 +66,30 @@ const ImgBox = styled.div`
   max-width: 400px;
   width: 100%;
 `;
-<<<<<<< HEAD
-// const bounce = keyframes`
-//   0% {
-//     transform: scale(1)
-//   }
-//   50% {
-//     transform: scale(0)
-//   }
-//   100% {
-//     transform: scale(1)
-//   }
-// `;
 const Img1 = styled.img`
   position: absolute;
   top: 20%;
   right: 1%;
   width: 50%;
+  animation: ${loadEffect1} 1s ease-in-out;
 `;
 const Img2 = styled.img`
-  /* position: absolute; */
   width: 50%;
-  /* top: 10; */
 `;
 const Img3 = styled.img`
   position: absolute;
   top: -7px;
   width: 27%;
   right: 0px;
-  animation: ${rotate} 1s linear infinite;
+  animation: ${rotate} 2s linear infinite;
 `;
 const Img4 = styled.img`
   position: absolute;
   top: -17px;
   width: 30%;
   right: 20%;
-  animation: ${rotate} 1s linear infinite;
+  animation: ${rotate} 2s linear infinite;
 `;
-=======
-const Img1= styled.img`
-position: absolute;
-top: 20%;
-right: 1%;
-width: 50%;
-  animation: ${loadEffect1} 1s ease-in-out ; 
-`
-const Img2 =styled.img`
-     width: 50%;
-`
-const Img3 =styled.img`
-position: absolute;
-top: -7px;
-    width: 27%;
-    right: 0px;
-    animation: ${rotate} 2s linear infinite; 
-`
-const Img4 =styled.img`
-position: absolute;
-top: -17px;
-    width: 30%;
-    right: 20%;
-    animation: ${rotate} 2s linear infinite; 
-`
->>>>>>> bb4dec769720fd842b545b048807029bd7c50713
 const Button = styled.div`
   display: flex;
   justify-content: center;
@@ -150,7 +98,7 @@ const Button = styled.div`
     scale: 0.98;
   }
 `;
-function Page3({ target,setOff }) {
+function Page3({ target, setOff }) {
   return (
     <Wrap ref={target}>
       <Container>
@@ -169,6 +117,6 @@ function Page3({ target,setOff }) {
       </Container>
     </Wrap>
   );
-    }
+}
 
 export default Page3;
