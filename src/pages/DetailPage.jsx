@@ -7,12 +7,11 @@ import { GetProjectFromID } from "../functional/GetProject";
 import "highlight.js/styles/obsidian.css";
 import Modify from "../components/Modify";
 import Comment from "../components/Comment";
-import Like from "../components/Like.1";
+import Like from "../components/Like";
 import { GetWriterData } from "../functional/GetWriterData";
 import { HoverIcon } from "../DMSet/Components";
 import DMmodal from "../DMSet/DMmodal";
 import { DMListCall } from "../DMSet/DM";
-import ErrorPage from "./ErrorPage";
 import { GetMyData } from "../functional/GetMyData";
 
 const Container = styled.div`
