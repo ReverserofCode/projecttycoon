@@ -139,7 +139,7 @@ function ProjectPage({ userData }) {
   /** DM 창 오픈 */
   const handleSetOpen = useCallback(() => {
     setDMOpen(true);
-    if (userData !== "" && userData !== undefined) {
+    if (userData !== "" || userData !== undefined) {
       DMListCall(userData?.memberId).then((res) => {
         setDMList(res);
       });
