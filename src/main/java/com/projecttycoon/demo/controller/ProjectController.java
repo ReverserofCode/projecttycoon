@@ -30,7 +30,7 @@ public class ProjectController {
 
     //1. CREATE
     @PostMapping("/projectRegister")
-    public String saveProject(@RequestPart(value = "file") MultipartFile file, @RequestPart(value = "projectRequestDTO") ProjectRequestDTO projectRequestDTO) throws Exception {
+    public String saveProject(@RequestPart(value = "file",required = false)  MultipartFile file, @RequestPart(value = "projectRequestDTO") ProjectRequestDTO projectRequestDTO) throws Exception {
         log.info("Call Method saveProject ");
         // projectRequestDTO에서 projectWantedRole을 배열로 받음
         projectService.createProject(projectRequestDTO, file);
