@@ -27,7 +27,7 @@ function Like() {
       let path = window.location.href.split("/");
       for (let i = 0; i < buf?.length; i++) {
         console.log(buf[i].projectId);
-        if (path[4] === buf[i]?.projectId) {
+        if (path[4] === String(buf[i]?.projectId)) {
           setLike(true);
           break;
         }
