@@ -33,11 +33,7 @@ function Like() {
     });
   }, []);
   return (
-    <Container
-      onClick={() => {
-        if (myData !== undefined) setLike(!like);
-      }}
-    >
+    <Container>
       {like ? (
         <AiFillHeart
           color="#ff3434"
@@ -45,6 +41,7 @@ function Like() {
             if (myData !== undefined) {
               let path = window.location.href.split("/");
               ScrapDelete(path[4], myData?.memberId);
+              setLike(!like);
             }
           }}
         />
@@ -55,6 +52,7 @@ function Like() {
             if (myData !== undefined) {
               let path = window.location.href.split("/");
               ScrapPost(path[4], myData?.memberId);
+              setLike(!like);
             }
           }}
         />
