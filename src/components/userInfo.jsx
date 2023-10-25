@@ -542,6 +542,8 @@ console.log(memberInfo.memberStack)
         setMemberInfo(response.data);
         setSelectedLanguages(JSON.parse(response.data.memberStack));
         setSelectLink(JSON.parse(response.data.memberLink));
+        setProfile(response.data.memberFileName);
+        
       })
       .catch((err) => {
         console.log(err);
