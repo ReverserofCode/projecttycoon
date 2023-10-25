@@ -684,7 +684,16 @@ console.log(memberInfo.memberStack)
     raccoon: "21_raccoon.png",
     shark: "2_shark.png",
   };
-
+  const profileimg = {
+    '8_dog.png':"dog",
+    "6_cat.png":'cat',
+    "12_alpaca.png":'alpaka',
+    "16_turtle.png": 'turtle',
+    "14_axolotl.png":'axolotl',
+    "18_penguin.png":'penguin',
+  "21_raccoon.png":'raccoon',
+    "2_shark.png":'shark',
+  };
   // 가져온 유저정보
   const info = {
     "memberId": "kkk123",
@@ -752,7 +761,7 @@ console.log(memberInfo.memberStack)
 
   const handleProfileImg = (e) => {
     setProfile(e.target.value);
-    setSelectFile("/"+defaultImg[profile]);
+    // setSelectFile("/"+defaultImg[profile]);
   };
   // const imageInput = useRef();
   return (
@@ -772,9 +781,9 @@ console.log(memberInfo.memberStack)
                             <ImgBox src={"http://projecttycoon.com/"+selectFile}></ImgBox>
                                  ):(<ImgBox src={"http://projecttycoon.com"+defaultImg[profile]}></ImgBox>)
                       } */}
-              {profile === "" ? (
+              {defaultImg[profile] === undefined ? (
                 <ImgBox
-                  src={"http://projecttycoon.com/static/icons" + selectFile}
+                  src={"http://projecttycoon.com/static/icons" + profile}
                 ></ImgBox>
               ) : (
                 <ImgBox
@@ -785,7 +794,7 @@ console.log(memberInfo.memberStack)
                 ></ImgBox>
               )}
               <ButWrap>
-                <Profile value={profile} onChange={handleProfileImg}>
+                <Profile value={profileimg[profile]} onChange={handleProfileImg}>
                   {defaultImgName.map((image, imageIndex) => (
                     <option key={imageIndex} value={image.value}>
                       {image.label}
@@ -999,7 +1008,7 @@ console.log(memberInfo.memberStack)
                   memberInfo.memberAcademy,
                   memberInfo.memberRole,
                   memberInfo.memberIntroduce,
-                  selectFile,
+                  profile,
                   selectedLanguages,
                   selectLink
                 );
