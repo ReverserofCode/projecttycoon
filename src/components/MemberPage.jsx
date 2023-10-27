@@ -407,7 +407,7 @@ function MemberPage({
               if (userData !== undefined || userData !== "") {
                 DMRoomGen(userData?.memberId, postId).then((res) => {
                   DMSend(
-                    `${userData?.MemberNick}님이 대화를 시작했습니다.`,
+                    `${userData?.memberNickName}님이 대화를 시작했습니다.`,
                     postId,
                     userData?.memberId,
                     res?.dmroomId
