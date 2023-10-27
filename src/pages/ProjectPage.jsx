@@ -170,27 +170,27 @@ function ProjectPage({ userData }) {
   /** 프로젝트 아이템 생성 */
   const handleBoardItemGen = useCallback(() => {
     let contents = [];
-    for (let i = boardList?.length - 1; i >= loadingLength; i--) {
-      let bufRole = JSON.parse(
-        boardList[i]?.projectWantedRole.replace(/'/g, '"')
-      );
-      let bufRoleValue = [];
-      for (let j = 0; j < bufRole.length; j++) {
-        bufRoleValue.push(bufRole[j].role);
+    if (boardList?.length !== 0) {
+      for (let i = boardList?.length - 1; i >= loadingLength; i--) {
+        let bufRole = JSON.parse(boardList[i]?.projectWantedRole);
+        let bufRoleValue = [];
+        for (let j = 0; j < bufRole.length; j++) {
+          bufRoleValue.push(bufRole[j].role);
+        }
+        contents.push(
+          <BoardItem
+            status={boardList[i]?.projectStatus}
+            createDate={boardList[i]?.createdAt.split("").slice(0, 10).join("")}
+            DeadLine={boardList[i]?.projectDue.split("").slice(0, 10).join("")}
+            title={boardList[i]?.projectTitle}
+            filter={bufRoleValue}
+            academy={boardList[i]?.projectAcademy}
+            image={boardList[i]?.projectFilePath}
+            id={boardList[i]?.projectId}
+            key={`board item ${i}`}
+          />
+        );
       }
-      contents.push(
-        <BoardItem
-          status={boardList[i]?.projectStatus}
-          createDate={boardList[i]?.createdAt.split("").slice(0, 10).join("")}
-          DeadLine={boardList[i]?.projectDue.split("").slice(0, 10).join("")}
-          title={boardList[i]?.projectTitle}
-          filter={bufRoleValue}
-          academy={boardList[i]?.projectAcademy}
-          image={boardList[i]?.projectFilePath}
-          id={boardList[i]?.projectId}
-          key={`board item ${i}`}
-        />
-      );
     }
     if (loadingLength !== 0)
       contents.push(
