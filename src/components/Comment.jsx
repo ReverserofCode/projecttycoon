@@ -94,13 +94,15 @@ function Comment({ userData }) {
           {userData?.memberId === commentList[i].commentWriter.memberId ? (
             <CommentDeleteButton
               onClick={() => {
-                let path = window.location.href.split("/");
-                CommentDelete(path[4], commentList[i].commentId).then(() => {
+                if (window.confirm("댓글을 삭제 하시겠습니까?")) {
                   let path = window.location.href.split("/");
-                  CommentGet(path[4]).then((res) => {
-                    setCommentList(res);
+                  CommentDelete(path[4], commentList[i].commentId).then(() => {
+                    let path = window.location.href.split("/");
+                    CommentGet(path[4]).then((res) => {
+                      setCommentList(res);
+                    });
                   });
-                });
+                }
               }}
             >
               <RiDeleteBin6Line></RiDeleteBin6Line>

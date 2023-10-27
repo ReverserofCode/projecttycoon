@@ -188,6 +188,7 @@ const ModifyButton = styled.div`
   :active {
     background-color: #d9d9d9;
   }
+  z-index: 15;
 `;
 function DetailPage({ userData }) {
   /** 상세 페이지 수정모드 전환 정보를 담는 state */
@@ -363,7 +364,7 @@ function DetailPage({ userData }) {
             />
           </SideContents>
           <MainContents>
-            {value.projectWriterId === userData?.memberId ? (
+            {value?.projectWriterId === userData?.memberId ? (
               <ModifyButton
                 onClick={() => {
                   setMod("modify");
