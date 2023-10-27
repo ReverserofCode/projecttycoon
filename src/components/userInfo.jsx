@@ -25,7 +25,6 @@ const Box = styled.div`
     max-width: 750px;
     width: 100%;
   }
-  
 `;
 const SmallBox = styled.div`
   width: ${(props) => props.width || "130px"};
@@ -49,7 +48,7 @@ const XsmallBox = styled.div`
   justify-content: space-between;
   display: flex;
   @media screen and (max-width: 860px) {
-    max-width:770px;
+    max-width: 770px;
     width: 100%;
   }
 `;
@@ -139,7 +138,7 @@ const Bot = styled.div`
     width: 100%;
   }
   @media screen and (max-width: 495px) {
-   max-width: 550px;
+    max-width: 550px;
     width: 100%;
   }
 `;
@@ -173,7 +172,7 @@ const ImgWrap = styled.div`
   }
   @media screen and (max-width: 495px) {
     width: 345px;
-  height: 280px;
+    height: 280px;
     border-right: none;
   }
   @media screen and (max-width: 370px) {
@@ -243,7 +242,7 @@ const LocationSelect = styled.select`
   }
 `;
 const But2 = styled.button`
-margin-right: 20px;
+  margin-right: 20px;
   border: none;
   outline: none;
   width: ${(props) => props.width || "450px"};
@@ -301,10 +300,10 @@ const LinkSmallBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width:110px;
+  min-width: 110px;
 `;
 const But2Wrap = styled.div`
-width: 100%;
+  width: 100%;
   margin-top: 40px;
   display: flex;
   justify-content: center;
@@ -513,26 +512,9 @@ function UserInfo() {
       </>
     );
   }
-  //   useEffect(()=>{
-  //     handleGet().then((res)=>{setMemberInfo(res)});
-  // },[])
-  // const handleGet=async()=>{
-  //     let data = await axios
-  //     .get("/api/mypage")
-  //     .then((response)=>{
-  //         return response.data;
-  //     })
-  //     .catch((err)=>{
-  //     console.log(err)
-  //     })
-  //     return await data;
-  // }
   useEffect(() => {
     handleGet();
   }, []);
-  useEffect(()=>{
-console.log(memberInfo.memberStack)
-  },[])
   //Axios Post & Get
   const handleGet = async () => {
     await axios
@@ -543,7 +525,6 @@ console.log(memberInfo.memberStack)
         setSelectedLanguages(JSON.parse(response.data.memberStack));
         setSelectLink(JSON.parse(response.data.memberLink));
         setProfile(response.data.memberFileName);
-        
       })
       .catch((err) => {
         console.log(err);
@@ -611,10 +592,6 @@ console.log(memberInfo.memberStack)
     }
     //비밀번호 바꿔야함
   };
-  // const ImageUpload=()=>{
-  //     imageInput.current.click();
-  // }
-
   //select-option-value 관리
   const locations = [
     { label: "강남", value: "강남" },
@@ -685,42 +662,994 @@ console.log(memberInfo.memberStack)
     shark: "2_shark.png",
   };
   const profileimg = {
-    '8_dog.png':"dog",
-    "6_cat.png":'cat',
-    "12_alpaca.png":'alpaka',
-    "16_turtle.png": 'turtle',
-    "14_axolotl.png":'axolotl',
-    "18_penguin.png":'penguin',
-  "21_raccoon.png":'raccoon',
-    "2_shark.png":'shark',
+    "1_shark.png": "shark",
+    "2_shark.png": "shark",
+    "3_shark.png": "shark",
+    "4_shark.png": "shark",
+    "5_cat.png": "cat",
+    "6_cat.png": "cat",
+    "7_dog.png": "dog",
+    "8_dog.png": "dog",
+    "9_alpaca.png": "alpaca",
+    "10_alpaca.png": "alpaca",
+    "11_alpaca.png": "alpaca",
+    "12_alpaca.png": "alpaca",
+    "13_axolotl.png": "axolotl",
+    "14_axolotl.png": "axolotl",
+    "15_turtle.png": "turtle",
+    "16_turtle.png": "turtle",
+    "17_penguin.png": "penguin",
+    "18_penguin.png": "penguin",
+    "19_penguin.png": "penguin",
+    "20_raccoon.png": "raccoon",
+    "21_raccoon.png": "raccoon",
   };
   // 가져온 유저정보
   const info = {
-    "memberId": "kkk123",
-    "memberPw": "$2a$10$FEXNWIOSk8Gzslcn4qczde4m.A4ykKt4ixZbXj6C3OOMiAYxLK4ke",
-    "memberRole": "front",
-    "memberIntroduce": "gd",
-    "memberLink": "[{\"option\":\"Blog\",\"value\":\"dddd\"}]",
-    "memberAcademy": "노원",
-    "memberNickname": "nay",
-    "memberFilePath": "/static/icons/",
-    "memberFileName": "7_dog.png",
-    "memberStack": "[\"HTML\",\"C++\",\"C\"]",
-    "myProjectlist": [],
-    "myCommentlist": [],
-    "myScraplist": []
-    };
-
-  //   const Params ={
-  //     memberId:memberInfo.memberId,
-  //     memberPw:memberInfo.memberPw,
-  //     memberRole:memberInfo.memberRole,
-  //     memberIntroduce:memberInfo.memberIntroduce,
-  //     memberLink:memberInfo.memberLink,
-  //     memberAcademy:memberInfo.memberAcademy,
-  //     memberNickname:memberInfo.memberNickname,
-  //     memberStack:memberInfo.memberStack
-  //   }
+    memberId: "sift",
+    memberPw: "$2a$10$jcvpGxgco1gUUez0f.EEqegL8LtmBfX.7qxbYzW96HDFonI9If9DG",
+    memberRole: "front",
+    memberIntroduce: "asdfasdf",
+    memberLink:
+      '[{"option":"Git","value":"asdfasdf@"},{"label":"Git","value":"asdfasdf"}]',
+    memberAcademy: "노원",
+    memberNickname: "정성민",
+    memberFilePath: "/static/icons/",
+    memberFileName: "21_raccoon.png",
+    memberStack: '["HTML","Kotlin"]',
+    myProjectlist: [
+      {
+        createdAt: "2023-10-18T08:06:13.852+00:00",
+        modifiedAt: "2023-10-18T08:37:47.509+00:00",
+        projectId: 35,
+        projectTitle: "앙큼우리",
+        projectContent: "<p>asdfasdf</p>",
+        projectWantedRole: '[{"role": "front", "complete": 0, "personnel": 1}]',
+        projectDue: "2023-10-20T00:00:00.000+00:00",
+        projectAcademy: "강남",
+        projectStatus: true,
+        projectWriterId: "sift",
+        projectWriterNick: "정성민",
+        projectFilePath:
+          "/webapp/8925a8bb-2165-4863-9b44-2f84b3daccbd_하리그림.jpg",
+        projectFileName: "projectImage",
+        projectScrapNum: 2,
+        parsedProjectWantedRole: [
+          {
+            role: "front",
+            complete: 0,
+            personnel: 1,
+          },
+        ],
+      },
+      {
+        createdAt: "2023-10-19T11:18:36.369+00:00",
+        modifiedAt: "2023-10-24T16:32:54.251+00:00",
+        projectId: 52,
+        projectTitle: "테스트용",
+        projectContent: "<p>이예에</p>",
+        projectWantedRole: '[{"role": "front", "complete": 0, "personnel": 3}]',
+        projectDue: "2023-10-27T00:00:00.000+00:00",
+        projectAcademy: "노원",
+        projectStatus: true,
+        projectWriterId: "sift",
+        projectWriterNick: "정성민",
+        projectFilePath:
+          "/webapp/c3260eec-dbf1-4cf3-bdf8-76917d9e8ec4_낭넴그림.png",
+        projectFileName: "projectImage",
+        projectScrapNum: 1,
+        parsedProjectWantedRole: [
+          {
+            role: "front",
+            complete: 0,
+            personnel: 3,
+          },
+        ],
+      },
+      {
+        createdAt: "2023-10-25T06:39:08.731+00:00",
+        modifiedAt: "2023-10-25T07:35:14.281+00:00",
+        projectId: 131,
+        projectTitle: "ㅁㄴㅇㄻㄴㅇㄹ",
+        projectContent: "<p>ㅁㄴㅇㄻㄴㅇㄹ</p>",
+        projectWantedRole: '[{"role": "back", "complete": 0, "personnel": 1}]',
+        projectDue: "2023-10-27T00:00:00.000+00:00",
+        projectAcademy: "강남",
+        projectStatus: true,
+        projectWriterId: "sift",
+        projectWriterNick: "정성민",
+        projectFilePath:
+          "/webapp/0c207387-d09e-4c75-9440-48e737684545_미누그림 가지.jpg",
+        projectFileName: "projectImage",
+        projectScrapNum: 1,
+        parsedProjectWantedRole: [
+          {
+            role: "back",
+            complete: 0,
+            personnel: 1,
+          },
+        ],
+      },
+      {
+        createdAt: "2023-10-25T08:54:42.955+00:00",
+        modifiedAt: "2023-10-26T02:32:10.936+00:00",
+        projectId: 161,
+        projectTitle: "테스트 테스트",
+        projectContent: "<p>테스트 테스트</p>",
+        projectWantedRole: '[{"role": "back", "complete": 1, "personnel": 1}]',
+        projectDue: "2023-10-27T00:00:00.000+00:00",
+        projectAcademy: "강남",
+        projectStatus: false,
+        projectWriterId: "sift",
+        projectWriterNick: "정성민",
+        projectFilePath: "/static/images/project_default1.png",
+        projectFileName: null,
+        projectScrapNum: 1,
+        parsedProjectWantedRole: [
+          {
+            role: "back",
+            complete: 1,
+            personnel: 1,
+          },
+        ],
+      },
+    ],
+    myCommentlist: [
+      {
+        createdAt: "2023-10-18T07:20:07.797+00:00",
+        modifiedAt: "2023-10-18T07:20:07.797+00:00",
+        commentId: 6,
+        commentProject: {
+          createdAt: "2023-10-18T07:18:08.827+00:00",
+          modifiedAt: "2023-10-18T07:23:21.814+00:00",
+          projectId: 3,
+          projectTitle: "헷",
+          projectContent: "<p>헷</p>",
+          projectWantedRole:
+            '[{"role": "back", "complete": 0, "personnel": 1}]',
+          projectDue: "2023-11-11T00:00:00.000+00:00",
+          projectAcademy: "노원",
+          projectStatus: true,
+          projectWriterId: null,
+          projectWriterNick: null,
+          projectFilePath:
+            "/webapp/b0b176b3-e77d-4e1d-aee0-ef1644d4b6bb_Black.png",
+          projectFileName: "projectImage",
+          projectScrapNum: 2,
+          parsedProjectWantedRole: [
+            {
+              role: "back",
+              complete: 0,
+              personnel: 1,
+            },
+          ],
+        },
+        commentWriter: {
+          createdAt: "2023-10-18T07:13:57.230+00:00",
+          modifiedAt: "2023-10-25T04:51:49.608+00:00",
+          memberId: "sift",
+          memberPw:
+            "$2a$10$jcvpGxgco1gUUez0f.EEqegL8LtmBfX.7qxbYzW96HDFonI9If9DG",
+          memberNickname: "정성민",
+          memberAcademy: "노원",
+          memberRole: "front",
+          memberIntroduce: "asdfasdf",
+          memberLink:
+            '[{"option":"Git","value":"asdfasdf@"},{"label":"Git","value":"asdfasdf"}]',
+          memberFilePath: "/static/icons/",
+          memberFileName: "21_raccoon.png",
+          memberStack: '["HTML","Kotlin"]',
+          memberAuthority: [],
+          scrappedProjects: [
+            {
+              createdAt: "2023-10-25T04:15:32.747+00:00",
+              modifiedAt: "2023-10-25T06:09:21.006+00:00",
+              projectId: 84,
+              projectTitle: "dfdffd",
+              projectContent: "<p>dfdf</p>",
+              projectWantedRole:
+                '[{"role": "back", "complete": 0, "personnel": 1}]',
+              projectDue: "2023-10-27T00:00:00.000+00:00",
+              projectAcademy: "강남",
+              projectStatus: true,
+              projectWriterId: "parksangin",
+              projectWriterNick: "stork",
+              projectFilePath:
+                "/webapp/795650c6-9e1d-4d96-b2b8-e8fc51cd5fc4_test.jpg",
+              projectFileName: "projectImage",
+              projectScrapNum: 2,
+              parsedProjectWantedRole: [
+                {
+                  role: "back",
+                  complete: 0,
+                  personnel: 1,
+                },
+              ],
+            },
+            {
+              createdAt: "2023-10-18T07:18:08.827+00:00",
+              modifiedAt: "2023-10-18T07:23:21.814+00:00",
+              projectId: 3,
+              projectTitle: "헷",
+              projectContent: "<p>헷</p>",
+              projectWantedRole:
+                '[{"role": "back", "complete": 0, "personnel": 1}]',
+              projectDue: "2023-11-11T00:00:00.000+00:00",
+              projectAcademy: "노원",
+              projectStatus: true,
+              projectWriterId: null,
+              projectWriterNick: null,
+              projectFilePath:
+                "/webapp/b0b176b3-e77d-4e1d-aee0-ef1644d4b6bb_Black.png",
+              projectFileName: "projectImage",
+              projectScrapNum: 2,
+              parsedProjectWantedRole: [
+                {
+                  role: "back",
+                  complete: 0,
+                  personnel: 1,
+                },
+              ],
+            },
+            {
+              createdAt: "2023-10-25T05:14:42.720+00:00",
+              modifiedAt: "2023-10-25T06:10:41.290+00:00",
+              projectId: 86,
+              projectTitle: "좋아요테스트",
+              projectContent: "<p>좋아요테스트</p>",
+              projectWantedRole:
+                '[{"role": "back", "complete": 1, "personnel": 1}]',
+              projectDue: "2023-10-25T00:00:00.000+00:00",
+              projectAcademy: "강남",
+              projectStatus: false,
+              projectWriterId: "parksangin3",
+              projectWriterNick: "parksangin3",
+              projectFilePath:
+                "/webapp/4e1b3f5d-2ec4-4553-a26c-7511304001f8_test.jpg",
+              projectFileName: "projectImage",
+              projectScrapNum: 3,
+              parsedProjectWantedRole: [
+                {
+                  role: "back",
+                  complete: 1,
+                  personnel: 1,
+                },
+              ],
+            },
+            {
+              createdAt: "2023-10-25T06:38:33.244+00:00",
+              modifiedAt: "2023-10-25T07:34:34.932+00:00",
+              projectId: 130,
+              projectTitle: "tttt",
+              projectContent: "<p>ttt</p>",
+              projectWantedRole:
+                '[{"role": "front", "complete": 0, "personnel": 1}]',
+              projectDue: "2023-11-08T00:00:00.000+00:00",
+              projectAcademy: "신촌/홍대",
+              projectStatus: true,
+              projectWriterId: "kkk123",
+              projectWriterNick: "nay",
+              projectFilePath:
+                "/webapp/d8154d10-db56-4f29-86a4-dad1e1c75bcc_default3.png",
+              projectFileName: "projectImage",
+              projectScrapNum: 2,
+              parsedProjectWantedRole: [
+                {
+                  role: "front",
+                  complete: 0,
+                  personnel: 1,
+                },
+              ],
+            },
+          ],
+        },
+        commentContent: "asdfasdf",
+      },
+      {
+        createdAt: "2023-10-18T07:32:04.917+00:00",
+        modifiedAt: "2023-10-18T07:32:04.917+00:00",
+        commentId: 23,
+        commentProject: {
+          createdAt: "2023-10-18T07:27:26.261+00:00",
+          modifiedAt: "2023-10-18T07:38:59.521+00:00",
+          projectId: 12,
+          projectTitle: "디폴트 이미지 지정을 위한 프로젝트 3",
+          projectContent: "<h1>프로젝트 3</h1>",
+          projectWantedRole:
+            '[{"role": "bigData", "complete": 0, "personnel": "4"}, {"role": "network", "complete": 0, "personnel": "3"}]',
+          projectDue: "2023-10-18T00:00:00.000+00:00",
+          projectAcademy: "노원",
+          projectStatus: true,
+          projectWriterId: "parksangin",
+          projectWriterNick: "parksangin",
+          projectFilePath:
+            "/webapp/dc1010ee-2ece-4905-b5bf-51fe4c3f2cbd_하리그림.jpg",
+          projectFileName: "projectImage",
+          projectScrapNum: 2,
+          parsedProjectWantedRole: [
+            {
+              role: "bigData",
+              complete: 0,
+              personnel: 4,
+            },
+            {
+              role: "network",
+              complete: 0,
+              personnel: 3,
+            },
+          ],
+        },
+        commentWriter: {
+          createdAt: "2023-10-18T07:13:57.230+00:00",
+          modifiedAt: "2023-10-25T04:51:49.608+00:00",
+          memberId: "sift",
+          memberPw:
+            "$2a$10$jcvpGxgco1gUUez0f.EEqegL8LtmBfX.7qxbYzW96HDFonI9If9DG",
+          memberNickname: "정성민",
+          memberAcademy: "노원",
+          memberRole: "front",
+          memberIntroduce: "asdfasdf",
+          memberLink:
+            '[{"option":"Git","value":"asdfasdf@"},{"label":"Git","value":"asdfasdf"}]',
+          memberFilePath: "/static/icons/",
+          memberFileName: "21_raccoon.png",
+          memberStack: '["HTML","Kotlin"]',
+          memberAuthority: [],
+          scrappedProjects: [
+            {
+              createdAt: "2023-10-25T04:15:32.747+00:00",
+              modifiedAt: "2023-10-25T06:09:21.006+00:00",
+              projectId: 84,
+              projectTitle: "dfdffd",
+              projectContent: "<p>dfdf</p>",
+              projectWantedRole:
+                '[{"role": "back", "complete": 0, "personnel": 1}]',
+              projectDue: "2023-10-27T00:00:00.000+00:00",
+              projectAcademy: "강남",
+              projectStatus: true,
+              projectWriterId: "parksangin",
+              projectWriterNick: "stork",
+              projectFilePath:
+                "/webapp/795650c6-9e1d-4d96-b2b8-e8fc51cd5fc4_test.jpg",
+              projectFileName: "projectImage",
+              projectScrapNum: 2,
+              parsedProjectWantedRole: [
+                {
+                  role: "back",
+                  complete: 0,
+                  personnel: 1,
+                },
+              ],
+            },
+            {
+              createdAt: "2023-10-18T07:18:08.827+00:00",
+              modifiedAt: "2023-10-18T07:23:21.814+00:00",
+              projectId: 3,
+              projectTitle: "헷",
+              projectContent: "<p>헷</p>",
+              projectWantedRole:
+                '[{"role": "back", "complete": 0, "personnel": 1}]',
+              projectDue: "2023-11-11T00:00:00.000+00:00",
+              projectAcademy: "노원",
+              projectStatus: true,
+              projectWriterId: null,
+              projectWriterNick: null,
+              projectFilePath:
+                "/webapp/b0b176b3-e77d-4e1d-aee0-ef1644d4b6bb_Black.png",
+              projectFileName: "projectImage",
+              projectScrapNum: 2,
+              parsedProjectWantedRole: [
+                {
+                  role: "back",
+                  complete: 0,
+                  personnel: 1,
+                },
+              ],
+            },
+            {
+              createdAt: "2023-10-25T05:14:42.720+00:00",
+              modifiedAt: "2023-10-25T06:10:41.290+00:00",
+              projectId: 86,
+              projectTitle: "좋아요테스트",
+              projectContent: "<p>좋아요테스트</p>",
+              projectWantedRole:
+                '[{"role": "back", "complete": 1, "personnel": 1}]',
+              projectDue: "2023-10-25T00:00:00.000+00:00",
+              projectAcademy: "강남",
+              projectStatus: false,
+              projectWriterId: "parksangin3",
+              projectWriterNick: "parksangin3",
+              projectFilePath:
+                "/webapp/4e1b3f5d-2ec4-4553-a26c-7511304001f8_test.jpg",
+              projectFileName: "projectImage",
+              projectScrapNum: 3,
+              parsedProjectWantedRole: [
+                {
+                  role: "back",
+                  complete: 1,
+                  personnel: 1,
+                },
+              ],
+            },
+            {
+              createdAt: "2023-10-25T06:38:33.244+00:00",
+              modifiedAt: "2023-10-25T07:34:34.932+00:00",
+              projectId: 130,
+              projectTitle: "tttt",
+              projectContent: "<p>ttt</p>",
+              projectWantedRole:
+                '[{"role": "front", "complete": 0, "personnel": 1}]',
+              projectDue: "2023-11-08T00:00:00.000+00:00",
+              projectAcademy: "신촌/홍대",
+              projectStatus: true,
+              projectWriterId: "kkk123",
+              projectWriterNick: "nay",
+              projectFilePath:
+                "/webapp/d8154d10-db56-4f29-86a4-dad1e1c75bcc_default3.png",
+              projectFileName: "projectImage",
+              projectScrapNum: 2,
+              parsedProjectWantedRole: [
+                {
+                  role: "front",
+                  complete: 0,
+                  personnel: 1,
+                },
+              ],
+            },
+          ],
+        },
+        commentContent: "나도 댓글",
+      },
+      {
+        createdAt: "2023-10-18T08:08:23.747+00:00",
+        modifiedAt: "2023-10-18T08:08:23.747+00:00",
+        commentId: 39,
+        commentProject: {
+          createdAt: "2023-10-18T08:06:13.852+00:00",
+          modifiedAt: "2023-10-18T08:37:47.509+00:00",
+          projectId: 35,
+          projectTitle: "앙큼우리",
+          projectContent: "<p>asdfasdf</p>",
+          projectWantedRole:
+            '[{"role": "front", "complete": 0, "personnel": 1}]',
+          projectDue: "2023-10-20T00:00:00.000+00:00",
+          projectAcademy: "강남",
+          projectStatus: true,
+          projectWriterId: "sift",
+          projectWriterNick: "정성민",
+          projectFilePath:
+            "/webapp/8925a8bb-2165-4863-9b44-2f84b3daccbd_하리그림.jpg",
+          projectFileName: "projectImage",
+          projectScrapNum: 2,
+          parsedProjectWantedRole: [
+            {
+              role: "front",
+              complete: 0,
+              personnel: 1,
+            },
+          ],
+        },
+        commentWriter: {
+          createdAt: "2023-10-18T07:13:57.230+00:00",
+          modifiedAt: "2023-10-25T04:51:49.608+00:00",
+          memberId: "sift",
+          memberPw:
+            "$2a$10$jcvpGxgco1gUUez0f.EEqegL8LtmBfX.7qxbYzW96HDFonI9If9DG",
+          memberNickname: "정성민",
+          memberAcademy: "노원",
+          memberRole: "front",
+          memberIntroduce: "asdfasdf",
+          memberLink:
+            '[{"option":"Git","value":"asdfasdf@"},{"label":"Git","value":"asdfasdf"}]',
+          memberFilePath: "/static/icons/",
+          memberFileName: "21_raccoon.png",
+          memberStack: '["HTML","Kotlin"]',
+          memberAuthority: [],
+          scrappedProjects: [
+            {
+              createdAt: "2023-10-25T04:15:32.747+00:00",
+              modifiedAt: "2023-10-25T06:09:21.006+00:00",
+              projectId: 84,
+              projectTitle: "dfdffd",
+              projectContent: "<p>dfdf</p>",
+              projectWantedRole:
+                '[{"role": "back", "complete": 0, "personnel": 1}]',
+              projectDue: "2023-10-27T00:00:00.000+00:00",
+              projectAcademy: "강남",
+              projectStatus: true,
+              projectWriterId: "parksangin",
+              projectWriterNick: "stork",
+              projectFilePath:
+                "/webapp/795650c6-9e1d-4d96-b2b8-e8fc51cd5fc4_test.jpg",
+              projectFileName: "projectImage",
+              projectScrapNum: 2,
+              parsedProjectWantedRole: [
+                {
+                  role: "back",
+                  complete: 0,
+                  personnel: 1,
+                },
+              ],
+            },
+            {
+              createdAt: "2023-10-18T07:18:08.827+00:00",
+              modifiedAt: "2023-10-18T07:23:21.814+00:00",
+              projectId: 3,
+              projectTitle: "헷",
+              projectContent: "<p>헷</p>",
+              projectWantedRole:
+                '[{"role": "back", "complete": 0, "personnel": 1}]',
+              projectDue: "2023-11-11T00:00:00.000+00:00",
+              projectAcademy: "노원",
+              projectStatus: true,
+              projectWriterId: null,
+              projectWriterNick: null,
+              projectFilePath:
+                "/webapp/b0b176b3-e77d-4e1d-aee0-ef1644d4b6bb_Black.png",
+              projectFileName: "projectImage",
+              projectScrapNum: 2,
+              parsedProjectWantedRole: [
+                {
+                  role: "back",
+                  complete: 0,
+                  personnel: 1,
+                },
+              ],
+            },
+            {
+              createdAt: "2023-10-25T05:14:42.720+00:00",
+              modifiedAt: "2023-10-25T06:10:41.290+00:00",
+              projectId: 86,
+              projectTitle: "좋아요테스트",
+              projectContent: "<p>좋아요테스트</p>",
+              projectWantedRole:
+                '[{"role": "back", "complete": 1, "personnel": 1}]',
+              projectDue: "2023-10-25T00:00:00.000+00:00",
+              projectAcademy: "강남",
+              projectStatus: false,
+              projectWriterId: "parksangin3",
+              projectWriterNick: "parksangin3",
+              projectFilePath:
+                "/webapp/4e1b3f5d-2ec4-4553-a26c-7511304001f8_test.jpg",
+              projectFileName: "projectImage",
+              projectScrapNum: 3,
+              parsedProjectWantedRole: [
+                {
+                  role: "back",
+                  complete: 1,
+                  personnel: 1,
+                },
+              ],
+            },
+            {
+              createdAt: "2023-10-25T06:38:33.244+00:00",
+              modifiedAt: "2023-10-25T07:34:34.932+00:00",
+              projectId: 130,
+              projectTitle: "tttt",
+              projectContent: "<p>ttt</p>",
+              projectWantedRole:
+                '[{"role": "front", "complete": 0, "personnel": 1}]',
+              projectDue: "2023-11-08T00:00:00.000+00:00",
+              projectAcademy: "신촌/홍대",
+              projectStatus: true,
+              projectWriterId: "kkk123",
+              projectWriterNick: "nay",
+              projectFilePath:
+                "/webapp/d8154d10-db56-4f29-86a4-dad1e1c75bcc_default3.png",
+              projectFileName: "projectImage",
+              projectScrapNum: 2,
+              parsedProjectWantedRole: [
+                {
+                  role: "front",
+                  complete: 0,
+                  personnel: 1,
+                },
+              ],
+            },
+          ],
+        },
+        commentContent: "asdfasdfasdfasdf",
+      },
+      {
+        createdAt: "2023-10-19T11:19:21.340+00:00",
+        modifiedAt: "2023-10-19T11:19:21.340+00:00",
+        commentId: 55,
+        commentProject: {
+          createdAt: "2023-10-19T11:18:36.369+00:00",
+          modifiedAt: "2023-10-24T16:32:54.251+00:00",
+          projectId: 52,
+          projectTitle: "테스트용",
+          projectContent: "<p>이예에</p>",
+          projectWantedRole:
+            '[{"role": "front", "complete": 0, "personnel": 3}]',
+          projectDue: "2023-10-27T00:00:00.000+00:00",
+          projectAcademy: "노원",
+          projectStatus: true,
+          projectWriterId: "sift",
+          projectWriterNick: "정성민",
+          projectFilePath:
+            "/webapp/c3260eec-dbf1-4cf3-bdf8-76917d9e8ec4_낭넴그림.png",
+          projectFileName: "projectImage",
+          projectScrapNum: 1,
+          parsedProjectWantedRole: [
+            {
+              role: "front",
+              complete: 0,
+              personnel: 3,
+            },
+          ],
+        },
+        commentWriter: {
+          createdAt: "2023-10-18T07:13:57.230+00:00",
+          modifiedAt: "2023-10-25T04:51:49.608+00:00",
+          memberId: "sift",
+          memberPw:
+            "$2a$10$jcvpGxgco1gUUez0f.EEqegL8LtmBfX.7qxbYzW96HDFonI9If9DG",
+          memberNickname: "정성민",
+          memberAcademy: "노원",
+          memberRole: "front",
+          memberIntroduce: "asdfasdf",
+          memberLink:
+            '[{"option":"Git","value":"asdfasdf@"},{"label":"Git","value":"asdfasdf"}]',
+          memberFilePath: "/static/icons/",
+          memberFileName: "21_raccoon.png",
+          memberStack: '["HTML","Kotlin"]',
+          memberAuthority: [],
+          scrappedProjects: [
+            {
+              createdAt: "2023-10-25T04:15:32.747+00:00",
+              modifiedAt: "2023-10-25T06:09:21.006+00:00",
+              projectId: 84,
+              projectTitle: "dfdffd",
+              projectContent: "<p>dfdf</p>",
+              projectWantedRole:
+                '[{"role": "back", "complete": 0, "personnel": 1}]',
+              projectDue: "2023-10-27T00:00:00.000+00:00",
+              projectAcademy: "강남",
+              projectStatus: true,
+              projectWriterId: "parksangin",
+              projectWriterNick: "stork",
+              projectFilePath:
+                "/webapp/795650c6-9e1d-4d96-b2b8-e8fc51cd5fc4_test.jpg",
+              projectFileName: "projectImage",
+              projectScrapNum: 2,
+              parsedProjectWantedRole: [
+                {
+                  role: "back",
+                  complete: 0,
+                  personnel: 1,
+                },
+              ],
+            },
+            {
+              createdAt: "2023-10-18T07:18:08.827+00:00",
+              modifiedAt: "2023-10-18T07:23:21.814+00:00",
+              projectId: 3,
+              projectTitle: "헷",
+              projectContent: "<p>헷</p>",
+              projectWantedRole:
+                '[{"role": "back", "complete": 0, "personnel": 1}]',
+              projectDue: "2023-11-11T00:00:00.000+00:00",
+              projectAcademy: "노원",
+              projectStatus: true,
+              projectWriterId: null,
+              projectWriterNick: null,
+              projectFilePath:
+                "/webapp/b0b176b3-e77d-4e1d-aee0-ef1644d4b6bb_Black.png",
+              projectFileName: "projectImage",
+              projectScrapNum: 2,
+              parsedProjectWantedRole: [
+                {
+                  role: "back",
+                  complete: 0,
+                  personnel: 1,
+                },
+              ],
+            },
+            {
+              createdAt: "2023-10-25T05:14:42.720+00:00",
+              modifiedAt: "2023-10-25T06:10:41.290+00:00",
+              projectId: 86,
+              projectTitle: "좋아요테스트",
+              projectContent: "<p>좋아요테스트</p>",
+              projectWantedRole:
+                '[{"role": "back", "complete": 1, "personnel": 1}]',
+              projectDue: "2023-10-25T00:00:00.000+00:00",
+              projectAcademy: "강남",
+              projectStatus: false,
+              projectWriterId: "parksangin3",
+              projectWriterNick: "parksangin3",
+              projectFilePath:
+                "/webapp/4e1b3f5d-2ec4-4553-a26c-7511304001f8_test.jpg",
+              projectFileName: "projectImage",
+              projectScrapNum: 3,
+              parsedProjectWantedRole: [
+                {
+                  role: "back",
+                  complete: 1,
+                  personnel: 1,
+                },
+              ],
+            },
+            {
+              createdAt: "2023-10-25T06:38:33.244+00:00",
+              modifiedAt: "2023-10-25T07:34:34.932+00:00",
+              projectId: 130,
+              projectTitle: "tttt",
+              projectContent: "<p>ttt</p>",
+              projectWantedRole:
+                '[{"role": "front", "complete": 0, "personnel": 1}]',
+              projectDue: "2023-11-08T00:00:00.000+00:00",
+              projectAcademy: "신촌/홍대",
+              projectStatus: true,
+              projectWriterId: "kkk123",
+              projectWriterNick: "nay",
+              projectFilePath:
+                "/webapp/d8154d10-db56-4f29-86a4-dad1e1c75bcc_default3.png",
+              projectFileName: "projectImage",
+              projectScrapNum: 2,
+              parsedProjectWantedRole: [
+                {
+                  role: "front",
+                  complete: 0,
+                  personnel: 1,
+                },
+              ],
+            },
+          ],
+        },
+        commentContent: "테스트용 댓글",
+      },
+      {
+        createdAt: "2023-10-19T11:19:43.328+00:00",
+        modifiedAt: "2023-10-19T11:19:43.328+00:00",
+        commentId: 56,
+        commentProject: {
+          createdAt: "2023-10-19T11:18:36.369+00:00",
+          modifiedAt: "2023-10-24T16:32:54.251+00:00",
+          projectId: 52,
+          projectTitle: "테스트용",
+          projectContent: "<p>이예에</p>",
+          projectWantedRole:
+            '[{"role": "front", "complete": 0, "personnel": 3}]',
+          projectDue: "2023-10-27T00:00:00.000+00:00",
+          projectAcademy: "노원",
+          projectStatus: true,
+          projectWriterId: "sift",
+          projectWriterNick: "정성민",
+          projectFilePath:
+            "/webapp/c3260eec-dbf1-4cf3-bdf8-76917d9e8ec4_낭넴그림.png",
+          projectFileName: "projectImage",
+          projectScrapNum: 1,
+          parsedProjectWantedRole: [
+            {
+              role: "front",
+              complete: 0,
+              personnel: 3,
+            },
+          ],
+        },
+        commentWriter: {
+          createdAt: "2023-10-18T07:13:57.230+00:00",
+          modifiedAt: "2023-10-25T04:51:49.608+00:00",
+          memberId: "sift",
+          memberPw:
+            "$2a$10$jcvpGxgco1gUUez0f.EEqegL8LtmBfX.7qxbYzW96HDFonI9If9DG",
+          memberNickname: "정성민",
+          memberAcademy: "노원",
+          memberRole: "front",
+          memberIntroduce: "asdfasdf",
+          memberLink:
+            '[{"option":"Git","value":"asdfasdf@"},{"label":"Git","value":"asdfasdf"}]',
+          memberFilePath: "/static/icons/",
+          memberFileName: "21_raccoon.png",
+          memberStack: '["HTML","Kotlin"]',
+          memberAuthority: [],
+          scrappedProjects: [
+            {
+              createdAt: "2023-10-25T04:15:32.747+00:00",
+              modifiedAt: "2023-10-25T06:09:21.006+00:00",
+              projectId: 84,
+              projectTitle: "dfdffd",
+              projectContent: "<p>dfdf</p>",
+              projectWantedRole:
+                '[{"role": "back", "complete": 0, "personnel": 1}]',
+              projectDue: "2023-10-27T00:00:00.000+00:00",
+              projectAcademy: "강남",
+              projectStatus: true,
+              projectWriterId: "parksangin",
+              projectWriterNick: "stork",
+              projectFilePath:
+                "/webapp/795650c6-9e1d-4d96-b2b8-e8fc51cd5fc4_test.jpg",
+              projectFileName: "projectImage",
+              projectScrapNum: 2,
+              parsedProjectWantedRole: [
+                {
+                  role: "back",
+                  complete: 0,
+                  personnel: 1,
+                },
+              ],
+            },
+            {
+              createdAt: "2023-10-18T07:18:08.827+00:00",
+              modifiedAt: "2023-10-18T07:23:21.814+00:00",
+              projectId: 3,
+              projectTitle: "헷",
+              projectContent: "<p>헷</p>",
+              projectWantedRole:
+                '[{"role": "back", "complete": 0, "personnel": 1}]',
+              projectDue: "2023-11-11T00:00:00.000+00:00",
+              projectAcademy: "노원",
+              projectStatus: true,
+              projectWriterId: null,
+              projectWriterNick: null,
+              projectFilePath:
+                "/webapp/b0b176b3-e77d-4e1d-aee0-ef1644d4b6bb_Black.png",
+              projectFileName: "projectImage",
+              projectScrapNum: 2,
+              parsedProjectWantedRole: [
+                {
+                  role: "back",
+                  complete: 0,
+                  personnel: 1,
+                },
+              ],
+            },
+            {
+              createdAt: "2023-10-25T05:14:42.720+00:00",
+              modifiedAt: "2023-10-25T06:10:41.290+00:00",
+              projectId: 86,
+              projectTitle: "좋아요테스트",
+              projectContent: "<p>좋아요테스트</p>",
+              projectWantedRole:
+                '[{"role": "back", "complete": 1, "personnel": 1}]',
+              projectDue: "2023-10-25T00:00:00.000+00:00",
+              projectAcademy: "강남",
+              projectStatus: false,
+              projectWriterId: "parksangin3",
+              projectWriterNick: "parksangin3",
+              projectFilePath:
+                "/webapp/4e1b3f5d-2ec4-4553-a26c-7511304001f8_test.jpg",
+              projectFileName: "projectImage",
+              projectScrapNum: 3,
+              parsedProjectWantedRole: [
+                {
+                  role: "back",
+                  complete: 1,
+                  personnel: 1,
+                },
+              ],
+            },
+            {
+              createdAt: "2023-10-25T06:38:33.244+00:00",
+              modifiedAt: "2023-10-25T07:34:34.932+00:00",
+              projectId: 130,
+              projectTitle: "tttt",
+              projectContent: "<p>ttt</p>",
+              projectWantedRole:
+                '[{"role": "front", "complete": 0, "personnel": 1}]',
+              projectDue: "2023-11-08T00:00:00.000+00:00",
+              projectAcademy: "신촌/홍대",
+              projectStatus: true,
+              projectWriterId: "kkk123",
+              projectWriterNick: "nay",
+              projectFilePath:
+                "/webapp/d8154d10-db56-4f29-86a4-dad1e1c75bcc_default3.png",
+              projectFileName: "projectImage",
+              projectScrapNum: 2,
+              parsedProjectWantedRole: [
+                {
+                  role: "front",
+                  complete: 0,
+                  personnel: 1,
+                },
+              ],
+            },
+          ],
+        },
+        commentContent: "오늘 모기 엄청 많네요\n방충망에 모기가 어후",
+      },
+    ],
+    myScraplist: [
+      {
+        createdAt: "2023-10-25T04:15:32.747+00:00",
+        modifiedAt: "2023-10-25T06:09:21.006+00:00",
+        projectId: 84,
+        projectTitle: "dfdffd",
+        projectContent: "<p>dfdf</p>",
+        projectWantedRole: '[{"role": "back", "complete": 0, "personnel": 1}]',
+        projectDue: "2023-10-27T00:00:00.000+00:00",
+        projectAcademy: "강남",
+        projectStatus: true,
+        projectWriterId: "parksangin",
+        projectWriterNick: "stork",
+        projectFilePath:
+          "/webapp/795650c6-9e1d-4d96-b2b8-e8fc51cd5fc4_test.jpg",
+        projectFileName: "projectImage",
+        projectScrapNum: 2,
+        parsedProjectWantedRole: [
+          {
+            role: "back",
+            complete: 0,
+            personnel: 1,
+          },
+        ],
+      },
+      {
+        createdAt: "2023-10-18T07:18:08.827+00:00",
+        modifiedAt: "2023-10-18T07:23:21.814+00:00",
+        projectId: 3,
+        projectTitle: "헷",
+        projectContent: "<p>헷</p>",
+        projectWantedRole: '[{"role": "back", "complete": 0, "personnel": 1}]',
+        projectDue: "2023-11-11T00:00:00.000+00:00",
+        projectAcademy: "노원",
+        projectStatus: true,
+        projectWriterId: null,
+        projectWriterNick: null,
+        projectFilePath:
+          "/webapp/b0b176b3-e77d-4e1d-aee0-ef1644d4b6bb_Black.png",
+        projectFileName: "projectImage",
+        projectScrapNum: 2,
+        parsedProjectWantedRole: [
+          {
+            role: "back",
+            complete: 0,
+            personnel: 1,
+          },
+        ],
+      },
+      {
+        createdAt: "2023-10-25T05:14:42.720+00:00",
+        modifiedAt: "2023-10-25T06:10:41.290+00:00",
+        projectId: 86,
+        projectTitle: "좋아요테스트",
+        projectContent: "<p>좋아요테스트</p>",
+        projectWantedRole: '[{"role": "back", "complete": 1, "personnel": 1}]',
+        projectDue: "2023-10-25T00:00:00.000+00:00",
+        projectAcademy: "강남",
+        projectStatus: false,
+        projectWriterId: "parksangin3",
+        projectWriterNick: "parksangin3",
+        projectFilePath:
+          "/webapp/4e1b3f5d-2ec4-4553-a26c-7511304001f8_test.jpg",
+        projectFileName: "projectImage",
+        projectScrapNum: 3,
+        parsedProjectWantedRole: [
+          {
+            role: "back",
+            complete: 1,
+            personnel: 1,
+          },
+        ],
+      },
+      {
+        createdAt: "2023-10-25T06:38:33.244+00:00",
+        modifiedAt: "2023-10-25T07:34:34.932+00:00",
+        projectId: 130,
+        projectTitle: "tttt",
+        projectContent: "<p>ttt</p>",
+        projectWantedRole: '[{"role": "front", "complete": 0, "personnel": 1}]',
+        projectDue: "2023-11-08T00:00:00.000+00:00",
+        projectAcademy: "신촌/홍대",
+        projectStatus: true,
+        projectWriterId: "kkk123",
+        projectWriterNick: "nay",
+        projectFilePath:
+          "/webapp/d8154d10-db56-4f29-86a4-dad1e1c75bcc_default3.png",
+        projectFileName: "projectImage",
+        projectScrapNum: 2,
+        parsedProjectWantedRole: [
+          {
+            role: "front",
+            complete: 0,
+            personnel: 1,
+          },
+        ],
+      },
+    ],
+  };
 
   //비밀번호
   const passwordRegex =
@@ -770,17 +1699,6 @@ console.log(memberInfo.memberStack)
         <Top>
           <Right>
             <ImgWrap>
-              {/* 프로필 사진 바뀌는 코드 */}
-              {/* {
-                        selectFile&&(
-                            <ImgBox src={"http://projecttycoon.com"+defaultImg[profile]}></ImgBox>
-                                 )
-                      } */}
-              {/* {
-                        selectFile?(
-                            <ImgBox src={"http://projecttycoon.com/"+selectFile}></ImgBox>
-                                 ):(<ImgBox src={"http://projecttycoon.com"+defaultImg[profile]}></ImgBox>)
-                      } */}
               {defaultImg[profile] === undefined ? (
                 <ImgBox
                   src={"http://projecttycoon.com/static/icons/" + profile}
@@ -794,7 +1712,10 @@ console.log(memberInfo.memberStack)
                 ></ImgBox>
               )}
               <ButWrap>
-                <Profile value={profileimg[profile]} onChange={handleProfileImg}>
+                <Profile
+                  value={profileimg[profile]}
+                  onChange={handleProfileImg}
+                >
                   {defaultImgName.map((image, imageIndex) => (
                     <option key={imageIndex} value={image.value}>
                       {image.label}
@@ -920,7 +1841,9 @@ console.log(memberInfo.memberStack)
           </IntroduceBox>
           <div></div>
           <Box>
-            <SmallBox width="140px" minwidth="100px">역할</SmallBox>
+            <SmallBox width="140px" minwidth="100px">
+              역할
+            </SmallBox>
             <XsmallBox>
               <StackSelect
                 value={memberInfo.memberRole}
@@ -935,7 +1858,9 @@ console.log(memberInfo.memberStack)
             </XsmallBox>
           </Box>
           <Box>
-            <SmallBox width={"140px"} minwidth={'100px'}>언어</SmallBox>
+            <SmallBox width={"140px"} minwidth={"100px"}>
+              언어
+            </SmallBox>
             <XsmallBox>
               {selectedLanguages.length > 0 ? (
                 <Wrap360>
@@ -985,46 +1910,47 @@ console.log(memberInfo.memberStack)
                   <Span>선택한 언어가 없습니다.</Span>
                 </>
               )}
-              {/* <div>{memberInfo.memberStack}</div> */}
             </XsmallBox>
           </Box>
           <LinkBox>
             <LinkSmallBox>개인링크</LinkSmallBox>
             <LinkWrap>{list()}</LinkWrap>
-            {/* <button onClick={handleAddButton}>
-                +
-            </button> */}
           </LinkBox>
         </Bot>
         <But2Wrap>
           <But2 background_color="gray">취소</But2>
           <But2
             onClick={() => {
-              if (defaultImg[profile] === "/") {
-                PostAxios(
-                  pw,
-                  memberInfo.memberId,
-                  memberInfo.memberNickname,
-                  memberInfo.memberAcademy,
-                  memberInfo.memberRole,
-                  memberInfo.memberIntroduce,
-                  profile,
-                  selectedLanguages,
-                  selectLink
-                );
-              } 
-              else {
-                PostAxios(
-                  pw,
-                  memberInfo.memberId,
-                  memberInfo.memberNickname,
-                  memberInfo.memberAcademy,
-                  memberInfo.memberRole,
-                  memberInfo.memberIntroduce,
-                  defaultImg[profile],
-                  selectedLanguages,
-                  selectLink
-                );
+              if (
+                window.confirm(
+                  "수정시 재로그인이 필요합니다. 수정하시겠습니까?"
+                )
+              ) {
+                if (defaultImg[profile] === undefined) {
+                  PostAxios(
+                    pw,
+                    memberInfo.memberId,
+                    memberInfo.memberNickname,
+                    memberInfo.memberAcademy,
+                    memberInfo.memberRole,
+                    memberInfo.memberIntroduce,
+                    profile,
+                    selectedLanguages,
+                    selectLink
+                  );
+                } else {
+                  PostAxios(
+                    pw,
+                    memberInfo.memberId,
+                    memberInfo.memberNickname,
+                    memberInfo.memberAcademy,
+                    memberInfo.memberRole,
+                    memberInfo.memberIntroduce,
+                    defaultImg[profile],
+                    selectedLanguages,
+                    selectLink
+                  );
+                }
               }
             }}
           >

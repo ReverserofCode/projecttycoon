@@ -21,7 +21,7 @@ const Nav = styled.a`
   height: 40px;
   border-bottom: 2px gray solid;
   @media screen and (max-width: 670px) {
-    width:100px;
+    width: 100px;
   }
 `;
 const Wrap = styled.div`
@@ -38,23 +38,21 @@ const Point = styled.div`
 `;
 function UserMypage() {
   const info = {
-  //   "memberId": "kkk123",
-  // "memberPw": "$2a$10$FEXNWIOSk8Gzslcn4qczde4m.A4ykKt4ixZbXj6C3OOMiAYxLK4ke",
-  // "memberRole": "front",
-  // "memberIntroduce": "gd",
-  // "memberLink": "[{\"option\":\"Blog\",\"value\":\"dddd\"}]",
-  // "memberAcademy": "노원",
-  // "memberNickname": "nay",
-  // "memberFilePath": "/static/icons/",
-  // "memberFileName": "7_dog.png",
-  // "memberStack": "[\"HTML\",\"C++\",\"C\"]",
-  // "myProjectlist": [],
-  // "myCommentlist": [],
-  // "myScraplist": []
+    //   "memberId": "kkk123",
+    // "memberPw": "$2a$10$FEXNWIOSk8Gzslcn4qczde4m.A4ykKt4ixZbXj6C3OOMiAYxLK4ke",
+    // "memberRole": "front",
+    // "memberIntroduce": "gd",
+    // "memberLink": "[{\"option\":\"Blog\",\"value\":\"dddd\"}]",
+    // "memberAcademy": "노원",
+    // "memberNickname": "nay",
+    // "memberFilePath": "/static/icons/",
+    // "memberFileName": "7_dog.png",
+    // "memberStack": "[\"HTML\",\"C++\",\"C\"]",
+    // "myProjectlist": [],
+    // "myCommentlist": [],
+    // "myScraplist": []
+  };
 
-  
-};
-    
   const [memberInfo, setMemberInfo] = useState(info);
   //유저-프로젝트개설-이미지
   // const [projectMainImg,setProjectMainImg]=useState("http://projecttycoon.com"+memberInfo?.mylist?.projectFilePath)
