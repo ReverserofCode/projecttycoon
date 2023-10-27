@@ -4,6 +4,10 @@ import axios from "axios";
 import { AiFillGithub } from "react-icons/ai";
 import { SiMicrodotblog } from "react-icons/si";
 import { TbMessageDots } from "react-icons/tb";
+import { DMListCall, DMRoomGen, DMSend } from "../DMSet/DM";
+import DMmodal from "../DMSet/DMmodal";
+import { AiOutlinePlus } from "react-icons/ai";
+import { HoverIcon } from "../DMSet/Components";
 const stacks = [
   { label: "Java", value: "Java" },
   { label: "Python", value: "Python" },
@@ -23,23 +27,6 @@ const stacks = [
   { label: "React", value: "React" },
   { label: "Vue", value: "Vue" },
 ];
-// 가져온 유저정보
-const info = {
-  memberId: "asdfasdf",
-  memberPw: "$2a$10$f1SruH64mkHnkGX70Ojesufc9W.kQ1rcHpOIB9Z3nMd8hRX0t3JuK",
-  memberRole: "front",
-  memberIntroduce: "asdfasdf",
-  memberLink:
-    '[{"option":"Git","value":"https://github.com/minicastle"},{"option":"Blog","value":"https://github.com/minicastle"},{"option":"Other","value":"https://github.com/minicastle"}]',
-  memberAcademy: "노원",
-  memberNickname: "asdfasdf",
-  memberFilePath: "/static/icons/",
-  memberFileName: "1_shark.png",
-  memberStack: '["PHP"]',
-  myProjectlist: [],
-  myCommentlist: [],
-  myScraplist: [],
-};
 const Box = styled.div`
   padding: 4px;
   width: 100%;
@@ -116,11 +103,12 @@ const Wrap = styled.div`
 const Content = styled.div`
   max-width: 1000px;
   width: 100%;
-  margin: 0 auto;
+  margin: 50px 0 0;
   height: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  border-top: 1px solid black;
 `;
 const Bot = styled.div`
   width: 100%;
@@ -270,31 +258,58 @@ const Button = styled.div`
   background-color: #fbeeac;
   border: 2px solid #f4d160;
   border-radius: 10px;
+  user-select: none;
+  :active {
+    scale: 0.98;
+  }
 `;
 const IconWrap = styled.div`
   display: flex;
   justify-content: center;
   font-size: 15px;
 `;
-function UserInfo() {
+function UserInfo({ userData }) {
+  /** 자신의 DM 리스트 state */
+  const [DMList, setDMList] = useState();
+  /** DM 창이 열려있는지 확인하는 state */
+  const [DMOpen, setDMOpen] = useState(false);
+  /** DM창의 모드를 확인하는 state */
+  const [sendMod, setSendMod] = useState("chatlist");
+  /** DM 창 오픈 */
+  const handleSetOpen = useCallback(() => {
+    setDMOpen(true);
+    if (userData !== "" && userData !== undefined) {
+      DMListCall(userData?.memberId).then((res) => {
+        setDMList(res);
+      });
+    }
+  }, [userData]);
+  /** DM창의 모드를 변경하는 function */
+  const handleSetMod = useCallback((value) => {
+    setSendMod(value);
+  }, []);
+  /** 자신의 ID를 통해 자신의 DM 리스트를 가져오는 funtion */
+  const handleGetList = useCallback(() => {
+    if (userData !== "" && userData !== undefined) {
+      DMListCall(userData?.memberId).then((res) => {
+        setDMList(res);
+      });
+    }
+  }, [userData]);
   //유저-처음 가져온 정보
-  const [memberInfo, setMemberInfo] = useState(info);
+  const [memberInfo, setMemberInfo] = useState();
   //유저-개인링크
-  const [selectLink, setSelectLink] = useState(
-    JSON.parse(memberInfo?.memberLink)
-  );
+  const [selectLink, setSelectLink] = useState();
   //유저-선택한언어
-  const [selectedLanguages, setSelectedLanguages] = useState(
-    JSON.parse(memberInfo.memberStack)
-  );
-  // function
+  const [selectedLanguages, setSelectedLanguages] = useState();
+  // 링크버튼을 생성하는 function
   const handlelist = useCallback(() => {
     let contents = [];
-    for (let i = 0; i < selectLink.length; i++) {
+    for (let i = 0; i < selectLink?.length; i++) {
       contents.push(
         <Button
           onClick={() => {
-            console.log(selectLink[i]?.value);
+            window.open(selectLink[i]?.value, "_blank");
           }}
         >
           {selectLink[i]?.option === "Git" ? (
@@ -355,35 +370,47 @@ function UserInfo() {
               <ImgBox
                 src={
                   "http://projecttycoon.com/static/icons/" +
-                  memberInfo.memberFileName
+                  memberInfo?.memberFileName
                 }
               />
             </ImgWrap>
-            <Button>1대1 대화하기</Button>
+            <Button
+              onClick={() => {
+                if (userData !== undefined || userData !== "") {
+                  DMRoomGen(userData?.memberId, memberInfo?.memberId).then(
+                    (res) => {
+                      DMSend(
+                        `${userData?.memberNickName}님이 대화를 시작했습니다.`,
+                        memberInfo?.memberId,
+                        userData?.memberId,
+                        res?.dmroomId
+                      );
+                    }
+                  );
+                  handleSetOpen();
+                } else alert("DM 생성을 위해서는 로그인 해주세요");
+              }}
+            >
+              1대1 대화하기
+            </Button>
           </Right>
           <Left>
             <Box>
-              <SmallBox>아이디</SmallBox>
-              <XsmallBox>
-                <div>{memberInfo.memberId}</div>
-              </XsmallBox>
-            </Box>
-            <Box>
               <SmallBox>닉네임</SmallBox>
               <XsmallBox>
-                <div>{memberInfo.memberNickname}</div>
+                <div>{memberInfo?.memberNickname}</div>
               </XsmallBox>
             </Box>
             <Box>
               <SmallBox>위치</SmallBox>
               <XsmallBox>
-                <div>{memberInfo.memberAcademy} 아카데미</div>
+                <div>{memberInfo?.memberAcademy} 아카데미</div>
               </XsmallBox>
             </Box>
             <Box>
               <SmallBox>역할</SmallBox>
               <XsmallBox>
-                <div>{memberInfo.memberRole}</div>
+                <div>{memberInfo?.memberRole}</div>
               </XsmallBox>
             </Box>
           </Left>
@@ -396,7 +423,7 @@ function UserInfo() {
             <XsmallBox>
               <InputIntro
                 type="text"
-                value={memberInfo.memberIntroduce}
+                value={memberInfo?.memberIntroduce}
                 readOnly={true}
               />
             </XsmallBox>
@@ -404,13 +431,13 @@ function UserInfo() {
           <Box>
             <SmallBox width={"140px"}>언어</SmallBox>
             <XsmallBox>
-              {selectedLanguages.length > 0 ? (
+              {selectedLanguages?.length > 0 ? (
                 <StackButWrap>
-                  {selectedLanguages.map((selectedLanguage) => (
+                  {selectedLanguages?.map((selectedLanguage) => (
                     <StackBut type="button" key={selectedLanguage}>
                       {
                         stacks.find(
-                          (option) => option.value === selectedLanguage
+                          (option) => option?.value === selectedLanguage
                         )?.label
                       }
                     </StackBut>
@@ -426,6 +453,26 @@ function UserInfo() {
             <LinkWrap>{handlelist()}</LinkWrap>
           </LinkBox>
         </Bot>
+        <DMmodal
+          status={DMOpen}
+          DMList={DMList}
+          Mod={sendMod}
+          myId={userData?.memberId}
+          handleSetMod={handleSetMod}
+          handleGetList={handleGetList}
+        />
+        <HoverIcon
+          onClick={() => {
+            setDMOpen(!DMOpen);
+            setSendMod("chatlist");
+            if (!DMOpen) {
+              handleGetList();
+            }
+          }}
+          status={DMOpen}
+        >
+          <AiOutlinePlus />
+        </HoverIcon>
       </Content>
     </Wrap>
   );
