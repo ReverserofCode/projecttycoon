@@ -106,38 +106,39 @@ const InputTitle = styled.input`
   color: gray;
   font-weight: 600;
   margin-bottom: 20px;
-  @media screen and (max-width: 720px ){
-        max-width: 650px;
-        width: 100%;
-    }
-    @media screen and (max-width: 370px ){
-        width: 350px;
-    }
+  @media screen and (max-width: 720px) {
+    max-width: 650px;
+    width: 100%;
+  }
+  @media screen and (max-width: 370px) {
+    width: 350px;
+  }
 `;
 const MainImgWrap = styled.div`
   display: flex;
   align-items: center;
   width: 620px;
   height: 400px;
-    position: relative;
-    @media screen and (max-width: 850px) {
-   justify-content: center;
-   width: 500px;
-   height: 260px;
+  position: relative;
+  @media screen and (max-width: 850px) {
+    justify-content: center;
+    width: 500px;
+    height: 260px;
   }
-    @media screen and (max-width: 900px ){
-        height: 100%;
-    }
-    
-    @media screen and (max-width: 370px ){
-        width: 350px;
-        height: 250px;
-    }
+  @media screen and (max-width: 900px) {
+    height: 100%;
+  }
+
+  @media screen and (max-width: 370px) {
+    width: 350px;
+    height: 250px;
+  }
 `;
-const MainImg=styled.img`
-    width:95%;
-    height: 90%;
-`
+const MainImg = styled.img`
+  width: 95%;
+  height: 90%;
+  object-fit: contain;
+`;
 const Ji = styled.div`
   display: flex;
   flex-direction: column;
@@ -175,7 +176,7 @@ const Bot = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
-  margin-bottom:70px;
+  margin-bottom: 70px;
 `;
 const DeleteBtn = styled.button`
   width: 35px;
@@ -219,8 +220,8 @@ const ImgWrap = styled.div`
   }
 `;
 const Ty = styled.div`
-/* border: 1px red solid; */
-min-width: 170px;
+  /* border: 1px red solid; */
+  min-width: 170px;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -286,7 +287,7 @@ const FileLabel = styled.label`
   border-radius: 50%;
   @media screen and (max-width: 370px) {
     width: 35px;
-  height: 35px;
+    height: 35px;
   }
 `;
 const ButBox = styled.div`
@@ -413,7 +414,7 @@ function Write({ userData }) {
   //   projectWriterNick: userData?.memberNickName,
   //   projectScarpNum: 0,
   // };
-  
+
   //But
   const handleAddButton = () => {
     if (selectFields.length < 7) {
@@ -441,10 +442,10 @@ function Write({ userData }) {
       return false;
     }
     let data = new FormData();
-    let Params="";
-    if(imageMod){
-        data.append("file", imgFile);
-       Params = {
+    let Params = "";
+    if (imageMod) {
+      data.append("file", imgFile);
+      Params = {
         projectTitle: title,
         projectContent: contents,
         projectWantedRole: JSON.stringify(selectFields),
@@ -463,9 +464,9 @@ function Write({ userData }) {
         }
       );
     }
-    if(!imageMod){
-       Params = {
-        projectFilePath:Img,
+    if (!imageMod) {
+      Params = {
+        projectFilePath: Img,
         projectTitle: title,
         projectContent: contents,
         projectWantedRole: JSON.stringify(selectFields),
@@ -622,13 +623,11 @@ function Write({ userData }) {
                       </option>
                     ))}
                   </Select>
-                  {
-                    index ===0 &&(
-                      <div onClick={handleAddButton}>
-                        <BsPlusSquareDotted size={"30px"} />
-                      </div>
-                    )
-                  }
+                  {index === 0 && (
+                    <div onClick={handleAddButton}>
+                      <BsPlusSquareDotted size={"30px"} />
+                    </div>
+                  )}
                   {index > 0 && (
                     <div onClick={() => handleDeleteButton(index)}>
                       <BsDashSquareDotted size={"30px"} />
