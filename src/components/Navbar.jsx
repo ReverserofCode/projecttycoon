@@ -285,13 +285,19 @@ function Navbar({ userData, handleSetUserData }) {
               handleSetUserData("");
             }}
           >
-            <UserIcon
-              src={
-                "http://projecttycoon.com/static/icons/" +
-                userData?.memberFileName
-              }
-              alt="usericon"
-            />
+            <Items>
+              <UserIcon
+                src={
+                  "http://projecttycoon.com/static/icons/" +
+                  userData?.memberFileName
+                }
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.location.href = "http://projecttycoon.com/myPage";
+                }}
+                alt="usericon"
+              />
+            </Items>
             <Items>로그아웃</Items>
           </Lists>
         )}
