@@ -7,8 +7,9 @@
 |PageProjectBoardDetail     |프로젝트 게시글 보는 페이지          |완료         |
 |PageSignUp                 |프로젝트 회원가입 페이지             |완료         |
 |MemberBoard                |프로젝트 멤버리스트 페이지           |완료         |
-|MyPage                     |프로젝트 유저마이페이지 페이지       |진행중         |
-|MemberPage                 |프로젝트 유저멤버 페이지             |진행중         |
+|MyPage                     |프로젝트 유저마이페이지 페이지       |완료         |
+|MemberPage                 |프로젝트 유저멤버 페이지             |완료         |
+|PageHome                   |홈 페이지                          |진행중         |
 # 프론트엔드 컴포넌트 리스트
 |File Name                 	|Info  	                |Progress           |
 |:--                        |:--:     		        |:--:               |
