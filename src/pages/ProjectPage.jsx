@@ -33,7 +33,7 @@ const SideContents = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   position: sticky;
-  top: 10px;
+  top: 50px;
   left: 10px;
   gap: 15px;
   @media screen and (max-width: 600px) {
