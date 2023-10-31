@@ -11,7 +11,8 @@ import { HoverIcon } from "../DMSet/Components";
 const stacks = [
   { label: "Java", value: "Java" },
   { label: "Python", value: "Python" },
-  { label: "C/C++", value: "C/C++" },
+  { label: "C", value: "C" },
+  { label: "C++", value: "C++" },
   { label: "C#", value: "C#" },
   { label: "PHP", value: "PHP" },
   { label: "SQL", value: "SQL" },
@@ -384,10 +385,11 @@ function UserInfo({ userData }) {
                         memberInfo?.memberId,
                         userData?.memberId,
                         res?.dmroomId
-                      );
+                      ).then(() => {
+                        handleSetOpen();
+                      });
                     }
                   );
-                  handleSetOpen();
                 } else alert("DM 생성을 위해서는 로그인 해주세요");
               }}
             >
