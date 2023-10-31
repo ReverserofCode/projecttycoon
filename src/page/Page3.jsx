@@ -6,6 +6,7 @@ import ButtonIcon from "../img/ButtonNewProject.png";
 import React from "react";
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/react";
+import "./Page3.css";
 const rotate = keyframes`
 0% {
     transform: scale(1)
@@ -54,11 +55,39 @@ const Container = styled.div`
   box-sizing: border-box;
 `;
 const TextZone = styled.div`
+  border: 1px solid red;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   width: 60%;
+  @media (max-width: 920px) {
+    width: 55%;
+  }
+  @media (max-width: 820px) {
+    width: 50%;
+  }
+  @media (max-width: 720px) {
+    width: 45%;
+  }
+  @media (max-width: 660px) {
+    width: 40%;
+  }
+  @media (max-width: 580px) {
+    width: 35%;
+  }
+  @media (max-width: 510px) {
+    width: 30%;
+  }
+  @media (max-width: 420px) {
+    width: 30%;
+  }
+  @media (max-width: 360px) {
+    width: 30%;
+  }
+  @media (max-width: 320px) {
+    width: 30%;
+  }
 `;
 const ImgBox = styled.div`
   position: relative;
@@ -90,6 +119,7 @@ const Img4 = styled.img`
   right: 20%;
   animation: ${rotate} 2s linear infinite;
 `;
+
 const Button = styled.div`
   display: flex;
   justify-content: center;
@@ -103,8 +133,10 @@ function Page3({ target, setOff }) {
     <Wrap ref={target}>
       <Container>
         <TextZone>
-          <PixelText40 color="white">언제 어디서나 </PixelText40>
-          <PixelText40 color="white">
+          <PixelText40 className="Text3" color="white">
+            언제 어디서나{" "}
+          </PixelText40>
+          <PixelText40 className="Text3" color="white">
             찜과 DM을 확인하실 수 있습니다. !
           </PixelText40>
         </TextZone>
