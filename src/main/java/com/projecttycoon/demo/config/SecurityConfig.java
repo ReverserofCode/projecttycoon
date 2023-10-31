@@ -56,7 +56,6 @@ public class SecurityConfig {
                 .loginProcessingUrl("/login")
                 .successHandler(new CustomLoginSuccessHandler())
 
-
                 .usernameParameter("memberId")
                 .passwordParameter("memberPw")
                 .defaultSuccessUrl("/")

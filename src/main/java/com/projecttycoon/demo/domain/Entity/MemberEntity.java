@@ -48,7 +48,7 @@ public class MemberEntity extends TimeStamp {
     @Column(name = "authority")
     @ElementCollection(fetch = FetchType.LAZY)
     @Builder.Default
-    public Set<MemberRoleEntity> memberAuthority = new HashSet<>();
+    private Set<MemberRoleEntity> memberAuthority = new HashSet<>();
 
     public void addMemberRole(MemberRoleEntity memberRoleEntity) {
         this.memberAuthority.add(memberRoleEntity);
