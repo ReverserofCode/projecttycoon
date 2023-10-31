@@ -298,9 +298,10 @@ function Sidebar({ value, userData, writer, handleSetOpen }) {
                   writer?.memberId,
                   userData?.memberId,
                   res?.dmroomId
-                );
+                ).then(() => {
+                  handleSetOpen();
+                });
               });
-              handleSetOpen();
             } else alert("DM 생성을 위해서는 로그인 해주세요");
           }}
         >
