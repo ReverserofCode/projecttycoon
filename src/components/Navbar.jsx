@@ -210,7 +210,7 @@ function Navbar({ userData, handleSetUserData }) {
   return (
     <Container>
       <Wrap>
-        <NavHeader src="http://projecttycoon.com/static/images/Logo Test.png" />
+        <NavHeader src="http://projecttycoon.com/webapp/3cc4e765-4157-4065-82a7-89e2a2bf7bb3_TitleIcon.png" />
         <Lists gap={"30px"}>
           <Link className="menu" href="http://projecttycoon.com">
             <Items>홈</Items>
@@ -283,6 +283,7 @@ function Navbar({ userData, handleSetUserData }) {
             onClick={() => {
               Logout();
               handleSetUserData("");
+              window.location.href = "http://projecttycoon.com";
             }}
           >
             <Items>
