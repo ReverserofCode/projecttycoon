@@ -30,7 +30,7 @@ public class WebController {
 
     @GetMapping("/")
     public String callMain() {
-        return "forward:/static/PageProjectBoard/index.html";
+        return "forward:/static/PageHome/index.html";
     }
 
     @RequestMapping("/api/login")
