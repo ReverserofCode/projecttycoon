@@ -13,6 +13,7 @@ import { HoverIcon } from "../DMSet/Components";
 import DMmodal from "../DMSet/DMmodal";
 import { DMListCall } from "../DMSet/DM";
 import { GetMyData } from "../functional/GetMyData";
+import { DeleteProject } from "../functional/DeleteProject";
 
 const Container = styled.div`
   display: flex;
@@ -177,7 +178,9 @@ const ModifyButton = styled.div`
   padding: 5px 10px;
   position: absolute;
   top: 10px;
-  right: 0;
+  right: ${(props) => {
+    return props.right + "px";
+  }};
   background-color: #d9d9d9;
   border: 1px solid black;
   user-select: none;
@@ -366,11 +369,31 @@ function DetailPage({ userData }) {
           <MainContents>
             {value?.projectWriterId === userData?.memberId ? (
               <ModifyButton
+                right={60}
                 onClick={() => {
                   setMod("modify");
                 }}
               >
                 수정
+              </ModifyButton>
+            ) : (
+              ""
+            )}
+            {value?.projectWriterId === userData?.memberId ? (
+              <ModifyButton
+                right={0}
+                onClick={() => {
+                  if (window.confirm("프로젝트를 삭제 하시겠습니까?")) {
+                    let path = window.location.href.split("/");
+                    console.log(path);
+                    DeleteProject(path[4]).then(() => {
+                      window.location.href =
+                        "http://projecttycoon.com/projects";
+                    });
+                  }
+                }}
+              >
+                삭제
               </ModifyButton>
             ) : (
               ""
