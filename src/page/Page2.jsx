@@ -1,5 +1,6 @@
 import { PixelText40 } from "../components/Pixel";
 import Image from "../img/monitor.png";
+import Image1 from "../img/memberList.png";
 import ButtonIcon from "../img/ButtonMember 1.png";
 import styled from "@emotion/styled";
 import "./Page2.css";
@@ -16,8 +17,42 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  /* padding: 0 140px; */
+  padding: 0 140px;
   box-sizing: border-box;
+  @media (min-width: 1200px) {
+    padding: 0 140px;
+  }
+  @media (max-width: 1200px) {
+    padding: 0 140px;
+  }
+  @media (max-width: 960px) {
+    padding: 0;
+    padding: 0;
+  }
+  @media (max-width: 820px) {
+    padding: 0;
+  }
+  @media (max-width: 720px) {
+    padding: 0;
+  }
+  @media (max-width: 660px) {
+    padding: 0;
+  }
+  @media (max-width: 580px) {
+    padding: 0;
+  }
+  @media (max-width: 510px) {
+    padding: 0;
+  }
+  @media (max-width: 420px) {
+    padding: 0;
+  }
+  @media (max-width: 360px) {
+    padding: 0;
+  }
+  @media (max-width: 320px) {
+    padding: 0;
+  }
 `;
 const TextZone = styled.div`
   /* border: 1px red solid; */
@@ -67,6 +102,15 @@ const ImgBox = styled.div`
 `;
 const Img = styled.img`
   width: 100%;
+  /* z-index: 0; */
+  position: relative;
+`;
+const Img2 = styled.img`
+  width: 55%;
+  height: auto;
+  position: absolute;
+  left: 22%;
+  top: 20%;
 `;
 const Button = styled.div`
   margin-top: 30px;
@@ -84,7 +128,10 @@ function Page2({ target }) {
     <Wrap ref={target}>
       <Container>
         <ImgBox>
-          <Img src="http://projecttycoon.com/static/images/monitor.png" />
+          <div className="imgMember">
+            <Img2 src="http://projecttycoon.com/static/images/memberList.png" />
+            <Img src="http://projecttycoon.com/static/images/monitor.png" />
+          </div>
         </ImgBox>
         <TextZone>
           <PixelText40 className="Text2">사람들과 DM으로 소통하며</PixelText40>

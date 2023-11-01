@@ -87,5 +87,6 @@
             font-size: 12px;
           }
         }
-
-  
+        .imgMember{
+          position: relative;
+        }
