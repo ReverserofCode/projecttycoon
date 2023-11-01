@@ -54,6 +54,9 @@ const Container = styled.div`
     padding: 0;
   }
 `;
+const Link = styled.a`
+  text-decoration: none;
+`;
 const TextZone = styled.div`
   /* border: 1px red solid; */
   display: flex;
@@ -137,7 +140,9 @@ function Page2({ target }) {
           <PixelText40 className="Text2">사람들과 DM으로 소통하며</PixelText40>
           <PixelText40 className="Text2">프로젝트를 만들어보세요.</PixelText40>
           <Button className="btn">
-            <Img src="http://projecttycoon.com/static/images/ButtonMember 1.png" />
+            <Link href="http://projecttycoon.com/members">
+              <Img src="http://projecttycoon.com/static/images/ButtonMember 1.png" />
+            </Link>
           </Button>
         </TextZone>
       </Container>
