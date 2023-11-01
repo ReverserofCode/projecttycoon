@@ -92,6 +92,7 @@ const Recruits = styled.div`
   gap: 10px;
   padding: 10px 5px 0;
   box-sizing: border-box;
+  overflow: hidden;
 `;
 /** 보드아이템의 모집분야를 icon으로 표기하는 태그 */
 const FilterIcon = styled.img`
