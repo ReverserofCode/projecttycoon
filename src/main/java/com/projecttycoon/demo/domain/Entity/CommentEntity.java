@@ -22,8 +22,8 @@ import javax.persistence.*;
 public class CommentEntity extends TimeStamp {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
 
     @ManyToOne(fetch = FetchType.EAGER)

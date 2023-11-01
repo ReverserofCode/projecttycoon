@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.projecttycoon'
-version = '0.1025.7-SNAPSHOT'
+version = '0.1101.1-SNAPSHOT'
 
 java {
     sourceCompatibility = '11'
