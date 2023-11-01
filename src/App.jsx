@@ -84,9 +84,19 @@ function App() {
         },
         { passive: false }
       );
+      window.addEventListener(
+        "touchmove",
+        (e) => {
+          e.preventDefault();
+          downUp = e.wheelDelta;
+        },
+        { passive: false }
+      );
       document.addEventListener("wheel", Throatle(handleSetPage, 400));
+      document.addEventListener("touchmove", Throatle(handleSetPage, 400));
       return () => {
         document.removeEventListener("wheel", Throatle(handleSetPage, 400));
+        document.removeEventListener("touchmove", Throatle(handleSetPage, 400));
       };
     }
   }, [handleSetPage]);
