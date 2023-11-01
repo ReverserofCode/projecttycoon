@@ -1875,7 +1875,7 @@ function UserInfo() {
                         </option>
                       ))}
                     </StackSelect>
-                    <Span>중복가능</Span>
+                    <Span>복수 선택 가능</Span>
                   </div>
                   <StackButWrap>
                     {selectedLanguages.map((selectedLanguage) => (
