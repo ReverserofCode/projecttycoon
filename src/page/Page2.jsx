@@ -84,13 +84,13 @@ function Page2({ target }) {
     <Wrap ref={target}>
       <Container>
         <ImgBox>
-          <Img src={Image} />
+          <Img src="http://projecttycoon.com/static/images/monitor.png" />
         </ImgBox>
         <TextZone>
           <PixelText40 className="Text2">사람들과 DM으로 소통하며</PixelText40>
           <PixelText40 className="Text2">프로젝트를 만들어보세요.</PixelText40>
           <Button className="btn">
-            <Img src={ButtonIcon} />
+            <Img src="http://projecttycoon.com/static/images/ButtonMember 1.png" />
           </Button>
         </TextZone>
       </Container>

@@ -76,10 +76,16 @@ function Page4({ target }) {
           <div className="imgArea">
             <ShootingImg
               className="Shoot"
-              src="./src/img/shoot.png"
+              src="http://projecttycoon.com/static/images/shoot.png"
             ></ShootingImg>
-            <BearImg className="Bear" src="./src/img/bear.gif"></BearImg>
-            <FightImg className="Fight" src="./src/img/fight.gif"></FightImg>
+            <BearImg
+              className="Bear"
+              src="http://projecttycoon.com/static/images/bear.gif"
+            ></BearImg>
+            <FightImg
+              className="Fight"
+              src="http://projecttycoon.com/static/images/fight.gif"
+            ></FightImg>
           </div>
         </TextZone>
       </Container>

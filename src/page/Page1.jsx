@@ -60,11 +60,11 @@ function Page1({ target }) {
             <PixelText40>사람들과 함께하는</PixelText40>
             <PixelText40>프로젝트를 개설해보세요.</PixelText40>
             <Button>
-              <Img src={ButtonIcon} />
+              <Img src="http://projecttycoon.com/static/images/ButtonNewProject.png" />
             </Button>
           </TextZone>
           <ImgBox>
-            <Img src={Image} />
+            <Img src="http://projecttycoon.com/static/images/Laptop.png" />
           </ImgBox>
         </Container>
       </Width>
