@@ -1524,8 +1524,8 @@ function Register({ userData }) {
           <option value="">선택</option>
           <option value="back">백엔드</option>
           <option value="front">프론트엔드</option>
-          <option value="bigData">빅데이터</option>
-          <option value="AI">AI</option>
+          <option value="bigdata">빅데이터</option>
+          <option value="ai">AI</option>
           <option value="server">서버관리자</option>
           <option value="security">정보보안</option>
           <option value="network">네트워크관리자</option>
