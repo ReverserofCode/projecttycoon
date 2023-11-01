@@ -404,16 +404,17 @@ function MemberPage({
           <DMButton
             onClick={(e) => {
               e.stopPropagation();
-              if (userData !== undefined) {
-                DMRoomGen(userData?.memberId, writer?.memberId).then((res) => {
+              if (userData !== undefined || userData !== "") {
+                DMRoomGen(userData?.memberId, postId).then((res) => {
                   DMSend(
-                    `프로젝트 [${value?.projectTitle}]에 대한 문의사항이 있어 쪽지방이 생성 되었습니다.`,
-                    writer?.memberId,
+                    `${userData?.memberNickName}님이 대화를 시작했습니다.`,
+                    postId,
                     userData?.memberId,
                     res?.dmroomId
-                  );
+                  ).then(() => {
+                    handleSetOpen();
+                  });
                 });
-                handleSetOpen();
               } else alert("DM 생성을 위해서는 로그인 해주세요");
             }}
           >
