@@ -362,7 +362,7 @@ function Write({ userData }) {
     { label: "정보보안", value: "security" },
     { label: "네트워크관리자", value: "network" },
   ];
-  const peopleLabels = ["1명", "2명", "3명", "4명", "5명이상"];
+  const peopleLabels = ["1명", "2명", "3명", "4명", "5명"];
   //role
   const handleNewFieldChange = (event, index) => {
     const updatedSelectFields = [...selectFields];
@@ -438,7 +438,11 @@ function Write({ userData }) {
   };
   const Submit = async () => {
     if (Deadline == "") {
-      alert("마감 날짜를 선택해주세요");
+      alert("마감 날짜를 선택해주세요.");
+      return false;
+    }
+    if(title===""){
+      alert ("제목을 작성해주세요.")
       return false;
     }
     let data = new FormData();
