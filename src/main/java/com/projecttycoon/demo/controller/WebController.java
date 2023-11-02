@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
 
-//웹 사이트 내에서 다른 사이트에 대한 요청을 처리하는 컨르롤러
+//웹 사이트 내에서 다른 사이트에 대한 요청을 처리하는 컨트롤러
 @Log4j2
 @Controller
 public class WebController {
