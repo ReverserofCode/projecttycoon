@@ -1,7 +1,5 @@
 import { PixelText40 } from "../components/Pixel";
-import Image from "../img/mobile.png";
-import Image2 from "../img/heart.png";
-import Image3 from "../img/letter.png";
+import ProjectDM from "../img/projectDM.png"
 import ButtonIcon from "../img/ButtonNewProject.png";
 import React from "react";
 import styled from "@emotion/styled";
@@ -62,6 +60,10 @@ margin-left: 4px;
     width: 55%;
     min-width: 410px;
   }
+  @media (max-width: 920px) {
+    width: 55%;
+    min-width: 410px;
+  }
   @media (max-width: 820px) {
     width: 50%;
   }
@@ -74,10 +76,6 @@ margin-left: 4px;
   }
   @media (max-width: 660px) {
     width: 40%;
-  }
-  @media (max-width: 650px) {
-    width: 40%;
-    min-width: 250px;
   }
   @media (max-width: 550px) {
     min-width: 200px;
@@ -104,21 +102,36 @@ const ImgBox = styled.div`
 `;
 const Img1 = styled.img`
   position: absolute;
+  /* position: relative; */
   margin-left:8px ;
   top: 20%;
   right: 1%;
   width: 50%;
   animation: ${loadEffect1} 1s ease-in-out;
-  @media (max-width: 680px) {
-      width: 50%;
-      /* right: -33px; */
+  @media (max-width: 903px) {
+      width: 45%;
+      right: 50px;
+  }
+  @media (max-width: 760px) {
+      width: 40%;
+      right: 90px;
+  }
+   @media (max-width: 730px) {
+    right: 70px;
   }
   @media (max-width: 650px) {
-      width: 45%;
-      left: 160px;
+      width: 40%;
+      right: 70px;
+  }
+  @media (max-width: 640px) {
+      width: 40%;
+      right: 50px;
   }
   @media (max-width: 600px) {
-      left: 137px;
+      left: 107px;
+  }
+  @media (max-width: 580px) {
+      left: 90px;
   }
   @media (max-width: 563px) {
       /* left: 110px; */
@@ -130,51 +143,42 @@ const Img1 = styled.img`
   @media (max-width: 550px) {
       width: 45%;
   }
-  @media (max-width: 514px) {
-    left: 120px;
+  @media (max-width: 540px) {
+    left:80px;
+  }
+  @media (max-width: 540px) {
+    left:70px;
   }
   @media (max-width: 500px) {
-      /* width: 63%;
-      min-width: 90px; */
-  }
-  @media (max-width: 490px) {
-    left: 108px;
-  }
-  @media (max-width: 454px) {
-    left: 96px;
-  }
-  @media (max-width: 432px) {
-    left: 88px;
-  }
-  @media (max-width: 420px) {
-    width: 40%;
-    left: 73px;
-  }
-  @media (max-width: 385px) {
-    width: 80px;
-    left: 65px;
+    width: 90px;
+    left:60px;
   }
   
 `;
 const Img2 = styled.img`
   width: 50%;
-  @media (max-width: 680px) {
-      width: 50%;
+  @media (max-width: 903px) {
+      width: 45%;
+  }
+  @media (max-width: 760px) {
+      width: 40%;
+      right: 50px;
   }
   @media (max-width: 650px) {
-    width: 45%;
+    width: 40%;
   }
   @media (max-width: 555px) {
     width: 50%;
   }
+  
   @media (max-width: 550px) {
       width: 45%;
   }
-  @media (max-width: 420px) {
-    width: 40%;
+  @media (max-width: 540px) {
+    width: 45%;
   }
-  @media (max-width: 385px) {
-    width: 80px;
+  @media (max-width: 500px) {
+    width: 90px;
   }
 `;
 const Img3 = styled.img`
@@ -183,6 +187,47 @@ const Img3 = styled.img`
   width: 27%;
   right: 0px;
   animation: ${rotate} 2s linear infinite;
+  @media (max-width: 902px) {
+    right: 60px;
+  }
+  @media (max-width: 800px) {
+    /* left: 170px; */
+    width: 25%;
+  }
+  @media (max-width: 760px) {
+     right: 100px;
+     width: 24%;
+  }
+  @media (max-width: 730px) {
+    right: 70px;
+     width: 24%;
+  }
+  @media (max-width: 720px) {
+    right: 80px;
+     width: 23%;
+  }
+  @media (max-width: 700px) {
+    right: 80px;
+     width: 22%;
+  }
+  @media (max-width: 666px) {
+    right: 70px;
+     width: 22%;
+  }
+  @media (max-width: 640px) {
+    right: 50px;
+     width: 22%;
+  }
+  @media (max-width: 580px) {
+     width: 20%;
+     top: -5px;
+  }
+  @media (max-width: 550px) {
+    left: 135px;
+     width: 22%;
+     top: -3px;
+  }
+  
 `;
 const Img4 = styled.img`
   position: absolute;
@@ -190,6 +235,56 @@ const Img4 = styled.img`
   width: 30%;
   right: 20%;
   animation: ${rotate} 2s linear infinite;
+  @media (max-width: 902px) {
+    left: 170px;
+  }
+  @media (max-width: 800px) {
+    /* left: 170px; */
+    width: 28%;
+  }
+  @media (max-width: 760px) {
+     left: 150px;
+     width: 27%;
+  }
+  @media (max-width: 730px) {
+    left: 170px;
+     width: 27%;
+  }
+  @media (max-width: 720px) {
+    left: 160px;
+     width: 26%;
+  }
+  @media (max-width: 700px) {
+    left: 145px;
+     width: 25%;
+  }
+   @media (max-width: 666px) {
+    left: 130px;
+     width: 25%;
+  }
+  @media (max-width: 666px) {
+    left: 120px;
+     width: 25%;
+  }
+  @media (max-width: 640px) {
+    left: 130px;
+     width: 25%;
+  }
+  @media (max-width: 610px) {
+    left: 110px;
+     width: 25%;
+     top: -15px;
+  }
+  @media (max-width: 580px) {
+    left: 105px;
+     width: 22%;
+     top: -10px;
+  }
+  @media (max-width: 550px) {
+    left: 100px;
+     width: 22%;
+     top: -5px;
+  }
 `;
 
 const Button = styled.div`
@@ -205,10 +300,10 @@ const W =styled.div`
  display: flex;
   align-items: center;
   justify-content: space-evenly;
-  @media (max-width: 485px) {
+  @media (max-width: 550px) {
     width: 100%;
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
   }
 `
 function Page3({ target, setOff }) {
@@ -217,7 +312,7 @@ function Page3({ target, setOff }) {
       <Container>
         <W>
         <TextZone>
-          <PixelText40 className="Text3" color="white">
+          <PixelText40  className="Text3" color="white">
             언제 어디서나{" "}
           </PixelText40>
           <PixelText40 className="Text3" color="white">

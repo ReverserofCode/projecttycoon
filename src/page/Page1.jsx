@@ -13,9 +13,8 @@ const Container = styled.div`
   background-color: #0b666a;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
-  padding: 0 140px;
   box-sizing: border-box;
   max-width: 1100px;
 `;
@@ -27,8 +26,35 @@ const TextZone = styled.div`
   width: 60%;
 `;
 const ImgBox = styled.div`
-  max-width: 500px;
+  max-width: 450px;
   width: 100%;
+  @media (max-width: 830px) {
+    width: 100%;
+    max-width: 400px;
+  }
+  @media (max-width: 750px) {
+    width: 100%;
+    max-width: 350px;
+  }
+   @media (max-width: 650px) {
+    width: 100%;
+    max-width: 300px;
+  }
+  @media (max-width: 550px) {
+    width: 100%;
+    max-width: 240px;
+    margin-right: 12px;
+  }
+  @media (max-width: 460px) {
+    width: 100%;
+    max-width: 200px;
+    margin-right: 12px;
+  }
+  @media (max-width: 370px) {
+    width: 100%;
+    max-width: 170px;
+    margin-right: 12px;
+  }
 `;
 const Img = styled.img`
   width: 100%;
@@ -36,11 +62,34 @@ const Img = styled.img`
 const Button = styled.div`
   max-width: 300px;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-top: 20px;
   :active {
     scale: 0.98;
+  }
+  @media (max-width: 760px) {
+    max-width: 250px;
+    width: 100%;
+    font-size: 25px;
+  }
+  @media (max-width: 650px) {
+    max-width: 210px;
+    width: 100%;
+    font-size: 17px;
+  }
+  @media (max-width: 550px) {
+    max-width: 180px;
+    width: 100%;
+    font-size: 13px;
+  }
+  @media (max-width: 460px) {
+     max-width: 150px;
+     width: 100%;
+    font-size: 12px;
+  }
+  @media (max-width: 380px) {
+    max-width: 120px;
+     width: 100%;
+    font-size: 11px;
   }
 `;
 const Width = styled.div`
@@ -50,15 +99,25 @@ const Width = styled.div`
   justify-content: center;
   align-items: center;
 `;
+const W =styled.div`
+width: 100%;
+align-items: center;
+  display: flex;
+  justify-content: space-around;
+  @media (max-width: 550px) {
+    justify-content: space-around;
+  }
+`
 function Page1({ target }) {
   return (
     <Wrap ref={target}>
       <Width>
         <Container>
+          <W>
           <TextZone>
-            <PixelText40>전국에 있는 코리아IT학원</PixelText40>
+            <PixelText40 >전국에 있는 코리아IT학원</PixelText40>
             <PixelText40>사람들과 함께하는</PixelText40>
-            <PixelText40>프로젝트를 개설해보세요.</PixelText40>
+            <PixelText40 >프로젝트를 개설해보세요.</PixelText40>
             <Button>
               <Img src="http://projecttycoon.com/static/images/ButtonNewProject.png" />
             </Button>
@@ -66,6 +125,7 @@ function Page1({ target }) {
           <ImgBox>
             <Img src="http://projecttycoon.com/static/images/Laptop.png" />
           </ImgBox>
+          </W>
         </Container>
       </Width>
     </Wrap>
