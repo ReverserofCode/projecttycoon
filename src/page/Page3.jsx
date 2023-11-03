@@ -47,57 +47,24 @@ const Container = styled.div`
   background-color: #071952;
   box-sizing: border-box;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const TextZone = styled.div`
 margin-left: 4px;
-  min-width: 500px;
+  /* min-width: 400px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   width: 60%;
-  @media (max-width: 920px) {
-    width: 55%;
-    min-width: 410px;
-  }
-  @media (max-width: 920px) {
-    width: 55%;
-    min-width: 410px;
-  }
-  @media (max-width: 820px) {
-    width: 50%;
-  }
-  @media (max-width: 760px) {
-    width: 50%;
-    min-width: 330px;
-  }
-  @media (max-width: 720px) {
-    width: 45%;
-  }
-  @media (max-width: 660px) {
-    width: 40%;
-  }
-  @media (max-width: 550px) {
-    min-width: 200px;
-  }
-  @media (max-width: 580px) {
-    width: 35%;
-  }
-  @media (max-width: 510px) {
-    width: 30%;
-  }
-  @media (max-width: 375px) {
-    width: 10%;
-    min-width: 180px;
-  }
 `;
 const ImgBox = styled.div`
   position: relative;
   display: flex;
   max-width: 400px;
-  /* min-width: 150px; */
   width: 100%;
-  /* justify-content: ; */
 
 `;
 const Img1 = styled.img`
@@ -108,126 +75,42 @@ const Img1 = styled.img`
   right: 1%;
   width: 50%;
   animation: ${loadEffect1} 1s ease-in-out;
-  @media (max-width: 903px) {
-      width: 45%;
-      right: 50px;
+min-width: 120px;
+  @media (max-width: 515px) {
+       min-width: 100px;
   }
-  @media (max-width: 760px) {
-      width: 40%;
-      right: 90px;
+  @media (max-width: 442px) {
+       min-width: 90px;
   }
-   @media (max-width: 730px) {
-    right: 70px;
+  @media (max-width: 400px) {
+       min-width: 70px;
   }
-  @media (max-width: 650px) {
-      width: 40%;
-      right: 70px;
-  }
-  @media (max-width: 640px) {
-      width: 40%;
-      right: 50px;
-  }
-  @media (max-width: 600px) {
-      left: 107px;
-  }
-  @media (max-width: 580px) {
-      left: 90px;
-  }
-  @media (max-width: 563px) {
-      /* left: 110px; */
-  }
-  @media (max-width: 555px) {
-      width: 50%;
-      left: 90;
-  }
-  @media (max-width: 550px) {
-      width: 45%;
-  }
-  @media (max-width: 540px) {
-    left:80px;
-  }
-  @media (max-width: 540px) {
-    left:70px;
-  }
-  @media (max-width: 500px) {
-    width: 90px;
-    left:60px;
-  }
-  
 `;
 const Img2 = styled.img`
   width: 50%;
-  @media (max-width: 903px) {
-      width: 45%;
+  min-width: 120px;
+     @media (max-width: 515px) {
+       min-width: 100px;
   }
-  @media (max-width: 760px) {
-      width: 40%;
-      right: 50px;
+  @media (max-width: 442px) {
+       min-width: 90px;
   }
-  @media (max-width: 650px) {
-    width: 40%;
-  }
-  @media (max-width: 555px) {
-    width: 50%;
-  }
-  
-  @media (max-width: 550px) {
-      width: 45%;
-  }
-  @media (max-width: 540px) {
-    width: 45%;
-  }
-  @media (max-width: 500px) {
-    width: 90px;
+  @media (max-width: 400px) {
+       min-width: 70px;
   }
 `;
 const Img3 = styled.img`
   position: absolute;
   top: -7px;
   width: 27%;
-  right: 0px;
+  right: 20px;
   animation: ${rotate} 2s linear infinite;
-  @media (max-width: 902px) {
-    right: 60px;
+  @media (max-width: 660px) {
+    right: 5px;
   }
-  @media (max-width: 800px) {
-    /* left: 170px; */
-    width: 25%;
+  @media (max-width: 384px) {
+   top: -6px;
   }
-  @media (max-width: 760px) {
-     right: 100px;
-     width: 24%;
-  }
-  @media (max-width: 730px) {
-    right: 70px;
-     width: 24%;
-  }
-  @media (max-width: 720px) {
-    right: 80px;
-     width: 23%;
-  }
-  @media (max-width: 700px) {
-    right: 80px;
-     width: 22%;
-  }
-  @media (max-width: 666px) {
-    right: 70px;
-     width: 22%;
-  }
-  @media (max-width: 640px) {
-    right: 50px;
-     width: 22%;
-  }
-  @media (max-width: 580px) {
-     width: 20%;
-     top: -5px;
-  }
-  @media (max-width: 550px) {
-    left: 135px;
-     width: 22%;
-     top: -3px;
-  }
-  
 `;
 const Img4 = styled.img`
   position: absolute;
@@ -235,55 +118,14 @@ const Img4 = styled.img`
   width: 30%;
   right: 20%;
   animation: ${rotate} 2s linear infinite;
-  @media (max-width: 902px) {
-    left: 170px;
+@media (max-width: 569px) {
+    top: -15px;
   }
-  @media (max-width: 800px) {
-    /* left: 170px; */
-    width: 28%;
+  @media (max-width: 500px) {
+    top: -13px;
   }
-  @media (max-width: 760px) {
-     left: 150px;
-     width: 27%;
-  }
-  @media (max-width: 730px) {
-    left: 170px;
-     width: 27%;
-  }
-  @media (max-width: 720px) {
-    left: 160px;
-     width: 26%;
-  }
-  @media (max-width: 700px) {
-    left: 145px;
-     width: 25%;
-  }
-   @media (max-width: 666px) {
-    left: 130px;
-     width: 25%;
-  }
-  @media (max-width: 666px) {
-    left: 120px;
-     width: 25%;
-  }
-  @media (max-width: 640px) {
-    left: 130px;
-     width: 25%;
-  }
-  @media (max-width: 610px) {
-    left: 110px;
-     width: 25%;
-     top: -15px;
-  }
-  @media (max-width: 580px) {
-    left: 105px;
-     width: 22%;
-     top: -10px;
-  }
-  @media (max-width: 550px) {
-    left: 100px;
-     width: 22%;
-     top: -5px;
+  @media (max-width: 384px) {
+    top: -10px;
   }
 `;
 
@@ -296,15 +138,13 @@ const Button = styled.div`
   }
 `;
 const W =styled.div`
-/* width: 100%; */
+width: 100%;
+max-width: 1100px;
+/* border: 1px red solid; */
  display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  @media (max-width: 550px) {
-    width: 100%;
-      display: flex;
-      justify-content: space-around;
-  }
+  justify-content: space-between;
+  margin: 3px;
 `
 function Page3({ target, setOff }) {
   return (

@@ -100,6 +100,7 @@ const Width = styled.div`
   align-items: center;
 `;
 const W =styled.div`
+margin-left: 12px;
 width: 100%;
 align-items: center;
   display: flex;

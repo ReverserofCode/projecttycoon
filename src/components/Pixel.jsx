@@ -19,10 +19,16 @@ export const PixelText40 = styled.span`
   @media (max-width: 650px) {
     font-size: 19px;
   }
-  @media (max-width: 460px) {
+  @media (max-width: 555px) {
     font-size: 18px;
   }
-  @media (max-width: 380px) {
+  @media (max-width: 541px) {
+    font-size: 17px;
+  }
+  @media (max-width: 470px) {
+    font-size: 15px;
+  }
+  @media (max-width: 420px) {
     font-size: 14px;
   }
 `;
