@@ -283,7 +283,6 @@ function Navbar({ userData, handleSetUserData }) {
             onClick={() => {
               Logout();
               handleSetUserData("");
-              window.location.href = "http://projecttycoon.com";
             }}
           >
             <Items>
