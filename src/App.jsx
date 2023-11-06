@@ -104,8 +104,8 @@ function App() {
     <MainContainer ref={Eventer}>
       <Navbar userData={userData} handleSetUserData={handleSetUserData} />
       <Wrap>
-        <Page4 target={(el) => (Target.current[0] = el)} />
-        <Page1 target={(el) => (Target.current[1] = el)} />
+        <Page4  target={(el) => (Target.current[0] = el)} />
+        <Page1 userData={userData} target={(el) => (Target.current[1] = el)} />
         <Page2 target={(el) => (Target.current[2] = el)} />
         <Page3 target={(el) => (Target.current[3] = el)} />
         {/* <Page2 target={(el) => (Target.current[3] = el)} /> */}

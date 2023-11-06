@@ -2,6 +2,8 @@ import { PixelText40 } from "../components/Pixel";
 import Image from "../img/Laptop.png";
 import ButtonIcon from "../img/ButtonNewProject.png";
 import styled from "@emotion/styled";
+import Img1 from "../img/page1img.png"
+
 const Wrap = styled.div`
   display: flex;
   justify-content: center;
@@ -63,8 +65,9 @@ const Button = styled.div`
   max-width: 300px;
   width: 100%;
   margin-top: 20px;
-  :active {
+  :hover {
     scale: 0.98;
+    cursor: pointer;
   }
   @media (max-width: 760px) {
     max-width: 250px;
@@ -109,7 +112,11 @@ align-items: center;
     justify-content: space-around;
   }
 `
-function Page1({ target }) {
+const Link = styled.a`
+  text-decoration: none;
+`;
+
+function Page1({ target, userData }) {
   return (
     <Wrap ref={target}>
       <Width>
@@ -120,11 +127,17 @@ function Page1({ target }) {
             <PixelText40>사람들과 함께하는</PixelText40>
             <PixelText40 >프로젝트를 개설해보세요.</PixelText40>
             <Button>
+              <Link href={
+              userData === "" || userData === undefined
+                ? "http://projecttycoon.com/api/login"
+                : "http://projecttycoon.com/callPageNewProject"
+            }>
               <Img src="http://projecttycoon.com/static/images/ButtonNewProject.png" />
+              </Link>
             </Button>
           </TextZone>
           <ImgBox>
-            <Img src="http://projecttycoon.com/static/images/Laptop.png" />
+            <Img src={Img1} />
           </ImgBox>
           </W>
         </Container>

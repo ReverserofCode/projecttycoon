@@ -5,6 +5,9 @@ import React from "react";
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/react";
 import "./Page3.css";
+import projectDM1 from "../img/projectDM.png"
+import projectDM2 from "../img/projectDM2.png"
+
 const rotate = keyframes`
 0% {
     transform: scale(1)
@@ -160,8 +163,8 @@ function Page3({ target, setOff }) {
           </PixelText40>
         </TextZone>
         <ImgBox>
-          <Img1 src="http://projecttycoon.com/static/images/mobile.png" />
-          <Img2 src="http://projecttycoon.com/static/images/mobile.png" />
+          <Img1 src={projectDM2} />
+          <Img2 src={projectDM1} />
           <Img3 src="http://projecttycoon.com/static/images/heart.png"></Img3>
           <Img4 src="http://projecttycoon.com/static/images/letter.png"></Img4>
         </ImgBox>
