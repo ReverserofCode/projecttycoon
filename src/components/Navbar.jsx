@@ -257,14 +257,30 @@ function Navbar({ userData, handleSetUserData }) {
           </MenuButton>
           <MenuList opened={minimizeMenu}>
             <Link className="menu" href="http://projecttycoon.com">
-              <p>Home</p>
+              <p>홈페이지</p>
             </Link>
             <Link className="menu" href="http://projecttycoon.com/projects">
-              <p>Project</p>
+              <p>프로젝트 팀</p>
             </Link>
             <Link className="menu" href="http://projecttycoon.com/members">
-              <p>Members</p>
+              <p>멤버리스트</p>
             </Link>
+            {userData === "" || userData === undefined ? (
+              <Link className="menu" href="http://projecttycoon.com/api/login">
+                <p>로그인</p>
+              </Link>
+            ) : (
+              <Link
+                className="menu"
+                onClick={() => {
+                  Logout();
+                  handleSetUserData("");
+                  window.location.reload();
+                }}
+              >
+                <p>로그아웃</p>
+              </Link>
+            )}
           </MenuList>
         </MenuMinimize>
         {userData === "" || userData === undefined ? (
