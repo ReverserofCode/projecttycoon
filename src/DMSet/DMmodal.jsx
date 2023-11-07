@@ -4,6 +4,7 @@ import { BsChatText } from "react-icons/bs";
 import { AiOutlineStar } from "react-icons/ai";
 import ChatRoom from "./ChatRoom";
 import ChatList from "./ChatList";
+import ScrapList from "./ScrapList";
 /** DM 모달의 콘테이너 태그 */
 const Container = styled.div`
   transition: 200ms;
@@ -94,10 +95,15 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
   return (
     <Container status={status}>
       <HeaderZone>
-        <span>쪽지</span>
+        <span>{Mod === "scrap" ? "좋아요" : "쪽지함"}</span>
         <IconButtons>
           <IconButton>
-            <AiOutlineStar fontSize={"25px"}></AiOutlineStar>
+            <AiOutlineStar
+              fontSize={"25px"}
+              onClick={() => {
+                handleSetMod("scrap");
+              }}
+            ></AiOutlineStar>
           </IconButton>
           <IconButton
             onClick={() => {
@@ -128,6 +134,8 @@ function DMmodal({ status, DMList, Mod, handleSetMod, myId, handleGetList }) {
           handleSetData={handleSetData}
           key={`chat room ${targetId}`}
         />
+      ) : Mod === "scrap" ? (
+        <ScrapList />
       ) : (
         "none"
       )}
