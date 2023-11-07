@@ -191,11 +191,11 @@ function MemberPage({
   const generateRoleIcons = useCallback(() => {
     if (memberRole === "front") return "프론트엔드";
     if (memberRole === "back") return "백엔드";
-    if (memberRole === "AI") return "AI";
+    if (memberRole === "ai") return "AI";
     if (memberRole === "server") return "서버관리자";
     if (memberRole === "network") return "네트워크관리자";
     if (memberRole === "security") return "정보보안";
-    if (memberRole === "bigData") return "빅데이터";
+    if (memberRole === "bigdata") return "빅데이터";
   }, [memberRole]);
 
   const generateStackIcons = useCallback(() => {
