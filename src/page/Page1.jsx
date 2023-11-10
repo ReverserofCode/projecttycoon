@@ -137,7 +137,7 @@ function Page1({ target, userData }) {
             </Button>
           </TextZone>
           <ImgBox>
-            <Img src={Img1} />
+            <Img src="http://projecttycoon.com/static/images/page1.png" />
           </ImgBox>
           </W>
         </Container>

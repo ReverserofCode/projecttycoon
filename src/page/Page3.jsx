@@ -163,8 +163,8 @@ function Page3({ target, setOff }) {
           </PixelText40>
         </TextZone>
         <ImgBox>
-          <Img1 src={projectDM2} />
-          <Img2 src={projectDM1} />
+          <Img1 src="http://projecttycoon.com/static/images/dm1.png" />
+          <Img2 src="http://projecttycoon.com/static/images/dm2.png"  />
           <Img3 src="http://projecttycoon.com/static/images/heart.png"></Img3>
           <Img4 src="http://projecttycoon.com/static/images/letter.png"></Img4>
         </ImgBox>
